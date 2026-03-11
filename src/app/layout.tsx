@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { Cormorant_Garamond } from "next/font/google";
+import { Rethink_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const rethinkSans = Rethink_Sans({
+  variable: "--font-rethink",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sr">
-      <body className={`${geistSans.variable} ${cormorant.variable} antialiased`}>
+      <body className={`${rethinkSans.variable} ${playfair.variable} antialiased`}>
         {children}
       </body>
     </html>

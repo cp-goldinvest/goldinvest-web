@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { CheckCircle2 } from "lucide-react";
 import { formatRsd, formatWeight } from "@/lib/pricing";
 
 type Props = {
@@ -19,179 +19,103 @@ type Props = {
   };
 };
 
-export function ProductCard({
-  slug,
-  name,
-  weightG,
-  images,
-  availability,
-  leadTimeWeeks,
-  prices,
-}: Props) {
-  const [qty, setQty] = useState(1);
+export function ProductCard({ slug, name, weightG, images, availability, leadTimeWeeks, prices }: Props) {
   const href = `/proizvodi/${slug}`;
   const inStock = availability === "in_stock";
   const isPreorder = availability === "preorder";
-  const canBuy = inStock || isPreorder;
 
   return (
-    /*
-     * Overlay-link pattern:
-     * The <Link> sits as absolute inset-0 z-0.
-     * Interactive elements (qty, button) are relative z-10 and intercept
-     * clicks before the link does — card still navigates everywhere else.
-     */
-    <div className="group relative flex flex-col bg-[#242425] border border-[#2E2E2F] rounded-xl overflow-hidden hover:border-[#BF8E41]/40 transition-all duration-300 hover:shadow-[0_4px_24px_rgba(191,142,65,0.08)]">
+    <div className="group relative flex flex-col bg-white border border-[#F3F4F6] rounded-2xl overflow-hidden hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300">
 
-      {/* Invisible full-card link */}
-      <Link
-        href={href}
-        className="absolute inset-0 z-0"
-        aria-label={`Pogledaj ${name}`}
-      />
+      {/* Invisible overlay link */}
+      <Link href={href} className="absolute inset-0 z-0" aria-label={`Pogledaj ${name}`} />
 
-      {/* ── Image ────────────────────────────────── */}
-      <div className="relative aspect-square bg-[#1B1B1C] overflow-hidden">
+      {/* ── Image area ── */}
+      <div className="relative bg-[#F9F9F9] overflow-hidden" style={{ height: 305 }}>
+
+        {/* Weight badge — top left */}
+        <div
+          className="absolute top-3 left-3 z-10 px-2 py-1 rounded-[4px] text-xs font-bold text-[#1B1B1C]"
+          style={{ background: "rgba(255,255,255,0.9)" }}
+        >
+          {formatWeight(weightG)}
+        </div>
+
+        {/* Product image */}
         {images[0] ? (
           <Image
             src={images[0]}
             alt={name}
             fill
             className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes="(max-width: 640px) 50vw, 25vw"
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-[#2E2E2F] text-5xl">◈</span>
-          </div>
+          <Image
+            src="/images/product-poluga.png"
+            alt={name}
+            fill
+            className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 640px) 50vw, 25vw"
+          />
         )}
-
-        {/* Availability badge */}
-        <div className="absolute top-3 left-3">
-          {inStock ? (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              Na stanju
-            </span>
-          ) : isPreorder ? (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-[#BF8E41]/10 text-[#BF8E41] border border-[#BF8E41]/20">
-              Dostava za {leadTimeWeeks ?? "?"} ned.
-            </span>
-          ) : (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-[#2E2E2F] text-[#8A8A8A] border border-[#3A3A3B]">
-              Na upit
-            </span>
-          )}
-        </div>
       </div>
 
-      {/* ── Content ──────────────────────────────── */}
-      <div className="flex flex-col flex-1 p-4 gap-3">
+      {/* ── Content area ── */}
+      <div className="flex flex-col flex-1 p-5" style={{ minHeight: 271 }}>
 
-        {/* Title + weight */}
-        <div>
-          <h2 className="text-sm font-semibold text-[#E9E6D9] group-hover:text-[#BF8E41] transition-colors leading-snug line-clamp-2">
-            {name}
-          </h2>
-          <p className="text-xs text-[#8A8A8A] mt-0.5">{formatWeight(weightG)}</p>
+        {/* Product name */}
+        <h2 className="text-[#1B1B1C] font-bold leading-snug mb-3 line-clamp-2" style={{ fontSize: 18 }}>
+          {name}
+        </h2>
+
+        {/* Status row */}
+        <div className="flex items-center gap-2 mb-3">
+          <CheckCircle2 size={16} className={inStock ? "text-green-500" : "text-[#BEAD87]"} />
+          <span className="text-xs text-[#464747]">
+            {inStock ? "Na stanju" : isPreorder ? `Dostava za ${leadTimeWeeks ?? "?"} ned.` : "Na upit"}
+          </span>
         </div>
 
-        {/* Prices */}
-        <div className="flex flex-col gap-1.5 border-t border-[#2E2E2F] pt-3">
-          <PriceRow
-            label="Prodajna"
-            value={formatRsd(prices.stock)}
-            highlight
-            dimmed={!canBuy}
-          />
-          <PriceRow
-            label="Avansna"
-            value={formatRsd(prices.advance)}
-            dimmed={!canBuy}
-          />
-          <PriceRow
-            label="Otkupna"
-            value={formatRsd(prices.purchase)}
-            small
-          />
+        {/* Price rows */}
+        <div className="flex flex-col gap-1.5 mb-5">
+          <PriceRow label="Prodajna cena" value={formatRsd(prices.stock)} bold />
+          <PriceRow label="Avansna cena"  value={formatRsd(prices.advance)} />
+          <PriceRow label="Otkupna cena"  value={formatRsd(prices.purchase)} muted />
         </div>
 
-        {/* ── Quantity + CTA ── relative z-10 so they sit above the link */}
-        <div className="relative z-10 mt-auto flex flex-col gap-2 pt-1">
-
-          {/* Quantity control — only shown when buyable */}
-          {canBuy && (
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-[#8A8A8A]">Kol.:</span>
-              <div className="flex items-center border border-[#2E2E2F] rounded-lg overflow-hidden bg-[#1B1B1C]">
-                <button
-                  onClick={(e) => { e.preventDefault(); setQty((q) => Math.max(1, q - 1)); }}
-                  className="px-3 py-1.5 text-[#E9E6D9] hover:text-[#BF8E41] hover:bg-[#2E2E2F] transition-colors text-sm font-medium"
-                  aria-label="Smanji količinu"
-                >
-                  −
-                </button>
-                <span className="px-3 py-1.5 text-sm font-semibold text-[#E9E6D9] min-w-[2rem] text-center tabular-nums border-x border-[#2E2E2F]">
-                  {qty}
-                </span>
-                <button
-                  onClick={(e) => { e.preventDefault(); setQty((q) => q + 1); }}
-                  className="px-3 py-1.5 text-[#E9E6D9] hover:text-[#BF8E41] hover:bg-[#2E2E2F] transition-colors text-sm font-medium"
-                  aria-label="Povećaj količinu"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Add to cart / disabled */}
-          <button
-            onClick={(e) => { e.preventDefault(); /* TODO: cart logic */ }}
-            disabled={!canBuy}
-            className={[
-              "w-full py-2.5 rounded-lg text-sm font-semibold transition-all duration-200",
-              canBuy
-                ? "gold-gradient-bg text-[#1B1B1C] hover:opacity-90 cursor-pointer"
-                : "bg-[#2E2E2F] text-[#555] cursor-not-allowed",
-            ].join(" ")}
+        {/* Action buttons — relative z-10 so they intercept clicks over the overlay link */}
+        <div className="relative z-10 mt-auto flex items-center gap-2">
+          {/* Saznaj više — muted gold bg */}
+          <Link
+            href={href}
+            onClick={(e) => e.stopPropagation()}
+            className="flex-1 inline-flex items-center justify-center px-3 py-1.5 rounded-full text-[#1B1B1C] text-xs font-medium whitespace-nowrap transition-opacity hover:opacity-80"
+            style={{ background: "rgba(194,178,128,0.39)", fontSize: 12 }}
           >
-            {canBuy ? "Dodaj u korpu" : "Pozovite nas"}
-          </button>
-        </div>
+            Saznaj više
+          </Link>
 
+          {/* Pozovi nas — outline */}
+          <a
+            href="tel:+381612698569"
+            onClick={(e) => e.stopPropagation()}
+            className="flex-1 inline-flex items-center justify-center px-3 py-1.5 rounded-full text-[#000] text-xs font-medium whitespace-nowrap transition-colors hover:bg-black/5"
+            style={{ border: "0.5px solid rgba(0,0,0,0.75)", fontSize: 12 }}
+          >
+            Pozovi nas!
+          </a>
+        </div>
       </div>
     </div>
   );
 }
 
-function PriceRow({
-  label,
-  value,
-  highlight = false,
-  small = false,
-  dimmed = false,
-}: {
-  label: string;
-  value: string;
-  highlight?: boolean;
-  small?: boolean;
-  dimmed?: boolean;
-}) {
+function PriceRow({ label, value, bold, muted }: { label: string; value: string; bold?: boolean; muted?: boolean }) {
   return (
     <div className="flex items-center justify-between">
-      <span className={`text-xs ${dimmed ? "text-[#444]" : "text-[#8A8A8A]"}`}>
-        {label}:
-      </span>
-      <span
-        className={[
-          "font-semibold tabular-nums",
-          small ? "text-xs" : "text-sm",
-          highlight
-            ? dimmed ? "text-[#555]" : "text-[#BF8E41]"
-            : dimmed ? "text-[#444]" : "text-[#E9E6D9]",
-        ].join(" ")}
-      >
+      <span className={`text-xs ${muted ? "text-[#999]" : "text-[#464747]"}`}>{label}</span>
+      <span className={`text-sm tabular-nums ${bold ? "font-bold text-[#1B1B1C]" : muted ? "text-xs text-[#999]" : "font-medium text-[#1B1B1C]"}`}>
         {value}
       </span>
     </div>

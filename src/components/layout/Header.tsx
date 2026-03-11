@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { Phone, Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { GoldInvestLogo } from "@/components/ui/GoldInvestLogo";
-import { PhoneBar } from "@/components/layout/PhoneBar";
 import { PriceTicker } from "@/components/layout/PriceTicker";
 
 // ── Types ─────────────────────────────────────────────────────
@@ -109,23 +108,23 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
-      <PhoneBar />
 
-      {/* Main nav — relative z-10 keeps dropdowns above PriceTicker */}
+      {/* Price ticker — gold gradient, top of header */}
+      <PriceTicker />
+
+      {/* Main nav — white background */}
       <div
         className={[
-          "relative z-10 transition-all duration-300",
-          scrolled
-            ? "bg-[#1B1B1C]/95 backdrop-blur-md shadow-[0_1px_0_rgba(191,142,65,0.2)]"
-            : "bg-[#1B1B1C]",
+          "relative z-10 transition-all duration-300 bg-white",
+          scrolled ? "shadow-[0_1px_8px_rgba(0,0,0,0.08)]" : "border-b border-[#EBEBEB]",
         ].join(" ")}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
 
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BF8E41] rounded" aria-label="Gold Invest — početna">
-              <GoldInvestLogo className="h-8 lg:h-10 w-auto" />
+            <Link href="/" className="flex-shrink-0 focus:outline-none" aria-label="Gold Invest — početna">
+              <GoldInvestLogo className="h-8 lg:h-9 w-auto" />
             </Link>
 
             {/* Desktop nav */}
@@ -160,7 +159,7 @@ export function Header() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="px-3 py-2 text-sm font-medium text-[#E9E6D9] hover:text-[#BF8E41] transition-colors duration-200 rounded whitespace-nowrap"
+                    className="px-3 py-2 text-sm font-medium text-[#1A1A1A] hover:text-[#BF8E41] transition-colors duration-200 rounded whitespace-nowrap"
                   >
                     {item.label}
                   </Link>
@@ -168,18 +167,23 @@ export function Header() {
               })}
             </nav>
 
-            {/* Desktop CTA */}
+            {/* Desktop CTA — phone number */}
             <div className="hidden lg:block">
-              <Link href="/kontakt" className="px-5 py-2 text-sm font-semibold text-[#1B1B1C] rounded gold-gradient-bg hover:opacity-90 transition-opacity duration-200 whitespace-nowrap">
-                Pošalji upit
-              </Link>
+              <a
+                href="tel:+381112345678"
+                className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-[#1B1B1C] rounded-full transition-all duration-200 hover:opacity-90 whitespace-nowrap"
+                style={{ backgroundColor: "#BEAD87", fontSize: "12.1px", boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)" }}
+              >
+                <Phone size={14} color="#1B1B1C" />
+                011 234 5678
+              </a>
             </div>
 
             {/* Mobile: hamburger */}
             <div className="flex items-center lg:hidden">
               <button
                 onClick={() => setMenuOpen((v) => !v)}
-                className="p-2 text-[#E9E6D9] hover:text-[#BF8E41] transition-colors"
+                className="p-2 text-[#1A1A1A] hover:text-[#BF8E41] transition-colors"
                 aria-label={menuOpen ? "Zatvori meni" : "Otvori meni"}
                 aria-expanded={menuOpen}
               >
@@ -189,9 +193,6 @@ export function Header() {
           </div>
         </div>
       </div>
-
-      {/* Price ticker */}
-      <PriceTicker />
 
       {/* Mobile menu */}
       <div
@@ -204,7 +205,7 @@ export function Header() {
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
         <nav
           className={[
-            "absolute top-0 left-0 right-0 bg-[#1B1B1C] border-b border-[#2E2E2F] max-h-[calc(100vh-88px)] overflow-y-auto",
+            "absolute top-0 left-0 right-0 bg-white border-b border-[#EBEBEB] max-h-[calc(100vh-116px)] overflow-y-auto",
             "transition-transform duration-300",
             menuOpen ? "translate-y-0" : "-translate-y-full",
           ].join(" ")}
@@ -224,7 +225,7 @@ export function Header() {
                   <div key={item.label}>
                     <button
                       onClick={() => setMobileOpen(mobileOpen === item.label ? null : item.label)}
-                      className="w-full flex items-center justify-between px-3 py-3 rounded-lg text-base font-medium text-[#E9E6D9] hover:bg-[#242425] transition-colors"
+                      className="w-full flex items-center justify-between px-3 py-3 rounded-lg text-base font-medium text-[#1A1A1A] hover:bg-[#FAF8F2] transition-colors"
                     >
                       {item.label}
                       <ChevronDown
@@ -233,15 +234,14 @@ export function Header() {
                       />
                     </button>
                     {mobileOpen === item.label && (
-                      <div className="ml-3 border-l border-[#2E2E2F] pl-3 flex flex-col gap-0.5 mb-1">
+                      <div className="ml-3 border-l border-[#EBEBEB] pl-3 flex flex-col gap-0.5 mb-1">
                         {item.mega ? (
-                          // Mega menu mobile: show column titles as headers
                           item.mega.map((col) => (
                             <div key={col.title} className="mb-2">
                               <Link
                                 href={col.viewAllHref}
                                 onClick={() => setMenuOpen(false)}
-                                className="block px-3 py-1.5 text-xs font-semibold text-[#BF8E41] uppercase tracking-widest hover:text-[#D4A84F] transition-colors"
+                                className="block px-3 py-1.5 text-xs font-semibold text-[#BF8E41] uppercase tracking-widest"
                               >
                                 {col.title}
                               </Link>
@@ -250,7 +250,7 @@ export function Header() {
                                   key={child.label}
                                   href={child.href}
                                   onClick={() => setMenuOpen(false)}
-                                  className="flex px-3 py-2 rounded-lg hover:bg-[#242425] transition-colors text-sm text-[#E9E6D9] hover:text-[#BF8E41]"
+                                  className="flex px-3 py-2 rounded-lg hover:bg-[#FAF8F2] text-sm text-[#444] hover:text-[#BF8E41] transition-colors"
                                 >
                                   {child.label}
                                 </Link>
@@ -263,13 +263,13 @@ export function Header() {
                               key={child.href}
                               href={child.href}
                               onClick={() => setMenuOpen(false)}
-                              className="flex flex-col px-3 py-2.5 rounded-lg hover:bg-[#242425] transition-colors group"
+                              className="flex flex-col px-3 py-2.5 rounded-lg hover:bg-[#FAF8F2] transition-colors group"
                             >
-                              <span className="text-sm font-medium text-[#E9E6D9] group-hover:text-[#BF8E41] transition-colors">
+                              <span className="text-sm font-medium text-[#1A1A1A] group-hover:text-[#BF8E41] transition-colors">
                                 {child.label}
                               </span>
                               {child.description && (
-                                <span className="text-xs text-[#8A8A8A] mt-0.5">{child.description}</span>
+                                <span className="text-xs text-[#888] mt-0.5">{child.description}</span>
                               )}
                             </Link>
                           ))
@@ -285,28 +285,21 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="px-3 py-3 rounded-lg text-base font-medium text-[#E9E6D9] hover:bg-[#242425] hover:text-[#BF8E41] transition-colors"
+                  className="px-3 py-3 rounded-lg text-base font-medium text-[#1A1A1A] hover:bg-[#FAF8F2] hover:text-[#BF8E41] transition-colors"
                 >
                   {item.label}
                 </Link>
               );
             })}
 
-            <div className="mt-3 pt-3 border-t border-[#2E2E2F] flex flex-col gap-3">
+            <div className="mt-3 pt-3 border-t border-[#EBEBEB]">
               <a
-                href="tel:+381612698569"
-                className="flex items-center justify-center gap-2 py-3.5 rounded-lg border border-[#BF8E41]/40 text-[#BF8E41] font-medium hover:bg-[#BF8E41]/10 transition-colors"
+                href="tel:+381112345678"
+                className="flex items-center justify-center gap-2 py-3.5 rounded-full border border-[#D4C99A] text-[#1A1A1A] font-medium hover:bg-[#FAF8F2] transition-colors"
               >
-                <Phone size={16} />
-                061 269 8569
+                <Phone size={16} color="#BEAD87" />
+                011 234 5678
               </a>
-              <Link
-                href="/kontakt"
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-center py-3.5 rounded-lg font-semibold text-[#1B1B1C] gold-gradient-bg hover:opacity-90 transition-opacity"
-              >
-                Pošalji upit
-              </Link>
             </div>
           </div>
         </nav>
@@ -331,7 +324,7 @@ function MegaDropdown({
       <button
         className={[
           "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded transition-colors duration-200 whitespace-nowrap",
-          isOpen ? "text-[#BF8E41]" : "text-[#E9E6D9] hover:text-[#BF8E41]",
+          isOpen ? "text-[#BF8E41]" : "text-[#1A1A1A] hover:text-[#BF8E41]",
         ].join(" ")}
         aria-expanded={isOpen}
       >
@@ -339,11 +332,11 @@ function MegaDropdown({
         <ChevronDown size={13} className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
       </button>
 
-      {/* Dropdown panel — single vertical list */}
+      {/* Dropdown panel */}
       <div
         className={[
-          "absolute top-full left-0 mt-1 w-64 z-[60] rounded-xl overflow-hidden",
-          "bg-[#1E1E1F] border border-[#2E2E2F] shadow-2xl",
+          "absolute top-full left-0 mt-2 w-64 z-[60] rounded-xl overflow-hidden",
+          "bg-white border border-[#EBEBEB] shadow-[0_4px_24px_rgba(0,0,0,0.08)]",
           "transition-all duration-200 origin-top",
           isOpen ? "opacity-100 scale-y-100 pointer-events-auto translate-y-0" : "opacity-0 scale-y-95 pointer-events-none -translate-y-1",
         ].join(" ")}
@@ -352,13 +345,12 @@ function MegaDropdown({
           {columns.map((col, colIdx) => (
             <div key={col.title}>
               {col.items.length > 0 ? (
-                /* ── Category with sub-items ── */
                 <>
                   <div className="flex items-center justify-between px-4 pt-3 pb-1">
                     <span className="text-[10px] font-bold text-[#BF8E41] uppercase tracking-widest">
                       {col.title}
                     </span>
-                    <Link href={col.viewAllHref} onClick={onClose} className="text-[10px] text-[#555] hover:text-[#BF8E41] transition-colors">
+                    <Link href={col.viewAllHref} onClick={onClose} className="text-[10px] text-[#999] hover:text-[#BF8E41] transition-colors">
                       sve →
                     </Link>
                   </div>
@@ -367,27 +359,26 @@ function MegaDropdown({
                       key={item.label}
                       href={item.href}
                       onClick={onClose}
-                      className="flex items-center px-4 py-1.5 text-sm text-[#9A9A8A] hover:text-[#E9E6D9] hover:bg-[#2A2A2B] transition-all duration-150"
+                      className="flex items-center px-4 py-1.5 text-sm text-[#444] hover:text-[#BF8E41] hover:bg-[#FAF8F2] transition-all duration-150"
                     >
-                      <span className="w-1 h-1 rounded-full bg-[#BF8E41]/40 mr-2.5 shrink-0" />
+                      <span className="w-1 h-1 rounded-full bg-[#BF8E41]/50 mr-2.5 shrink-0" />
                       {item.label}
                     </Link>
                   ))}
                 </>
               ) : (
-                /* ── Direct link (no sub-items) ── */
                 <Link
                   href={col.viewAllHref}
                   onClick={onClose}
-                  className="flex items-center justify-between px-4 py-2.5 text-sm font-medium text-[#E9E6D9] hover:text-[#BF8E41] hover:bg-[#2A2A2B] transition-all duration-150 group"
+                  className="flex items-center justify-between px-4 py-2.5 text-sm font-medium text-[#1A1A1A] hover:text-[#BF8E41] hover:bg-[#FAF8F2] transition-all duration-150 group"
                 >
                   {col.title}
-                  <ChevronRight size={13} className="text-[#555] group-hover:text-[#BF8E41] transition-colors" />
+                  <ChevronRight size={13} className="text-[#999] group-hover:text-[#BF8E41] transition-colors" />
                 </Link>
               )}
 
               {colIdx < columns.length - 1 && (
-                <div className="mx-4 mt-1 mb-0 border-t border-[#2E2E2F]" />
+                <div className="mx-4 mt-1 mb-0 border-t border-[#EBEBEB]" />
               )}
             </div>
           ))}
@@ -412,7 +403,7 @@ function DropdownItem({
       <button
         className={[
           "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded transition-colors duration-200 whitespace-nowrap",
-          isOpen ? "text-[#BF8E41]" : "text-[#E9E6D9] hover:text-[#BF8E41]",
+          isOpen ? "text-[#BF8E41]" : "text-[#1A1A1A] hover:text-[#BF8E41]",
         ].join(" ")}
         aria-expanded={isOpen}
       >
@@ -423,7 +414,7 @@ function DropdownItem({
       <div
         className={[
           "absolute top-full left-0 mt-1 min-w-56 rounded-xl overflow-hidden z-[60]",
-          "bg-[#1E1E1F] border border-[#2E2E2F] shadow-2xl",
+          "bg-white border border-[#EBEBEB] shadow-[0_4px_24px_rgba(0,0,0,0.08)]",
           "transition-all duration-200 origin-top",
           isOpen ? "opacity-100 scale-y-100 pointer-events-auto translate-y-0" : "opacity-0 scale-y-95 pointer-events-none -translate-y-1",
         ].join(" ")}
@@ -433,13 +424,13 @@ function DropdownItem({
             key={child.href}
             href={child.href}
             onClick={onClose}
-            className="flex flex-col px-4 py-3 hover:bg-[#2E2E2F] transition-colors border-b border-[#2E2E2F] last:border-0 group"
+            className="flex flex-col px-4 py-3 hover:bg-[#FAF8F2] transition-colors border-b border-[#EBEBEB] last:border-0 group"
           >
-            <span className="text-sm font-medium text-[#E9E6D9] group-hover:text-[#BF8E41] transition-colors">
+            <span className="text-sm font-medium text-[#1A1A1A] group-hover:text-[#BF8E41] transition-colors">
               {child.label}
             </span>
             {child.description && (
-              <span className="text-xs text-[#8A8A8A] mt-0.5">{child.description}</span>
+              <span className="text-xs text-[#888] mt-0.5">{child.description}</span>
             )}
           </Link>
         ))}

@@ -53,11 +53,12 @@ export function ProductGrid({ variants, tiers, snapshot }: Props) {
           tiers
         ),
       }))
-      .filter(({ variant: v }) => {
+      .filter(({ variant: v, prices }) => {
         if (filters.weights.length > 0 && !filters.weights.includes(Number(v.weight_g))) return false;
         if (filters.brands.length > 0  && !filters.brands.includes(v.products.brand)) return false;
         if (filters.origins.length > 0 && !filters.origins.includes(v.products.origin ?? "")) return false;
         if (filters.availability.length > 0 && !filters.availability.includes(v.availability)) return false;
+        if (filters.maxPrice !== null && prices.stock > filters.maxPrice) return false;
         return true;
       })
       .sort((a, b) => {
@@ -94,8 +95,8 @@ export function ProductGrid({ variants, tiers, snapshot }: Props) {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {processed.map(({ variant: v, prices }) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {processed.slice(0, 8).map(({ variant: v, prices }) => (
             <ProductCard
               key={v.id}
               slug={v.slug}
