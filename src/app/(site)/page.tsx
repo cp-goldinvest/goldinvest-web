@@ -12,23 +12,24 @@ import { ProductGrid } from "@/components/catalog/ProductGrid";
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const supabase = createServiceClient();
-
-  const [{ data: variants }, { data: tiers }, { data: snapshotRow }] =
-    await Promise.all([
-      supabase
-        .from("product_variants")
-        .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
-        .eq("is_active", true)
-        .order("sort_order"),
-      supabase.from("pricing_tiers").select("*"),
-      supabase
-        .from("gold_price_snapshots")
-        .select("*")
-        .order("fetched_at", { ascending: false })
-        .limit(1)
-        .single(),
-    ]);
+  let variants = null, tiers = null, snapshotRow = null;
+  try {
+    const supabase = createServiceClient();
+    const timeout = (ms: number) => new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), ms));
+    const [r1, r2, r3] = await Promise.race([
+      Promise.all([
+        supabase.from("product_variants").select("*, products!inner(name, brand, origin, category), pricing_rules(*)").eq("is_active", true).order("sort_order"),
+        supabase.from("pricing_tiers").select("*"),
+        supabase.from("gold_price_snapshots").select("*").order("fetched_at", { ascending: false }).limit(1).single(),
+      ]),
+      timeout(5000).then(() => { throw new Error("timeout"); }),
+    ]) as any;
+    variants = r1.data;
+    tiers = r2.data;
+    snapshotRow = r3.data;
+  } catch {
+    // DB nedostupna — prikazujemo fallback
+  }
 
   return (
     <main className="bg-white">
