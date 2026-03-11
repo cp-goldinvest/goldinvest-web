@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       .limit(1)
       .single();
 
-    const xauEur = last?.xau_eur ?? 4375;
+    const xauEur = (last as any)?.xau_eur ?? 4375;
 
     // Upiši novi snapshot sa novim EUR/RSD kursom
     const { data, error } = await supabase
