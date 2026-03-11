@@ -9,7 +9,7 @@ import { createServiceClient } from "@/lib/supabase/server";
  *
  * Podesi u vercel.json:
  * {
- *   "crons": [{ "path": "/api/cron/fetch-gold", "schedule": "*/30 * * * *" }]
+ *   "crons": [{ "path": "/api/cron/fetch-gold", "schedule": "0 8 * * *" }]
  * }
  *
  * Env varijable:
