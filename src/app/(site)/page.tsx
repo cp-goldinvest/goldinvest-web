@@ -15,15 +15,14 @@ export default async function HomePage() {
   let variants = null, tiers = null, snapshotRow = null;
   try {
     const supabase = createServiceClient();
-    const timeout = (ms: number) => new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), ms));
-    const [r1, r2, r3] = await Promise.race([
-      Promise.all([
-        supabase.from("product_variants").select("*, products!inner(name, brand, origin, category), pricing_rules(*)").eq("is_active", true).order("sort_order"),
-        supabase.from("pricing_tiers").select("*"),
-        supabase.from("gold_price_snapshots").select("*").order("fetched_at", { ascending: false }).limit(1).single(),
-      ]),
-      timeout(5000).then(() => { throw new Error("timeout"); }),
-    ]) as any;
+    const withTimeout = <T,>(p: Promise<T>): Promise<T> =>
+      Promise.race([p, new Promise<T>((_, reject) => setTimeout(() => reject(new Error("timeout")), 5000))]);
+
+    const [r1, r2, r3] = await withTimeout(Promise.all([
+      supabase.from("product_variants").select("*, products!inner(name, brand, origin, category), pricing_rules(*)").eq("is_active", true).order("sort_order"),
+      supabase.from("pricing_tiers").select("*"),
+      supabase.from("gold_price_snapshots").select("*").order("fetched_at", { ascending: false }).limit(1).single(),
+    ]));
     variants = r1.data;
     tiers = r2.data;
     snapshotRow = r3.data;
