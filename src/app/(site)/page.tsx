@@ -25,6 +25,7 @@ const MOCK_VARIANTS = [
 ];
 
 export default async function HomePage() {
+  let variants: any = MOCK_VARIANTS, tiers: any = MOCK_TIERS, snapshotRow: any = MOCK_SNAPSHOT;
   try {
     const supabase = createServiceClient();
     const withTimeout = <T,>(p: Promise<T>): Promise<T> =>
