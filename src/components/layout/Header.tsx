@@ -110,12 +110,27 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
 
       {/* Top bar — phone number */}
-      <div className="w-full bg-[#1B1B1C] h-9 flex items-center">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 w-full flex items-center justify-end">
-          <a href="tel:+381112345678" className="flex items-center gap-2 text-[#BEAD87] text-[12px] font-medium hover:opacity-80 transition-opacity">
-            <Phone size={13} color="#BEAD87" />
+      <div
+        className="w-full h-9 flex items-center overflow-hidden"
+        style={{ background: "linear-gradient(178deg, rgba(186,167,127,1) 1%, rgba(231,229,217,1) 60%, rgba(239,231,218,1) 97%)" }}
+      >
+        {/* Desktop: statično desno */}
+        <div className="hidden sm:flex max-w-[1400px] mx-auto px-4 sm:px-8 w-full items-center justify-end">
+          <a href="tel:+381112345678" className="flex items-center gap-2 text-[#4A3F2F] text-[12px] font-medium hover:opacity-70 transition-opacity">
+            <Phone size={13} color="#4A3F2F" />
             011 234 5678
           </a>
+        </div>
+        {/* Mobile: scrolling marquee */}
+        <div className="flex sm:hidden w-full overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...Array(6)].map((_, i) => (
+              <span key={i} className="flex items-center gap-2 text-[#4A3F2F] text-[12px] font-medium mx-8">
+                <Phone size={13} color="#4A3F2F" />
+                011 234 5678
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
