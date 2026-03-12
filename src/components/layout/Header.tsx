@@ -109,8 +109,15 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
 
-      {/* Price ticker — gold gradient, top of header */}
-      <PriceTicker />
+      {/* Top bar — phone number */}
+      <div className="w-full bg-[#1B1B1C] h-9 flex items-center">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 w-full flex items-center justify-end">
+          <a href="tel:+381112345678" className="flex items-center gap-2 text-[#BEAD87] text-[12px] font-medium hover:opacity-80 transition-opacity">
+            <Phone size={13} color="#BEAD87" />
+            011 234 5678
+          </a>
+        </div>
+      </div>
 
       {/* Main nav — white background */}
       <div
@@ -167,18 +174,6 @@ export function Header() {
               })}
             </nav>
 
-            {/* Desktop CTA — phone number */}
-            <div className="hidden lg:block">
-              <a
-                href="tel:+381112345678"
-                className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-[#1B1B1C] rounded-full transition-all duration-200 hover:opacity-90 whitespace-nowrap"
-                style={{ backgroundColor: "#BEAD87", fontSize: "12.1px", boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)" }}
-              >
-                <Phone size={14} color="#1B1B1C" />
-                011 234 5678
-              </a>
-            </div>
-
             {/* Mobile: hamburger */}
             <div className="flex items-center lg:hidden">
               <button
@@ -193,6 +188,9 @@ export function Header() {
           </div>
         </div>
       </div>
+
+      {/* Price ticker — ispod glavnog menija */}
+      <PriceTicker />
 
       {/* Mobile menu */}
       <div
@@ -292,15 +290,6 @@ export function Header() {
               );
             })}
 
-            <div className="mt-3 pt-3 border-t border-[#EBEBEB]">
-              <a
-                href="tel:+381112345678"
-                className="flex items-center justify-center gap-2 py-3.5 rounded-full border border-[#D4C99A] text-[#1A1A1A] font-medium hover:bg-[#FAF8F2] transition-colors"
-              >
-                <Phone size={16} color="#BEAD87" />
-                011 234 5678
-              </a>
-            </div>
           </div>
         </nav>
       </div>
