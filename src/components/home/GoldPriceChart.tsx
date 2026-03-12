@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -95,6 +96,36 @@ export function GoldPriceChart() {
   return (
     <section className="bg-[#F9F9F9] py-16">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+
+        {/* Section heading */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+          <div>
+            <span className="text-[#BEAD87] text-xs font-semibold tracking-widest uppercase mb-3 block">
+              Tržišne cene
+            </span>
+            <h2
+              className="text-[#1B1B1C] leading-tight"
+              style={{
+                fontFamily: "var(--font-playfair), Georgia, serif",
+                fontSize: "clamp(22px, 2.8vw, 36px)",
+                fontWeight: 400,
+              }}
+            >
+              Spot cena zlata u realnom vremenu
+            </h2>
+            <p className="text-[#9D9072] text-[15px] mt-2 max-w-[480px]">
+              Pratite kretanje cene investicionog zlata i donosite informisane odluke o kupovini.
+            </p>
+          </div>
+          <Link
+            href="/cena-zlata"
+            className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90 whitespace-nowrap self-start sm:self-auto"
+            style={{ backgroundColor: "#BEAD87", fontSize: "12.1px", boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)" }}
+          >
+            Saznaj više
+          </Link>
+        </div>
+
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-[0_2px_20px_rgba(0,0,0,0.06)]">
 
           {/* Top row: price + period tabs */}

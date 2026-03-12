@@ -6,6 +6,7 @@ import { SlidersHorizontal, ArrowUpDown, ChevronDown, X } from "lucide-react";
 export type SortOption = "price_asc" | "price_desc" | "weight_asc" | "weight_desc";
 
 export type Filters = {
+  categories: string[];
   weights: number[];
   maxPrice: number | null;
   brands: string[];
@@ -24,6 +25,13 @@ type Props = {
   onFiltersChange: (filters: Filters) => void;
 };
 
+const CATEGORY_OPTIONS = [
+  { label: "Zlatne pločice", value: "plocica" },
+  { label: "Zlatne poluge",  value: "poluga"  },
+  { label: "Zlatni dukati",  value: "dukat"   },
+  { label: "Zlatnici",       value: "novac"   },
+];
+
 const PRICE_OPTIONS = [
   { label: "Do 15.000 RSD",   value: 15_000 },
   { label: "Do 30.000 RSD",   value: 30_000 },
@@ -41,9 +49,9 @@ const SORT_LABELS: Record<SortOption, string> = {
   weight_desc: "Od najveće težine",
 };
 
-type OpenDropdown = "weight" | "price" | "brand" | "origin" | "sort" | null;
+type OpenDropdown = "category" | "weight" | "price" | "brand" | "origin" | "sort" | null;
 
-const EMPTY_FILTERS: Filters = { weights: [], maxPrice: null, brands: [], origins: [], availability: [] };
+const EMPTY_FILTERS: Filters = { categories: [], weights: [], maxPrice: null, brands: [], origins: [], availability: [] };
 
 export function FilterSortBar({
   availableWeights,
@@ -59,6 +67,13 @@ export function FilterSortBar({
 
   function toggle(d: OpenDropdown) {
     setOpen((prev) => (prev === d ? null : d));
+  }
+
+  function toggleCategory(c: string) {
+    const next = filters.categories.includes(c)
+      ? filters.categories.filter((x) => x !== c)
+      : [...filters.categories, c];
+    onFiltersChange({ ...filters, categories: next });
   }
 
   function toggleWeight(w: number) {
@@ -83,8 +98,8 @@ export function FilterSortBar({
   }
 
   const activeCount =
-    filters.weights.length + filters.brands.length + filters.origins.length +
-    filters.availability.length + (filters.maxPrice ? 1 : 0);
+    filters.categories.length + filters.weights.length + filters.brands.length +
+    filters.origins.length + filters.availability.length + (filters.maxPrice ? 1 : 0);
 
   return (
     <div className="relative">
@@ -138,6 +153,17 @@ export function FilterSortBar({
       {/* Mobile filter panel */}
       {mobileOpen && (
         <div className="flex md:hidden flex-col gap-5 bg-white border border-[#E5E7EB] rounded-xl p-4 mt-2 mb-2 shadow-sm">
+          <div>
+            <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Kategorija</p>
+            <div className="flex flex-wrap gap-2">
+              {CATEGORY_OPTIONS.map(({ label, value }) => (
+                <button key={value} onClick={() => toggleCategory(value)}
+                  className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${filters.categories.includes(value) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-[#E5E7EB] text-[#1B1B1C]"}`}>
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
           {availableWeights.length > 0 && (
             <div>
               <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Težina</p>
@@ -213,6 +239,24 @@ export function FilterSortBar({
           <div className="flex items-center gap-2">
             <SlidersHorizontal size={20} className="text-[#464747]" />
             <span className="text-base font-medium text-[#464747]">Filteri:</span>
+          </div>
+
+          {/* Kategorija */}
+          <div className="relative">
+            <FilterBtn label="Kategorija" active={filters.categories.length > 0} open={open === "category"} onClick={() => toggle("category")} />
+            {open === "category" && (
+              <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-52">
+                <PanelHeader title="Kategorija" onClose={() => setOpen(null)} />
+                <div className="flex flex-col gap-1">
+                  {CATEGORY_OPTIONS.map(({ label, value }) => (
+                    <button key={value} onClick={() => toggleCategory(value)}
+                      className={`text-left px-3 py-2 rounded-lg text-sm border transition-colors ${filters.categories.includes(value) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-transparent text-[#1B1B1C] hover:bg-[#F9F9F9]"}`}>
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Težina */}
@@ -333,6 +377,9 @@ export function FilterSortBar({
       {/* Active chips (desktop) */}
       {activeCount > 0 && (
         <div className="hidden md:flex flex-wrap gap-2 pt-3">
+          {filters.categories.map((c) => (
+            <Chip key={c} label={CATEGORY_OPTIONS.find(o => o.value === c)?.label ?? c} onRemove={() => toggleCategory(c)} />
+          ))}
           {filters.weights.map((w) => (
             <Chip key={w} label={w >= 1000 ? `${w / 1000}kg` : `${w}g`} onRemove={() => toggleWeight(w)} />
           ))}

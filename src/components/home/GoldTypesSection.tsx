@@ -184,11 +184,8 @@ export function GoldTypesSection() {
             <p className="text-[#1B1B1C] text-[17px] font-semibold leading-snug">U potpunosti je oslobođen plaćanja PDV-a.</p>
           </div>
 
-          {/* Poluge — slika + tekst */}
+          {/* Poluge — samo tekst na mobilnom (slika sakrivena) */}
           <div className="bg-[#F9F9F9] rounded-2xl overflow-hidden flex flex-col">
-            <div className="relative" style={{ height: 160 }}>
-              <Image src="/images/bento-gold-bar.png" alt="1g Switzerland Fine Gold" fill className="object-cover object-top" />
-            </div>
             <div className="bg-[#F9F9F9] p-6">
               <p className="text-[#3A3A3A] text-[14px] leading-relaxed">
                 Pravilo za poluge i pločice — moraju imati ekstremnu čistoću od minimum{" "}

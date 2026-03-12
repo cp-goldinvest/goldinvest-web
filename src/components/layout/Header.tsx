@@ -82,12 +82,25 @@ const NAV_ITEMS: NavItem[] = [
 export function Header() {
   const [menuOpen, setMenuOpen]           = useState(false);
   const [scrolled, setScrolled]           = useState(false);
+  const [barsVisible, setBarsVisible]     = useState(true);
   const [openDropdown, setOpenDropdown]   = useState<string | null>(null);
   const [mobileOpen, setMobileOpen]       = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 10);
+      if (y < 10) {
+        setBarsVisible(true);
+      } else if (y > lastScrollY.current + 4) {
+        setBarsVisible(false);
+      } else if (y < lastScrollY.current - 4) {
+        setBarsVisible(true);
+      }
+      lastScrollY.current = y;
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -109,29 +122,37 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
 
-      {/* Top bar — phone number */}
+      {/* Top bar — phone number (hides on scroll down) */}
       <div
-        className="w-full h-9 flex items-center overflow-hidden"
-        style={{ background: "linear-gradient(178deg, rgba(186,167,127,1) 1%, rgba(231,229,217,1) 60%, rgba(239,231,218,1) 97%)" }}
+        className="w-full overflow-hidden transition-all duration-300 ease-in-out"
+        style={{
+          maxHeight: barsVisible ? "40px" : "0px",
+          opacity: barsVisible ? 1 : 0,
+          background: "linear-gradient(178deg, rgba(186,167,127,1) 1%, rgba(231,229,217,1) 60%, rgba(239,231,218,1) 97%)",
+        }}
       >
-        {/* Desktop: statično desno */}
-        <div className="hidden sm:flex max-w-[1400px] mx-auto px-4 sm:px-8 w-full items-center justify-end">
-          <a href="tel:+381112345678" className="flex items-center gap-2 text-[#4A3F2F] text-[12px] font-medium hover:opacity-70 transition-opacity">
-            <Phone size={13} color="#4A3F2F" />
-            011 234 5678
+      <div className="w-full h-10 flex items-center overflow-hidden">
+        {/* Desktop: centrirano */}
+        <div className="hidden sm:flex w-full items-center justify-center">
+          <a href="tel:+381112345678" className="flex items-center gap-2 text-[#4A3F2F] hover:opacity-70 transition-opacity">
+            <Phone size={14} color="#4A3F2F" />
+            <span className="text-[13px]">Pozovite za sve informacije →</span>
+            <span className="text-[13px] font-bold ml-1">011 234 5678</span>
           </a>
         </div>
         {/* Mobile: scrolling marquee */}
         <div className="flex sm:hidden w-full overflow-hidden">
           <div className="flex animate-marquee whitespace-nowrap">
-            {[...Array(6)].map((_, i) => (
-              <span key={i} className="flex items-center gap-2 text-[#4A3F2F] text-[12px] font-medium mx-8">
-                <Phone size={13} color="#4A3F2F" />
-                011 234 5678
-              </span>
+            {[...Array(4)].map((_, i) => (
+              <a key={i} href="tel:+381112345678" className="flex items-center gap-2 text-[#4A3F2F] text-[13px] mx-10">
+                <Phone size={14} color="#4A3F2F" />
+                <span>Pozovite za sve informacije →</span>
+                <span className="font-bold ml-1">011 234 5678</span>
+              </a>
             ))}
           </div>
         </div>
+      </div>
       </div>
 
       {/* Main nav — white background */}
@@ -204,8 +225,13 @@ export function Header() {
         </div>
       </div>
 
-      {/* Price ticker — ispod glavnog menija */}
-      <PriceTicker />
+      {/* Price ticker — ispod glavnog menija (hides on scroll down) */}
+      <div
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{ maxHeight: barsVisible ? "40px" : "0px", opacity: barsVisible ? 1 : 0 }}
+      >
+        <PriceTicker />
+      </div>
 
       {/* Mobile menu */}
       <div

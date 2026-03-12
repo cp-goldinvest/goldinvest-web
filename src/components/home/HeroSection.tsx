@@ -41,13 +41,13 @@ export function HeroSection() {
               oblik ulaganja u istoriji.
             </p>
 
-            <div className="flex items-center gap-3 flex-wrap">
+            <div className="flex items-center gap-2 sm:gap-3 flex-nowrap overflow-x-auto scrollbar-hide">
               {BUTTONS.map((btn) => (
                 <Link
                   key={btn.label}
                   href={btn.href}
-                  className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-[#BEAD87] font-semibold transition-all duration-200 hover:bg-[#BEAD87] hover:text-[#1B1B1C]"
-                  style={{ border: "0.5px solid #BEAD87", fontSize: "12.1px" }}
+                  className="inline-flex items-center justify-center px-3 py-2 sm:px-5 sm:py-2.5 rounded-full text-[#BEAD87] font-semibold transition-all duration-200 hover:bg-[#BEAD87] hover:text-[#1B1B1C] whitespace-nowrap shrink-0"
+                  style={{ border: "0.5px solid #BEAD87", fontSize: "clamp(11px, 2.5vw, 12.1px)" }}
                 >
                   {btn.label}
                 </Link>

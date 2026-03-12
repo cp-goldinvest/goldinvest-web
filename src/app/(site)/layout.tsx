@@ -5,8 +5,8 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <Header />
-      {/* pt accounts for: ticker (h-9 = 36px) + main nav (h-16 = 64px mobile / h-20 = 80px desktop) */}
-      <div className="pt-[100px] lg:pt-[116px]">
+      {/* pt accounts for: top bar (h-10=40px) + main nav (h-16=64px mobile / h-20=80px desktop) + ticker (h-9=36px) */}
+      <div className="pt-[140px] lg:pt-[156px]">
         {children}
       </div>
       <Footer />

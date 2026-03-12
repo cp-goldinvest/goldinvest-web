@@ -20,6 +20,7 @@ type Props = {
 export function ProductGrid({ variants, tiers, snapshot }: Props) {
   const [sort, setSort] = useState<SortOption>("price_asc");
   const [filters, setFilters] = useState<Filters>({
+    categories: [],
     weights: [],
     maxPrice: null,
     brands: [],
@@ -54,6 +55,7 @@ export function ProductGrid({ variants, tiers, snapshot }: Props) {
         ),
       }))
       .filter(({ variant: v, prices }) => {
+        if (filters.categories.length > 0 && !filters.categories.includes(v.products.category)) return false;
         if (filters.weights.length > 0 && !filters.weights.includes(Number(v.weight_g))) return false;
         if (filters.brands.length > 0  && !filters.brands.includes(v.products.brand)) return false;
         if (filters.origins.length > 0 && !filters.origins.includes(v.products.origin ?? "")) return false;
@@ -95,7 +97,7 @@ export function ProductGrid({ variants, tiers, snapshot }: Props) {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
           {processed.slice(0, 8).map(({ variant: v, prices }) => (
             <ProductCard
               key={v.id}

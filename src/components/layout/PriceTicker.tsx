@@ -52,11 +52,11 @@ export function PriceTicker() {
     <div
       className="w-full h-9 flex items-center"
       style={{
-        background:
-          "linear-gradient(178deg, rgba(186,167,127,1) 1%, rgba(231,229,217,1) 60%, rgba(239,231,218,1) 97%)",
+        background: "linear-gradient(90deg, #C8B48A 0%, #EAE6D8 50%, #EDE5D8 100%)",
+        borderBottom: "1px solid rgba(190,173,135,0.3)",
       }}
     >
-      <div className="max-w-[1143px] mx-auto px-8 w-full flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 w-full flex items-center justify-between">
 
         {/* Left: live indicator + time */}
         <div className="flex items-center gap-2">
@@ -70,20 +70,20 @@ export function PriceTicker() {
           </span>
         </div>
 
-        {/* Right: gold price */}
+        {/* Right: gold price RSD/g */}
         <div className="text-[11px] text-[#4A3F2F] font-medium tabular-nums">
           {data ? (
             <>
-              Zlato (1oz):{" "}
+              Zlato (1g):{" "}
               <span className="font-bold text-[#2E2419]">
-                {(data.xau_eur * 31.1035).toLocaleString("de-DE", {
+                {data.rsd_per_gram.toLocaleString("sr-RS", {
                   maximumFractionDigits: 0,
                 })}{" "}
-                €
+                RSD
               </span>
             </>
           ) : (
-            <span className="opacity-40">Zlato (1oz): —</span>
+            <span className="opacity-40">Zlato (1g): —</span>
           )}
         </div>
 

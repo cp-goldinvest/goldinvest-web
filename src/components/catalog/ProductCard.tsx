@@ -90,20 +90,20 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
           <Link
             href={href}
             onClick={(e) => e.stopPropagation()}
-            className="flex-1 inline-flex items-center justify-center px-3 py-1.5 rounded-full text-[#1B1B1C] text-xs font-medium whitespace-nowrap transition-opacity hover:opacity-80"
-            style={{ background: "rgba(194,178,128,0.39)", fontSize: 12 }}
+            className="flex-1 min-w-0 inline-flex items-center justify-center px-2 sm:px-3 py-1.5 rounded-full text-[#1B1B1C] text-xs font-medium whitespace-nowrap transition-opacity hover:opacity-80"
+            style={{ background: "rgba(194,178,128,0.39)", fontSize: 11 }}
           >
             Saznaj više
           </Link>
 
-          {/* Pozovi nas — outline */}
+          {/* Pozovi — outline */}
           <a
             href="tel:+381612698569"
             onClick={(e) => e.stopPropagation()}
-            className="flex-1 inline-flex items-center justify-center px-3 py-1.5 rounded-full text-[#000] text-xs font-medium whitespace-nowrap transition-colors hover:bg-black/5"
-            style={{ border: "0.5px solid rgba(0,0,0,0.75)", fontSize: 12 }}
+            className="flex-1 min-w-0 inline-flex items-center justify-center px-2 sm:px-3 py-1.5 rounded-full text-[#000] text-xs font-medium whitespace-nowrap transition-colors hover:bg-black/5"
+            style={{ border: "0.5px solid rgba(0,0,0,0.75)", fontSize: 11 }}
           >
-            Pozovi nas!
+            Pozovi
           </a>
         </div>
       </div>
@@ -113,9 +113,9 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
 
 function PriceRow({ label, value, bold, muted }: { label: string; value: string; bold?: boolean; muted?: boolean }) {
   return (
-    <div className="flex items-center justify-between">
-      <span className={`text-xs ${muted ? "text-[#999]" : "text-[#464747]"}`}>{label}</span>
-      <span className={`text-sm tabular-nums ${bold ? "font-bold text-[#1B1B1C]" : muted ? "text-xs text-[#999]" : "font-medium text-[#1B1B1C]"}`}>
+    <div className="flex items-center justify-between gap-2 min-w-0">
+      <span className={`text-xs shrink-0 ${muted ? "text-[#999]" : "text-[#464747]"}`}>{label}</span>
+      <span className={`text-sm tabular-nums whitespace-nowrap text-right ${bold ? "font-bold text-[#1B1B1C]" : muted ? "text-xs text-[#999]" : "font-medium text-[#1B1B1C]"}`}>
         {value}
       </span>
     </div>
