@@ -69,19 +69,22 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
           {name}
         </h2>
 
-        {/* Status row */}
-        <div className="flex items-center gap-2 mb-3">
-          <CheckCircle2 size={16} className={inStock ? "text-green-500" : "text-[#BEAD87]"} />
-          <span className="text-xs text-[#464747]">
-            {inStock ? "Na stanju" : isPreorder ? `Dostava za ${leadTimeWeeks ?? "?"} ned.` : "Na upit"}
-          </span>
+        {/* Mobile: Cena + Na stanju u istom redu; desktop: samo Na stanju (bez labela Cena) */}
+        <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
+          <span className="text-sm font-bold text-[#1B1B1C] sm:hidden">Cena</span>
+          <div className="flex items-center gap-1.5 shrink-0 sm:ml-auto">
+            <CheckCircle2 size={14} className={inStock ? "text-green-500" : "text-[#BEAD87]"} />
+            <span className="text-xs text-[#464747]">
+              {inStock ? "Na stanju" : isPreorder ? `${leadTimeWeeks ?? "?"} ned.` : "Na upit"}
+            </span>
+          </div>
         </div>
 
-        {/* Price rows */}
+        {/* Price rows — skraćeni labeli na mobilu */}
         <div className="flex flex-col gap-1.5 mb-5">
-          <PriceRow label="Prodajna cena" value={formatRsd(prices.stock)} bold />
-          <PriceRow label="Avansna cena"  value={formatRsd(prices.advance)} />
-          <PriceRow label="Otkupna cena"  value={formatRsd(prices.purchase)} muted />
+          <PriceRow label="Prodajna" labelFull="Prodajna cena" value={formatRsd(prices.stock)} bold />
+          <PriceRow label="Avansna" labelFull="Avansna cena" value={formatRsd(prices.advance)} />
+          <PriceRow label="Otkupna" labelFull="Otkupna cena" value={formatRsd(prices.purchase)} muted />
         </div>
 
         {/* Action buttons — relative z-10 so they intercept clicks over the overlay link */}
@@ -111,11 +114,14 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
   );
 }
 
-function PriceRow({ label, value, bold, muted }: { label: string; value: string; bold?: boolean; muted?: boolean }) {
+function PriceRow({ label, labelFull, value, bold, muted }: { label: string; labelFull?: string; value: string; bold?: boolean; muted?: boolean }) {
   return (
     <div className="flex items-center justify-between gap-2 min-w-0">
-      <span className={`text-sm shrink-0 ${muted ? "text-[#999]" : "text-[#464747]"}`}>{label}</span>
-      <span className={`tabular-nums whitespace-nowrap text-right ${bold ? "text-base font-bold text-[#1B1B1C]" : muted ? "text-sm text-[#999]" : "text-[15px] font-medium text-[#1B1B1C]"}`}>
+      <span className={`text-sm shrink-0 ${muted ? "text-[#999]" : "text-[#464747]"}`}>
+        <span className="sm:hidden">{label}</span>
+        <span className="hidden sm:inline">{labelFull ?? label}</span>
+      </span>
+      <span className={`tabular-nums whitespace-nowrap text-right ${bold ? "text-sm sm:text-base font-bold text-[#1B1B1C]" : muted ? "text-xs sm:text-sm text-[#999]" : "text-[13px] sm:text-[15px] font-medium text-[#1B1B1C]"}`}>
         {value}
       </span>
     </div>

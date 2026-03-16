@@ -2,22 +2,22 @@ import Image from "next/image";
 
 const FACTORS = [
   {
-    img: "/images/faktori-1.png",
+    img: "/images/faktori-inflacija.png",
     title: "Inflacija i štampanje novca",
     text: "Kada papirni novac (dolar, evro, dinar) gubi kupovnu moć, investitori masovno povlače kapital u zlato kako bi sačuvali vrednost, što mu automatski diže cenu.",
   },
   {
-    img: "/images/faktori-2.png",
+    img: "/images/faktori-krize.png",
     title: "Geopolitičke i ekonomske krize",
     text: "Ratovi, pandemije i krahovi berzi stvaraju paniku. Zlato je istorijski 'sigurna luka' - kada vrednost akcija i nekretnina pada, potražnja za zlatom skače.",
   },
   {
-    img: "/images/faktori-3.png",
+    img: "/images/faktori-centralne-banke.png",
     title: "Aktivnosti Centralnih banaka",
     text: "Kada velike svetske ekonomije počnu masovno da kupuju zlatne poluge za svoje državne rezerve, smanjuju količinu dostupnog zlata na tržištu, što direktno gura cenu na gore.",
   },
   {
-    img: "/images/faktori-4.png",
+    img: "/images/faktori-kamatne-stope.png",
     title: "Kamatne stope",
     text: "Kada američka (FED) ili evropska (ECB) centralna banka snižavaju kamatne stope, novac u bankama donosi manji prinos, pa veliki investitori prebacuju sredstva u zlato.",
   },

@@ -78,6 +78,12 @@ body {
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* ── Thin scrollbar za kompaktne kartice ── */
+.scrollbar-thin::-webkit-scrollbar { width: 6px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #D4D0C0; border-radius: 3px; }
+.scrollbar-thin { scrollbar-width: thin; scrollbar-color: #D4D0C0 transparent; }
+
 /* ── Marquee animation (announcement bar on mobile) ── */
 @keyframes marquee {
   0%   { transform: translateX(0); }

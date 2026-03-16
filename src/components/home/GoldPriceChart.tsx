@@ -34,20 +34,24 @@ function seededRandom(seed: number) {
 }
 
 const FIXED_NOW = new Date("2026-03-11T00:00:00Z");
+const EUR_RSD = 117.5; // za konverziju mock podataka u RSD
+const GRAMS_PER_OUNCE = 31.1034768;
 
 const generateMockData = (days: number) => {
   const rand = seededRandom(days * 7919);
   const data = [];
-  let price = 4418 - days * 0.3;
+  let priceEurPerOunce = 4418 - days * 0.3;
   for (let i = days; i >= 0; i--) {
     const date = new Date(FIXED_NOW);
     date.setUTCDate(FIXED_NOW.getUTCDate() - i);
-    price = price + (rand() - 0.47) * (days > 365 ? 6 : 3);
+    priceEurPerOunce = priceEurPerOunce + (rand() - 0.47) * (days > 365 ? 6 : 3);
     const label =
       days <= 90
         ? `${String(date.getUTCDate()).padStart(2, "0")}.${String(date.getUTCMonth() + 1).padStart(2, "0")}`
         : `${String(date.getUTCMonth() + 1).padStart(2, "0")}.${String(date.getUTCFullYear()).slice(-2)}`;
-    data.push({ date: label, value: Math.round(price * 100) / 100 });
+    const priceEurPerGram = priceEurPerOunce / GRAMS_PER_OUNCE;
+    const priceRsd = Math.round(priceEurPerGram * EUR_RSD);
+    data.push({ date: label, value: priceRsd });
   }
   return data;
 };
@@ -69,7 +73,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
     <div className="bg-[#1B1B1C] text-white text-xs px-3 py-2 rounded-lg shadow-lg">
       <p className="text-[#9D9072] mb-0.5">{label}</p>
       <p className="font-semibold">
-        €{payload[0].value.toLocaleString("sr-RS", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+        {payload[0].value.toLocaleString("sr-RS")} RSD
       </p>
     </div>
   );
@@ -98,8 +102,8 @@ export function GoldPriceChart() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
 
         {/* Section heading */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-          <div>
+        <div className="flex flex-col sm:items-center sm:text-center gap-4 mb-8">
+          <div className="sm:flex sm:flex-col sm:items-center">
             <span className="text-[#BEAD87] text-xs font-semibold tracking-widest uppercase mb-3 block">
               Tržišne cene
             </span>
@@ -113,13 +117,13 @@ export function GoldPriceChart() {
             >
               Spot cena zlata u realnom vremenu
             </h2>
-            <p className="text-[#9D9072] text-[15px] mt-2 max-w-[480px]">
+            <p className="text-[#9D9072] text-[15px] mt-2 max-w-[480px] sm:mx-auto">
               Pratite kretanje cene investicionog zlata i donosite informisane odluke o kupovini.
             </p>
           </div>
           <Link
             href="/cena-zlata"
-            className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90 whitespace-nowrap self-start sm:self-auto"
+            className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90 whitespace-nowrap self-start sm:self-center"
             style={{ backgroundColor: "#BEAD87", fontSize: "12.1px", boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)" }}
           >
             Saznaj više
@@ -138,16 +142,16 @@ export function GoldPriceChart() {
                   className="text-[#1B1B1C] font-semibold"
                   style={{ fontSize: "clamp(28px, 4vw, 42px)", letterSpacing: "-1px" }}
                 >
-                  €{current.toLocaleString("sr-RS", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  {current.toLocaleString("sr-RS")} RSD
                 </span>
                 <span className={`flex items-center gap-1 text-sm font-medium ${isUp ? "text-emerald-600" : "text-red-500"}`}>
                   <span>{isUp ? "▲" : "▼"}</span>
-                  <span>{isUp ? "+" : ""}{diff.toFixed(2)}</span>
+                  <span>{isUp ? "+" : ""}{diff.toLocaleString("sr-RS")} RSD</span>
                   <span>({isUp ? "+" : ""}{diffPct.toFixed(2)}%)</span>
                 </span>
               </div>
               <p className="text-[#9D9072] text-xs mt-1">
-                cena jedne fine unce, odnosno 31.1034768g
+                cena za gram
               </p>
             </div>
 
@@ -191,8 +195,8 @@ export function GoldPriceChart() {
                   tick={{ fill: "#9D9072", fontSize: 11 }}
                   tickLine={false}
                   axisLine={false}
-                  width={64}
-                  tickFormatter={(v) => `€${Number(v).toLocaleString("sr-RS")}`}
+                  width={80}
+                  tickFormatter={(v) => `${Number(v).toLocaleString("sr-RS")}`}
                   domain={["auto", "auto"]}
                 />
                 <Tooltip content={<CustomTooltip />} />

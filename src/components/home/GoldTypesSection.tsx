@@ -8,7 +8,7 @@ export function GoldTypesSection() {
 
         {/* Section heading */}
         <h2
-          className="text-[#1B1B1C] mb-8 leading-tight"
+          className="text-[#1B1B1C] mb-8 leading-tight sm:text-center"
           style={{ fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 700 }}
         >
           Šta je investiciono zlato?
