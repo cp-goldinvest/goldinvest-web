@@ -3,23 +3,23 @@ import Image from "next/image";
 const FACTORS = [
   {
     img: "/images/faktori-1.png",
-    title: "Inflacija i Štampanje novca",
+    title: "Inflacija i štampanje novca",
     text: "Kada papirni novac (dolar, evro, dinar) gubi kupovnu moć, investitori masovno povlače kapital u zlato kako bi sačuvali vrednost, što mu automatski diže cenu.",
   },
   {
     img: "/images/faktori-2.png",
-    title: "Kako funkcioniše kupovina?",
-    text: "Kada papirni novac (dolar, evro, dinar) gubi kupovnu moć, investitori masovno povlače kapital u zlato kako bi te sačuvali vrednost, što mu automatski diže cenu.",
+    title: "Geopolitičke i ekonomske krize",
+    text: "Ratovi, pandemije i krahovi berzi stvaraju paniku. Zlato je istorijski 'sigurna luka' - kada vrednost akcija i nekretnina pada, potražnja za zlatom skače.",
   },
   {
     img: "/images/faktori-3.png",
-    title: "Vrste investicionog zlata",
-    text: "Kada papirni novac (dolar, evro, dinar) gubi kupovnu moć, investitori masovno povlače kapital u zlato kako bi sačuvali vrednost, što mu automatski diže cenu.",
+    title: "Aktivnosti Centralnih banaka",
+    text: "Kada velike svetske ekonomije počnu masovno da kupuju zlatne poluge za svoje državne rezerve, smanjuju količinu dostupnog zlata na tržištu, što direktno gura cenu na gore.",
   },
   {
     img: "/images/faktori-4.png",
-    title: "PDV pravila za investiciono zlato",
-    text: "Kada papirni novac (dolar, evro, dinar) gubi kupovnu moć, investitori masovno povlače kapital u zlato kako bi te sačuvali vrednost, što mu automatski diže cenu.",
+    title: "Kamatne stope",
+    text: "Kada američka (FED) ili evropska (ECB) centralna banka snižavaju kamatne stope, novac u bankama donosi manji prinos, pa veliki investitori prebacuju sredstva u zlato.",
   },
 ];
 
@@ -30,7 +30,7 @@ export function PriceBreakdownSection() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
 
         {/* Heading — centered */}
-        <div className="text-center mb-12 py-4">
+        <div className="text-left md:text-center mb-12 py-4">
           <h2
             className="text-[#1B1B1C] font-bold mb-4"
             style={{ fontSize: "clamp(22px, 3vw, 36px)" }}
@@ -38,7 +38,7 @@ export function PriceBreakdownSection() {
             Koji faktori realno podižu cenu zlata?
           </h2>
           <p
-            className="max-w-[520px] mx-auto text-center"
+            className="max-w-[520px] md:mx-auto md:text-center"
             style={{
               fontFamily: "var(--font-rethink), sans-serif",
               fontWeight: 400,
@@ -88,12 +88,12 @@ export function PriceBreakdownSection() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
 
         {/* Heading */}
-        <div className="text-center mb-12">
+        <div className="text-left md:text-center mb-12">
           <span className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-4 block">
             Investicija
           </span>
           <h2
-            className="text-[#1B1B1C] text-center"
+            className="text-[#1B1B1C]"
             style={{
               fontFamily: "var(--font-rethink), sans-serif",
               fontWeight: 500,
@@ -120,7 +120,7 @@ export function PriceBreakdownSection() {
             <h3
               className="text-[#1B1B1C]"
               style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
+                fontFamily: "var(--font-pp-editorial), Georgia, serif",
                 fontSize: "clamp(22px, 2.5vw, 32px)",
                 fontWeight: 400,
               }}
@@ -145,7 +145,7 @@ export function PriceBreakdownSection() {
             <h3
               className="text-[#1B1B1C]"
               style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
+                fontFamily: "var(--font-pp-editorial), Georgia, serif",
                 fontSize: "clamp(22px, 2.5vw, 32px)",
                 fontWeight: 400,
               }}

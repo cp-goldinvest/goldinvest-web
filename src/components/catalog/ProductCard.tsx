@@ -114,8 +114,8 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
 function PriceRow({ label, value, bold, muted }: { label: string; value: string; bold?: boolean; muted?: boolean }) {
   return (
     <div className="flex items-center justify-between gap-2 min-w-0">
-      <span className={`text-xs shrink-0 ${muted ? "text-[#999]" : "text-[#464747]"}`}>{label}</span>
-      <span className={`text-sm tabular-nums whitespace-nowrap text-right ${bold ? "font-bold text-[#1B1B1C]" : muted ? "text-xs text-[#999]" : "font-medium text-[#1B1B1C]"}`}>
+      <span className={`text-sm shrink-0 ${muted ? "text-[#999]" : "text-[#464747]"}`}>{label}</span>
+      <span className={`tabular-nums whitespace-nowrap text-right ${bold ? "text-base font-bold text-[#1B1B1C]" : muted ? "text-sm text-[#999]" : "text-[15px] font-medium text-[#1B1B1C]"}`}>
         {value}
       </span>
     </div>

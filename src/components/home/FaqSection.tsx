@@ -44,7 +44,7 @@ export function FaqSection() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
 
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-10">
+        <div className="flex flex-col items-start text-left md:items-center md:text-center mb-10">
           <span
             style={{
               fontFamily: "var(--font-rethink), sans-serif",
@@ -59,7 +59,7 @@ export function FaqSection() {
           </span>
           <h2
             style={{
-              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontFamily: "var(--font-pp-editorial), Georgia, serif",
               fontWeight: 400,
               fontStyle: "italic",
               fontSize: 35,
@@ -73,7 +73,7 @@ export function FaqSection() {
         </div>
 
         {/* FAQ cards */}
-        <div className="max-w-[760px] mx-auto flex flex-col gap-3">
+        <div className="max-w-[760px] w-full md:mx-auto flex flex-col gap-3">
           {FAQS.map((faq, i) => (
             <div
               key={i}
@@ -116,7 +116,7 @@ export function FaqSection() {
         </div>
 
         {/* CTA — sve FAQ */}
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-start md:justify-center mt-8">
           <Link
             href="/faq"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90"

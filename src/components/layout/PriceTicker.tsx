@@ -64,14 +64,14 @@ export function PriceTicker() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00C950] opacity-60" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00C950]" />
           </span>
-          <span className="text-[11px] text-[#4A3F2F] font-medium">
+          <span className="text-[13px] text-[#4A3F2F] font-medium">
             Cene ažurirane pre{" "}
             <span className="font-semibold">{timeAgo}</span>
           </span>
         </div>
 
         {/* Right: gold price RSD/g */}
-        <div className="text-[11px] text-[#4A3F2F] font-medium tabular-nums">
+        <div className="text-[13px] text-[#4A3F2F] font-medium tabular-nums">
           {data ? (
             <>
               Zlato (1g):{" "}

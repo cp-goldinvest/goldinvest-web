@@ -18,32 +18,30 @@ export function WhatIsGoldSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-24 sm:py-32">
+      <div className="relative z-10 flex flex-col items-start justify-center text-left md:items-center md:text-center px-6 py-24 sm:py-32">
 
         <h2
-          className="mb-6"
+          className="mb-6 w-full md:text-center"
           style={{
-            fontFamily: "var(--font-playfair), Georgia, serif",
+            fontFamily: "var(--font-pp-editorial), Georgia, serif",
             fontWeight: 400,
             fontStyle: "italic",
             fontSize: "clamp(36px, 5vw, 60px)",
             lineHeight: "1em",
             color: "#BEAD87",
-            textAlign: "center",
           }}
         >
           Vrednost koja traje.
         </h2>
 
         <p
-          className="mb-10"
+          className="mb-10 w-full md:text-center"
           style={{
             fontFamily: "var(--font-rethink), sans-serif",
             fontWeight: 400,
             fontSize: 20,
             lineHeight: "1.4em",
             color: "#E9E6D9",
-            textAlign: "center",
             maxWidth: 614,
           }}
         >
@@ -51,7 +49,7 @@ export function WhatIsGoldSection() {
           danas i osigurajte svoju finansijsku budućnost.
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-start md:items-center justify-start md:justify-center gap-4">
           {/* Filled button */}
           <Link
             href="/kategorija/zlatne-poluge"

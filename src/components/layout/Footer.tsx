@@ -33,7 +33,7 @@ const linkStyle: React.CSSProperties = {
 };
 
 const headingStyle: React.CSSProperties = {
-  fontFamily: "'Space Grotesk', sans-serif",
+  fontFamily: "var(--font-space-grotesk), sans-serif",
   fontWeight: 700,
   fontSize: 18,
   lineHeight: "1.556em",
@@ -135,7 +135,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="mt-16 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-16 pt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
           style={{ borderTop: "1px solid #1B1B1C" }}
         >
           <p style={{ fontFamily: "var(--font-rethink), sans-serif", fontWeight: 400, fontSize: 14, lineHeight: "1.429em", color: "#6A7282" }}>

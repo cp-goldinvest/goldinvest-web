@@ -37,6 +37,7 @@
 
   /* ── Typography ──────────────────────────────── */
   --font-sans:    var(--font-rethink), 'Helvetica Neue', sans-serif;
+  --font-editorial: var(--font-pp-editorial), Georgia, serif;
 
   /* ── Spacing / Sizing ────────────────────────── */
   --radius-sm:  4px;

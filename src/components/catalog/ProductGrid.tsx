@@ -87,7 +87,7 @@ export function ProductGrid({ variants, tiers, snapshot }: Props) {
       />
 
       {processed.length === 0 ? (
-        <div className="py-20 text-center text-[#8A8A8A]">
+        <div className="py-20 text-left md:text-center text-[#8A8A8A]">
           <p className="text-lg">Nema proizvoda koji odgovaraju filterima.</p>
           <button
             onClick={() => setFilters({ weights: [], maxPrice: null, brands: [], origins: [], availability: [] })}

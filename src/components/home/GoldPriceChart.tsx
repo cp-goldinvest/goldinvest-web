@@ -106,7 +106,7 @@ export function GoldPriceChart() {
             <h2
               className="text-[#1B1B1C] leading-tight"
               style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
+                fontFamily: "var(--font-pp-editorial), Georgia, serif",
                 fontSize: "clamp(22px, 2.8vw, 36px)",
                 fontWeight: 400,
               }}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function GoldTypesSection() {
   return (
@@ -45,9 +46,13 @@ export function GoldTypesSection() {
           >
             <div className="p-7 pb-4">
               <p className="text-[#3A3A3A] text-[15px] leading-relaxed">
-                Investiciono zlato se najčešće javlja u dva osnovna oblika: kao
-                zlatne poluge (manje zlatne pločice) i kao zlatni dukati
-                (kovanice).
+                Investiciono zlato se najčešće javlja u dva osnovna oblika: kao{" "}
+                <Link href="/kategorija/zlatne-poluge" className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors">zlatne poluge</Link>
+                {" "}(manje{" "}
+                <Link href="/kategorija/zlatne-plocice" className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors">zlatne pločice</Link>
+                ) i kao{" "}
+                <Link href="/kategorija/zlatni-dukati" className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors">zlatni dukati</Link>
+                {" "}(kovanice). Zlato je strogo zakonski definisan instrument namenjen isključivo čuvanju tvog kapitala od inflacije.
               </p>
             </div>
             <div className="flex-1 relative min-h-[200px] overflow-hidden">
@@ -79,7 +84,7 @@ export function GoldTypesSection() {
             {/* Tekst — donja polovina */}
             <div className="bg-[#F9F9F9] p-7">
               <p className="text-[#3A3A3A] text-[14px] leading-relaxed">
-                Pravilo za poluge i pločice — moraju imati ekstremnu čistoću od minimum{" "}
+                <span className="font-bold text-[#1B1B1C]">Pravilo za poluge i pločice</span> — moraju imati ekstremnu čistoću od minimum{" "}
                 <span className="font-semibold text-[#1B1B1C]">995/1000 (23,88 karata)</span>. Na svakoj mora biti jasno utisnut naziv proizvođača, tačna težina i jedinstveni serijski broj.
               </p>
             </div>
@@ -91,7 +96,7 @@ export function GoldTypesSection() {
             style={{ gridArea: "kovanice" }}
           >
             <p className="text-[#E8E4D9] text-[15px] leading-relaxed">
-              Pravilo za kovanice (dukate) — minimalna čistoća mora biti
+              <span className="font-bold">Pravilo za kovanice (dukate)</span> — minimalna čistoća mora biti
               900/1000 (21,6 karata). Uz to, moraju biti iskovani nakon
               1800. godine, a njihova prodajna cena ne sme da prelazi
               vrednost samog zlata za više od 80%.
@@ -166,7 +171,13 @@ export function GoldTypesSection() {
           <div className="bg-[#F9F9F9] rounded-2xl overflow-hidden flex flex-col">
             <div className="p-6 pb-3">
               <p className="text-[#3A3A3A] text-[15px] leading-relaxed">
-                Investiciono zlato se najčešće javlja u dva osnovna oblika: kao zlatne poluge (manje zlatne pločice) i kao zlatni dukati (kovanice).
+                Investiciono zlato se najčešće javlja u dva osnovna oblika: kao{" "}
+                <Link href="/kategorija/zlatne-poluge" className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors">zlatne poluge</Link>
+                {" "}(manje{" "}
+                <Link href="/kategorija/zlatne-plocice" className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors">zlatne pločice</Link>
+                ) i kao{" "}
+                <Link href="/kategorija/zlatni-dukati" className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors">zlatni dukati</Link>
+                {" "}(kovanice). Zlato je strogo zakonski definisan instrument namenjen isključivo čuvanju tvog kapitala od inflacije.
               </p>
             </div>
             <div className="relative w-full h-[200px] overflow-hidden">
@@ -188,7 +199,7 @@ export function GoldTypesSection() {
           <div className="bg-[#F9F9F9] rounded-2xl overflow-hidden flex flex-col">
             <div className="bg-[#F9F9F9] p-6">
               <p className="text-[#3A3A3A] text-[14px] leading-relaxed">
-                Pravilo za poluge i pločice — moraju imati ekstremnu čistoću od minimum{" "}
+                <span className="font-bold text-[#1B1B1C]">Pravilo za poluge i pločice</span> — moraju imati ekstremnu čistoću od minimum{" "}
                 <span className="font-semibold text-[#1B1B1C]">995/1000 (23,88 karata)</span>. Na svakoj mora biti jasno utisnut naziv proizvođača, tačna težina i jedinstveni serijski broj.
               </p>
             </div>
@@ -197,7 +208,7 @@ export function GoldTypesSection() {
           {/* Kovanice — tekst + slika */}
           <div className="bg-[#0D0D0D] rounded-2xl overflow-hidden flex flex-col" style={{ paddingTop: 24, paddingLeft: 24, paddingRight: 24 }}>
             <p className="text-[#E8E4D9] text-[15px] leading-relaxed mb-4">
-              Pravilo za kovanice (dukate) — minimalna čistoća mora biti 900/1000 (21,6 karata). Uz to, moraju biti iskovani nakon 1800. godine, a njihova prodajna cena ne sme da prelazi vrednost samog zlata za više od 80%.
+              <span className="font-bold">Pravilo za kovanice (dukate)</span> — minimalna čistoća mora biti 900/1000 (21,6 karata). Uz to, moraju biti iskovani nakon 1800. godine, a njihova prodajna cena ne sme da prelazi vrednost samog zlata za više od 80%.
             </p>
             <div className="flex justify-center items-end -mx-6">
               <Image src="/images/bento-coins.png" alt="Zlatni dukat" width={260} height={180} className="object-contain object-bottom" />

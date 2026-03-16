@@ -107,7 +107,7 @@ export function EducationCarousel() {
               <h3
                 className="mb-6"
                 style={{
-                  fontFamily: "var(--font-playfair), Georgia, serif",
+                  fontFamily: "var(--font-pp-editorial), Georgia, serif",
                   fontSize: 34.22,
                   fontWeight: 400,
                   fontStyle: "italic",

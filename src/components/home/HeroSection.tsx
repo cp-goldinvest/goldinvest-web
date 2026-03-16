@@ -9,45 +9,50 @@ const BUTTONS = [
 
 export function HeroSection() {
   return (
-    <section className="bg-[#0D0D0D] overflow-hidden">
+    <section
+      className="overflow-hidden"
+      style={{ background: "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)" }}
+    >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-16 lg:px-24">
 
-        {/* Desktop: side by side | Mobile: stacked */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center sm:gap-20 lg:gap-28 sm:h-[581px]">
+        {/* Desktop: grid — tekst fiksna širina, slika uzima ostatak bez guranja */}
+        <div className="grid grid-cols-1 sm:grid-cols-[minmax(380px,440px)_1fr] sm:items-center sm:gap-10 lg:gap-14 sm:h-[581px]">
 
           {/* ── Text block ── */}
-          <div className="flex-1 max-w-[620px] pt-14 pb-8 sm:py-0">
+          <div className="pt-14 pb-8 sm:py-0">
             <h1
-              className="text-[#BEAD87] leading-[1.13] mb-5"
+              className="text-[#1B1B1C] leading-[1.13] mb-5"
               style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
+                fontFamily: "var(--font-pp-editorial), Georgia, serif",
                 fontSize: "clamp(32px, 4.2vw, 58px)",
-                fontWeight: 400,
               }}
             >
-              Investiciono zlato,
+              <span style={{ fontWeight: 400, fontStyle: "normal", whiteSpace: "nowrap" }}>Investiciono zlato,</span>
               <br />
-              <em>Sigurna budućnost</em>
+              <span style={{ fontWeight: 400, fontStyle: "italic", whiteSpace: "nowrap" }}>Sigurna budućnost</span>
               <br />
-              <em>u vašim rukama</em>
+              <span style={{ fontWeight: 400, fontStyle: "italic", whiteSpace: "nowrap" }}>u vašim rukama</span>
             </h1>
 
-            <p
-              className="text-[#BEAD87] mb-8 leading-relaxed"
+            <div
+              className="text-[#3A3A3A] mb-8 leading-relaxed space-y-3"
               style={{ fontSize: "clamp(14px, 1.2vw, 17px)", maxWidth: 440 }}
             >
-              U svetu prolaznih trendova, zlato ostaje. Gold Invest vam pruža
-              priiliku da sačuvate i uvećate svoju imovinu kroz najpouzdaniji
-              oblik ulaganja u istoriji.
-            </p>
+              <p>
+                U svetu prolaznih trendova, zlato ostaje. Gold Invest vam pruža priliku da sačuvate i uvećate svoju imovinu kroz najpouzdaniji oblik ulaganja u istoriji.
+              </p>
+              <p>
+                Nudimo LBMA sertifikovane zlatne poluge, pločice i prepoznatljive dukate, uz mogućnost trenutne kupovine, povoljnije avansne ponude i sigurnog otkupa.
+              </p>
+            </div>
 
             <div className="flex items-center gap-2 sm:gap-3 flex-nowrap overflow-x-auto scrollbar-hide">
               {BUTTONS.map((btn) => (
                 <Link
                   key={btn.label}
                   href={btn.href}
-                  className="inline-flex items-center justify-center px-3 py-2 sm:px-5 sm:py-2.5 rounded-full text-[#BEAD87] font-semibold transition-all duration-200 hover:bg-[#BEAD87] hover:text-[#1B1B1C] whitespace-nowrap shrink-0"
-                  style={{ border: "0.5px solid #BEAD87", fontSize: "clamp(11px, 2.5vw, 12.1px)" }}
+                  className="inline-flex items-center justify-center px-3 py-2 sm:px-5 sm:py-2.5 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:bg-[#1B1B1C] hover:text-white whitespace-nowrap shrink-0"
+                  style={{ border: "0.5px solid #1B1B1C", fontSize: "clamp(11px, 2.5vw, 12.1px)" }}
                 >
                   {btn.label}
                 </Link>
@@ -56,18 +61,15 @@ export function HeroSection() {
           </div>
 
           {/* ── Gold bar image ── */}
-          {/* Desktop: fixed size right column */}
-          {/* Mobile: full-width, shorter, image bottom-aligned */}
-          <div className="relative shrink-0 sm:w-[360px] sm:h-[520px] w-full h-[260px]">
+          <div className="w-full flex justify-end sm:min-w-0">
             <Image
-              src="/images/hero-gold.png"
-              alt="Zlatna poluga — investiciono zlato"
-              fill
-              className="object-cover object-top sm:object-center"
+              src="/images/jastuk-poluga.png"
+              alt="Zlatna poluga 1kg sa motivima Srbije na plavom baršunastom jastuku — investiciono zlato"
+              width={772}
+              height={473}
+              className="w-full h-auto sm:ml-auto"
               priority
             />
-            {/* Mobile: fade top edge into background */}
-            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#0D0D0D] to-transparent sm:hidden" />
           </div>
 
         </div>

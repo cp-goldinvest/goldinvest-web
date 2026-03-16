@@ -63,22 +63,21 @@ export default async function HomePage() {
 
       {/* 4. Citat / quote sekcija */}
       <section className="bg-[#0D0D0D] py-20">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex flex-col items-center text-center">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex flex-col items-start text-left md:items-center md:text-center">
           <span className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-6">
             Investicija
           </span>
           <h2
             className="text-white leading-[1.15] mb-10 max-w-[820px]"
             style={{
-              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontFamily: "var(--font-pp-editorial), Georgia, serif",
               fontSize: "clamp(22px, 3.2vw, 42px)",
-              fontWeight: 400,
             }}
           >
-            <span style={{ fontStyle: "normal" }}>
+            <span style={{ fontWeight: 400, fontStyle: "normal" }}>
               Kupovinom investicionog zlata vi zapravo ne trošite svoj novac,{" "}
             </span>
-            <span style={{ fontStyle: "italic" }}>
+            <span style={{ fontWeight: 400, fontStyle: "italic" }}>
               već ga pretvarate u najsigurniju međunarodnu valutu koja ne zavisi
               od vlada, banaka i političkih sistema.
             </span>

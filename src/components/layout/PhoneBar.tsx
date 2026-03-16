@@ -57,13 +57,12 @@ export function PhoneBar() {
       ].join(" ")}
     >
       <div className="h-9">
-        {/* Mobile: marquee */}
+        {/* Mobile: static */}
         <a
           href="tel:+381612698569"
-          className="flex lg:hidden items-center h-full"
-          style={{ width: "max-content", animation: "marquee 18s linear infinite" }}
+          className="flex lg:hidden items-center justify-center h-full w-full"
         >
-          <BarContent /><BarContent /><BarContent />
+          <BarContent />
         </a>
 
         {/* Desktop: centered static */}
