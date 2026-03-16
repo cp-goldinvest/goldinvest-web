@@ -62,7 +62,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
       </div>
 
       {/* ── Content area ── */}
-      <div className="flex flex-col flex-1 p-5" style={{ minHeight: 271 }}>
+      <div className="flex flex-col flex-1 px-4 py-5 sm:p-5" style={{ minHeight: 271 }}>
 
         {/* Product name */}
         <h2 className="text-[#1B1B1C] font-bold leading-snug mb-3 line-clamp-2" style={{ fontSize: 18 }}>
@@ -80,8 +80,8 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
           </div>
         </div>
 
-        {/* Price rows — skraćeni labeli na mobilu */}
-        <div className="flex flex-col gap-1.5 mb-5">
+        {/* Price rows — skraćeni labeli na mobilu, manji font da RSD ne izlazi iz okvira */}
+        <div className="flex flex-col gap-1.5 mb-5 overflow-hidden min-w-0">
           <PriceRow label="Prodajna" labelFull="Prodajna cena" value={formatRsd(prices.stock)} bold />
           <PriceRow label="Avansna" labelFull="Avansna cena" value={formatRsd(prices.advance)} />
           <PriceRow label="Otkupna" labelFull="Otkupna cena" value={formatRsd(prices.purchase)} muted />
@@ -121,7 +121,7 @@ function PriceRow({ label, labelFull, value, bold, muted }: { label: string; lab
         <span className="sm:hidden">{label}</span>
         <span className="hidden sm:inline">{labelFull ?? label}</span>
       </span>
-      <span className={`tabular-nums whitespace-nowrap text-right ${bold ? "text-sm sm:text-base font-bold text-[#1B1B1C]" : muted ? "text-xs sm:text-sm text-[#999]" : "text-[13px] sm:text-[15px] font-medium text-[#1B1B1C]"}`}>
+      <span className={`tabular-nums whitespace-nowrap text-right ${bold ? "text-[13px] sm:text-base font-bold text-[#1B1B1C]" : muted ? "text-[11px] sm:text-sm text-[#999]" : "text-[12px] sm:text-[15px] font-medium text-[#1B1B1C]"}`}>
         {value}
       </span>
     </div>
