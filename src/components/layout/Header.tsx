@@ -128,7 +128,8 @@ export function Header() {
         style={{
           maxHeight: barsVisible ? "40px" : "0px",
           opacity: barsVisible ? 1 : 0,
-          background: "linear-gradient(178deg, rgba(186,167,127,1) 1%, rgba(231,229,217,1) 60%, rgba(239,231,218,1) 97%)",
+          background: "#FFFFFF",
+          borderBottom: "1px solid #EBEBEB",
         }}
       >
       <div className="w-full h-10 flex items-center overflow-hidden">

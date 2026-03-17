@@ -14,6 +14,8 @@ export type Filters = {
   availability: string[];
 };
 
+export type Option<T> = { label: string; value: T };
+
 type Props = {
   availableWeights: number[];
   availableBrands: string[];
@@ -23,16 +25,22 @@ type Props = {
   filters: Filters;
   onSortChange: (sort: SortOption) => void;
   onFiltersChange: (filters: Filters) => void;
+
+  /** Optional UI overrides for category pages */
+  showCategoryFilter?: boolean;
+  categoryOptions?: Option<string>[];
+  weightOptions?: Option<number>[];
+  priceOptions?: Option<number>[];
 };
 
-const CATEGORY_OPTIONS = [
+const DEFAULT_CATEGORY_OPTIONS: Option<string>[] = [
   { label: "Zlatne pločice", value: "plocica" },
   { label: "Zlatne poluge",  value: "poluga"  },
   { label: "Zlatni dukati",  value: "dukat"   },
   { label: "Zlatnici",       value: "novac"   },
 ];
 
-const PRICE_OPTIONS = [
+const DEFAULT_PRICE_OPTIONS: Option<number>[] = [
   { label: "Do 15.000 RSD",   value: 15_000 },
   { label: "Do 30.000 RSD",   value: 30_000 },
   { label: "Do 60.000 RSD",   value: 60_000 },
@@ -61,9 +69,18 @@ export function FilterSortBar({
   filters,
   onSortChange,
   onFiltersChange,
+  showCategoryFilter = true,
+  categoryOptions,
+  weightOptions,
+  priceOptions,
 }: Props) {
   const [open, setOpen] = useState<OpenDropdown>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const CATEGORY_OPTIONS = categoryOptions ?? DEFAULT_CATEGORY_OPTIONS;
+  const PRICE_OPTIONS = priceOptions ?? DEFAULT_PRICE_OPTIONS;
+  const WEIGHT_OPTIONS: Option<number>[] =
+    weightOptions ?? availableWeights.map((w) => ({ value: w, label: w >= 1000 ? `${w / 1000}kg` : `${w}g` }));
 
   function toggle(d: OpenDropdown) {
     setOpen((prev) => (prev === d ? null : d));
@@ -153,22 +170,24 @@ export function FilterSortBar({
       {/* Mobile filter panel */}
       {mobileOpen && (
         <div className="flex md:hidden flex-col gap-5 bg-white border border-[#E5E7EB] rounded-xl p-4 mt-2 mb-2 shadow-sm">
-          <div>
-            <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Kategorija</p>
-            <div className="flex flex-wrap gap-2">
-              {CATEGORY_OPTIONS.map(({ label, value }) => (
-                <button key={value} onClick={() => toggleCategory(value)}
-                  className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${filters.categories.includes(value) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-[#E5E7EB] text-[#1B1B1C]"}`}>
-                  {label}
-                </button>
-              ))}
+          {showCategoryFilter && (
+            <div>
+              <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Kategorija</p>
+              <div className="flex flex-wrap gap-2">
+                {CATEGORY_OPTIONS.map(({ label, value }) => (
+                  <button key={value} onClick={() => toggleCategory(value)}
+                    className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${filters.categories.includes(value) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-[#E5E7EB] text-[#1B1B1C]"}`}>
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-          {availableWeights.length > 0 && (
+          )}
+          {WEIGHT_OPTIONS.length > 0 && (
             <div>
               <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Težina</p>
               <div className="flex flex-wrap gap-2">
-                {availableWeights.map((w) => (
+                {WEIGHT_OPTIONS.map(({ value: w, label }) => (
                   <button
                     key={w}
                     onClick={() => toggleWeight(w)}
@@ -178,7 +197,7 @@ export function FilterSortBar({
                         : "border-[#E5E7EB] text-[#1B1B1C]"
                     }`}
                   >
-                    {w >= 1000 ? `${w / 1000}kg` : `${w}g`}
+                    {label}
                   </button>
                 ))}
               </div>
@@ -242,22 +261,24 @@ export function FilterSortBar({
           </div>
 
           {/* Kategorija */}
-          <div className="relative">
-            <FilterBtn label="Kategorija" active={filters.categories.length > 0} open={open === "category"} onClick={() => toggle("category")} />
-            {open === "category" && (
-              <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-52">
-                <PanelHeader title="Kategorija" onClose={() => setOpen(null)} />
-                <div className="flex flex-col gap-1">
-                  {CATEGORY_OPTIONS.map(({ label, value }) => (
-                    <button key={value} onClick={() => toggleCategory(value)}
-                      className={`text-left px-3 py-2 rounded-lg text-sm border transition-colors ${filters.categories.includes(value) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-transparent text-[#1B1B1C] hover:bg-[#F9F9F9]"}`}>
-                      {label}
-                    </button>
-                  ))}
+          {showCategoryFilter && (
+            <div className="relative">
+              <FilterBtn label="Kategorija" active={filters.categories.length > 0} open={open === "category"} onClick={() => toggle("category")} />
+              {open === "category" && (
+                <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-52">
+                  <PanelHeader title="Kategorija" onClose={() => setOpen(null)} />
+                  <div className="flex flex-col gap-1">
+                    {CATEGORY_OPTIONS.map(({ label, value }) => (
+                      <button key={value} onClick={() => toggleCategory(value)}
+                        className={`text-left px-3 py-2 rounded-lg text-sm border transition-colors ${filters.categories.includes(value) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-transparent text-[#1B1B1C] hover:bg-[#F9F9F9]"}`}>
+                        {label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {/* Težina */}
           <div className="relative">
@@ -266,10 +287,10 @@ export function FilterSortBar({
               <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-56">
                 <PanelHeader title="Težina" onClose={() => setOpen(null)} />
                 <div className="flex flex-wrap gap-2">
-                  {availableWeights.map((w) => (
+                  {WEIGHT_OPTIONS.map(({ value: w, label }) => (
                     <button key={w} onClick={() => toggleWeight(w)}
                       className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${filters.weights.includes(w) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-[#E5E7EB] text-[#1B1B1C] hover:border-[#BF8E41]/40"}`}>
-                      {w >= 1000 ? `${w / 1000}kg` : `${w}g`}
+                      {label}
                     </button>
                   ))}
                 </div>
@@ -377,11 +398,11 @@ export function FilterSortBar({
       {/* Active chips (desktop) */}
       {activeCount > 0 && (
         <div className="hidden md:flex flex-wrap gap-2 pt-3">
-          {filters.categories.map((c) => (
+          {showCategoryFilter && filters.categories.map((c) => (
             <Chip key={c} label={CATEGORY_OPTIONS.find(o => o.value === c)?.label ?? c} onRemove={() => toggleCategory(c)} />
           ))}
           {filters.weights.map((w) => (
-            <Chip key={w} label={w >= 1000 ? `${w / 1000}kg` : `${w}g`} onRemove={() => toggleWeight(w)} />
+            <Chip key={w} label={WEIGHT_OPTIONS.find(o => o.value === w)?.label ?? (w >= 1000 ? `${w / 1000}kg` : `${w}g`)} onRemove={() => toggleWeight(w)} />
           ))}
           {filters.brands.map((b) => (
             <Chip key={b} label={b} onRemove={() => toggleBrand(b)} />

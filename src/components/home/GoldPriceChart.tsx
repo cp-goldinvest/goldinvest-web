@@ -110,9 +110,11 @@ export function GoldPriceChart() {
             <h2
               className="text-[#1B1B1C] leading-tight"
               style={{
-                fontFamily: "var(--font-pp-editorial), Georgia, serif",
-                fontSize: "clamp(22px, 2.8vw, 36px)",
-                fontWeight: 400,
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 500,
+                fontSize: 30,
+                lineHeight: "27px",
+                letterSpacing: "-1px",
               }}
             >
               Spot cena zlata u realnom vremenu

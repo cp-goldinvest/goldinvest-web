@@ -52,8 +52,8 @@ export function PriceTicker() {
     <div
       className="w-full h-9 flex items-center"
       style={{
-        background: "linear-gradient(90deg, #C8B48A 0%, #EAE6D8 50%, #EDE5D8 100%)",
-        borderBottom: "1px solid rgba(190,173,135,0.3)",
+        background: "#FFFFFF",
+        borderBottom: "1px solid #EBEBEB",
       }}
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 w-full flex items-center justify-between">

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { MapPin, Truck, ShieldCheck, Info } from "lucide-react";
 import { createServiceClient } from "@/lib/supabase/server";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { CategoryHero } from "@/components/catalog/CategoryHero";
 import { SeoSection } from "@/components/catalog/SeoSection";
+import { BrandCardsSection } from "@/components/catalog/BrandCardsSection";
 import { CategoryFaq } from "@/components/catalog/CategoryFaq";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -22,9 +25,6 @@ const BREADCRUMBS = [
   { label: "Investiciono zlato", href: "/" },
   { label: "Zlatne poluge", href: "/kategorija/zlatne-poluge" },
 ];
-
-const INTRO_FIRST =
-  "Zlatne poluge su najsigurniji način da zaštitite veći kapital od inflacije i ekonomskih potresa.";
 
 const INTRO_FULL = `Zlatne poluge su najsigurniji način da zaštitite veći kapital od inflacije i ekonomskih potresa. Naša ponuda obuhvata isključivo LBMA sertifikovane poluge finoće 999,9, poznatih svetskih kovnica. Obezbedili smo vam transparentne cene za trenutnu i avansnu kupovinu, uz garantovan i siguran otkup. Poruči putem kontakt forme ili na broj 0612698569 - BRZA dostava!`;
 
@@ -140,9 +140,9 @@ export default async function ZlatnePolugePage() {
       <CategoryHero
         title="Zlatne poluge"
         introFull={INTRO_FULL}
-        introFirstSentence={INTRO_FIRST}
-        pills={CATEGORY_PILLS}
-        expandableIntro
+        pills={[]}
+        introMaxWidth="none"
+        centerOnDesktop
       />
 
       {/* Products + Filter/Sort */}
@@ -152,167 +152,432 @@ export default async function ZlatnePolugePage() {
             variants={variants as any}
             tiers={tiers}
             snapshot={snapshotRow}
+            filterConfig={{
+              showCategoryFilter: false,
+              weightOptions: [
+                { label: "Zlatna poluga 1 unca", value: 31.1 },
+                { label: "Zlatna poluga 50g", value: 50 },
+                { label: "Zlatna poluga 100g", value: 100 },
+                { label: "Zlatna poluga 250g", value: 250 },
+                { label: "Zlatna poluga 500g", value: 500 },
+                { label: "Zlatna poluga 1kg", value: 1000 },
+              ],
+              priceOptions: [
+                { label: "Do 600.000 RSD", value: 600_000 },
+                { label: "Do 800.000 RSD", value: 800_000 },
+                { label: "Do 1.000.000 RSD", value: 1_000_000 },
+                { label: "Do 1.200.000 RSD", value: 1_200_000 },
+                { label: "Do 1.500.000 RSD", value: 1_500_000 },
+                { label: "Do 2.000.000 RSD", value: 2_000_000 },
+              ],
+            }}
           />
         </div>
       </section>
 
-      {/* SEO content sections — white bg, homepage typography */}
+      {/* Težine poluga — u stilu sajta (heading + 3 kartice) */}
+      <section className="bg-white py-16 sm:py-20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <div className="text-left md:text-center mb-12">
+            <h2
+              className="text-[#1B1B1C] mb-4"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 500,
+                fontSize: 30,
+                lineHeight: "27px",
+                letterSpacing: "-1px",
+              }}
+            >
+              Koje težine zlatnih poluga postoje?
+            </h2>
+            <p
+              className="max-w-[780px] md:mx-auto md:text-center"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 400,
+                fontSize: 17,
+                lineHeight: "22px",
+                letterSpacing: 0,
+                color: "#9D9072",
+                marginTop: 16,
+                marginBottom: 8,
+              }}
+            >
+              U Gold Invest asortimanu nalaze se isključivo investicione poluge maksimalne čistoće od 99.99% (24 karata). Evo jednostavnog pregleda formata — od fleksibilnih manjih težina do poluga za ozbiljne investitore.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                Manje težine (1g, 2g, 5g, 10g i 20g){" "}
+                <span className="font-normal text-[#6B6B6B]">— </span>
+                <Link
+                  href="/kategorija/zlatne-plocice"
+                  className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors"
+                >
+                  Zlatne pločice
+                </Link>
+              </p>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Savršen način da započnete investicionu priču ili obezbedite najvredniji poklon. Premija po gramu je nešto viša, ali dobijate maksimalnu fleksibilnost — kada vam zatreba gotovina, prodajete samo manju polugu.
+              </p>
+            </div>
+
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                Srednje poluge (50g i 100g) — zlatna sredina
+              </p>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Najtraženiji format na tržištu. Poluga od 100g je čest izbor kao odličan balans: niža premija po gramu i odlična likvidnost — kapital možete prodavati u delovima.
+              </p>
+            </div>
+
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                Velike poluge (250g, 500g i 1kg)
+              </p>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Za ozbiljne investitore. Kupovinom 500g ili 1kg dobijate najnižu cenu po gramu. Zbog specifične gustine zlata, čak i poluga od 1kg je manja od prosečnog mobilnog telefona — praktična za čuvanje u bankarskom sefu.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 max-w-[920px] md:mx-auto">
+            <div className="bg-[#FAF8F2] border border-[#F0EDE6] rounded-2xl px-6 py-5 sm:px-7 sm:py-6 flex gap-4 items-start">
+              <span className="mt-0.5 w-10 h-10 rounded-xl bg-[#1B1B1C] text-white flex items-center justify-center shrink-0">
+                <Info size={18} />
+              </span>
+              <p
+                className="text-[#3A3A3A] leading-relaxed mb-0 text-left md:text-center md:mx-auto"
+                style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 16, lineHeight: "1.6em" }}
+              >
+                Ukoliko vam zatreba manji iznos gotovine, možete prodati samo polugu od 5g ili 10g. Takođe, ukoliko tražite tradicionalniji format za poklon ili čuvanje vrednosti, preporučujemo da pogledate i{" "}
+                <Link
+                  href="/kategorija/zlatni-dukati"
+                  className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors"
+                >
+                  zlatne dukate
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sertifikati — kao homepage "Od čega se sastoji cena?" (3 kartice, bez slika) */}
       <section className="bg-white py-16 sm:py-20 border-t border-[#F0EDE6]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
-          <div className="max-w-[820px]">
+          {/* Heading — left on mobile, centered on desktop */}
+          <div className="text-left md:text-center mb-12 py-1">
+            <h2
+              className="text-[#1B1B1C] mb-4"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 500,
+                fontSize: 30,
+                lineHeight: "27px",
+                letterSpacing: "-1px",
+              }}
+            >
+              Sertifikati i LBMA standard zlatnih poluga
+            </h2>
+            <p
+              className="max-w-[780px] md:mx-auto md:text-center"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 400,
+                fontSize: 17,
+                lineHeight: "22px",
+                letterSpacing: 0,
+                color: "#9D9072",
+                marginTop: 16,
+                marginBottom: 8,
+              }}
+            >
+              Svaka zlatna poluga u Gold Invest ponudi dolazi isključivo iz najprestižnijih svetskih rafinerija i poseduje LBMA (London Bullion Market Association) sertifikat — garanciju da kupujete zlato najvišeg ranga, priznato i lako naplativo svuda u svetu.
+            </p>
+          </div>
 
-            <SeoSection title="Koje težine zlatnih poluga postoje?">
-              <p>
-                U Gold Invest asortimanu nalaze se isključivo investicione poluge maksimalne
-                čistoće od 99.99% (24 karata). Da biste lakše isplanirali svoju investiciju u
-                investiciono zlato, evo detaljnog pregleda formata poluga:
+          {/* 3 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                Šta vama donosi LBMA Good Delivery status?
               </p>
-              <ul>
-                <li>
-                  <strong>Zlatne pločice manje težine (1g, 2g, 5g, 10g i 20g)</strong> — savršen način da
-                  započnete svoju investicionu priču ili obezbedite najvredniji mogući poklon za
-                  krštenja, rođenja i venčanja. Iako je premija kovanja po gramu kod ovih
-                  formata nešto viša, one vam daju apsolutnu fleksibilnost. Ukoliko vam zatreba
-                  manji iznos gotovine, možete prodati samo polugu od 5g ili 10g, bez potrebe
-                  da unovčavate celu ušteđevinu.
-                </li>
-                <li>
-                  <strong>Srednje poluge (50g i 100g) — zlatna sredina</strong> — ovo je apsolutno najtraženiji
-                  format na domaćem i evropskom tržištu. Poluga od 100 grama je najčešći
-                  izbor kao savršen investicioni balans — dovoljno je velika da cena po gramu
-                  bude izuzetno isplativa (niska premija), a dovoljno praktična da zadržite
-                  odličnu likvidnost portfolija.
-                </li>
-                <li>
-                  <strong>Velike poluge (250g, 500g i 1kg)</strong> — ultimativni izbor za ozbiljne investitore koji
-                  prebacuju veće sume novca iz nesigurnog bankarskog sistema u opipljivu
-                  imovinu. Kupovinom poluge od 500g ili 1kg dobijate ubedljivo najnižu cenu po
-                  gramu zlata na tržištu. Zbog specifične gustine zlata, čak i poluga od jednog
-                  kilograma je manja od prosečnog mobilnog telefona, što neverovatno
-                  olakšava njeno skladištenje u bankarskim sefovima.
-                </li>
-              </ul>
-              <p>
-                Ukoliko vam zatreba manji iznos gotovine, možete prodati samo polugu od 5g ili 10g.
-                Takođe, ukoliko tražite tradicionalniji format za poklon ili čuvanje vrednosti,
-                preporučujemo da pogledate i zlatne dukate (gde se posebno izdvaja čuveni Dukat
-                Franc Jozef).
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                To nije samo prestižna oznaka, već najrigoroznija globalna garancija kvaliteta — potvrda čistoće, tačne gramaže i strogo kontrolisanog, etičkog porekla metala.
               </p>
-            </SeoSection>
+            </div>
 
-            <SeoSection title="Sertifikati i LBMA standard zlatnih poluga">
-              <p>
-                Svaka zlatna poluga u Gold Invest ponudi dolazi isključivo iz najprestižnijih svetskih
-                rafinerija i poseduje LBMA (London Bullion Market Association) sertifikat. Ovo je
-                vaša ultimativna garancija da kupujete zlato najvišeg svetskog ranga, koje je
-                priznato i lako naplativo svuda u svetu.
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                Gde se nalazi sertifikat moje poluge?
               </p>
-              <p>Evo šta to konkretno znači za vašu investiciju:</p>
-              <ul>
-                <li>
-                  <strong>Šta vama donosi LBMA Good Delivery status?</strong> To nije samo prestižna
-                  oznaka, već najrigoroznija globalna garancija kvaliteta. Ona osigurava da
-                  vaša poluga ima besprekornu čistoću od 99.99% (24 karata), apsolutno tačnu
-                  gramažu i strogo kontrolisano, etičko poreklo metala.
-                </li>
-                <li>
-                  <strong>Gde se nalazi sertifikat moje poluge?</strong> Kod modernih zlatnih poluga, papirni
-                  sertifikati su prevaziđeni jer se lako mogu falsifikovati. Vaša poluga vam se
-                  isporučuje fabrički zapečaćena u sigurnosno blister pakovanje (od čvrste
-                  plastike). Na tom pakovanju su jasno utisnuti logo kovnice, težina, čistoća i
-                  jedinstveni serijski broj — koji se u cifru mora poklapati sa brojem laserski
-                  urezanim na samoj poluzi. Vaše pakovanje je zapravo vaš zvanični sertifikat.
-                </li>
-                <li>
-                  <strong>Zlatno pravilo (Upozorenje):</strong> Ne otvarajte ambalažu! Najskuplja greška koju
-                  novi investitori prave jeste vađenje poluge iz zaštitne plastike. Čak i najmanje
-                  oštećenje ili zasecanje blistera trajno uništava investicioni Good Delivery
-                  status vaše poluge. Ukoliko se poluga izvadi, prilikom kasnijeg otkupa biće joj
-                  znatno oborena cena, jer takvo zlato zahteva ponovne, skupe fizičke i
-                  laboratorijske provere autentičnosti pre nego što se pretopi.
-                </li>
-              </ul>
-            </SeoSection>
-
-            <SeoSection title="Brendovi zlatnih poluga">
-              <p>
-                Gold Invest u ponudi ima isključivo proizvode najeminentnijih evropskih kovnica sa
-                LBMA Good Delivery sertifikatom. Naš asortiman se oslanja na apsolutne lidere u
-                preradi plemenitih metala:
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Kod modernih poluga, sertifikat je sigurnosno blister pakovanje. Na njemu su logo kovnice, težina, čistoća i serijski broj — koji mora da se poklapa sa brojem urezanim na samoj poluzi.
               </p>
-              <ul>
-                <li>
-                  <strong>Argor-Heraeus</strong> — švajcarska preciznost i industrijski standard. Jedna od
-                  najvećih i najpouzdanijih svetskih rafinerija, čije su poluge sinonim za sigurnost
-                  i izuzetno su tražene na celom evropskom tržištu.
-                </li>
-                <li>
-                  <strong>C. Hafner</strong> — nemački premium kvalitet bez kompromisa. Rafinerija sa
-                  tradicijom dugom preko 170 godina, poznata po najvišim tehnološkim
-                  standardima i besprekornoj izradi. Njihove poluge ulivaju ogromno poverenje
-                  tradicionalnim investitorima.
-                </li>
-                <li>
-                  <strong>The Royal Mint (Kraljevska kovnica)</strong> — britanski prestiž. Zvanična državna
-                  kovnica Velike Britanije i jedna od najstarijih i najuglednijih institucija na svetu.
-                  Njihove investicione poluge predstavljaju sam vrh globalnog tržišta i nose
-                  dodatnu težinu istorijskog autoriteta.
-                </li>
-              </ul>
-            </SeoSection>
+            </div>
 
-            <SeoSection title="Prodaja zlatnih poluga Beograd - Gold Invest">
-              <p>
-                Kupovina investicionih poluga zahteva maksimalnu diskreciju, sigurnost i
-                profesionalizam. Vaš kapital zaslužuje pouzdanog partnera koji garantuje
-                bezbednost svake transakcije:
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                Zlatno pravilo (Upozorenje): Ne otvarajte ambalažu
               </p>
-              <ul>
-                <li>
-                  <strong>Lično preuzimanje (Beograd)</strong> — posetite nas na adresi Bulevar oslobođenja 123 (Beograd).
-                  Obezbedili smo potpuno sigurno i diskretno okruženje za preuzimanje vaših poluga i potpisivanje dokumentacije.
-                </li>
-                <li>
-                  <strong>Sigurna isporuka za Beograd</strong> — za porudžbine i uplate evidentirane radnim
-                  danima do 12h, vaše zlatne poluge bezbedno dostavljamo na adresu istog
-                  dana do 18h (dan za dan).
-                </li>
-                <li>
-                  <strong>Isporuka za celu Srbiju</strong> — ukoliko niste u mogućnosti da dođete lično, vaše
-                  poluge šaljemo maksimalno osigurane na teritoriju cele države. Paket stiže u
-                  roku od 1 do 3 radna dana, potpuno neprimetno upakovan, tako da niko osim
-                  vas ne zna njegov dragoceni sadržaj.
-                </li>
-              </ul>
-            </SeoSection>
-
-            <SeoSection title="Cena zlatnih poluga - Trenutna/Avansna/Otkupna">
-              <p>
-                Kao i kod ostatka našeg asortimana, Gold Invest vam pruža opciju da optimizujete
-                svoje troškove kada je u pitanju kupovina zlatnih poluga:
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Čak i najmanje oštećenje blistera može trajno poništiti investicioni status poluge. Ako se poluga izvadi, pri otkupu se cena obara jer zahteva skupe provere autentičnosti pre pretapanja.
               </p>
-              <ol>
-                <li>
-                  <strong>Trenutna kupovina (Roba na stanju)</strong> — plaćate i istog dana preuzimate
-                  polugu iz našeg trezora (ili vam je šaljemo na adresu).
-                </li>
-                <li>
-                  <strong>Avansna kupovina (Najbolja cena zlata)</strong> — ukoliko planirate kupovinu većih
-                  poluga (poput 500g ili 1kg), avansna kupovina vam omogućava da uplatite
-                  novac unapred, zaključate trenutnu (nižu) cenu i sačekate isporuku direktno iz
-                  inostrane kovnice. Za velike iznose, ova ušteda može biti izuzetno značajna.
-                </li>
-                <li>
-                  <strong>Otkupna cena poluga (Garantovana likvidnost)</strong> — zlatne poluge su
-                  najlikvidniji oblik fizičke imovine. Ovo je javno istaknuta cena po kojoj Gold
-                  Invest garantovano otkupljuje vaše poluge, uz isplatu istog dana. Ono što
-                  poluge čini superiornim jeste činjenica da je razlika između prodajne i otkupne
-                  cene (tzv. spread) kod njih najniža. To znači da vaša investicija najbrže prelazi
-                  u zonu čistog profita.
-                </li>
-              </ol>
-            </SeoSection>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* Dark quote — LBMA / sertifikati */}
+      <section className="bg-[#0D0D0D] py-16 sm:py-20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex flex-col items-start text-left md:items-center md:text-center">
+            <span className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-6 block">
+              Garancija kvaliteta
+            </span>
+            <h2
+              className="text-white leading-[1.15] mb-10 max-w-[820px]"
+              style={{
+                fontFamily: "var(--font-pp-editorial), Georgia, serif",
+                fontSize: "clamp(22px, 3.2vw, 42px)",
+                fontWeight: 400,
+              }}
+            >
+              <span style={{ fontStyle: "normal" }}>
+                LBMA sertifikat nije samo oznaka,
+              </span>
+              <br />
+              <span style={{ fontStyle: "italic" }}>
+                {" "}to je najstroža globalna garancija da vaša poluga ima besprekornu čistoću i priznata je svuda u svetu.
+              </span>
+            </h2>
+
+            <Link
+              href="/#faq"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90"
+              style={{
+                backgroundColor: "#BEAD87",
+                fontSize: "12.1px",
+                boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)",
+              }}
+            >
+              Saznaj više
+            </Link>
+        </div>
+      </section>
+
+      <BrandCardsSection
+        title="Brendovi zlatnih poluga"
+        description={'Gold Invest u ponudi ima isključivo proizvode najeminentnijih evropskih kovnica sa LBMA "Good Delivery" sertifikatom. Naš asortiman se oslanja na apsolutne lidere u preradi plemenitih metala:'}
+        brands={[
+          {
+            img: "/images/brands/argor-heraeus.png",
+            title: "Argor-Heraeus",
+            origin: "Švajcarska",
+            text: "Švajcarska preciznost i industrijski standard. Jedna od najvećih i najpouzdanijih svetskih rafinerija, čije su poluge sinonim za sigurnost i izuzetno su tražene na celom evropskom tržištu.",
+          },
+          {
+            img: "/images/brands/c-hafner.png",
+            title: "C. Hafner",
+            origin: "Nemačka",
+            text: "Nemački premium kvalitet bez kompromisa. Rafinerija sa tradicijom dugom preko 170 godina, poznata po najvišim tehnološkim standardima i besprekornoj izradi. Njihove poluge ulivaju ogromno poverenje tradicionalnim investitorima.",
+            imageScale: 0.9,
+          },
+          {
+            img: "/images/brands/logo-royal-mint.png",
+            title: "The Royal Mint (Kraljevska kovnica)",
+            origin: "Velika Britanija",
+            text: "Britanski prestiž. Zvanična državna kovnica Velike Britanije i jedna od najstarijih i najuglednijih institucija na svetu. Njihove investicione poluge predstavljaju sam vrh globalnog tržišta i nose dodatnu težinu istorijskog autoriteta.",
+          },
+        ]}
+      />
+
+      {/* Prodaja / isporuka — 3 kartice (vizuelno, u stilu sajta) */}
+      <section className="bg-[#F9F9F9] py-16 sm:py-20 border-t border-[#F0EDE6]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <div className="text-left md:text-center mb-12">
+            <h2
+              className="text-[#1B1B1C] mb-4"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 500,
+                fontSize: 30,
+                lineHeight: "27px",
+                letterSpacing: "-1px",
+              }}
+            >
+              Prodaja zlatnih poluga Beograd — Gold Invest
+            </h2>
+            <p
+              className="max-w-[780px] md:mx-auto md:text-center"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 400,
+                fontSize: 17,
+                lineHeight: "22px",
+                letterSpacing: 0,
+                color: "#9D9072",
+                marginTop: 16,
+                marginBottom: 8,
+              }}
+            >
+              Kupovina investicionih poluga zahteva maksimalnu diskreciju, sigurnost i profesionalizam. Zato nudimo više opcija preuzimanja i isporuke — uvek osigurano i neprimetno.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-10 h-10 rounded-xl bg-[#1B1B1C] text-white flex items-center justify-center">
+                  <MapPin size={18} />
+                </span>
+                <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-0">
+                  Lično preuzimanje (Beograd)
+                </p>
+              </div>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Posetite nas na adresi Bulevar oslobođenja 123. Obezbedili smo diskretno okruženje za preuzimanje poluga i potpisivanje dokumentacije.
+              </p>
+            </div>
+
+            <div className="bg-white border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-10 h-10 rounded-xl bg-[#1B1B1C] text-white flex items-center justify-center">
+                  <Truck size={18} />
+                </span>
+                <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-0">
+                  Beograd — dan za dan
+                </p>
+              </div>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Za porudžbine evidentirane radnim danima do 12h, isporuka na adresu istog dana do 18h (dan za dan).
+              </p>
+            </div>
+
+            <div className="bg-white border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-10 h-10 rounded-xl bg-[#1B1B1C] text-white flex items-center justify-center">
+                  <ShieldCheck size={18} />
+                </span>
+                <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-0">
+                  Isporuka za celu Srbiju
+                </p>
+              </div>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Maksimalno osigurana, potpuno neprimetna pošiljka — rok isporuke 1 do 3 radna dana (avansne kupovine po dogovoru).
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-center">
+            <Link
+              href="/kontakt"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90"
+              style={{
+                backgroundColor: "#BEAD87",
+                fontSize: "12.1px",
+                boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)",
+              }}
+            >
+              Kontakt forma
+            </Link>
+            <a
+              href="tel:+381612698569"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full font-semibold transition-all duration-200"
+              style={{
+                border: "0.5px solid #1B1B1C",
+                color: "#1B1B1C",
+                fontSize: "12.1px",
+              }}
+            >
+              Pozovi: 061/269-8569
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Cena — 3 koraka (Trenutna / Avansna / Otkupna) */}
+      <section className="bg-white py-16 sm:py-20 border-t border-[#F0EDE6]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <div className="text-left md:text-center mb-12">
+            <h2
+              className="text-[#1B1B1C] mb-4"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 500,
+                fontSize: 30,
+                lineHeight: "27px",
+                letterSpacing: "-1px",
+              }}
+            >
+              Cena zlatnih poluga — Trenutna / Avansna / Otkupna
+            </h2>
+            <p
+              className="max-w-[780px] md:mx-auto md:text-center"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 400,
+                fontSize: 17,
+                lineHeight: "22px",
+                letterSpacing: 0,
+                color: "#9D9072",
+                marginTop: 16,
+                marginBottom: 8,
+              }}
+            >
+              Kao i kod ostatka našeg asortimana, Gold Invest vam pruža opciju da optimizujete svoje troškove kada je u pitanju kupovina zlatnih poluga:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* 1 */}
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold">
+                  1
+                </span>
+                <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-0">
+                  Trenutna kupovina (Roba na stanju)
+                </p>
+              </div>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Plaćate i istog dana preuzimate polugu iz našeg trezora (ili vam je šaljemo na adresu).
+              </p>
+            </div>
+
+            {/* 2 */}
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold">
+                  2
+                </span>
+                <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-0">
+                  Avansna kupovina (Najbolja cena zlata)
+                </p>
+              </div>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Uplaćujete unapred, zaključavate trenutnu (nižu) cenu i čekate isporuku direktno iz inostrane kovnice. Za velike iznose, ušteda može biti izuzetno značajna.
+              </p>
+            </div>
+
+            {/* 3 */}
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold">
+                  3
+                </span>
+                <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-0">
+                  Otkupna cena (Garantovana likvidnost)
+                </p>
+              </div>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Ovo je javno istaknuta cena po kojoj Gold Invest garantovano otkupljuje vaše poluge, uz isplatu istog dana. Spread (razlika prodajne i otkupne) je kod poluga najniži — investicija brže prelazi u profit.
+              </p>
+            </div>
           </div>
         </div>
       </section>

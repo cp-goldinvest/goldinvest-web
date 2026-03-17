@@ -86,14 +86,14 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
 
         {/* Action buttons — relative z-10 so they intercept clicks over the overlay link */}
         <div className="relative z-10 mt-auto flex items-center gap-2">
-          {/* Saznaj više — muted gold bg */}
+          {/* Detalji — muted gold bg */}
           <Link
             href={href}
             onClick={(e) => e.stopPropagation()}
             className="flex-1 min-w-0 inline-flex items-center justify-center px-2 sm:px-3 py-1.5 rounded-full text-[#1B1B1C] text-xs font-medium whitespace-nowrap transition-opacity hover:opacity-80"
             style={{ background: "rgba(194,178,128,0.39)", fontSize: 11 }}
           >
-            Saznaj više
+            Detalji
           </Link>
 
           {/* Pozovi — outline */}

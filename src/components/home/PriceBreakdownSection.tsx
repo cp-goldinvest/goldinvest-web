@@ -32,8 +32,14 @@ export function PriceBreakdownSection() {
         {/* Heading — centered */}
         <div className="text-left md:text-center mb-12 py-4">
           <h2
-            className="text-[#1B1B1C] font-bold mb-4"
-            style={{ fontSize: "clamp(22px, 3vw, 36px)" }}
+            className="text-[#1B1B1C] mb-4"
+            style={{
+              fontFamily: "var(--font-rethink), sans-serif",
+              fontWeight: 500,
+              fontSize: 30,
+              lineHeight: "27px",
+              letterSpacing: "-1px",
+            }}
           >
             Koji faktori realno podižu cenu zlata?
           </h2>

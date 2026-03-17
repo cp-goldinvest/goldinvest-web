@@ -11,9 +11,13 @@ type Props = {
   introFirstSentence?: string;
   pills: Pill[];
   expandableIntro?: boolean;
+  /** Default 640. Set to "none" to remove max width. */
+  introMaxWidth?: number | "none";
+  /** Center title + intro on desktop, keep left on mobile. */
+  centerOnDesktop?: boolean;
 };
 
-export function CategoryHero({ title, introFull, introFirstSentence, pills, expandableIntro = false }: Props) {
+export function CategoryHero({ title, introFull, introFirstSentence, pills, expandableIntro = false, introMaxWidth = 640, centerOnDesktop = false }: Props) {
   const [expanded, setExpanded] = useState(!expandableIntro);
   const showIntro = expanded ? introFull : (introFirstSentence ?? introFull.split(/[.!?]/)[0] + ".");
 
@@ -23,7 +27,7 @@ export function CategoryHero({ title, introFull, introFirstSentence, pills, expa
       style={{ background: "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)" }}
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-16 lg:px-24">
-        <div className="py-14 sm:py-20">
+        <div className={`py-14 sm:py-20 ${centerOnDesktop ? "md:text-center" : ""}`}>
           <h1
             className="text-[#1B1B1C] leading-[1.13] mb-6"
             style={{
@@ -37,7 +41,12 @@ export function CategoryHero({ title, introFull, introFirstSentence, pills, expa
 
           <div
             className="text-[#3A3A3A] mb-8 leading-relaxed"
-            style={{ fontSize: "clamp(14px, 1.2vw, 17px)", maxWidth: 640 }}
+            style={{
+              fontSize: "clamp(14px, 1.2vw, 17px)",
+              maxWidth: introMaxWidth === "none" ? undefined : introMaxWidth,
+              marginLeft: centerOnDesktop ? "auto" : undefined,
+              marginRight: centerOnDesktop ? "auto" : undefined,
+            }}
           >
             <p>{showIntro}</p>
             {expandableIntro && !expanded && (
@@ -52,22 +61,24 @@ export function CategoryHero({ title, introFull, introFirstSentence, pills, expa
             )}
           </div>
 
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {pills.map((p) => (
-              <Link
-                key={p.href}
-                href={p.href}
-                className={`inline-flex items-center justify-center px-3 py-2 sm:px-5 sm:py-2.5 rounded-full font-semibold transition-all duration-200 whitespace-nowrap ${
-                  p.active
-                    ? "bg-[#1B1B1C] text-white"
-                    : "text-[#1B1B1C] hover:bg-[#1B1B1C] hover:text-white"
-                }`}
-                style={{ border: "0.5px solid #1B1B1C", fontSize: "clamp(11px, 2.5vw, 12.1px)" }}
-              >
-                {p.label}
-              </Link>
-            ))}
-          </div>
+          {pills.length > 0 && (
+            <div className="flex flex-wrap gap-2 sm:gap-3">
+              {pills.map((p) => (
+                <Link
+                  key={p.href}
+                  href={p.href}
+                  className={`inline-flex items-center justify-center px-3 py-2 sm:px-5 sm:py-2.5 rounded-full font-semibold transition-all duration-200 whitespace-nowrap ${
+                    p.active
+                      ? "bg-[#1B1B1C] text-white"
+                      : "text-[#1B1B1C] hover:bg-[#1B1B1C] hover:text-white"
+                  }`}
+                  style={{ border: "0.5px solid #1B1B1C", fontSize: "clamp(11px, 2.5vw, 12.1px)" }}
+                >
+                  {p.label}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

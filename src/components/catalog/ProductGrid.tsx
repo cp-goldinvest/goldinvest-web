@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { ProductCard } from "./ProductCard";
-import { FilterSortBar, type SortOption, type Filters } from "./FilterSortBar";
+import { FilterSortBar, type SortOption, type Filters, type Option } from "./FilterSortBar";
 import { computePrices } from "@/lib/pricing";
 import type { ProductVariant, PricingTier, PricingRule, GoldPriceSnapshot } from "@/lib/supabase/types";
 
@@ -15,9 +15,14 @@ type Props = {
   variants: VariantWithRelations[];
   tiers: PricingTier[];
   snapshot: GoldPriceSnapshot;
+  filterConfig?: {
+    showCategoryFilter?: boolean;
+    weightOptions?: Option<number>[];
+    priceOptions?: Option<number>[];
+  };
 };
 
-export function ProductGrid({ variants, tiers, snapshot }: Props) {
+export function ProductGrid({ variants, tiers, snapshot, filterConfig }: Props) {
   const [sort, setSort] = useState<SortOption>("price_asc");
   const [filters, setFilters] = useState<Filters>({
     categories: [],
@@ -84,6 +89,9 @@ export function ProductGrid({ variants, tiers, snapshot }: Props) {
         filters={filters}
         onSortChange={setSort}
         onFiltersChange={setFilters}
+        showCategoryFilter={filterConfig?.showCategoryFilter}
+        weightOptions={filterConfig?.weightOptions}
+        priceOptions={filterConfig?.priceOptions}
       />
 
       {processed.length === 0 ? (
