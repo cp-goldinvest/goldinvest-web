@@ -17,11 +17,23 @@ const BREADCRUMBS = [
   { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
 ];
 
-export default async function ZlatnePlocicePage() {
-  const supabase = createServiceClient();
+// Mock fallback (isti stil kao homepage)
+const MOCK_SNAPSHOT = { id: "mock", xau_usd: 2700, xau_eur: 4375, usd_rsd: 108, eur_rsd: 117.5, price_per_g_rsd: 16500, source: "mock", fetched_at: new Date().toISOString() };
+const MOCK_TIERS = [{ id: "t1", name: "default", category: null, min_g: 0, max_g: 99999, margin_stock_pct: 4.5, margin_advance_pct: 3.5, margin_purchase_pct: 2, created_at: "" }];
+const MOCK_VARIANTS = [
+  { id: "1", product_id: "p1", slug: "zlatna-plocica-1g-pamp", weight_g: 1, weight_oz: 0.032, purity: 0.9999, fine_weight_g: 1, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 1, is_active: true, products: { name: "Zlatna pločica 1g", brand: "PAMP Suisse", origin: "Švajcarska", category: "plocica" }, pricing_rules: null },
+  { id: "2", product_id: "p2", slug: "zlatna-plocica-2g-pamp", weight_g: 2, weight_oz: 0.064, purity: 0.9999, fine_weight_g: 2, sku: null, stock_qty: 8, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 2, is_active: true, products: { name: "Zlatna pločica 2g", brand: "PAMP Suisse", origin: "Švajcarska", category: "plocica" }, pricing_rules: null },
+  { id: "3", product_id: "p3", slug: "zlatna-plocica-5g-heraeus", weight_g: 5, weight_oz: 0.161, purity: 0.9999, fine_weight_g: 5, sku: null, stock_qty: 5, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 3, is_active: true, products: { name: "Zlatna pločica 5g", brand: "Heraeus", origin: "Nemačka", category: "plocica" }, pricing_rules: null },
+  { id: "4", product_id: "p4", slug: "zlatna-plocica-10g-heraeus", weight_g: 10, weight_oz: 0.321, purity: 0.9999, fine_weight_g: 10, sku: null, stock_qty: 3, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 4, is_active: true, products: { name: "Zlatna pločica 10g", brand: "Heraeus", origin: "Nemačka", category: "plocica" }, pricing_rules: null },
+  { id: "5", product_id: "p5", slug: "zlatna-plocica-20g-heraeus", weight_g: 20, weight_oz: 0.643, purity: 0.9999, fine_weight_g: 20, sku: null, stock_qty: 2, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 5, is_active: true, products: { name: "Zlatna pločica 20g", brand: "Heraeus", origin: "Nemačka", category: "plocica" }, pricing_rules: null },
+];
 
-  const [{ data: variants }, { data: tiers }, { data: snapshotRow }] =
-    await Promise.all([
+export default async function ZlatnePlocicePage() {
+  let variants: any = MOCK_VARIANTS, tiers: any = MOCK_TIERS, snapshotRow: any = MOCK_SNAPSHOT;
+
+  try {
+    const supabase = createServiceClient();
+    const [r1, r2, r3] = await Promise.all([
       supabase
         .from("product_variants")
         .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
@@ -36,6 +48,14 @@ export default async function ZlatnePlocicePage() {
         .limit(1)
         .single(),
     ]);
+    if (r1.data?.length) {
+      variants = r1.data;
+      tiers = r2.data;
+      snapshotRow = r3.data;
+    }
+  } catch {
+    // Supabase nedostupan ili nema ENV — koristimo mock podatke
+  }
 
   return (
     <main className="min-h-screen bg-[#1B1B1C]">
