@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createServiceClient } from "@/lib/supabase/server";
+import { SectionContainer } from "@/components/ui/SectionContainer";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { GoldTypesSection } from "@/components/home/GoldTypesSection";
@@ -49,13 +50,13 @@ export default async function HomePage() {
 
       {/* 2. Products */}
       <section className="bg-white py-12">
-        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-8">
+        <SectionContainer>
           <ProductGrid
             variants={variants as any}
             tiers={tiers}
             snapshot={snapshotRow}
           />
-        </div>
+        </SectionContainer>
       </section>
 
       {/* 3. Vrste i pravila */}
@@ -63,7 +64,7 @@ export default async function HomePage() {
 
       {/* 4. Citat / quote sekcija */}
       <section className="bg-[#0D0D0D] py-20">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex flex-col items-start text-left md:items-center md:text-center">
+        <SectionContainer className="flex flex-col items-start text-left md:items-center md:text-center">
           <span className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-6">
             Investicija
           </span>
@@ -93,7 +94,7 @@ export default async function HomePage() {
           >
             Saznaj više
           </Link>
-        </div>
+        </SectionContainer>
       </section>
 
       {/* 5. Faktori cene + raščlanjenost */}
