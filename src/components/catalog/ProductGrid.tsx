@@ -20,9 +20,15 @@ type Props = {
     weightOptions?: Option<number>[];
     priceOptions?: Option<number>[];
   };
+  /** Hide the filter/sort bar (useful for competitor-like layouts). */
+  hideFilterSortBar?: boolean;
+  /** Override cards grid layout. */
+  gridClassName?: string;
+  /** Limit number of visible cards. */
+  maxItems?: number;
 };
 
-export function ProductGrid({ variants, tiers, snapshot, filterConfig }: Props) {
+export function ProductGrid({ variants, tiers, snapshot, filterConfig, hideFilterSortBar, gridClassName, maxItems }: Props) {
   const [sort, setSort] = useState<SortOption>("price_asc");
   const [filters, setFilters] = useState<Filters>({
     categories: [],
@@ -80,19 +86,21 @@ export function ProductGrid({ variants, tiers, snapshot, filterConfig }: Props) 
 
   return (
     <div>
-      <FilterSortBar
-        availableWeights={availableWeights}
-        availableBrands={availableBrands}
-        availableOrigins={availableOrigins}
-        totalCount={processed.length}
-        sort={sort}
-        filters={filters}
-        onSortChange={setSort}
-        onFiltersChange={setFilters}
-        showCategoryFilter={filterConfig?.showCategoryFilter}
-        weightOptions={filterConfig?.weightOptions}
-        priceOptions={filterConfig?.priceOptions}
-      />
+      {!hideFilterSortBar && (
+        <FilterSortBar
+          availableWeights={availableWeights}
+          availableBrands={availableBrands}
+          availableOrigins={availableOrigins}
+          totalCount={processed.length}
+          sort={sort}
+          filters={filters}
+          onSortChange={setSort}
+          onFiltersChange={setFilters}
+          showCategoryFilter={filterConfig?.showCategoryFilter}
+          weightOptions={filterConfig?.weightOptions}
+          priceOptions={filterConfig?.priceOptions}
+        />
+      )}
 
       {processed.length === 0 ? (
         <div className="py-20 text-left md:text-center text-[#8A8A8A]">
@@ -105,8 +113,8 @@ export function ProductGrid({ variants, tiers, snapshot, filterConfig }: Props) 
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-          {processed.slice(0, 8).map(({ variant: v, prices }) => (
+        <div className={gridClassName ?? "grid grid-cols-2 md:grid-cols-4 gap-4 mt-6"}>
+          {processed.slice(0, maxItems ?? 8).map(({ variant: v, prices }) => (
             <ProductCard
               key={v.id}
               slug={v.slug}
