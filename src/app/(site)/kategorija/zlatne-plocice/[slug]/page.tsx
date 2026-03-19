@@ -11,7 +11,39 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
-import { NumberedCard } from "@/components/ui/NumberedCard";
+import { BrandCardsSection, type BrandCard } from "@/components/catalog/BrandCardsSection";
+
+function mapBrandsToLogos(brands: { title: string; body: string }[]): BrandCard[] {
+  return brands.map((b) => {
+    const rawTitle = b.title ?? "";
+    const lower = rawTitle.toLowerCase();
+
+    let img = "/images/brands/bento-center-gold.png";
+    let origin = "—";
+
+    if (lower.includes("argor")) {
+      img = "/images/brands/argor-heraeus.png";
+      origin = "Švajcarska";
+    } else if (lower.includes("hafner")) {
+      img = "/images/brands/c-hafner.png";
+      origin = "Nemačka";
+    } else if (lower.includes("royal mint") || lower.includes("britannia")) {
+      img = "/images/brands/logo-royal-mint.png";
+      origin = "Britanija";
+    }
+
+    const left = rawTitle.split("—")[0]?.trim() ?? rawTitle.trim();
+    // remove trailing weight part, e.g. "10g"
+    const cleanedTitle = left.replace(/\s*\d+\s*g\s*$/i, "").trim();
+
+    return {
+      img,
+      title: cleanedTitle || rawTitle,
+      origin,
+      text: b.body,
+    };
+  });
+}
 
 export const revalidate = 60;
 
@@ -374,23 +406,6 @@ export default async function PlocicaWeightPage({
       {/* ── SEO content sections (only for slugs with a full SEO document) ── */}
       {config.seo && (
         <>
-          {/* H2: Brendovi — LBMA standard */}
-          <section className="bg-white py-16 sm:py-20">
-            <SectionContainer>
-              <SectionHeading
-                title={config.seo.brands.heading}
-                description={config.seo.brands.description}
-              />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {config.seo.brands.cards.map((card, i) => (
-                  <InfoCard key={i} title={card.title}>
-                    {card.body}
-                  </InfoCard>
-                ))}
-              </div>
-            </SectionContainer>
-          </section>
-
           {/* H2: Zašto je idealna investicija */}
           <section className="bg-white py-16 sm:py-20 border-t border-[#F0EDE6]">
             <SectionContainer>
@@ -398,12 +413,65 @@ export default async function PlocicaWeightPage({
                 title={config.seo.whyBuy.heading}
                 description={config.seo.whyBuy.description}
               />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {config.seo.whyBuy.cards.map((card, i) => (
-                  <NumberedCard key={i} number={i + 1} title={card.title}>
-                    {card.body}
-                  </NumberedCard>
-                ))}
+
+              {/* Creative layout: 1 highlighted reason + 2 supporting reasons */}
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-[1.02fr_0.98fr] gap-8 items-stretch">
+                {/* Highlight: 1 */}
+                <div className="relative bg-[#FAF8F2] border border-[#F0EDE6] rounded-2xl p-6 sm:p-8 overflow-hidden">
+                  <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#BEAD87]/20 blur-2xl" />
+                  <div className="relative">
+                    <div className="flex items-start gap-3 mb-4">
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
+                        1
+                      </span>
+                      <div className="pt-1">
+                        <p className="text-[#BF8E41] text-[11px] font-semibold tracking-widest uppercase mb-2">
+                          Najveći benefit
+                        </p>
+                        <p className="text-[#1B1B1C] text-[15px] sm:text-[16px] font-semibold leading-snug mb-0">
+                          {config.seo.whyBuy.cards[0]?.title}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-[#6B6B6B] text-[13.5px] sm:text-[14px] leading-relaxed mb-0">
+                      {config.seo.whyBuy.cards[0]?.body}
+                    </p>
+                    <div className="mt-7 h-px w-16 bg-[#BEAD87]" />
+                  </div>
+                </div>
+
+                {/* Right: 2 + 3 (single grouped block) */}
+                <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl overflow-hidden">
+                  <div className="px-5 sm:px-6 py-4 sm:py-5 bg-white/40 border-b border-[#F0EDE6]">
+                    <p className="text-[#1B1B1C] text-[14px] sm:text-[15px] font-semibold leading-snug mb-0">
+                      Još dve ključne stvari
+                    </p>
+                  </div>
+
+                  <div className="divide-y divide-[#F0EDE6]">
+                    {config.seo.whyBuy.cards.slice(1, 3).map((card, i) => {
+                      const number = i + 2;
+                      return (
+                        <div
+                          key={card.title}
+                          className="p-5 sm:p-6 flex items-start gap-3"
+                        >
+                          <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
+                            {number}
+                          </span>
+                          <div>
+                            <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                              {card.title}
+                            </p>
+                            <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                              {card.body}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </SectionContainer>
           </section>
@@ -416,6 +484,15 @@ export default async function PlocicaWeightPage({
             card2Body={config.seo.priceStructure.card2Body}
             card3Body={config.seo.priceStructure.card3Body}
           />
+
+          {/* H2: Naša ponuda — evropski brendovi (LBMA standard) */}
+          <div className="mt-6">
+            <BrandCardsSection
+              title={config.seo.brands.heading}
+              description={config.seo.brands.description}
+              brands={mapBrandsToLogos(config.seo.brands.cards)}
+            />
+          </div>
 
           {/* H2: Prodaja / Dostava */}
           <DeliverySection
