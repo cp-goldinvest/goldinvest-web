@@ -31,6 +31,13 @@ type Props = {
   categoryOptions?: Option<string>[];
   weightOptions?: Option<number>[];
   priceOptions?: Option<number>[];
+
+  /** UI text overrides + page-specific filter visibility */
+  filterLabelText?: string;
+  sortLabelText?: string;
+  showPriceFilter?: boolean;
+  showBrandFilter?: boolean;
+  showOriginFilter?: boolean;
 };
 
 const DEFAULT_CATEGORY_OPTIONS: Option<string>[] = [
@@ -73,6 +80,11 @@ export function FilterSortBar({
   categoryOptions,
   weightOptions,
   priceOptions,
+  filterLabelText = "Filteri",
+  sortLabelText = "Sortiraj po:",
+  showPriceFilter = true,
+  showBrandFilter = true,
+  showOriginFilter = true,
 }: Props) {
   const [open, setOpen] = useState<OpenDropdown>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -115,8 +127,12 @@ export function FilterSortBar({
   }
 
   const activeCount =
-    filters.categories.length + filters.weights.length + filters.brands.length +
-    filters.origins.length + filters.availability.length + (filters.maxPrice ? 1 : 0);
+    (showCategoryFilter ? filters.categories.length : 0) +
+    filters.weights.length +
+    (showBrandFilter ? filters.brands.length : 0) +
+    (showOriginFilter ? filters.origins.length : 0) +
+    filters.availability.length +
+    (showPriceFilter ? (filters.maxPrice ? 1 : 0) : 0);
 
   return (
     <div className="relative">
@@ -131,7 +147,7 @@ export function FilterSortBar({
           }`}
         >
           <SlidersHorizontal size={15} />
-          Filteri
+          {filterLabelText}
           {activeCount > 0 && (
             <span className="flex items-center justify-center w-4 h-4 rounded-full bg-[#BF8E41] text-white text-[10px] font-bold">
               {activeCount}
@@ -203,26 +219,36 @@ export function FilterSortBar({
               </div>
             </div>
           )}
-          {availableBrands.length > 0 && (
+          {showBrandFilter && availableBrands.length > 0 && (
             <div>
               <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Proizvođač</p>
               <div className="flex flex-col gap-2">
                 {availableBrands.map((b) => (
                   <label key={b} className="flex items-center gap-2 cursor-pointer text-sm text-[#1B1B1C]">
-                    <input type="checkbox" checked={filters.brands.includes(b)} onChange={() => toggleBrand(b)} className="accent-[#BF8E41]" />
+                    <input
+                      type="checkbox"
+                      checked={filters.brands.includes(b)}
+                      onChange={() => toggleBrand(b)}
+                      className="accent-[#BF8E41]"
+                    />
                     {b}
                   </label>
                 ))}
               </div>
             </div>
           )}
-          {availableOrigins.length > 0 && (
+          {showOriginFilter && availableOrigins.length > 0 && (
             <div>
               <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Zemlja porekla</p>
               <div className="flex flex-col gap-2">
                 {availableOrigins.map((o) => (
                   <label key={o} className="flex items-center gap-2 cursor-pointer text-sm text-[#1B1B1C]">
-                    <input type="checkbox" checked={filters.origins.includes(o)} onChange={() => toggleOrigin(o)} className="accent-[#BF8E41]" />
+                    <input
+                      type="checkbox"
+                      checked={filters.origins.includes(o)}
+                      onChange={() => toggleOrigin(o)}
+                      className="accent-[#BF8E41]"
+                    />
                     {o}
                   </label>
                 ))}
@@ -257,7 +283,7 @@ export function FilterSortBar({
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <SlidersHorizontal size={20} className="text-[#464747]" />
-            <span className="text-base font-medium text-[#464747]">Filteri:</span>
+            <span className="text-base font-medium text-[#464747]">{filterLabelText}:</span>
           </div>
 
           {/* Kategorija */}
@@ -299,64 +325,93 @@ export function FilterSortBar({
           </div>
 
           {/* Cena */}
-          <div className="relative">
-            <FilterBtn label="Cena" active={!!filters.maxPrice} open={open === "price"} onClick={() => toggle("price")} />
-            {open === "price" && (
-              <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-48">
-                <PanelHeader title="Maksimalna cena" onClose={() => setOpen(null)} />
-                <div className="flex flex-col gap-1">
-                  {PRICE_OPTIONS.map(({ label, value }) => (
-                    <button key={value} onClick={() => { onFiltersChange({ ...filters, maxPrice: value }); setOpen(null); }}
-                      className={`text-left px-3 py-2 rounded-lg text-sm border transition-colors ${filters.maxPrice === value ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-transparent text-[#1B1B1C] hover:bg-[#F9F9F9]"}`}>
-                      {label}
-                    </button>
-                  ))}
-                  {filters.maxPrice && (
-                    <button onClick={() => onFiltersChange({ ...filters, maxPrice: null })}
-                      className="text-left px-3 py-2 text-xs text-[#999] hover:text-[#BF8E41] flex items-center gap-1 mt-1">
-                      <X size={11} /> Ukloni filter
-                    </button>
-                  )}
+          {showPriceFilter && (
+            <div className="relative">
+              <FilterBtn label="Cena" active={!!filters.maxPrice} open={open === "price"} onClick={() => toggle("price")} />
+              {open === "price" && (
+                <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-48">
+                  <PanelHeader title="Maksimalna cena" onClose={() => setOpen(null)} />
+                  <div className="flex flex-col gap-1">
+                    {PRICE_OPTIONS.map(({ label, value }) => (
+                      <button
+                        key={value}
+                        onClick={() => {
+                          onFiltersChange({ ...filters, maxPrice: value });
+                          setOpen(null);
+                        }}
+                        className={`text-left px-3 py-2 rounded-lg text-sm border transition-colors ${filters.maxPrice === value ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-transparent text-[#1B1B1C] hover:bg-[#F9F9F9]"}`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                    {filters.maxPrice && (
+                      <button
+                        onClick={() => onFiltersChange({ ...filters, maxPrice: null })}
+                        className="text-left px-3 py-2 text-xs text-[#999] hover:text-[#BF8E41] flex items-center gap-1 mt-1"
+                      >
+                        <X size={11} /> Ukloni filter
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {/* Proizvođač */}
-          <div className="relative">
-            <FilterBtn label="Proizvođač" active={filters.brands.length > 0} open={open === "brand"} onClick={() => toggle("brand")} />
-            {open === "brand" && (
-              <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-48">
-                <PanelHeader title="Proizvođač" onClose={() => setOpen(null)} />
-                <div className="flex flex-col gap-2">
-                  {availableBrands.map((b) => (
-                    <label key={b} className="flex items-center gap-2 cursor-pointer text-sm text-[#1B1B1C]">
-                      <input type="checkbox" checked={filters.brands.includes(b)} onChange={() => toggleBrand(b)} className="accent-[#BF8E41]" />
-                      {b}
-                    </label>
-                  ))}
+          {showBrandFilter && (
+            <div className="relative">
+              <FilterBtn label="Proizvođač" active={filters.brands.length > 0} open={open === "brand"} onClick={() => toggle("brand")} />
+              {open === "brand" && (
+                <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-48">
+                  <PanelHeader title="Proizvođač" onClose={() => setOpen(null)} />
+                  <div className="flex flex-col gap-2">
+                    {availableBrands.map((b) => (
+                      <label key={b} className="flex items-center gap-2 cursor-pointer text-sm text-[#1B1B1C]">
+                        <input
+                          type="checkbox"
+                          checked={filters.brands.includes(b)}
+                          onChange={() => toggleBrand(b)}
+                          className="accent-[#BF8E41]"
+                        />
+                        {b}
+                      </label>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {/* Zemlja porekla */}
-          <div className="relative">
-            <FilterBtn label="Zemlja porekla" active={filters.origins.length > 0} open={open === "origin"} onClick={() => toggle("origin")} />
-            {open === "origin" && (
-              <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-48">
-                <PanelHeader title="Zemlja porekla" onClose={() => setOpen(null)} />
-                <div className="flex flex-col gap-2">
-                  {availableOrigins.map((o) => (
-                    <label key={o} className="flex items-center gap-2 cursor-pointer text-sm text-[#1B1B1C]">
-                      <input type="checkbox" checked={filters.origins.includes(o)} onChange={() => toggleOrigin(o)} className="accent-[#BF8E41]" />
-                      {o}
-                    </label>
-                  ))}
+          {showOriginFilter && (
+            <div className="relative">
+              <FilterBtn
+                label="Zemlja porekla"
+                active={filters.origins.length > 0}
+                open={open === "origin"}
+                onClick={() => toggle("origin")}
+              />
+              {open === "origin" && (
+                <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-48">
+                  <PanelHeader title="Zemlja porekla" onClose={() => setOpen(null)} />
+                  <div className="flex flex-col gap-2">
+                    {availableOrigins.map((o) => (
+                      <label key={o} className="flex items-center gap-2 cursor-pointer text-sm text-[#1B1B1C]">
+                        <input
+                          type="checkbox"
+                          checked={filters.origins.includes(o)}
+                          onChange={() => toggleOrigin(o)}
+                          className="accent-[#BF8E41]"
+                        />
+                        {o}
+                      </label>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {activeCount > 0 && (
             <button onClick={() => onFiltersChange(EMPTY_FILTERS)}
@@ -370,7 +425,7 @@ export function FilterSortBar({
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <ArrowUpDown size={20} className="text-[#464747]" />
-            <span className="text-base font-medium text-[#464747]">Sortiraj po:</span>
+            <span className="text-base font-medium text-[#464747]">{sortLabelText}</span>
           </div>
           <div className="relative">
             <button
@@ -404,12 +459,14 @@ export function FilterSortBar({
           {filters.weights.map((w) => (
             <Chip key={w} label={WEIGHT_OPTIONS.find(o => o.value === w)?.label ?? (w >= 1000 ? `${w / 1000}kg` : `${w}g`)} onRemove={() => toggleWeight(w)} />
           ))}
-          {filters.brands.map((b) => (
-            <Chip key={b} label={b} onRemove={() => toggleBrand(b)} />
-          ))}
-          {filters.origins.map((o) => (
-            <Chip key={o} label={o} onRemove={() => toggleOrigin(o)} />
-          ))}
+          {showBrandFilter &&
+            filters.brands.map((b) => (
+              <Chip key={b} label={b} onRemove={() => toggleBrand(b)} />
+            ))}
+          {showOriginFilter &&
+            filters.origins.map((o) => (
+              <Chip key={o} label={o} onRemove={() => toggleOrigin(o)} />
+            ))}
         </div>
       )}
     </div>

@@ -60,18 +60,18 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "O investicionom zlatu",
     children: [
-      { label: "Kako kupiti",  href: "/kako-kupiti", description: "Proces kupovine i plaćanje" },
-      { label: "Otkup zlata",  href: "/otkup",       description: "Garantovani otkup istog dana" },
-      { label: "FAQ",          href: "/faq",          description: "Česta pitanja" },
-      { label: "O nama",       href: "/o-nama",       description: "Ko smo i gde smo" },
+      { label: "Kako kupiti",  href: "/kako-kupiti",  description: "Proces kupovine i plaćanje" },
+      { label: "Otkup zlata",  href: "/otkup-zlata",  description: "Garantovani otkup istog dana" },
+      { label: "FAQ",          href: "/faq",           description: "Česta pitanja" },
+      { label: "O nama",       href: "/o-nama",        description: "Ko smo i gde smo" },
     ],
   },
   { label: "Cena zlata", href: "/cena-zlata" },
   {
     label: "Pokloni",
     children: [
-      { label: "Poklon za krštenje",       href: "/pokloni/poklon-za-krstenje",        description: "Zlatne pločice za krštenje" },
-      { label: "Poklon za rođenje deteta", href: "/pokloni/poklon-za-rodjenje-deteta", description: "Najvredniji poklon za novorođenče" },
+      { label: "Poklon za krštenje",       href: "/poklon-za-krstenje",        description: "Zlatne pločice za krštenje" },
+      { label: "Poklon za rođenje deteta", href: "/poklon-za-rodjenje-deteta", description: "Najvredniji poklon za novorođenče" },
     ],
   },
   { label: "Blog",    href: "/blog" },
@@ -135,18 +135,18 @@ export function Header() {
       <div className="w-full h-10 flex items-center overflow-hidden">
         {/* Desktop: centrirano */}
         <div className="hidden sm:flex w-full items-center justify-center">
-          <a href="tel:+381112345678" className="flex items-center gap-2 text-[#4A3F2F] hover:opacity-80 transition-opacity">
+          <a href="tel:+381612698569" className="flex items-center gap-2 text-[#4A3F2F] hover:opacity-80 transition-opacity">
             <Phone size={15} color="#4A3F2F" />
             <span className="text-[14px]">Pozovite za sve informacije →</span>
-            <span className="text-[14px] font-bold ml-1 text-[#BF8E41]">011 234 5678</span>
+            <span className="text-[14px] font-bold ml-1 text-[#BF8E41]">061/269-8569</span>
           </a>
         </div>
         {/* Mobile: static (centered) */}
         <div className="flex sm:hidden w-full items-center justify-center">
-          <a href="tel:+381112345678" className="flex items-center gap-2 text-[#4A3F2F] text-[14px] hover:opacity-80 transition-opacity">
+          <a href="tel:+381612698569" className="flex items-center gap-2 text-[#4A3F2F] text-[14px] hover:opacity-80 transition-opacity">
             <Phone size={15} color="#4A3F2F" />
             <span>Pozovite za sve informacije →</span>
-            <span className="font-bold ml-1 text-[#BF8E41]">011 234 5678</span>
+            <span className="font-bold ml-1 text-[#BF8E41]">061/269-8569</span>
           </a>
         </div>
       </div>
@@ -440,27 +440,32 @@ function DropdownItem({
 
       <div
         className={[
-          "absolute top-full left-0 mt-1 min-w-56 rounded-xl overflow-hidden z-[60]",
+          "absolute top-full left-0 mt-2 w-64 z-[60] rounded-xl overflow-hidden",
           "bg-white border border-[#EBEBEB] shadow-[0_4px_24px_rgba(0,0,0,0.08)]",
           "transition-all duration-200 origin-top",
           isOpen ? "opacity-100 scale-y-100 pointer-events-auto translate-y-0" : "opacity-0 scale-y-95 pointer-events-none -translate-y-1",
         ].join(" ")}
       >
-        {item.children.map((child) => (
-          <Link
-            key={child.href}
-            href={child.href}
-            onClick={onClose}
-            className="flex flex-col px-4 py-3 hover:bg-[#FAF8F2] transition-colors border-b border-[#EBEBEB] last:border-0 group"
-          >
-            <span className="text-sm font-medium text-[#1A1A1A] group-hover:text-[#BF8E41] transition-colors">
-              {child.label}
-            </span>
-            {child.description && (
-              <span className="text-xs text-[#888] mt-0.5">{child.description}</span>
-            )}
-          </Link>
-        ))}
+        <div className="py-2">
+          {item.children.map((child) => (
+            <Link
+              key={child.href}
+              href={child.href}
+              onClick={onClose}
+              className="flex items-start px-4 py-1.5 hover:bg-[#FAF8F2] transition-all duration-150 group"
+            >
+              <span className="w-1 h-1 rounded-full bg-[#BF8E41]/50 mr-2.5 shrink-0 mt-[7px]" />
+              <span className="flex flex-col">
+                <span className="text-sm text-[#444] group-hover:text-[#BF8E41] transition-colors">
+                  {child.label}
+                </span>
+                {child.description && (
+                  <span className="text-[11px] text-[#AAA] mt-0.5 leading-tight">{child.description}</span>
+                )}
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

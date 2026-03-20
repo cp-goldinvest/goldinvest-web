@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { seededRandom } from "@/lib/chartUtils";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -41,13 +42,6 @@ const EUR_RSD = 117.5;
 const EUR_USD = 1.09;
 const GRAMS_PER_OZ = 31.1034768;
 
-function seededRandom(seed: number) {
-  let s = seed;
-  return () => {
-    s = (s * 1664525 + 1013904223) & 0xffffffff;
-    return (s >>> 0) / 0xffffffff;
-  };
-}
 
 const FIXED_NOW = new Date("2026-03-11T00:00:00Z");
 

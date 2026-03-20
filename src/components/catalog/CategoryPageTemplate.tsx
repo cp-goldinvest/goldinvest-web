@@ -13,6 +13,8 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
+import { SchemaScript } from "@/components/ui/SchemaScript";
+import { buildBreadcrumbSchema, buildFaqSchema } from "@/lib/schema";
 
 // ─── Sub-types ────────────────────────────────────────────────────────────────
 
@@ -108,6 +110,10 @@ export function CategoryPageTemplate({
 }: Props) {
   return (
     <main className="bg-white">
+      {/* Schema.org — BreadcrumbList + FAQPage */}
+      <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
+      <SchemaScript schema={buildFaqSchema(faq.items)} />
+
       {/* Breadcrumb */}
       <section className="bg-white py-4 border-b border-[#F0EDE6]">
         <SectionContainer>

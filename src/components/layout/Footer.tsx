@@ -12,10 +12,10 @@ const PRODUCTS = [
 
 const INFO = [
   { label: "Kako kupiti zlato", href: "/kako-kupiti" },
-  { label: "Otkup zlata", href: "/otkup" },
-  { label: "Praćenje cena", href: "/cene" },
-  { label: "Edukativni centar", href: "/edukacija" },
-  { label: "Najčešća pitanja", href: "/#faq" },
+  { label: "Otkup zlata",       href: "/otkup-zlata" },
+  { label: "Cena zlata",        href: "/cena-zlata" },
+  { label: "Česta pitanja",     href: "/faq" },
+  { label: "Blog",              href: "/blog" },
 ];
 
 const SOCIAL = [
@@ -118,8 +118,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={20} color="#99A1AF" className="shrink-0" />
-                <a href="tel:+381112345678" className="hover:text-white transition-colors" style={linkStyle}>
-                  +381 11 234 5678
+                <a href="tel:+381612698569" className="hover:text-white transition-colors" style={linkStyle}>
+                  061/269-8569
                 </a>
               </li>
               <li className="flex items-center gap-3">

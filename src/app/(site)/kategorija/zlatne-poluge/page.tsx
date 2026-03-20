@@ -9,8 +9,14 @@ export const metadata: Metadata = {
   title: "Zlatne poluge | Prodaja zlatnih poluga - Najpovoljnija Cena",
   description:
     "Kupite LBMA sertifikovane zlatne poluge čistoće 999,9 — Argor-Heraeus, C. Hafner, The Royal Mint. Transparentne prodajne, avansne i otkupne cene. Dostava za celu Srbiju.",
-  alternates: {
-    canonical: "https://goldinvest.rs/kategorija/zlatne-poluge",
+  alternates: { canonical: "https://goldinvest.rs/kategorija/zlatne-poluge" },
+  openGraph: {
+    title: "Zlatne poluge — LBMA sertifikovane, čistoća 999,9 | Gold Invest",
+    description: "Kupite zlatne poluge od 1 unce do 1 kg — Argor-Heraeus, C. Hafner, The Royal Mint. Bez PDV-a, transparentne cene, dostava po Srbiji.",
+    url: "https://goldinvest.rs/kategorija/zlatne-poluge",
+    siteName: "Gold Invest",
+    locale: "sr_RS",
+    type: "website",
   },
 };
 

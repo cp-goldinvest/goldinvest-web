@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import { seededRandom } from "@/lib/chartUtils";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -24,14 +25,6 @@ const PERIODS: { label: string; value: Period; days: number }[] = [
   { label: "10G", value: "10G", days: 365 * 10 },
 ];
 
-// Deterministic pseudo-random (seeded) — same output on server and client
-function seededRandom(seed: number) {
-  let s = seed;
-  return () => {
-    s = (s * 1664525 + 1013904223) & 0xffffffff;
-    return (s >>> 0) / 0xffffffff;
-  };
-}
 
 const FIXED_NOW = new Date("2026-03-11T00:00:00Z");
 const EUR_RSD = 117.5; // za konverziju mock podataka u RSD

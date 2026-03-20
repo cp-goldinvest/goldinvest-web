@@ -19,6 +19,11 @@ type Props = {
     showCategoryFilter?: boolean;
     weightOptions?: Option<number>[];
     priceOptions?: Option<number>[];
+    filterLabelText?: string;
+    sortLabelText?: string;
+    showPriceFilter?: boolean;
+    showBrandFilter?: boolean;
+    showOriginFilter?: boolean;
   };
   /** Hide the filter/sort bar (useful for competitor-like layouts). */
   hideFilterSortBar?: boolean;
@@ -99,6 +104,11 @@ export function ProductGrid({ variants, tiers, snapshot, filterConfig, hideFilte
           showCategoryFilter={filterConfig?.showCategoryFilter}
           weightOptions={filterConfig?.weightOptions}
           priceOptions={filterConfig?.priceOptions}
+          filterLabelText={filterConfig?.filterLabelText}
+          sortLabelText={filterConfig?.sortLabelText}
+          showPriceFilter={filterConfig?.showPriceFilter}
+          showBrandFilter={filterConfig?.showBrandFilter}
+          showOriginFilter={filterConfig?.showOriginFilter}
         />
       )}
 

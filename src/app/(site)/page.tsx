@@ -1,6 +1,9 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { createServiceClient } from "@/lib/supabase/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
+import { SchemaScript } from "@/components/ui/SchemaScript";
+import { buildOrganizationSchema } from "@/lib/schema";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { GoldTypesSection } from "@/components/home/GoldTypesSection";
@@ -11,6 +14,22 @@ import { FaqSection } from "@/components/home/FaqSection";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Investiciono zlato — Prodaja zlatnih poluga, pločica i dukata | Gold Invest Beograd",
+  description:
+    "Gold Invest — specijalizovani diler investicionog zlata u Beogradu. LBMA sertifikovane zlatne poluge, pločice i dukati. Bez PDV-a, transparentne cene, brza dostava po Srbiji.",
+  alternates: { canonical: "https://goldinvest.rs" },
+  openGraph: {
+    title: "Gold Invest — Investiciono zlato Beograd",
+    description:
+      "Kupite LBMA sertifikovane zlatne poluge, pločice i dukate. Transparentne cene, bez PDV-a, dostava po celoj Srbiji.",
+    url: "https://goldinvest.rs",
+    siteName: "Gold Invest",
+    locale: "sr_RS",
+    type: "website",
+  },
+};
 
 const MOCK_SNAPSHOT = { id: "mock", xau_usd: 2700, xau_eur: 4375, usd_rsd: 108, eur_rsd: 117.5, price_per_g_rsd: 16500, source: "mock", fetched_at: new Date().toISOString() };
 const MOCK_TIERS = [{ id: "t1", name: "default", category: null, min_g: 0, max_g: 99999, margin_stock_pct: 4.5, margin_advance_pct: 3.5, margin_purchase_pct: 2, created_at: "" }];
@@ -44,6 +63,7 @@ export default async function HomePage() {
 
   return (
     <main className="bg-white">
+      <SchemaScript schema={buildOrganizationSchema()} />
 
       {/* 1. Hero */}
       <HeroSection />

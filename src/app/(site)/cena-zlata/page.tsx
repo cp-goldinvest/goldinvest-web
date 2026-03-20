@@ -8,13 +8,21 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
+import { SchemaScript } from "@/components/ui/SchemaScript";
+import { buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Cena Zlata | Grafikon kretanja Cene na Berzi | Gold Invest",
   description:
     "Pratite aktuelnu cenu zlata na svetskim berzama u realnom vremenu. Grafikon kretanja cene zlata u EUR, USD i RSD — po gramu, unci i kilogramu. Edukacija o Spot ceni, premiji i Spreadu.",
-  alternates: {
-    canonical: "https://goldinvest.rs/cena-zlata",
+  alternates: { canonical: "https://goldinvest.rs/cena-zlata" },
+  openGraph: {
+    title: "Cena zlata danas — grafikon u EUR, USD i RSD | Gold Invest",
+    description: "Pratite aktuelnu cenu zlata na svetskim berzama. Grafikon kretanja po gramu, unci i kilogramu u realnom vremenu — Gold Invest Beograd.",
+    url: "https://goldinvest.rs/cena-zlata",
+    siteName: "Gold Invest",
+    locale: "sr_RS",
+    type: "website",
   },
 };
 
@@ -49,19 +57,30 @@ const FAQ_ITEMS = [
   },
 ];
 
+const BREADCRUMBS = [
+  { label: "Investiciono zlato", href: "/" },
+  { label: "Cena zlata", href: "/cena-zlata" },
+];
+
 export default function CenaZlataPage() {
   return (
     <main className="bg-white">
+      {/* Schema.org */}
+      <SchemaScript schema={buildBreadcrumbSchema(BREADCRUMBS)} />
+      <SchemaScript schema={buildFaqSchema(FAQ_ITEMS)} />
+      <SchemaScript
+        schema={buildWebPageSchema({
+          name: "Cena Zlata | Grafikon kretanja Cene na Berzi",
+          description:
+            "Pratite aktuelnu cenu zlata na svetskim berzama u realnom vremenu. Grafikon kretanja cene zlata u EUR, USD i RSD.",
+          slug: "/cena-zlata",
+        })}
+      />
+
       {/* Breadcrumb */}
       <section className="bg-white py-4 border-b border-[#F0EDE6]">
         <SectionContainer>
-          <Breadcrumb
-            items={[
-              { label: "Investiciono zlato", href: "/" },
-              { label: "Cena zlata", href: "/cena-zlata" },
-            ]}
-            variant="light"
-          />
+          <Breadcrumb items={BREADCRUMBS} variant="light" />
         </SectionContainer>
       </section>
 
@@ -102,20 +121,107 @@ export default function CenaZlataPage() {
       <section className="bg-white py-16 sm:py-20 border-t border-[#F0EDE6]">
         <SectionContainer>
           <SectionHeading
-            title="Zašto je prodajna cena viša od grafikona? — Premija"
-            description="Spot cena je cena sirovog zlata na berzi. Da bi stiglo do vaše poluge u sertifikovanom pakovanju, zlato prolazi kroz skupi, visoko kontrolisani industrijski proces. Zbir tih troškova je Premija (Premium) koju plaćate za sigurnost i pravni status svog kapitala."
+            eyebrow="Premija (Premium)"
+            title="Koja je razlika između berzanske cene (Spot) i prodajne cene zlata?"
+            description="Spot je berzanska cena “sirovog” zlata na grafikonu. Prodajna cena uključuje premiju koja pretvara to zlato u standardizovanu, sertifikovanu polugu — sa bezbednim pakovanjem, transportom i garancijom otkupa."
             className="py-1"
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <InfoCard title="Rafinerijska obrada i kovanje">
-              Sirovo zlato se hemijski i termički prečišćava do savršenstva (999,9/1000), a zatim laserski seče, graviramo i kuje u prestižnim evropskim rafinerijama poput švajcarskog Argor-Heraeusa ili nemačkog C. Hafnera. Radnici troše gotovo isti napor za 1g kao i za 1kg — otuda viša premija malih formata.
-            </InfoCard>
-            <InfoCard title="LBMA sertifikacija i osigurani transport">
-              Izrada specijalnih tamper-evident blister pakovanja sa serijskim brojevima garantuje LBMA &ldquo;Good Delivery&rdquo; standard — apsolutnu garanciju čistoće i porekla. Transport iz inostrane kovnice do Srbije vrši se blindiranim vozilima pod oružanom pratnjom i najstrožim osiguranjem.
-            </InfoCard>
-            <InfoCard title="Operativna marža — garancija otkupa">
-              Marža Gold Invest-a pokriva lagerovanje, pravnu sigurnost transakcije i — ključno — garanciju da ćemo od vas otkupiti to zlato u svakom trenutku, uz isplatu istog dana. To je cena vaše sigurnosti i likvidnosti, a ne skriveni trošak.
-            </InfoCard>
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr] gap-8 items-start">
+            {/* Left: concept */}
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-8">
+              <div className="mb-4">
+                <p className="text-xs font-semibold tracking-widest uppercase text-[#BF8E41] mb-3">
+                  Spot i premija
+                </p>
+                <h3
+                  className="text-[#1B1B1C] mb-4"
+                  style={{
+                    fontFamily: "var(--font-pp-editorial), Georgia, serif",
+                    fontSize: "clamp(22px, 2.3vw, 30px)",
+                    fontWeight: 400,
+                    lineHeight: "1.15",
+                  }}
+                >
+                  Spot je početna tačka.
+                  <br />
+                  Premija je “trošak stvaranja”.
+                </h3>
+                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                  Spot cena je referentna cena sirovog zlata na berzi. Da biste to zlato dobili u rukama
+                  kao <span className="font-semibold text-[#1B1B1C]">99,99% polugu u sertifikovanom blisteru</span>,
+                  ono prolazi kroz proces koji mora da bude precizan, skup i pravno obezbeđen.
+                </p>
+              </div>
+
+              <div className="mt-6 bg-white border border-[#F0EDE6] rounded-2xl p-5 sm:p-6">
+                <p className="text-[#1B1B1C] text-[14px] font-semibold leading-snug mb-2">
+                  Jedna rečenica koju zapamtite:
+                </p>
+                <p className="text-[#4C4C4C] text-[13.5px] leading-relaxed mb-0">
+                  Premija je zbir realnih troškova koji Spot cenu pretvaraju u proizvod koji može da se kupi
+                  danas i otkupi sutra — bez “nevidljivih” razlika.
+                </p>
+              </div>
+            </div>
+
+            {/* Right: breakdown list */}
+            <div className="bg-white border border-[#F0EDE6] rounded-2xl overflow-hidden">
+              <div className="px-5 sm:px-6 py-4 sm:py-5 bg-[#FAF8F2] border-b border-[#F0EDE6]">
+                <p className="text-[#1B1B1C] text-[14px] sm:text-[15px] font-semibold leading-snug mb-0">
+                  Premija (Premium) se sastoji od:
+                </p>
+              </div>
+
+              <div className="divide-y divide-[#F0EDE6]">
+                {[
+                  {
+                    n: 1,
+                    title: "Rafinerijska obrada i standardizacija",
+                    body: "Sirovo zlato se dovodi do maksimalne čistoće (999,9) i priprema za proizvodnju.",
+                  },
+                  {
+                    n: 2,
+                    title: "Kovanje, dizajn i kontrola kvaliteta",
+                    body: "Pločice i poluge dobijaju oblik, gravure i fabričku kontrolu u kovnici.",
+                  },
+                  {
+                    n: 3,
+                    title: "Sertifikacija i sigurnosno pakovanje",
+                    body: "Blister sa serijskim brojevima i standardizovanim dokazima porekla (LBMA).",
+                  },
+                  {
+                    n: 4,
+                    title: "Logistika, transport i osiguranje",
+                    body: "Specijalizovan transport i najviši nivo osiguranja da roba stigne bez rizika.",
+                  },
+                  {
+                    n: 5,
+                    title: "Operativna marža i garancija otkupa",
+                    body: "Lagerovanje, pravna sigurnost transakcije i garancija otkupa u dogovorenom roku.",
+                  },
+                ].map((item) => (
+                  <div key={item.n} className="p-5 sm:p-6 flex items-start gap-3">
+                    <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
+                      {item.n}
+                    </span>
+                    <div>
+                      <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                        {item.title}
+                      </p>
+                      <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                        {item.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="px-5 sm:px-6 py-4 sm:py-5 border-t border-[#F0EDE6]">
+                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                  Zato prodajna cena nije “skok” u odnosu na grafikon — ona je potpuna cena proizvoda koji fizički dobijate.
+                </p>
+              </div>
+            </div>
           </div>
         </SectionContainer>
       </section>
@@ -136,16 +242,83 @@ export default function CenaZlataPage() {
             title="Otkupna cena i Spread — garancija likvidnosti"
             description="Pored prodajne cene, Gold Invest uvek jasno ističe i Otkupnu cenu — iznos po kojem garantovano otkupljujemo vaše zlato, uz isplatu istog dana. Razlika između ta dva iznosa naziva se Spread."
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <InfoCard title="Šta je Spread?">
-              Spread je razlika između prodajne cene (po kojoj kupujete) i otkupne cene (po kojoj prodajete nazad). Manji spread znači da vaša investicija brže prelazi iz zone troška u zonu čistog profita, kako cena zlata raste na globalnom tržištu.
-            </InfoCard>
-            <InfoCard title="Zlato vs. nekretnine — poređenje troškova">
-              Za razliku od nekretnina gde notar, porez, agencija i renoviranje iznose 10–15% vrednosti, kod zlatne poluge od 100g spread iznosi svega par procenata. Kapital možete naplatiti za 10 minuta — bez čekanja kupca, bez posrednika, bez dana odlaganja.
-            </InfoCard>
-            <InfoCard title="Otkup po berzanskoj ceni — transparentno">
-              Naša otkupna cena formira se direktno na osnovu Spot cene sa grafikona, uz minimalan, javno istaknut odbitak. Kod visoko likvidnih artikala — poluga od 100g i Franc Jozef dukata — otkupna cena je izuzetno bliska samoj berzanskoj ceni.
-            </InfoCard>
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr] gap-8 items-start">
+            {/* Left: premium concept */}
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-8">
+              <div className="mb-4">
+                <p className="text-xs font-semibold tracking-widest uppercase text-[#BF8E41] mb-3">
+                  Spread (razlika)
+                </p>
+                <h3
+                  className="text-[#1B1B1C] mb-4"
+                  style={{
+                    fontFamily: "var(--font-pp-editorial), Georgia, serif",
+                    fontSize: "clamp(22px, 2.3vw, 30px)",
+                    fontWeight: 400,
+                    lineHeight: "1.15",
+                  }}
+                >
+                  Spread je razlika između onoga što plaćate i onoga što dobijate nazad.
+                </h3>
+                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                  Kada je spread mali, lakše prelazite iz “troška kupovine” u zonu čistog profita —
+                  jer rast Spot cene brže stiže do vaše realne vrednosti.
+                </p>
+              </div>
+
+              <div className="mt-6 bg-white border border-[#F0EDE6] rounded-2xl p-5 sm:p-6">
+                <p className="text-[#1B1B1C] font-semibold text-[14px] mb-2 leading-snug">
+                  Naša logika otkupa
+                </p>
+                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                  Otkupna cena se formira na osnovu Spot cene — uz jasno prikazan odbitak, tako da
+                  znate šta tačno dobijate.
+                </p>
+              </div>
+            </div>
+
+            {/* Right: vertical list */}
+            <div className="bg-white border border-[#F0EDE6] rounded-2xl overflow-hidden">
+              <div className="px-5 sm:px-6 py-4 sm:py-5 bg-[#FAF8F2] border-b border-[#F0EDE6]">
+                <p className="text-[#1B1B1C] text-[14px] sm:text-[15px] font-semibold leading-snug mb-0">
+                  Šta treba da znate o Spread-u
+                </p>
+              </div>
+
+              <div className="divide-y divide-[#F0EDE6]">
+                {[
+                  {
+                    n: 1,
+                    title: "Šta je Spread?",
+                    body: "Spread je razlika između prodajne cene (po kojoj kupujete) i otkupne cene (po kojoj prodajete nazad).",
+                  },
+                  {
+                    n: 2,
+                    title: "Zašto mali spread znači bržu likvidnost",
+                    body: "Manji spread pomaže da vrednost vaše investicije brže pređe iz zone troška u zonu čistog profita.",
+                  },
+                  {
+                    n: 3,
+                    title: "Otkup po Spot osnovi — transparentno",
+                    body: "Otkupna cena se formira na osnovu Spot cene sa grafikona, uz minimalan i javno istaknut odbitak.",
+                  },
+                ].map((item) => (
+                  <div key={item.n} className="p-5 sm:p-6 flex items-start gap-3">
+                    <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
+                      {item.n}
+                    </span>
+                    <div>
+                      <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                        {item.title}
+                      </p>
+                      <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                        {item.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </SectionContainer>
       </section>
@@ -154,25 +327,125 @@ export default function CenaZlataPage() {
       <section className="bg-white py-16 sm:py-20 border-t border-[#F0EDE6]">
         <SectionContainer>
           <SectionHeading
-            title="5 ključnih faktora koji diktiraju cenu zlata"
-            description="Zlato je ultimativni 'Safe haven' — hiljadama godina provereni čuvar vrednosti. Za razliku od akcija ili kriptovaluta, zlato fizički postoji i ne može se veštački odštampati. Ovo su 5 makroekonomskih sila koje pokreću cenu sa grafikona."
+            title="Ključni faktori koji diktiraju cenu zlata na globalnom nivou"
+            description="Zlato je dokazani “Safe haven” — fizički postoji i ne može se veštački odštampati. Ali šta pomera liniju na grafikonu? Ovo je 5 makroekonomskih pokretača."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <InfoCard title="1. Inflacija i devalvacija papirnog novca">
-              Najjači pokretač. Kako centralne banke štampaju novac (kao u pandemiji 2020), on gubi kupovnu moć. Količina zlata na planeti je ograničena — potrebno je sve više papirnih novčanica za istu uncu. Često ne raste cena zlata, već pada vrednost novca kojim ga kupujemo.
-            </InfoCard>
-            <InfoCard title="2. Politika centralnih banaka — kamatne stope">
-              Cena zlata je u obrnutoj korelaciji sa kamatnim stopama FED-a i ECB-a. Kada su stope visoke, banke privlače kapital. Kada stope padnu ispod inflacije, institucionalni investitori prebacuju stotine milijardi dolara iz banaka u fizičko zlato — što snažno gura cenu nagore.
-            </InfoCard>
-            <InfoCard title="3. Državne rezerve — centralne banke kao kupci">
-              Kina, Indija, Rusija, Poljska i Narodna banka Srbije godinama agresivno uvećavaju zlatne rezerve kako bi smanjile zavisnost od dolara. Kada ovi &ldquo;giganti&rdquo; usisavaju fizičke poluge sa tržišta, ponuda se smanjuje — a cena po zakonu ponude i potražnje raste.
-            </InfoCard>
-            <InfoCard title="4. Geopolitičke tenzije i krize">
-              Zlato se hrani nesigurnošću. U trenucima ratnih sukoba, ekonomskih sankcija ili krahova banaka, uplašeni kapital beži u jedino utočište provereno kroz vekove. Takvi &ldquo;šokovi&rdquo; izazivaju skokove cene i do 10–15% u roku od svega nekoliko nedelja.
-            </InfoCard>
-            <InfoCard title="5. Zakon ponude i potražnje — Peak Gold">
-              Mnogi geolozi smatraju da smo dostigli &ldquo;Peak Gold&rdquo; — vrhunac globalnog rudarenja. Vađenje zlata iz sve dubljih rudnika troši sve više energije i novca. Rastući troškovi rudarenja postavljaju čvrsti matematički minimum ispod kojeg cena na berzi ne može da padne.
-            </InfoCard>
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 items-start">
+            {/* Left panel (concept) */}
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-8">
+              <div className="mb-4">
+                <p className="text-xs font-semibold tracking-widest uppercase text-[#BF8E41] mb-3">
+                  Kako čitati grafikon
+                </p>
+                <h3
+                  className="text-[#1B1B1C] mb-4"
+                  style={{
+                    fontFamily: "var(--font-pp-editorial), Georgia, serif",
+                    fontSize: "clamp(22px, 2.3vw, 30px)",
+                    fontWeight: 400,
+                    lineHeight: "1.15",
+                  }}
+                >
+                  Linija na grafikonu je posledica potražnje za “sigurnim” zlatom
+                </h3>
+                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                  Zlato nije samo “trend” — ono se najčešće kreće kada svet menja odnos prema riziku:
+                  kada fiat gubi kupovnu moć, kada kamate postanu manje atraktivne, kada centralne banke
+                  povećavaju rezerve i kada izbije geopolitička nesigurnost.
+                </p>
+              </div>
+
+              <div className="mt-6 bg-white border border-[#F0EDE6] rounded-2xl p-5">
+                <p className="text-[#1B1B1C] font-semibold text-[14px] mb-2 leading-snug">
+                  Jedna stvar koju uvek proverite
+                </p>
+                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                  Ne gledajte samo “koliko je danas” — posmatrajte i “zašto je danas”: inflacija, kamate,
+                  potražnja državnih institucija i ponuda.
+                </p>
+              </div>
+            </div>
+
+            {/* Right: one grouped list (no 5 cards) */}
+            <div className="bg-white border border-[#F0EDE6] rounded-2xl overflow-hidden">
+              <div className="px-5 sm:px-6 py-4 sm:py-5 bg-[#FAF8F2] border-b border-[#F0EDE6]">
+                <p className="text-[#1B1B1C] text-[14px] sm:text-[15px] font-semibold leading-snug mb-0">
+                  5 globalnih pokretača cene
+                </p>
+              </div>
+
+              <ol className="divide-y divide-[#F0EDE6]">
+                <li className="p-5 sm:p-6 flex items-start gap-3">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
+                    1
+                  </span>
+                  <div>
+                    <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                      Inflacija i pad kupovne moći fiat valute
+                    </p>
+                    <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                      Kada novac gubi vrednost, ljudi traže zaštitu u ograničenom resursu: zlatu.
+                    </p>
+                  </div>
+                </li>
+
+                <li className="p-5 sm:p-6 flex items-start gap-3">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
+                    2
+                  </span>
+                  <div>
+                    <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                      Politika centralnih banaka i kamatne stope
+                    </p>
+                    <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                      Niže realne kamate čine fizičko zlato atraktivnijim, jer gotovina donosi manje.
+                    </p>
+                  </div>
+                </li>
+
+                <li className="p-5 sm:p-6 flex items-start gap-3">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
+                    3
+                  </span>
+                  <div>
+                    <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                      Masovna kupovina od strane državnih institucija
+                    </p>
+                    <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                      Kada centralne banke povećaju rezerve, dostupna ponuda se smanjuje — i cena raste.
+                    </p>
+                  </div>
+                </li>
+
+                <li className="p-5 sm:p-6 flex items-start gap-3">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
+                    4
+                  </span>
+                  <div>
+                    <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                      Geopolitičke tenzije i krize
+                    </p>
+                    <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                      Nesigurnost podiže potražnju za “safe haven” imovinom — pa zlato često reaguje jače.
+                    </p>
+                  </div>
+                </li>
+
+                <li className="p-5 sm:p-6 flex items-start gap-3">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
+                    5
+                  </span>
+                  <div>
+                    <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                      Ponuda i potražnja (Peak Gold fenomen)
+                    </p>
+                    <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                      Kako rudarenje postaje skuplje, realni “trošak dna” raste — što podržava cenu.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
           </div>
         </SectionContainer>
       </section>

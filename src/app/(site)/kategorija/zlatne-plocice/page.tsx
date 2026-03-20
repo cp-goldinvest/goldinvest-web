@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   description:
     "Kupite LBMA sertifikovane zlatne pločice od 1g do 20g — Argor-Heraeus, C. Hafner, The Royal Mint. Idealan poklon za krštenje i rođenje. Transparentne cene i brza dostava.",
   alternates: { canonical: "https://goldinvest.rs/kategorija/zlatne-plocice" },
+  openGraph: {
+    title: "Zlatne pločice 1g–20g — LBMA sertifikovane | Gold Invest",
+    description: "Zlatne pločice čistoće 999,9 od 1g do 20g — Argor-Heraeus i C. Hafner. Idealan poklon i investicija. Bez PDV-a, brza dostava.",
+    url: "https://goldinvest.rs/kategorija/zlatne-plocice",
+    siteName: "Gold Invest",
+    locale: "sr_RS",
+    type: "website",
+  },
 };
 
 const FAQ_ITEMS = [

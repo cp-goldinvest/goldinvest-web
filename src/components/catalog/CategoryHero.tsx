@@ -62,7 +62,7 @@ export function CategoryHero({ title, introFull, introFirstSentence, pills, expa
           </div>
 
           {pills.length > 0 && (
-            <div className="flex flex-wrap gap-2 sm:gap-3">
+            <div className={`flex flex-wrap gap-2 sm:gap-3 ${centerOnDesktop ? "md:justify-center" : ""}`}>
               {pills.map((p) => (
                 <Link
                   key={p.href}

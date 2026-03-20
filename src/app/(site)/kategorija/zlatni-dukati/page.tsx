@@ -9,8 +9,14 @@ export const metadata: Metadata = {
   title: "Dukati | Najpovoljnija Cena i Prodaja Zlatnih Dukata - Beograd",
   description:
     "Kupite zlatne dukate — Franc Jozef i Bečka Filharmonija. LBMA sertifikovani, oslobođeni PDV-a, transparentne prodajne i otkupne cene. Dostava za celu Srbiju.",
-  alternates: {
-    canonical: "https://goldinvest.rs/kategorija/zlatni-dukati",
+  alternates: { canonical: "https://goldinvest.rs/kategorija/zlatni-dukati" },
+  openGraph: {
+    title: "Zlatni dukati — Franc Jozef i Bečka filharmonija | Gold Invest",
+    description: "Kupite zlatne dukate — Franc Jozef i Bečka filharmonija. LBMA sertifikovani, oslobođeni PDV-a, transparentne otkupne cene. Dostava po Srbiji.",
+    url: "https://goldinvest.rs/kategorija/zlatni-dukati",
+    siteName: "Gold Invest",
+    locale: "sr_RS",
+    type: "website",
   },
 };
 

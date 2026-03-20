@@ -71,7 +71,7 @@ export function WhatIsGoldSection() {
 
           {/* Outline button */}
           <a
-            href="tel:+381112345678"
+            href="tel:+381612698569"
             className="inline-flex items-center justify-center rounded-full transition-colors hover:bg-white/5"
             style={{
               border: "2px solid #BEAD87",
@@ -84,7 +84,7 @@ export function WhatIsGoldSection() {
               padding: "0 52px",
             }}
           >
-            011/234 5678
+            061/269-8569
           </a>
         </div>
       </div>

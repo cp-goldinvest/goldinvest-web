@@ -1,0 +1,111 @@
+**URL struktura:** https://goldinvest.rs/kategorija/zlatni-dukati/franc-jozef-dukat
+
+**Title tag:** Dukat Franc Jozef | Mali i Veliki Zlatni Dukat \- Prodaja Beograd
+
+**Breadcrumb** Iznad H1: [Investiciono zlato](https://goldinvest.rs/) \>\> Zlatni dukati \>\> **Franc Jozef**
+
+# H1: Franc Jozef dukat
+
+**Zlatni dukat Franc Jozef** je najprepoznatljivija investiciona kovanica i najpopularniji tradicionalni poklon na našim prostorima. Idealan za krštenja, rođenja i svadbe, ali i kao sigurno utočište za vaš kapital. Gold Invest vam nudi male i velike dukate iz austrijske državne kovnice, uz garantovanu autentičnost, transparentne cene i oslobođenje od PDV-a. Poruči putem kontakt forme ili na broj **0612698569** \- **BRZA dostava**\!
+
+**Napomena**: uvod može da bude zatvoren po defaulte-u (da se vidi samo prva rečenica), a klikom na plusić da se otvara ceo uvod. **NPR**: 
+
+![][image1]
+
+---
+
+Iznad izlistanih proizvoda, treba da se nađe polje “**Filtriraj**” i “**Sortiraj**”.
+
+---
+
+## H2: Mali i Veliki Franc Jozef \- Koja je razlika?
+
+Franc Jozef dukati se kuju u čuvenoj austrijskoj državnoj kovnici (*Münze Österreich*) od zlata izuzetne čistoće **986/1000 (23.6 karata)**. Minimalni dodatak bakra u leguri daje im karakterističnu, prelepu crvenkasto-zlatnu nijansu i čini ih otpornijim na habanje od čistog 24-karatnog zlata.
+
+U ponudi imamo oba zvanična formata:
+
+* **Mali dukat Franc Jozef (Jednostruki)** \- najčešći poklon za krštenje i rođenje. Njegova ukupna težina iznosi **3.49 grama**, od čega je tačno 3.44 grama čistog zlata. Idealan je za darivanje povodom rođenja, krštenja i rođendana, ali i za postepeno, mesečno građenje ličnog zlatnog portfolija.  
+* **Veliki dukat Franc Jozef (Četvorostruki)** \- vizuelno impresivan i značajno masivniji. Njegova ukupna težina iznosi **13.96 grama** (od čega je 13.77 grama čistog zlata). Prepoznatljiv je po velikom prečniku i često predstavlja glavni poklon na venčanjima ili pametan izbor za ozbiljnije investitore koji žele povoljniju cenu po gramu u odnosu na mali dukat.
+
+## H2: Franc Jozef Dukat cena
+
+Kao ozbiljna i transparentna kuća, Gold Invest vam uvek nudi tri oblika cena dukata Franc Jozef:
+
+* **Prodajna cena (Zlato na stanju)** \- cena za dukate koje trenutno imamo u našem beogradskom trezoru. Plaćate i preuzimate svoj dukat odmah.  
+* **Avansna kupovina (Najbolja cena)** \- planirate kupovinu veće količine dukata? Uplatite iznos unapred, "zaključajte" trenutnu, nižu berzansku cenu i sačekajte isporuku direktno iz austrijske kovnice uz značajnu uštedu.  
+* **Otkupna cena (Garantovana likvidnost)** \- iznos po kojem u svakom trenutku i bez čekanja otkupljujemo vaše dukate. Zbog ogromne potražnje za Franc Jozefom, razlika između prodajne i otkupne cene (spread) je kod nas uvek svedena na minimum.
+
+## H2: Gde kupiti dukat Franc Jozef?
+
+Prodaja dukata Franc Jozef je moguća na nekoliko načina:
+
+* **Lično preuzimanje  ({Opština})** \- posetite nas na adresi {**LOKACIJA**}(Beograd).  
+* **Isporuka za Beograd (Hitno za poklon)** \- treba vam dukat hitno za slavlje istog dana? Za uplate evidentirane do 12h, vršimo dostavu na vašu adresu istog dana do 18h.  
+* **Sigurna isporuka za celu Srbiju (1-3 dana)** \- dukate šaljemo potpuno neupadljivo upakovane i maksimalno osigurane na celoj teritoriji Srbije.
+
+## H2: Dukat Franc Jozef \- Istorija najpoznatije zlatne kovanice Balkana
+
+Nijedan komad investicionog zlata ne nosi toliku istorijsku težinu, tradiciju i poverenje na našim prostorima kao dukat sa likom austrijskog cara Franca Jozefa. Ovi dukati se već generacijama koriste kao najsigurniji način čuvanja porodičnog bogatstva, a priča o njihovom nastanku je priča o moći, stabilnosti i vrhunskoj izradi.
+
+### H3: Ko je bio Franc Jozef?
+
+Franc Jozef I (Franz Joseph I) bio je **car Austrije i kralj Ugarske**, i jedan od najdugovečnijih monarha u evropskoj istoriji (vladao je punih 68 godina, od 1848\. do 1916\. godine). Njegova vladavina obeležila je takozvano "zlatno doba" Austrougarske monarhije \- period ogromnog ekonomskog i industrijskog uspona, stabilnosti i kulturnog procvata. Zbog te neprikosnovene stabilnosti države kojom je vladao, njegov lik je u svesti naroda (posebno na Balkanu) postao apsolutni sinonim za bogatstvo, sigurnost i trajanje.
+
+### H3: Zašto se dukati kuju baš po njemu?
+
+U vreme njegove vladavine, Austrougarska je bila ekonomska super sila, a austrijski dukat je bio glavna trgovačka valuta u ovom delu Evrope. Trgovci su ga obožavali jer je garantovao nepogrešivu tačnost težine i izuzetnu čistoću zlata od **98.6% (23.6 karata)** \- standard koji se u industriji i danas naziva "dukat zlato" (Ducat gold).
+
+Čak i nakon pada Austrougarske imperije, apsolutno poverenje u ovu konkretnu kovanicu ostalo je duboko ukorenjeno u kulturi. Upravo zato je nastala neprekinuta tradicija da se za najvažnije životne događaje (rođenja deteta, krštenja i svadbe) poklanja isključivo "Franc Jozef", kao simbol finansijske sigurnosti koja se prenosi sa kolena na koleno.
+
+### H3: Fenomen 1915\. godine (zašto svaki dukat nosi ovaj datum?)
+
+Mnogi kupci se iznenade kada na svom potpuno novom dukatu vide uklesanu 1915\. godinu, misleći da kupuju antički novčić star preko sto godina. Istina je zapravo fascinantna: zbog izbijanja Prvog svetskog rata, redovno kovanje dukata je zvanično prekinuto. Međutim, zbog nezapamćene globalne potražnje za ovim zlatom, austrijska državna kovnica (*Münze Österreich*) je ubrzo donela odluku da nastavi proizvodnju isključivo u investicione i trgovačke svrhe. 
+
+Kao odavanje počasti poslednjoj godini redovnog kovanja za vreme carevog života, odlučeno je da **svaki novi dukat zauvek nosi godinu 1915\.** Dakle, dukat koji danas kupite je ganc nov (takozvano "novo kovanje" ili *restrike*), iskovan nedavno pomoću originalnih istorijskih kalupa.
+
+### H3: Simbolika na kovanici (lice i naličje)
+
+Dizajn Franca Jozefa je remek-delo numizmatike koje se nije menjalo više od veka:
+
+* **Lice kovanice (Avers)** \- prikazuje raskošan profil cara Franca Jozefa sa lovorovim vencem na glavi, koji predstavlja simbol vojničke slave, mira i trijumfa. Uz rub je ispisan tekst na latinskom: *"FRANC IOS I D G AUSTRIAE IMPERATOR"* (Franc Jozef I, milošću Božijom, car Austrije).  
+* **Naličje kovanice (Revers)** \- krase ga veličanstveni dvoglavi orao (zvanični grb Habzburške monarhije) koji u kandžama drži mač i kraljevsku jabuku, kao simbole moći i pravde. Iznad njega je kruna, a duž ivice tekst koji nabraja njegove ostale kraljevske titule, uz čuvenu 1915\. godinu.
+
+## H2: Česta pitanja o dukatu Franc Jozef (FAQ)
+
+### H3: Zašto na svakom dukatu piše godina 1915?
+
+Svi investicioni Franc Jozef dukati koji se danas legalno prodaju nose utisnutu godinu 1915\. To ne znači da je dukat star preko sto godina, već da je u pitanju zvanično, moderno "novo kovanje" (restrike) austrijske državne kovnice. Godina 1915\. se koristi kao istorijski simbol, jer je to bila poslednja godina redovnog kovanja pre pauze usled Prvog svetskog rata.
+
+### H3: Da li se na dukat Franc Jozef plaća PDV?
+
+Ne. Prema zakonima Republike Srbije, zlatni dukati finoće preko 900/1000 iskovani posle 1800\. godine tretiraju se kao investiciono zlato. S obzirom na to da Franc Jozef ima čistoću od 986/1000 (23.6 karata), u potpunosti je oslobođen plaćanja PDV-a i poreza na kapitalnu dobit.
+
+### H3: Kako se pakuje Franc Jozef i da li ima sertifikat?
+
+Istorijski dukati ne dolaze u fabričkim blister pakovanjima sa papirnim sertifikatima kao moderne zlatne poluge. Sam dukat, sa svojim specifičnim mikrometarskim dimenzijama, tačnom težinom i jedinstvenim tonom prilikom kuckanja, predstavlja svoj sertifikat autentičnosti. Vaš dukat od nas dobijate bezbedno upakovan u okruglu zaštitnu kapsulu od tvrdog akrila (ili prigodnu poklon kutijicu), koja ga štiti od oštećenja.
+
+### H3: Kako ga čuvati?
+
+**Zlatno pravilo**: Nikada ne dodirujte površinu dukata golim prstima i nikada ga ne brišite niti polirajte krpama\! Zlato je mekan metal i svako trenje ostavlja mikro-ogrebotine, dok kiseline sa prstiju mogu ostaviti trajne mrlje. Svako fizičko oštećenje, bušenje (radi pravljenja ogrlice) ili grebanje trajno uništava njegov investicioni status i on gubi na vrednosti. Uvek ga čuvajte u originalnoj zaštitnoj kapsuli.
+
+### H3: Da li otkupljujete dukate kupljene u inostranstvu ili drugim zlatarama?
+
+Da, Gold Invest vrši brz i diskretan otkup svih malih i velikih dukata Franc Jozef, bez obzira gde su prvobitno kupljeni. Naši stručnjaci na licu mesta (za par minuta) proveravaju autentičnost kovanice, nakon čega vam novac isplaćujemo istog dana.
+
+### H3: Koji je limit za plaćanje u gotovini?
+
+U skladu sa Zakonom o sprečavanju pranja novca, kupovinu dukata možete platiti u gotovini (kešu) do zakonskog limita od 1.160.000 dinara (10.000 evra u protivvrednosti). Sve transakcije iznad ovog iznosa realizuju se bezgotovinski, preko vašeg bankovnog računa.
+
+### H3: Mogu li da plaćam platnom karticom?
+
+Ne, plaćanje platnim karticama trenutno nije moguće. Razlog za to su visoke provizije banaka (često i do 2-3%) koje bi neizbežno morale da se ugrade u krajnju cenu zlata. Naš cilj je da vam obezbedimo najpovoljniju moguću cenu na tržištu bez skrivenih troškova, zbog čega prihvatamo isključivo plaćanje gotovinom, bankovnim transferom ili pouzećem.
+
+### H3: Koliko traje isporuka?
+
+Za klijente u Beogradu nudimo isporuku "dan za dan" \- ukoliko je porudžbina evidentirana radnim danima do 12h, zlato stiže na vašu adresu istog dana do 18h. Za porudžbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana (ovo ne važi za avansne kupovine, za koje se rok isporuke precizno definiše pri samoj kupovini).
+
+### H3: Koliko košta dostava?
+
+Cena bezbedne i osigurane dostave iznosi \[UNETI CENU\].
+
+[image1]: <data:image/png;base64,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>
