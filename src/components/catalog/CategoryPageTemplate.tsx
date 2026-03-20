@@ -44,6 +44,7 @@ type Props = {
   breadcrumbs: BreadcrumbItem[];
   heroTitle: string;
   heroIntro: string;
+  heroPills?: { label: string; href: string; active?: boolean }[];
 
   // ProductGrid
   variants: any;
@@ -96,6 +97,7 @@ export function CategoryPageTemplate({
   breadcrumbs,
   heroTitle,
   heroIntro,
+  heroPills,
   variants,
   tiers,
   snapshot,
@@ -125,7 +127,7 @@ export function CategoryPageTemplate({
       <CategoryHero
         title={heroTitle}
         introFull={heroIntro}
-        pills={[]}
+        pills={heroPills ?? []}
         introMaxWidth="none"
         centerOnDesktop
       />

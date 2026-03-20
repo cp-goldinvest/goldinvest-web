@@ -133,6 +133,14 @@ export default async function ZlatnePolugePage() {
       ]}
       heroTitle="Zlatne poluge"
       heroIntro="Zlatne poluge su najsigurniji način da zaštitite veći kapital od inflacije i ekonomskih potresa. Naša ponuda obuhvata isključivo LBMA sertifikovane poluge finoće 999,9, poznatih svetskih kovnica. Obezbedili smo vam transparentne cene za trenutnu i avansnu kupovinu, uz garantovan i siguran otkup. Poruči putem kontakt forme ili na broj 0612698569 - BRZA dostava!"
+      heroPills={[
+        { label: "1 unca zlata (zlatna poluga 1 unca)", href: "/kategorija/zlatne-poluge/zlatna-poluga-1-unca" },
+        { label: "Zlatna poluga 50 g", href: "/kategorija/zlatne-poluge/zlatna-poluga-50g" },
+        { label: "Zlatna poluga 100 grama", href: "/kategorija/zlatne-poluge/zlatna-poluga-100g" },
+        { label: "Zlatna poluga 250 g", href: "/kategorija/zlatne-poluge/zlatna-poluga-250g" },
+        { label: "Zlatna poluga 500 grama", href: "/kategorija/zlatne-poluge/zlatna-poluga-500g" },
+        { label: "Zlatna poluga 1 kg", href: "/kategorija/zlatne-poluge/zlatna-poluga-1kg" },
+      ]}
       variants={variants}
       tiers={tiers}
       snapshot={snapshotRow}

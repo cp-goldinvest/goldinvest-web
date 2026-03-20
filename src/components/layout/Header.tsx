@@ -19,7 +19,7 @@ type NavItem =
 const NAV_ITEMS: NavItem[] = [
   { label: "Početna", href: "/" },
   {
-    label: "Ponuda",
+    label: "Proizvodi",
     mega: [
       {
         title: "Zlatne pločice",
@@ -63,10 +63,10 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Kako kupiti",  href: "/kako-kupiti",  description: "Proces kupovine i plaćanje" },
       { label: "Otkup zlata",  href: "/otkup-zlata",  description: "Garantovani otkup istog dana" },
       { label: "FAQ",          href: "/faq",           description: "Česta pitanja" },
-      { label: "O nama",       href: "/o-nama",        description: "Ko smo i gde smo" },
     ],
   },
   { label: "Cena zlata", href: "/cena-zlata" },
+  { label: "O nama", href: "/o-nama" },
   {
     label: "Pokloni",
     children: [

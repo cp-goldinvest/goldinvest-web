@@ -38,6 +38,8 @@ type SlugConfig = {
   heroTitle: string;
   intro: string;
   heroImage: string;
+  /** Purity string for schema markup, e.g. "986/1000" or "999.9/1000" */
+  purity?: string;
   /** Slugs to show in the product grid (matched against variant slugs) */
   variantSlugs: string[];
   /** Mock variant weights for fallback */
@@ -179,6 +181,129 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
       ],
     },
   },
+
+  "becka-filharmonija-dukat": {
+    metaTitle: "Dukat Bečka Filharmonija | Zlatna Kovanica 999,9 — Prodaja Beograd",
+    metaDescription:
+      "Kupite zlatnu kovanicu Bečka Filharmonija (Vienna Philharmonic) — čistoća 999,9/1000, LBMA listed, oslobođena PDV-a. Formati 1/10 oz do 1 oz. Brza dostava Beograd i cela Srbija.",
+    breadcrumbLabel: "Dukat Bečka Filharmonija",
+    heroTitle: "Dukat Bečka Filharmonija",
+    purity: "999.9/1000",
+    intro:
+      "Zlatna kovanica Bečka Filharmonija (Wiener Philharmoniker) jedina je investiciona kovanica sveta iskovana u zlatu čistoće 999,9/1000 i istovremeno zakonsko sredstvo plaćanja u eurozoni. Kotirana na londonskoj LBMA berzi, potpuno oslobođena PDV-a i jedna od najprodavanijih zlatnih kovanica u istoriji. Gold Invest nudi sve formate — od pristupačnih 1/10 oz do investicionih 1 oz — direktno iz austrijske državne kovnice, uz garantovanu autentičnost i transparentnu cenu. Upit na broj 0612698569 ili putem kontakt forme — brza dostava za Beograd i celu Srbiju.",
+    heroImage: "/images/gold-coins.png",
+    variantSlugs: [
+      "becka-filharmonija-1-10-oz",
+      "becka-filharmonija-1-4-oz",
+      "becka-filharmonija-1-2-oz",
+      "becka-filharmonija-1-oz",
+    ],
+    mockWeights: [3.11, 7.78, 15.55, 31.10],
+    formatsHeading: "Bečka Filharmonija — Koji format izabrati?",
+    formatsDescription:
+      "Bečka Filharmonija se kuje u austrijskoj državnoj kovnici (Münze Österreich) od zlata najviše moguće čistoće — 999,9/1000 (24 karata). Dostupna je u četiri zvanična formata: 1/10 oz, 1/4 oz, 1/2 oz i 1 oz. Svi formati nose identičan dizajn, iste garancije autentičnosti i isti LBMA status.",
+    formats: [
+      {
+        title: "Bečka Filharmonija 1/10 oz",
+        specs: "3,11 g ukupno — 3,109 g čistog zlata — čistoća 999,9/1000 (24 karata)",
+        body: "Najpristupačniji ulaz u investiciono zlato. Idealan za početnike, mesečno štedenje i poklone. Manja nominalna vrednost znači manji rizik i lakše unovčavanje — savršen način da postepeno i disciplinovano gradite zlatni portfelj bez velikih jednokratnih ulaganja.",
+      },
+      {
+        title: "Bečka Filharmonija 1 oz",
+        specs: "31,10 g ukupno — 31,09 g čistog zlata — čistoća 999,9/1000 (24 karata)",
+        body: "Najlikvidniji i najpopularniji investicioni format na globalnom tržištu. Prepoznatljiv svuda u svetu, sa najnižom premiom po gramu u odnosu na manje formate. Idealan za ozbiljne investitore koji traže maksimalnu vrednost i globalnu likvidnost — prodaje se po tržišnoj ceni LBMA zlata na svakom kontinentu.",
+      },
+    ],
+    priceStructure: {
+      title: "Bečka Filharmonija cena — Prodajna / Avansna / Otkupna",
+      description:
+        "Gold Invest vam uvek nudi tri transparentna oblika cene za zlatnu kovanicu Bečka Filharmonija:",
+      card1Body:
+        "Cena za kovanice koje trenutno imamo u našem beogradskom trezoru. Plaćate i preuzimate odmah — bez čekanja i skrivenih troškova.",
+      card2Body:
+        "Planirate kupovinu većeg broja kovanica? Uplatite iznos unapred, zaključajte trenutnu, nižu berzansku cenu i sačekajte isporuku direktno iz austrijske kovnice uz značajnu uštedu.",
+      card3Body:
+        "Iznos po kojem u svakom trenutku otkupljujemo vaše kovanice. Zahvaljujući globalnoj prepoznatljivosti i LBMA statusu Bečke Filharmonije, spread između prodajne i otkupne cene uvek je kod nas sveden na minimum.",
+    },
+    delivery: {
+      heading: "Gde kupiti Bečku Filharmoniju u Srbiji — Gold Invest Beograd",
+      description:
+        "Prodaja zlatne kovanice Bečka Filharmonija moguća je na nekoliko načina — uvek diskretno i maksimalno osigurano.",
+      pickupCardBody:
+        "Posetite nas lično u Beogradu. Potpuno diskretno okruženje, stručna provera autentičnosti i preuzimanje na licu mesta bez čekanja.",
+    },
+    historySection: {
+      heading: "Bečka Filharmonija — Istorija najcenjenije investicione kovanice Evrope",
+      intro:
+        "Od svog prvog kovanja 1989. godine, Bečka Filharmonija je postala globalni standard investicionog zlata — jedina evropska kovanica na listi LBMA, zakonsko sredstvo plaćanja u Austriji i najprodavanija zlatna kovanica na kontinentu decenijama.",
+      cards: [
+        {
+          heading: "Šta je Bečka Filharmonija?",
+          body: "Bečka Filharmonija (Wiener Philharmoniker) osnovan je 1842. godine u Beču i važi za jedan od najcenjenijih orkestara na svetu. Kao vrhunski simbol austrijske kulturne baštine, Münze Österreich — austrijska državna kovnica — odabrala je upravo ovaj orkestar kao inspiraciju za novu zlatnu investicionu kovanicu koja je 1989. godine trebalo da postavi evropski odgovor na američki Zlatni orao i kanadski Javorov list. Izbor se pokazao genijanim: Bečka Filharmonija je od prve serije postala hit na tržištu.",
+        },
+        {
+          heading: "Zašto je ovo najprodavanija investiciona kovanica Evrope?",
+          body: "Od 1989. do 1994. godine, Bečka Filharmonija je bila najprodavanija zlatna kovanica na svetu. Danas je konstantno na vrhu evropskog tržišta iz tri ključna razloga: čistoća 999,9/1000 je najviša moguća u industriji; status zakonskog sredstva plaćanja u Austriji (nominalna vrednost 100 €) daje joj pravnu sigurnost; i kotiranost na londonskoj LBMA berzi garantuje globalnu likvidnost kakvu nijedna druga evropska zlatna kovanica ne može da ponudi.",
+        },
+        {
+          heading: "Dizajn kovanice — Šta prikazuje?",
+          body: [
+            "Lice (Avers): prikazuje veličanstvene orgulje bečke Musikverein dvorane — zlatne dvorane u kojoj svake godine peva Novogodišnji koncert. Uz ivicu su upisani 'REPUBLIK ÖSTERREICH', nominalna vrednost (100 EURO) i godina kovanja.",
+            "Naličje (Revers): krase ga instrumenti Bečke Filharmonije — violina, čelo, harfa, fagot i rog. Naličje se povremeno menja, što pojedinim godišnjim serijama daje posebnu kolekcionarsku vrednost.",
+          ],
+        },
+        {
+          heading: "LBMA standard — Zašto je to važno za vas?",
+          body: "Bečka Filharmonija je jedna od svega nekoliko zlatnih kovanica na svetu koje zadovoljavaju stroge standarde London Bullion Market Association (LBMA) — globalne berze plemenitih metala sa sedištem u Londonu. Praktično, to znači da ovu kovanicu možete prodati po punoj tržišnoj ceni zlata u bilo kojoj zlatarnici, banci ili berzanskoj kući — od Beograda do Tokija — bez ikakvih diskusija o autentičnosti ili umanjenja vrednosti. Ovo je ključna prednost u odnosu na nelistirane kovanice i zlatne pločice lokalnih kovnica.",
+        },
+      ],
+    },
+    faq: {
+      title: "Česta pitanja o kovanici Bečka Filharmonija",
+      items: [
+        {
+          q: "Da li se na Bečku Filharmoniju plaća PDV?",
+          a: "Ne. Prema zakonima Republike Srbije, zlatne kovanice čistoće iznad 900/1000 iskovane posle 1800. godine tretiraju se kao investiciono zlato i u potpunosti su oslobođene PDV-a i poreza na kapitalnu dobit. Bečka Filharmonija, sa čistoćom od 999,9/1000, ispunjava ove uslove u potpunosti.",
+        },
+        {
+          q: "Koja je razlika između Bečke Filharmonije i dukate Franc Jozef?",
+          a: "Obe kovanice potiču iz iste austrijske državne kovnice (Münze Österreich), ali postoje tri ključne razlike: (1) Čistoća — Bečka Filharmonija je 999,9/1000 (24 karata), Franc Jozef je 986/1000 (23,6 karata); (2) LBMA — Bečka Filharmonija je kotirana na londonskoj berzi plemenitih metala, Franc Jozef nije; (3) Namena — Franc Jozef je pre svega tradicionalni poklon i istorijska kovanica, Bečka Filharmonija je savremeni globalni investicioni standard. Oba su u potpunosti oslobođena PDV-a.",
+        },
+        {
+          q: "Zašto je važna čistoća 999,9/1000?",
+          a: "Čistoća 999,9/1000 (takozvane 'četiri devetke') je najviši mogući standard čistoće zlata u investicionoj industriji. Na svakih 1000 grama kovanice ima svega 0,1 gram ostalih materija. Ova čistoća je preduslov LBMA standarda i garantuje da ćete kovanicu prodati po punoj tržišnoj ceni zlata, bez ikakvih umanjenja i bez diskusije o kvalitetu, bilo gde u svetu.",
+        },
+        {
+          q: "Koji format Bečke Filharmonije da izaberem?",
+          a: "Zavisi od vaših ciljeva: format 1/10 oz (3,11 g) je idealan za početnike i mesečno štedenje — manja vrednost znači manji rizik i lakše unovčavanje. Format 1/4 oz (7,78 g) i 1/2 oz (15,55 g) nude dobar balans između premije i vrednosti. Format 1 oz (31,10 g) nosi najnižu premiju po gramu i najpogodniji je za ozbiljne investitore. Kod svih formata, pravo na otkup po tržišnoj ceni i transparentno poslovanje ostaju isti.",
+        },
+        {
+          q: "Da li Bečka Filharmonija dolazi sa sertifikatom autentičnosti?",
+          a: "Kovanice direktno iz kovnice dolaze u zapečaćenim fabričkim blister pakovanjima — sam blistir je garancija autentičnosti i nedirnutosti. Kovanice van originalnog blistira proveravamo na licu mesta preciznim merenjima dimenzija, tačne težine i tona. Od nas dobijate kovanicu zaštićenu u tvrdoj akrilnoj kapsuli, koja je čuva od fizičkih oštećenja i gubitka investicione vrednosti.",
+        },
+        {
+          q: "Kako čuvati Bečku Filharmoniju?",
+          a: "Zlatno pravilo: nikada ne dodirujte površinu kovanice golim prstima i nikada je ne trljajte niti polirujte krpama. Zlato čistoće 999,9 je posebno mekano u poređenju sa legurama (poput Franc Jozefa) i podložno je ogrebotinama. Svako fizičko oštećenje trajno umanjuje investicionu vrednost. Čuvajte kovanicu u originalnom blistiru ili akrilnoj kapsuli, na suvom mestu zaštićenom od svetlosti.",
+        },
+        {
+          q: "Da li otkupljujete Bečku Filharmoniju?",
+          a: "Da, Gold Invest vrši brz i diskretan otkup svih formata Bečke Filharmonije (1/10 oz, 1/4 oz, 1/2 oz i 1 oz), bez obzira na godinu kovanja ili mesto kupovine. Zahvaljujući LBMA statusu ove kovanice, naša otkupna cena je uvek blizu tržišne cene zlata na londonskoj berzi. Provera autentičnosti na licu mesta traje svega nekoliko minuta, a isplata istog dana.",
+        },
+        {
+          q: "Koji je limit za plaćanje u gotovini?",
+          a: "U skladu sa Zakonom o sprečavanju pranja novca i finansiranja terorizma, kupovinu kovanica možete platiti gotovinom do zakonskog limita od 1.160.000 dinara (oko 10.000 evra u protivvrednosti). Sve transakcije iznad ovog iznosa realizuju se bezgotovinski, bankovnim transferom.",
+        },
+        {
+          q: "Mogu li platiti platnom karticom?",
+          a: "Ne, plaćanje platnim karticama trenutno nije moguće. Razlog su visoke bankarske provizije (često 2–3%) koje bi morale biti ukalkulisane u cenu i umanjile bi vašu prednost nad tržišnom cenom. Naš cilj je da vam uvek obezbedimo najpovoljniju moguću cenu — bez skrivenih troškova — zbog čega prihvatamo gotovinu, bankarski transfer i pouzećem.",
+        },
+        {
+          q: "Koliko traje isporuka?",
+          a: "Za klijente u Beogradu nudimo isporuku isti dan — ukoliko je porudžbina evidentirana radnim danima do 12h, kovanica stiže na vašu adresu istog dana do 18h. Za ostale gradove Srbije, diskretna i osigurana dostava traje 1 do 3 radna dana. Avansne kupovine imaju poseban, unapred dogovoreni rok isporuke iz kovnice.",
+        },
+      ],
+    },
+  },
 };
 
 // ── Static params ──────────────────────────────────────────────────────────
@@ -216,6 +341,10 @@ const MOCK_TIERS = [{
 const ALL_MOCK_DUKATI = [
   { id: "d1", product_id: "d1", slug: "franc-jozef-1-dukat", weight_g: 3.49, weight_oz: 0.1123, purity: 0.9860, fine_weight_g: 3.44, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 1, is_active: true, products: { name: "Franc Jozef 1 dukat", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
   { id: "d2", product_id: "d2", slug: "franc-jozef-4-dukati", weight_g: 13.96, weight_oz: 0.4492, purity: 0.9860, fine_weight_g: 13.76, sku: null, stock_qty: 5, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 2, is_active: true, products: { name: "Franc Jozef 4 dukati", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "bf1", product_id: "bf1", slug: "becka-filharmonija-1-10-oz", weight_g: 3.11, weight_oz: 0.1000, purity: 0.9999, fine_weight_g: 3.109, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 3, is_active: true, products: { name: "Bečka Filharmonija 1/10 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "bf2", product_id: "bf2", slug: "becka-filharmonija-1-4-oz", weight_g: 7.78, weight_oz: 0.2500, purity: 0.9999, fine_weight_g: 7.779, sku: null, stock_qty: 8, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 4, is_active: true, products: { name: "Bečka Filharmonija 1/4 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "bf3", product_id: "bf3", slug: "becka-filharmonija-1-2-oz", weight_g: 15.55, weight_oz: 0.5000, purity: 0.9999, fine_weight_g: 15.549, sku: null, stock_qty: 6, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 5, is_active: true, products: { name: "Bečka Filharmonija 1/2 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "bf4", product_id: "bf4", slug: "becka-filharmonija-1-oz", weight_g: 31.10, weight_oz: 1.0000, purity: 0.9999, fine_weight_g: 31.097, sku: null, stock_qty: 4, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 6, is_active: true, products: { name: "Bečka Filharmonija 1 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
 ];
 
 // ── Page ───────────────────────────────────────────────────────────────────
@@ -277,7 +406,7 @@ export default async function DukatSlugPage({
           brand: "Munze Osterreich",
           slug: `/kategorija/zlatni-dukati/${slug}`,
           image: config.heroImage,
-          purity: "986/1000",
+          purity: config.purity ?? "986/1000",
         })}
       />
       <SchemaScript schema={buildFaqSchema(config.faq.items)} />

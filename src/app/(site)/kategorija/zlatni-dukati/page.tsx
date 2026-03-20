@@ -120,6 +120,10 @@ export default async function ZlatniDukatiPage() {
       ]}
       heroTitle="Dukati"
       heroIntro="Zlatni dukati su najtraženije svetske investicione kovanice, pogotovo čuveni Dukat Franc Jozef i prestižna Bečka Filharmonija. Obezbedili smo vam transparentne cene, oslobođenje od poreza i povoljne otkupne cene. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!"
+      heroPills={[
+        { label: "Franc Jozef dukat", href: "/kategorija/zlatni-dukati/franc-jozef-dukat" },
+        { label: "Bečka filharmonija dukat", href: "/kategorija/zlatni-dukati/becka-filharmonija-dukat" },
+      ]}
       variants={variants}
       tiers={tiers}
       snapshot={snapshotRow}

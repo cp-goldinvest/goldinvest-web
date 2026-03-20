@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Phone, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
+import { HeroSection } from "@/components/home/HeroSection";
 import { CategoryFaq } from "@/components/catalog/CategoryFaq";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -112,116 +113,38 @@ export default function ONamaPage() {
       />
 
       {/* Breadcrumb */}
-      <section className="bg-white py-4 border-b border-[#F0EDE6]">
-        <SectionContainer>
-          <Breadcrumb items={BREADCRUMBS} variant="light" />
-        </SectionContainer>
-      </section>
+      <div className="relative">
+        {/* Breadcrumb overlay on top of hero (no layout push) */}
+        <div className="absolute top-0 left-0 right-0 z-20 bg-white/80 backdrop-blur border-b border-[#F0EDE6]">
+          <SectionContainer className="py-3 sm:py-4">
+            <Breadcrumb items={BREADCRUMBS} variant="light" />
+          </SectionContainer>
+        </div>
 
-      {/* ── Hero ─────────────────────────────────────────────────────────────── */}
-      <section
-        className="overflow-hidden"
-        style={{
-          background: "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)",
-        }}
-      >
-        <SectionContainer>
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,420px)] gap-8 md:gap-12 py-10 sm:py-14 md:py-16 items-center">
-
-            {/* Text */}
-            <div>
-              <span
-                className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-5 block"
-                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-              >
-                O nama
-              </span>
-              <h1
-                className="text-[#1B1B1C] leading-[1.1] mb-5"
-                style={{
-                  fontFamily: "var(--font-pp-editorial), Georgia, serif",
-                  fontSize: "clamp(34px, 4.5vw, 60px)",
-                  fontWeight: 400,
-                }}
-              >
-                <span style={{ fontStyle: "normal" }}>Nismo banka.</span>
-                <br />
-                <span style={{ fontStyle: "italic" }}>Nismo posrednik.</span>
-                <br />
-                <span style={{ fontStyle: "normal" }}>Mi smo Gold Invest.</span>
-              </h1>
-              <p
-                className="text-[#3A3A3A] leading-relaxed mb-4"
-                style={{
-                  fontFamily: "var(--font-rethink), sans-serif",
-                  fontSize: "clamp(14px, 1.2vw, 17px)",
-                  maxWidth: 560,
-                  lineHeight: "1.65em",
-                }}
-              >
-                Specijalizovani smo diler investicionog zlata iz Beograda. Prodajemo isključivo LBMA sertifikovane poluge, pločice i dukate — direktno, transparentno i bez posrednika. Svaki klijent dobija konkretnu cenu, jasnu kalkulaciju i licni savet.
-              </p>
-              <p
-                className="text-[#3A3A3A] leading-relaxed mb-6"
-                style={{
-                  fontFamily: "var(--font-rethink), sans-serif",
-                  fontSize: "clamp(14px, 1.2vw, 17px)",
-                  maxWidth: 560,
-                  lineHeight: "1.65em",
-                }}
-              >
-                Nismo call centar. Nema automatizovanih odgovora. Kada nas pozovete, razgovarate sa osobom koja zna zlato — i koja ce vas saslušati pre nego što predloži bilo šta.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="tel:+381612698569"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold transition-all duration-200 hover:opacity-90"
-                  style={{
-                    backgroundColor: "#1B1B1C",
-                    fontFamily: "var(--font-rethink), sans-serif",
-                    fontSize: 13,
-                    boxShadow: "0px 4px 14px rgba(0,0,0,0.18)",
-                  }}
-                >
-                  <Phone size={14} />
-                  POZOVITE NAS
-                </a>
-                <Link
-                  href="/kontakt"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold transition-all duration-200 hover:opacity-90"
-                  style={{
-                    backgroundColor: "#BEAD87",
-                    color: "#1B1B1C",
-                    fontFamily: "var(--font-rethink), sans-serif",
-                    fontSize: 13,
-                    boxShadow: "0px 4px 14px rgba(190,173,135,0.35)",
-                  }}
-                >
-                  POSALJITE UPIT
-                </Link>
-              </div>
-            </div>
-
-            {/* Image */}
-            <div className="hidden md:flex justify-end items-center">
-              <div
-                className="relative w-full rounded-3xl overflow-hidden"
-                style={{ height: 350, background: "#E9E6D9" }}
-              >
-                <Image
-                  src="/images/jastuk-poluga.png"
-                  alt="Zlatna poluga na baršunastom jastuku — Gold Invest Beograd"
-                  fill
-                  className="object-contain p-5"
-                  style={{ objectPosition: "50% 50%" }}
-                  priority
-                />
-              </div>
-            </div>
-
-          </div>
-        </SectionContainer>
-      </section>
+        <HeroSection
+          title={
+            <>
+              <span style={{ fontStyle: "normal" }}>Direktno zlato.</span>
+              <br />
+              <span style={{ fontStyle: "italic" }}>Bez posrednika.</span>
+            </>
+          }
+          paragraphs={[
+            <p key="p1">
+              Specijalizovani smo diler investicionog zlata iz Beograda. Prodajemo isključivo LBMA sertifikovane poluge, pločice i
+              dukate — direktno, transparentno i bez posrednika. Svaki klijent dobija konkretnu cenu, jasnu kalkulaciju i licni savet.
+            </p>,
+            <p key="p2">
+              Nismo call centar. Nema automatizovanih odgovora. Kada nas pozovete, razgovarate sa osobom koja zna zlato — i koja ce vas
+              saslušati pre nego što predloži bilo šta.
+            </p>,
+          ]}
+          buttons={[
+            { label: "POZOVITE NAS", href: "tel:+381612698569" },
+            { label: "POSALJITE UPIT", href: "/kontakt" },
+          ]}
+        />
+      </div>
 
       {/* ── Stats strip ──────────────────────────────────────────────────────── */}
       <section className="bg-[#1B1B1C] py-6">

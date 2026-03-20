@@ -133,6 +133,13 @@ export default async function ZlatnePlocicePage() {
       ]}
       heroTitle="Zlatne pločice"
       heroIntro="Zlatne pločice su najpametniji način da započnete izgradnju svog investicionog portfolija, ali i najvredniji poklon za vama drage osobe. Nudimo isključivo LBMA sertifikovane pločice čistoće 999,9, prestižnih evropskih kovnica. Obezbedili smo transparentne cene i brzu isporuku. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!"
+      heroPills={[
+        { label: "Zlatna pločica 1 gram", href: "/kategorija/zlatne-plocice/zlatna-plocica-1g" },
+        { label: "Zlatna pločica 2 grama", href: "/kategorija/zlatne-plocice/zlatna-plocica-2g" },
+        { label: "Zlatna pločica 5 grama", href: "/kategorija/zlatne-plocice/zlatna-plocica-5g" },
+        { label: "Zlatna pločica 10 grama", href: "/kategorija/zlatne-plocice/zlatna-plocica-10g" },
+        { label: "Zlatna pločica 20 grama", href: "/kategorija/zlatne-plocice/zlatna-plocica-20g" },
+      ]}
       variants={variants}
       tiers={tiers}
       snapshot={snapshotRow}
