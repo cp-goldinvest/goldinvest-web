@@ -174,7 +174,7 @@ export default function KontaktPage() {
                         lineHeight: "1.5",
                       }}
                     >
-                      Bulevar oslobodjenja 123
+                      Bulevar oslobođenja 123
                       <br />
                       11000 Beograd, Srbija
                     </p>
@@ -285,7 +285,7 @@ export default function KontaktPage() {
                   className="text-[#BF8E41] text-[10.5px] font-semibold tracking-widest uppercase mb-4 block"
                   style={{ fontFamily: "var(--font-rethink), sans-serif" }}
                 >
-                  Nasa lokacija
+                  Naša lokacija
                 </span>
                 <h2
                   className="text-white mb-4"
@@ -297,7 +297,7 @@ export default function KontaktPage() {
                     lineHeight: "1.2",
                   }}
                 >
-                  Bulevar oslobodjenja 123,
+                  Bulevar oslobođenja 123,
                   <br />
                   Beograd
                 </h2>
@@ -305,7 +305,7 @@ export default function KontaktPage() {
                   className="text-[#8B806D] text-sm leading-relaxed mb-6"
                   style={{ fontFamily: "var(--font-rethink), sans-serif" }}
                 >
-                  Poslovnica je dostupna bez zakazivanja tokom radnog vremena. Za veće količine ili poluge od 500g, preporučujemo prethodan poziv.
+                  Poslovnica je dostupna bez zakazivanja tokom radnog vremena. Za veće količine ili poluge od 500g, preporučujemo prethodni poziv.
                 </p>
               </div>
               <a
