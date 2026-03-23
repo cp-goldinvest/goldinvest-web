@@ -81,7 +81,7 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
     heroTitle: "Franc Jozef dukat",
     intro:
       "Zlatni dukat Franc Jozef je najprepoznatljivija investiciona kovanica i najpopularniji tradicionalni poklon na nasim prostorima. Idealan za krstenja, rodenja i svadbe, ali i kao sigurno utociste za vas kapital. Gold Invest vam nudi male i velike dukate iz austrijske drzavne kovnice, uz garantovanu autenticnost, transparentne cene i oslobodjenje od PDV-a. Porucite putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
-    heroImage: "/images/gold-coins.png",
+    heroImage: "/images/products/franc-jozef-transparent.png",
     variantSlugs: ["franc-jozef-1-dukat", "franc-jozef-4-dukati"],
     mockWeights: [3.49, 13.96],
     formatsHeading: "Mali i Veliki Franc Jozef — Koja je razlika?",
@@ -339,8 +339,8 @@ const MOCK_TIERS = [{
   margin_stock_pct: 4.5, margin_advance_pct: 3.5, margin_purchase_pct: 2, created_at: "",
 }];
 const ALL_MOCK_DUKATI = [
-  { id: "d1", product_id: "d1", slug: "franc-jozef-1-dukat", weight_g: 3.49, weight_oz: 0.1123, purity: 0.9860, fine_weight_g: 3.44, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 1, is_active: true, products: { name: "Franc Jozef 1 dukat", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "d2", product_id: "d2", slug: "franc-jozef-4-dukati", weight_g: 13.96, weight_oz: 0.4492, purity: 0.9860, fine_weight_g: 13.76, sku: null, stock_qty: 5, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 2, is_active: true, products: { name: "Franc Jozef 4 dukati", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "d1", product_id: "d1", slug: "franc-jozef-1-dukat", weight_g: 3.49, weight_oz: 0.1123, purity: 0.9860, fine_weight_g: 3.44, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 1, is_active: true, products: { name: "Franc Jozef 1 dukat", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "d2", product_id: "d2", slug: "franc-jozef-4-dukati", weight_g: 13.96, weight_oz: 0.4492, purity: 0.9860, fine_weight_g: 13.76, sku: null, stock_qty: 5, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 2, is_active: true, products: { name: "Franc Jozef 4 dukati", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
   { id: "bf1", product_id: "bf1", slug: "becka-filharmonija-1-10-oz", weight_g: 3.11, weight_oz: 0.1000, purity: 0.9999, fine_weight_g: 3.109, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 3, is_active: true, products: { name: "Bečka Filharmonija 1/10 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
   { id: "bf2", product_id: "bf2", slug: "becka-filharmonija-1-4-oz", weight_g: 7.78, weight_oz: 0.2500, purity: 0.9999, fine_weight_g: 7.779, sku: null, stock_qty: 8, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 4, is_active: true, products: { name: "Bečka Filharmonija 1/4 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
   { id: "bf3", product_id: "bf3", slug: "becka-filharmonija-1-2-oz", weight_g: 15.55, weight_oz: 0.5000, purity: 0.9999, fine_weight_g: 15.549, sku: null, stock_qty: 6, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 5, is_active: true, products: { name: "Bečka Filharmonija 1/2 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
