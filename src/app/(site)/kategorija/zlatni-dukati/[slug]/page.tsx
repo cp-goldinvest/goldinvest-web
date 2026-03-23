@@ -76,107 +76,107 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
   "franc-jozef-dukat": {
     metaTitle: "Dukat Franc Jozef | Mali i Veliki Zlatni Dukat - Prodaja Beograd",
     metaDescription:
-      "Kupite mali ili veliki zlatni dukat Franc Jozef — oslobodjen PDV-a, austrijska kovnica, garantovana autenticnost. Prodajna i otkupna cena. Brza dostava Beograd i Srbija.",
+      "Kupite mali ili veliki zlatni dukat Franc Jozef — oslobođen PDV-a, austrijska kovnica, garantovana autentičnost. Prodajna i otkupna cena. Brza dostava Beograd i Srbija.",
     breadcrumbLabel: "Franc Jozef dukat",
     heroTitle: "Franc Jozef dukat",
     intro:
-      "Zlatni dukat Franc Jozef je najprepoznatljivija investiciona kovanica i najpopularniji tradicionalni poklon na nasim prostorima. Idealan za krstenja, rodenja i svadbe, ali i kao sigurno utociste za vas kapital. Gold Invest vam nudi male i velike dukate iz austrijske drzavne kovnice, uz garantovanu autenticnost, transparentne cene i oslobodjenje od PDV-a. Porucite putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
+      "Zlatni dukat Franc Jozef je najprepoznatljivija investiciona kovanica i najpopularniji tradicionalni poklon na našim prostorima. Idealan za krštenja, rođenja i svadbe, ali i kao sigurno utočište za vaš kapital. Gold Invest vam nudi male i velike dukate iz austrijske državne kovnice, uz garantovanu autentičnost, transparentne cene i oslobođenje od PDV-a. Poručite putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
     heroImage: "/images/products/franc-jozef-transparent.png",
     variantSlugs: ["franc-jozef-1-dukat", "franc-jozef-4-dukati"],
     mockWeights: [3.49, 13.96],
     formatsHeading: "Mali i Veliki Franc Jozef — Koja je razlika?",
     formatsDescription:
-      "Franc Jozef dukati se kuju u cuvenoj austrijskoj drzavnoj kovnici (Munze Osterreich) od zlata izuzetne cistote 986/1000 (23.6 karata). Minimalni dodatak bakra u leguri daje im karakteristicnu, prelepu crvenkasto-zlatnu nijansu i cini ih otpornijim na habanje od cistog 24-karatnog zlata.",
+      "Franc Jozef dukati se kuju u čuvenoj austrijskoj državnoj kovnici (Münze Österreich) od zlata izuzetne čistoće 986/1000 (23,6 karata). Minimalni dodatak bakra u leguri daje im karakterističnu, prelepu crvenkasto-zlatnu nijansu i čini ih otpornijim na habanje od čistog 24-karatnog zlata.",
     formats: [
       {
         title: "Mali dukat Franc Jozef (Jednostruki)",
-        specs: "3.49 g ukupno — 3.44 g cistog zlata — cistoca 986/1000 (23.6 karata)",
-        body: "Najcesci poklon za krstenje i rodenje. Idealan je za darivanje povodom rodenja, krstenja i rodjendana, ali i za postepeno, mesecno gradjenje licnog zlatnog portfolija. Zahvaljujuci manjoj gramazi, nudi odlicnu fleksibilnost — lako ga je pokloniti, a jos lakse unovciti kada zatreba.",
+        specs: "3,49 g ukupno — 3,44 g čistog zlata — čistoća 986/1000 (23,6 karata)",
+        body: "Najčešći poklon za krštenje i rođenje. Idealan je za darivanje povodom rođenja, krštenja i rođendana, ali i za postepeno, mesečno građenje ličnog zlatnog portfolija. Zahvaljujući manjoj gramazi, nudi odličnu fleksibilnost — lako ga je pokloniti, a još lakše unovčiti kada zatreba.",
       },
       {
-        title: "Veliki dukat Franc Jozef (Cetvorostruki)",
-        specs: "13.96 g ukupno — 13.77 g cistog zlata — cistoca 986/1000 (23.6 karata)",
-        body: "Vizuelno impresivan i znacajno masivniji. Prepoznatljiv je po velikom precniku i cesto predstavlja glavni poklon na vencanjima ili pametan izbor za ozbiljnije investitore koji zele povoljniju cenu po gramu u odnosu na mali dukat.",
+        title: "Veliki dukat Franc Jozef (Četvorostruki)",
+        specs: "13,96 g ukupno — 13,77 g čistog zlata — čistoća 986/1000 (23,6 karata)",
+        body: "Vizuelno impresivan i značajno masivniji. Prepoznatljiv je po velikom prečniku i često predstavlja glavni poklon na venčanjima ili pametan izbor za ozbiljnije investitore koji žele povoljniju cenu po gramu u odnosu na mali dukat.",
       },
     ],
     priceStructure: {
       title: "Franc Jozef dukat cena — Prodajna / Avansna / Otkupna",
       description:
-        "Kao ozbiljna i transparentna kuca, Gold Invest vam uvek nudi tri oblika cena dukata Franc Jozef:",
+        "Kao ozbiljna i transparentna kuća, Gold Invest vam uvek nudi tri oblika cena dukata Franc Jozef:",
       card1Body:
-        "Cena za dukate koje trenutno imamo u nasem beogradskom trezoru. Placate i preuzimate svoj dukat odmah — bez cekanja i skrivenih troskova.",
+        "Cena za dukate koje trenutno imamo u našem beogradskom trezoru. Platite i preuzimate svoj dukat odmah — bez čekanja i skrivenih troškova.",
       card2Body:
-        "Planirate kupovinu vece kolicine dukata? Uplatite iznos unapred, 'zakljucajte' trenutnu, nizu berzansku cenu i sacekajte isporuku direktno iz austrijske kovnice uz znacajnu ustedu.",
+        "Planirate kupovinu veće količine dukata? Uplatite iznos unapred, 'zaključite' trenutnu, nižu berzansku cenu i sačekajte isporuku direktno iz austrijske kovnice uz značajnu uštedu.",
       card3Body:
-        "Iznos po kojima u svakom trenutku i bez cekanja otkupljujemo vase dukate. Zbog ogromne potraznje za Franc Jozefom, razlika izmedju prodajne i otkupne cene (spread) je kod nas uvek svedena na minimum.",
+        "Iznos po kojem u svakom trenutku i bez čekanja otkupljujemo vaše dukate. Zbog ogromne potražnje za Franc Jozefom, razlika između prodajne i otkupne cene (spread) je kod nas uvek svedena na minimum.",
     },
     delivery: {
       heading: "Gde kupiti dukat Franc Jozef — Gold Invest Beograd",
       description:
-        "Prodaja dukata Franc Jozef je moguca na nekoliko nacina — uvek diskretno i maksimalno osigurano.",
+        "Prodaja dukata Franc Jozef je moguća na nekoliko načina — uvek diskretno i maksimalno osigurano.",
       pickupCardBody:
-        "Posetite nas licno u Beogradu. Potpuno diskretno okruzenje, strucna provera autenticnosti i preuzimanje na licu mesta bez cekanja.",
+        "Posetite nas lično u Beogradu. Potpuno diskretno okruženje, stručna provera autentičnosti i preuzimanje na licu mesta bez čekanja.",
     },
     historySection: {
       heading: "Dukat Franc Jozef — Istorija najpoznatije zlatne kovanice Balkana",
       intro:
-        "Nijedan komad investicionog zlata ne nosi toliku istorijsku tezinu, tradiciju i poverenje na nasim prostorima kao dukat sa likom austrijskog cara Franca Jozefa. Ovi dukati se vec generacijama koriste kao najsigurniji nacin cuvanja porodicnog bogatstva.",
+        "Nijedan komad investicionog zlata ne nosi toliku istorijsku težinu, tradiciju i poverenje na našim prostorima kao dukat sa likom austrijskog cara Franca Jozefa. Ovi dukati se već generacijama koriste kao najsigurniji način čuvanja porodičnog bogatstva.",
       cards: [
         {
           heading: "Ko je bio Franc Jozef?",
-          body: "Franc Jozef I (Franz Joseph I) bio je car Austrije i kralj Ugarske, i jedan od najdugovecnijih monarha u evropskoj istoriji (vladao je punih 68 godina, od 1848. do 1916. godine). Njegova vladavina obeleziila je takozvano 'zlatno doba' Austrougarske monarhije — period ogromnog ekonomskog i industrijskog uspona, stabilnosti i kulturnog procvata. Zbog te neprikosnovene stabilnosti, njegov lik je u svesti naroda (posebno na Balkanu) postao apsolutni sinonim za bogatstvo, sigurnost i trajanje.",
+          body: "Franc Jozef I (Franz Joseph I) bio je car Austrije i kralj Ugarske, i jedan od najdugovečnijih monarha u evropskoj istoriji (vladao je punih 68 godina, od 1848. do 1916. godine). Njegova vladavina obeležila je takozvano 'zlatno doba' Austrougarske monarhije — period ogromnog ekonomskog i industrijskog uspona, stabilnosti i kulturnog procvata. Zbog te neprikosnovene stabilnosti, njegov lik je u svesti naroda (posebno na Balkanu) postao apsolutni sinonim za bogatstvo, sigurnost i trajanje.",
         },
         {
-          heading: "Zasto se dukati kuju bas po njemu?",
-          body: "U vreme njegove vladavine, Austrougarska je bila ekonomska super sila, a austrijski dukat je bio glavna trgovacka valuta u ovom delu Evrope. Trgovci su ga obozavali jer je garantovao nepogresivu tacnost tezine i izuzetnu cistotu zlata od 98.6% (23.6 karata) — standard koji se u industriji i danas naziva 'dukat zlato' (Ducat gold). Cak i nakon pada Austrougarske imperije, apsolutno poverenje u ovu kovanicu ostalo je duboko ukorenjeno u kulturi.",
+          heading: "Zašto se dukati kuju baš po njemu?",
+          body: "U vreme njegove vladavine, Austrougarska je bila ekonomska super sila, a austrijski dukat je bio glavna trgovačka valuta u ovom delu Evrope. Trgovci su ga obožavali jer je garantovao nepogrešivu tačnost težine i izuzetnu čistoću zlata od 98,6% (23,6 karata) — standard koji se u industriji i danas naziva 'dukat zlato' (Ducat gold). Čak i nakon pada Austrougarske imperije, apsolutno poverenje u ovu kovanicu ostalo je duboko ukorenjeno u kulturi.",
         },
         {
-          heading: "Fenomen 1915. godine (zasto svaki dukat nosi ovaj datum?)",
-          body: "Mnogi kupci se iznenade kada na svom potpuno novom dukatu vide uklesanu 1915. godinu, misleci da kupuju anticki novac. Istina je fascinantna: zbog izbijanja Prvog svetskog rata, redovno kovanje dukata je zvanicno prekinuto. Medutim, zbog nezapamcene globalne potraznje, austrijska kovnica je nastavila proizvodnju iskljucivo u investicione svrhe. Svaki novi dukat zauvek nosi godinu 1915. kao odavanje pocasti poslednjoj godini redovnog kovanja. Dakle — dukat koji danas kupite je ganc nov (takozvano novo kovanje ili 'restrike'), iskovan nedavno pomocu originalnih istorijskih kalupa.",
+          heading: "Fenomen 1915. godine (zašto svaki dukat nosi ovaj datum?)",
+          body: "Mnogi kupci se iznenade kada na svom potpuno novom dukatu vide uklesanu 1915. godinu, misleći da kupuju antički novac. Istina je fascinantna: zbog izbijanja Prvog svetskog rata, redovno kovanje dukata je zvanično prekinuto. Međutim, zbog nezapamćene globalne potražnje, austrijska kovnica je nastavila proizvodnju isključivo u investicione svrhe. Svaki novi dukat zauvek nosi godinu 1915. kao odavanje počasti poslednjoj godini redovnog kovanja. Dakle — dukat koji danas kupite je potpuno nov (takozvano novo kovanje ili 'restrike'), iskovan nedavno pomoću originalnih istorijskih kalupa.",
         },
         {
-          heading: "Simbolika na kovanici — Lice i Nalicje",
+          heading: "Simbolika na kovanici — Lice i Naličje",
           body: [
-            "Lice (Avers): prikazuje raskosan profil cara sa lovorovim vencem na glavi (simbol vojnicke slave). Uz rub je ispisan tekst na latinskom: 'FRANC IOS I D G AUSTRIAE IMPERATOR'.",
-            "Nalicje (Revers): krase ga velicastveni dvoglavi orao (grb Habzburske monarhije) koji u kandzama drzi mac i kraljevsku jabuku — simboli moci i pravde. Iznad njega je kruna, a duz ivice nalaze se titule i cuvena 1915. godina.",
+            "Lice (Avers): prikazuje raskošan profil cara sa lovorovim vencem na glavi (simbol vojničke slave). Uz rub je ispisan tekst na latinskom: 'FRANC IOS I D G AUSTRIAE IMPERATOR'.",
+            "Naličje (Revers): krasi ga veličanstveni dvoglavi orao (grb Habsburške monarhije) koji u kandžama drži mač i kraljevsku jabuku — simboli moći i pravde. Iznad njega je kruna, a duž ivice nalaze se titule i čuvena 1915. godina.",
           ],
         },
       ],
     },
     faq: {
-      title: "Cesta pitanja o dukatu Franc Jozef",
+      title: "Česta pitanja o dukatu Franc Jozef",
       items: [
         {
-          q: "Zasto na svakom dukatu pise godina 1915?",
-          a: "Svi investicioni Franc Jozef dukati koji se danas legalno prodaju nose utisnatu godinu 1915. To ne znaci da je dukat star preko sto godina, vec da je u pitanju zvanicno, moderno 'novo kovanje' (restrike) austrijske drzavne kovnice. Godina 1915. se koristi kao istorijski simbol, jer je to bila poslednja godina redovnog kovanja pre pauze usled Prvog svetskog rata.",
+          q: "Zašto na svakom dukatu piše godina 1915?",
+          a: "Svi investicioni Franc Jozef dukati koji se danas legalno prodaju nose utisnatu godinu 1915. To ne znači da je dukat star preko sto godina, već da je u pitanju zvanično, moderno 'novo kovanje' (restrike) austrijske državne kovnice. Godina 1915. se koristi kao istorijski simbol, jer je to bila poslednja godina redovnog kovanja pre pauze usled Prvog svetskog rata.",
         },
         {
-          q: "Da li se na dukat Franc Jozef placa PDV?",
-          a: "Ne. Prema zakonima Republike Srbije, zlatni dukati finoce preko 900/1000 iskovani posle 1800. godine tretiraju se kao investiciono zlato. S obzirom na to da Franc Jozef ima cistotu od 986/1000 (23.6 karata), u potpunosti je oslobodjen placanja PDV-a i poreza na kapitalnu dobit.",
+          q: "Da li se na dukat Franc Jozef plaća PDV?",
+          a: "Ne. Prema zakonima Republike Srbije, zlatni dukati čistoće preko 900/1000 iskovani posle 1800. godine tretiraju se kao investiciono zlato. S obzirom na to da Franc Jozef ima čistoću od 986/1000 (23,6 karata), u potpunosti je oslobođen plaćanja PDV-a i poreza na kapitalnu dobit.",
         },
         {
           q: "Kako se pakuje Franc Jozef i da li ima sertifikat?",
-          a: "Istorijski dukati ne dolaze u fabrickim blister pakovanjima sa papirnim sertifikatima kao moderne zlatne poluge. Sam dukat, sa svojim specificnim mikrometarskim dimenzijama, tacnom tezinom i jedinstvenim tonom prilikom kuckanja, predstavlja sertifikat autenticnosti. Vas dukat od nas dobijate bezbedno upakovan u okruglu zastiitnu kapsulu od tvrdog akrila (ili prigodnu poklon kutijicu), koja ga stiti od ostecenja.",
+          a: "Istorijski dukati ne dolaze u fabričkim blister pakovanjima sa papirnim sertifikatima kao moderne zlatne poluge. Sam dukat, sa svojim specifičnim mikrometarskim dimenzijama, tačnom težinom i jedinstvenim tonom prilikom kucanja, predstavlja sertifikat autentičnosti. Vaš dukat od nas dobijate bezbedno upakovan u okruglu zaštitnu kapsulu od tvrdog akrila (ili prigodnu poklon kutijicu), koja ga štiti od oštećenja.",
         },
         {
-          q: "Kako ga cuvati?",
-          a: "Zlatno pravilo: Nikada ne dodirujte povrsinuu dukata golim prstima i nikada ga ne briste niti polirajte krpama! Zlato je mekan metal i svako trenje ostavlja mikro-ogrebotine, dok kiseline sa prstiju mogu ostaviti trajne mrlje. Svako fizicko ostecenje, busenje (radi pravljenja ogrlice) ili grebanje trajno unistava njegov investicioni status. Uvek ga cuvajte u originalnoj zastiitnoj kapsuli.",
+          q: "Kako ga čuvati?",
+          a: "Zlatno pravilo: Nikada ne dodirujte površinu dukata golim prstima i nikada ga ne brište niti polirajte krpama! Zlato je mekan metal i svako trenje ostavlja mikro-ogrebotine, dok kiseline sa prstiju mogu ostaviti trajne mrlje. Svako fizičko oštećenje, bušenje (radi pravljenja ogrlice) ili grebanje trajno uništava njegov investicioni status. Uvek ga čuvajte u originalnoj zaštitnoj kapsuli.",
         },
         {
           q: "Da li otkupljujete dukate kupljene u inostranstvu ili drugim zlatarama?",
-          a: "Da, Gold Invest vrsi brz i diskretan otkup svih malih i velikih dukata Franc Jozef, bez obzira gde su prvobitno kupljeni. Nasi strucnjaci na licu mesta (za par minuta) proveravaju autenticnost kovanice, nakon cega vam novac isplacujemo istog dana.",
+          a: "Da, Gold Invest vrši brz i diskretan otkup svih malih i velikih dukata Franc Jozef, bez obzira gde su prvobitno kupljeni. Naši stručnjaci na licu mesta (za par minuta) proveravaju autentičnost kovanice, nakon čega vam novac isplaćujemo istog dana.",
         },
         {
-          q: "Koji je limit za placanje u gotovini?",
-          a: "U skladu sa Zakonom o sprecavanju pranja novca, kupovinu dukata mozete platiti u gotovini (kesu) do zakonskog limita od 1.160.000 dinara (10.000 evra u protivvrednosti). Sve transakcije iznad ovog iznosa realizuju se bezgotovinski, preko vaseg bankovnog racuna.",
+          q: "Koji je limit za plaćanje u gotovini?",
+          a: "U skladu sa Zakonom o sprečavanju pranja novca, kupovinu dukata možete platiti u gotovini do zakonskog limita od 1.160.000 dinara (10.000 evra u protivvrednosti). Sve transakcije iznad ovog iznosa realizuju se bezgotovinski, preko vašeg bankovnog računa.",
         },
         {
-          q: "Mogu li da placam platnom karticom?",
-          a: "Ne, placanje platnim karticama trenutno nije moguce. Razlog za to su visoke provizije banaka (cesto i do 2-3%) koje bi neizbezno morale da se ugrade u krajnju cenu zlata. Nas cilj je da vam obezbedimo najpovoljniju mogucu cenu na trzistu bez skrivenih troskova, zbog cega prihvatamo iskljucivo placanje gotovinom, bankovnim transferom ili pouzecem.",
+          q: "Mogu li da plaćam platnom karticom?",
+          a: "Ne, plaćanje platnim karticama trenutno nije moguće. Razlog za to su visoke provizije banaka (često i do 2–3%) koje bi neizbežno morale da se ugrade u krajnju cenu zlata. Naš cilj je da vam obezbedimo najpovoljniju moguću cenu na tržištu bez skrivenih troškova, zbog čega prihvatamo isključivo plaćanje gotovinom, bankovnim transferom ili pouzećem.",
         },
         {
           q: "Koliko traje isporuka?",
-          a: "Za klijente u Beogradu nudimo isporuku 'dan za dan' — ukoliko je porudzbina evidentirana radnim danima do 12h, zlato stize na vasu adresu istog dana do 18h. Za porudzbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana (ovo ne vazi za avansne kupovine, za koje se rok isporuke precizno definise pri samoj kupovini).",
+          a: "Za klijente u Beogradu nudimo isporuku 'dan za dan' — ukoliko je porudžbina evidentirana radnim danima do 12h, zlato stiže na vašu adresu istog dana do 18h. Za porudžbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana (ovo ne važi za avansne kupovine, za koje se rok isporuke precizno definiše pri samoj kupovini).",
         },
       ],
     },
@@ -185,12 +185,12 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
   "becka-filharmonija-dukat": {
     metaTitle: "Dukat Bečka Filharmonija | Zlatna Kovanica 999,9 — Prodaja Beograd",
     metaDescription:
-      "Kupite zlatnu kovanicu Bečka Filharmonija (Vienna Philharmonic) — čistoća 999,9/1000, LBMA listed, oslobođena PDV-a. Formati 1/10 oz do 1 oz. Brza dostava Beograd i cela Srbija.",
+      "Kupite zlatnu kovanicu Bečka Filharmonija (Vienna Philharmonic) — čistoća 999,9/1000, na LBMA listi, oslobođena PDV-a. Formati 1/10 oz do 1 oz. Brza dostava Beograd i čitava Srbija.",
     breadcrumbLabel: "Dukat Bečka Filharmonija",
     heroTitle: "Dukat Bečka Filharmonija",
     purity: "999.9/1000",
     intro:
-      "Zlatna kovanica Bečka Filharmonija (Wiener Philharmoniker) jedina je investiciona kovanica sveta iskovana u zlatu čistoće 999,9/1000 i istovremeno zakonsko sredstvo plaćanja u eurozoni. Kotirana na londonskoj LBMA berzi, potpuno oslobođena PDV-a i jedna od najprodavanijih zlatnih kovanica u istoriji. Gold Invest nudi sve formate — od pristupačnih 1/10 oz do investicionih 1 oz — direktno iz austrijske državne kovnice, uz garantovanu autentičnost i transparentnu cenu. Upit na broj 0612698569 ili putem kontakt forme — brza dostava za Beograd i celu Srbiju.",
+      "Zlatna kovanica Bečka Filharmonija (Wiener Philharmoniker) jedina je investiciona kovanica sveta iskovana u zlatu čistoće 999,9/1000 i istovremeno zakonsko sredstvo plaćanja u eurozoni. Kotirana na londonskoj LBMA berzi, potpuno oslobođena PDV-a i jedna od najprodavanijih zlatnih kovanica u istoriji. Gold Invest nudi sve formate — od pristupačnih 1/10 oz do investicionih 1 oz — direktno iz austrijske državne kovnice, uz garantovanu autentičnost i transparentnu cenu. Upit na broj 0612698569 ili putem kontakt forme — brza dostava za Beograd i čitavu Srbiju.",
     heroImage: "/images/gold-coins.png",
     variantSlugs: [
       "becka-filharmonija-1-10-oz",
@@ -266,7 +266,7 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
           a: "Ne. Prema zakonima Republike Srbije, zlatne kovanice čistoće iznad 900/1000 iskovane posle 1800. godine tretiraju se kao investiciono zlato i u potpunosti su oslobođene PDV-a i poreza na kapitalnu dobit. Bečka Filharmonija, sa čistoćom od 999,9/1000, ispunjava ove uslove u potpunosti.",
         },
         {
-          q: "Koja je razlika između Bečke Filharmonije i dukate Franc Jozef?",
+          q: "Koja je razlika između Bečke Filharmonije i dukata Franc Jozef?",
           a: "Obe kovanice potiču iz iste austrijske državne kovnice (Münze Österreich), ali postoje tri ključne razlike: (1) Čistoća — Bečka Filharmonija je 999,9/1000 (24 karata), Franc Jozef je 986/1000 (23,6 karata); (2) LBMA — Bečka Filharmonija je kotirana na londonskoj berzi plemenitih metala, Franc Jozef nije; (3) Namena — Franc Jozef je pre svega tradicionalni poklon i istorijska kovanica, Bečka Filharmonija je savremeni globalni investicioni standard. Oba su u potpunosti oslobođena PDV-a.",
         },
         {
@@ -279,11 +279,11 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
         },
         {
           q: "Da li Bečka Filharmonija dolazi sa sertifikatom autentičnosti?",
-          a: "Kovanice direktno iz kovnice dolaze u zapečaćenim fabričkim blister pakovanjima — sam blistir je garancija autentičnosti i nedirnutosti. Kovanice van originalnog blistira proveravamo na licu mesta preciznim merenjima dimenzija, tačne težine i tona. Od nas dobijate kovanicu zaštićenu u tvrdoj akrilnoj kapsuli, koja je čuva od fizičkih oštećenja i gubitka investicione vrednosti.",
+          a: "Kovanice direktno iz kovnice dolaze u zapečaćenim fabričkim blister pakovanjima — sam blister je garancija autentičnosti i nedirnutosti. Kovanice van originalnog blistera proveravamo na licu mesta preciznim merenjima dimenzija, tačne težine i tona. Od nas dobijate kovanicu zaštićenu u tvrdoj akrilnoj kapsuli, koja ga čuva od fizičkih oštećenja i gubitka investicione vrednosti.",
         },
         {
           q: "Kako čuvati Bečku Filharmoniju?",
-          a: "Zlatno pravilo: nikada ne dodirujte površinu kovanice golim prstima i nikada je ne trljajte niti polirujte krpama. Zlato čistoće 999,9 je posebno mekano u poređenju sa legurama (poput Franc Jozefa) i podložno je ogrebotinama. Svako fizičko oštećenje trajno umanjuje investicionu vrednost. Čuvajte kovanicu u originalnom blistiru ili akrilnoj kapsuli, na suvom mestu zaštićenom od svetlosti.",
+          a: "Zlatno pravilo: nikada ne dodirujte površinu kovanice golim prstima i nikada je ne trljajte niti polirujte krpama. Zlato čistoće 999,9 je posebno mekano u poređenju sa legurama (poput Franc Jozefa) i podložno je ogrebotinama. Svako fizičko oštećenje trajno umanjuje investicionu vrednost. Čuvajte kovanicu u originalnom blisteru ili akrilnoj kapsuli, na suvom mestu zaštićenom od svetlosti.",
         },
         {
           q: "Da li otkupljujete Bečku Filharmoniju?",
@@ -339,12 +339,12 @@ const MOCK_TIERS = [{
   margin_stock_pct: 4.5, margin_advance_pct: 3.5, margin_purchase_pct: 2, created_at: "",
 }];
 const ALL_MOCK_DUKATI = [
-  { id: "d1", product_id: "d1", slug: "franc-jozef-1-dukat", weight_g: 3.49, weight_oz: 0.1123, purity: 0.9860, fine_weight_g: 3.44, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 1, is_active: true, products: { name: "Franc Jozef 1 dukat", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "d2", product_id: "d2", slug: "franc-jozef-4-dukati", weight_g: 13.96, weight_oz: 0.4492, purity: 0.9860, fine_weight_g: 13.76, sku: null, stock_qty: 5, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 2, is_active: true, products: { name: "Franc Jozef 4 dukati", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "bf1", product_id: "bf1", slug: "becka-filharmonija-1-10-oz", weight_g: 3.11, weight_oz: 0.1000, purity: 0.9999, fine_weight_g: 3.109, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 3, is_active: true, products: { name: "Bečka Filharmonija 1/10 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "bf2", product_id: "bf2", slug: "becka-filharmonija-1-4-oz", weight_g: 7.78, weight_oz: 0.2500, purity: 0.9999, fine_weight_g: 7.779, sku: null, stock_qty: 8, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 4, is_active: true, products: { name: "Bečka Filharmonija 1/4 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "bf3", product_id: "bf3", slug: "becka-filharmonija-1-2-oz", weight_g: 15.55, weight_oz: 0.5000, purity: 0.9999, fine_weight_g: 15.549, sku: null, stock_qty: 6, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 5, is_active: true, products: { name: "Bečka Filharmonija 1/2 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "bf4", product_id: "bf4", slug: "becka-filharmonija-1-oz", weight_g: 31.10, weight_oz: 1.0000, purity: 0.9999, fine_weight_g: 31.097, sku: null, stock_qty: 4, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 6, is_active: true, products: { name: "Bečka Filharmonija 1 oz", brand: "Munze Osterreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "d1", product_id: "d1", slug: "franc-jozef-1-dukat", weight_g: 3.49, weight_oz: 0.1123, purity: 0.9860, fine_weight_g: 3.44, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 1, is_active: true, products: { name: "Franc Jozef 1 dukat", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "d2", product_id: "d2", slug: "franc-jozef-4-dukati", weight_g: 13.96, weight_oz: 0.4492, purity: 0.9860, fine_weight_g: 13.76, sku: null, stock_qty: 5, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 2, is_active: true, products: { name: "Franc Jozef 4 dukati", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "bf1", product_id: "bf1", slug: "becka-filharmonija-1-10-oz", weight_g: 3.11, weight_oz: 0.1000, purity: 0.9999, fine_weight_g: 3.109, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 3, is_active: true, products: { name: "Bečka Filharmonija 1/10 oz", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "bf2", product_id: "bf2", slug: "becka-filharmonija-1-4-oz", weight_g: 7.78, weight_oz: 0.2500, purity: 0.9999, fine_weight_g: 7.779, sku: null, stock_qty: 8, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 4, is_active: true, products: { name: "Bečka Filharmonija 1/4 oz", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "bf3", product_id: "bf3", slug: "becka-filharmonija-1-2-oz", weight_g: 15.55, weight_oz: 0.5000, purity: 0.9999, fine_weight_g: 15.549, sku: null, stock_qty: 6, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 5, is_active: true, products: { name: "Bečka Filharmonija 1/2 oz", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
+  { id: "bf4", product_id: "bf4", slug: "becka-filharmonija-1-oz", weight_g: 31.10, weight_oz: 1.0000, purity: 0.9999, fine_weight_g: 31.097, sku: null, stock_qty: 4, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 6, is_active: true, products: { name: "Bečka Filharmonija 1 oz", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
 ];
 
 // ── Page ───────────────────────────────────────────────────────────────────
@@ -403,7 +403,7 @@ export default async function DukatSlugPage({
         schema={buildProductSchema({
           name: config.heroTitle,
           description: config.metaDescription,
-          brand: "Munze Osterreich",
+          brand: "Münze Österreich",
           slug: `/kategorija/zlatni-dukati/${slug}`,
           image: config.heroImage,
           purity: config.purity ?? "986/1000",
