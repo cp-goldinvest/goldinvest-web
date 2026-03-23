@@ -282,7 +282,7 @@ export default async function PoklonaZaKrstenjiePage() {
         introFull="Krštenje je jedan od najvažnijih događaja u životu deteta i porodice, a takav trenutak zaslužuje dar koji ne bledi. Umesto novca koji gubi vrednost ili igračaka koje se brzo prerastu, poklonite investiciono zlato — jedini poklon čija vrednost raste zajedno sa detetom. U našoj ponudi pronađite tradicionalne dukate i moderne zlatne pločice (od 1g do 10g), oslobođene poreza i spremne za darivanje."
         pills={[
           { label: "Zlatni dukati", href: "/kategorija/zlatni-dukati" },
-          { label: "Zlatne plocice", href: "/kategorija/zlatne-plocice" },
+          { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
         ]}
         introMaxWidth="none"
         centerOnDesktop
