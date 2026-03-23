@@ -100,92 +100,92 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     label: "Zlatna pločica 1g",
     metaTitle: "Zlatna pločica 1g | Cena i Prodaja - Gold Invest Beograd",
     metaDescription:
-      "Kupite zlatnu pločicu 1g čistoće 999,9 — C. Hafner, Argor-Heraeus. Najpopularniji poklon za krštenje i rođenje, oslobođen PDV-a. Transparentne cene, brza dostava.",
+      "Kupite zlatnu pločicu 1g čistoće 999,9 — C. Hafner, Argor-Heraeus. Najpopularniji poklon za krštenje i rođenje, oslobođena PDV-a. Transparentne cene, brza dostava.",
     intro:
       "Zlatna pločica od 1 grama je najpristupačniji ulaz u svet investicionog zlata i apsolutni broj jedan kada je reč o poklonima za krštenje i rođenje. Sadrži 99,99% čistog zlata (24 karata), dolazi fabrički zapečaćena u sigurnosnom blisteru koji je ujedno i sertifikat — i u potpunosti je oslobođena PDV-a. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
     seo: {
       brands: {
-        heading: "Nasa ponuda — plocice od 1g (LBMA standard)",
+        heading: "Naša ponuda — pločice od 1g (LBMA standard)",
         description:
-          "Sve plocice od 1g koje nudimo poticu iskljucivo od svetski priznatih rafinerija sa LBMA liste. Svaka dolazi fabricki zapecacena u sigurnosno blister pakovanje velicine bankovne kartice — vas zvanicni sertifikat cistote 999,9.",
+          "Sve pločice od 1g koje nudimo potiču isključivo od svetski priznatih rafinerija sa LBMA liste. Svaka dolazi fabrički zapečaćena u sigurnosnom blister pakovanju veličine bankovne kartice — vaš zvanični sertifikat čistoće 999,9.",
         cards: [
           {
-            title: "C. Hafner 1g — Nemacka",
-            body: "Nemacka rafinerija C. Hafner posebno je cenjena zbog svog ekoloskog pristupa — sve njihove plocice se kuju iskljucivo od recikliranog zlata, bez negativnog uticaja na zivotnu sredinu. Njihova plocica od 1g dolazi u elegantnom, tamnom blister pakovanju sa hologramom i karakteristicnim, modernim dizajnom. Odlican izbor za one koji zele spoj kvaliteta i eticke proizvodnje.",
+            title: "C. Hafner 1g — Nemačka",
+            body: "Nemačka rafinerija C. Hafner posebno je cenjena zbog svog ekološkog pristupa — sve njihove pločice se kuju isključivo od recikliranog zlata, bez negativnog uticaja na životnu sredinu. Njihova pločica od 1g dolazi u elegantnom, tamnom blister pakovanju sa hologramom i karakterističnim, modernim dizajnom. Odličan izbor za one koji žele spoj kvaliteta i etičke proizvodnje.",
           },
           {
-            title: "Argor-Heraeus 1g — Svajcarska",
-            body: "Svajcarski Argor-Heraeus je jedan od industrijskih standarda u svetu rafinerisanja zlata. Njihova plocica od 1g odlikuje se cistim, klasicnim dizajnom sa jasno istaknutim logotipom, tezinom, oznakom cistote i serijskim brojem. Izuzetno je trazena i prepoznatljiva na globalnom trzistu — garantovana likvidnost bilo gde u svetu.",
+            title: "Argor-Heraeus 1g — Švajcarska",
+            body: "Švajcarski Argor-Heraeus je jedan od industrijskih standarda u svetu rafinerisanja zlata. Njihova pločica od 1g odlikuje se čistim, klasičnim dizajnom sa jasno istaknutim logotipom, težinom, oznakom čistoće i serijskim brojem. Izuzetno je tražena i prepoznatljiva na globalnom tržištu — garantovana likvidnost bilo gde u svetu.",
           },
           {
             title: "The Royal Mint 1g — Velika Britanija",
-            body: "Zvanicna britanska drzavna kovnica nudi plocice od 1g sa prepoznatljivim motivom 'Britanije'. Dolaze u sigurnosnom blisteru i nose ogroman istorijski prrestiz koji ih cini posebno atraktivnim i kao kolekcionarskim predmetom, ali i kao investicijom.",
+            body: "Zvanična britanska državna kovnica nudi pločice od 1g sa prepoznatljivim motivom 'Britanije'. Dolaze u sigurnosnom blisteru i nose ogroman istorijski prestiž koji ih čini posebno atraktivnim i kao kolekcionarskim predmetom, ali i kao investicijom.",
           },
         ],
       },
       whyBuy: {
-        heading: "Zasto je zlatna plocica od 1g idealan poklon i investicija?",
+        heading: "Zašto je zlatna pločica od 1g idealan poklon i investicija?",
         description:
-          "Plocica od 1g je najmanja i najpristupacnija forma investicionog zlata — ali ne i najmanje vredna. Evo zasto je ovo format koji prodajemo vise od bilo kog drugog:",
+          "Pločica od 1g je najmanja i najpristupačnija forma investicionog zlata — ali ne i najmanje vredna. Evo zašto je ovo format koji prodajemo više od bilo kog drugog:",
         cards: [
           {
-            title: "Najpopularniji poklon za krstenje i rodjenje",
-            body: "Koverta sa novcem se lako potrosi i brzo zaboravi. Zlatna plocica od 1g je poklon koji ostaje zauvek — cuva vrednost, ne gubi na inflaciji i predstavlja pravo malo blago za dete koje odrasta. Pakovanje blister sertifikata izgleda izuzetno luksuzno i nosi utisak mnogo vrednijeg poklona nego sto je njegova cena.",
+            title: "Najpopularniji poklon za krštenje i rođenje",
+            body: "Koverta sa novcem se lako potroši i brzo zaboravi. Zlatna pločica od 1g je poklon koji ostaje zauvek — čuva vrednost, ne gubi na inflaciji i predstavlja pravo malo blago za dete koje odrasta. Pakovanje blister sertifikata izgleda izuzetno luksuzno i nosi utisak mnogo vrednijeg poklona nego što je njegova cena.",
           },
           {
-            title: "Ulaz u investiciono zlato za svaki budzet",
-            body: "Ne morate imati visok budzet da biste poceli da stedite u zlatu. Plocica od 1g omogucava vam da kupite malo zlata danas, malo sutra, i postepeno gradite portfolio. Svaki gram koji kupite je gram koji inflacija ne moze da pojede.",
+            title: "Ulaz u investiciono zlato za svaki budžet",
+            body: "Ne morate imati visok budžet da biste počeli da štedite u zlatu. Pločica od 1g omogućava vam da kupite malo zlata danas, malo sutra, i postepeno gradite portfolio. Svaki gram koji kupite je gram koji inflacija ne može da pojede.",
           },
           {
-            title: "Oslobodjena PDV-a — ceo iznos ide u zlato",
-            body: "Za razliku od zlatnog nakita iz zlatare (gde placate 20% PDV-a i visoku marzu za rad), zlatna plocica od 1g je po zakonu oslobodjena svih poreza. Svaki dinar koji date pretvara se direktno u vrednost cistog zlata u vasim rukama.",
+            title: "Oslobođena PDV-a — ceo iznos ide u zlato",
+            body: "Za razliku od zlatnog nakita iz zlatare (gde plaćate 20% PDV-a i visoku maržu za rad), zlatna pločica od 1g je po zakonu oslobođena svih poreza. Svaki dinar koji date pretvara se direktno u vrednost čistog zlata u vašim rukama.",
           },
         ],
       },
       priceStructure: {
-        title: "Cena zlatne plocice od 1g",
+        title: "Cena zlatne pločice od 1g",
         description:
-          "Gold Invest vam pruza apsolutnu transparentnost cena — bez skrivenih troskova. Svaka plocica od 1g ima jasno istaknute sve tri cene:",
+          "Gold Invest vam pruža apsolutnu transparentnost cena — bez skrivenih troškova. Svaka pločica od 1g ima jasno istaknute sve tri cene:",
         card1Body:
-          "Cena za plocice koje su fizicki prisutne u nasem trezoru. Uplatite i preuzmite svoje zlato istog dana — bez cekanja.",
+          "Cena za pločice koje su fizički prisutne u našem trezoru. Uplatite i preuzmite svoje zlato istog dana — bez čekanja.",
         card2Body:
-          "Zelite da kupite veci broj plocica od 1g odjednom (npr. za poklon na krstenici)? Uplatite iznos unapred, zakljucajte trenutnu berzansku cenu i mi robu direktno porucujemo iz kovnice uz znacajnu ustedu.",
+          "Želite da kupite veći broj pločica od 1g odjednom (npr. za poklon na krštenici)? Uplatite iznos unapred, zaključajte trenutnu berzansku cenu i mi robu direktno poručujemo iz kovnice uz značajnu uštedu.",
         card3Body:
-          "Garantovani iznos po kom Gold Invest u svakom trenutku otkupljuje vase plocice — javno istaknut, bez iznenadenja. Likvidnost investicionog zlata je apsolutna.",
+          "Garantovani iznos po kom Gold Invest u svakom trenutku otkupljuje vaše pločice — javno istaknut, bez iznenađenja. Likvidnost investicionog zlata je apsolutna.",
       },
       delivery: {
-        heading: "Prodaja zlatnih plocica 1g Beograd — Gold Invest",
+        heading: "Prodaja zlatnih pločica 1g Beograd — Gold Invest",
         description:
-          "Kupovina zlatnih plocica od 1g je brza i potpuno bezbedna. Nudimo preuzimanje na vise nacina — uvek diskretno i osigurano.",
+          "Kupovina zlatnih pločica od 1g je brza i potpuno bezbedna. Nudimo preuzimanje na više načina — uvek diskretno i osigurano.",
         pickupCardBody:
-          "Posetite nas licno u Beogradu. Diskretno okruzenje, strucna provera i preuzimanje na licu mesta — bez cekanja.",
+          "Posetite nas lično u Beogradu. Diskretno okruženje, stručna provera i preuzimanje na licu mesta — bez čekanja.",
       },
       faq: {
-        title: "Cesta pitanja o zlatnoj plocici od 1g",
+        title: "Česta pitanja o zlatnoj pločici od 1g",
         items: [
           {
-            q: "Zasto je premija (marza) na plocicu od 1g veca nego na vece formate?",
-            a: "Troskovi proizvodnje, pakovanja i sertifikacije su gotovo isti bez obzira da li se kuje plocica od 1g ili od 100g. Kada se ti fiksni troskovi podele na samo 1 gram zlata, premija po gramu je matematicki veca. Zato je plocica od 1g idealna kao poklon ili pocetni korak u stednji, ali ako zelite da investirate vecu sumu, isplativije je kupiti vise plocica od 5g ili 10g.",
+            q: "Zašto je premija (marža) na pločicu od 1g veća nego na veće formate?",
+            a: "Troškovi proizvodnje, pakovanja i sertifikacije su gotovo isti bez obzira da li se kuje pločica od 1g ili od 100g. Kada se ti fiksni troškovi podele na samo 1 gram zlata, premija po gramu je matematički veća. Zato je pločica od 1g idealna kao poklon ili početni korak u štednji, ali ako želite da investirate veću sumu, isplativije je kupiti više pločica od 5g ili 10g.",
           },
           {
-            q: "Da li uz plocicu dobijam sertifikat?",
-            a: "Da. Plocica dolazi fabricki zapecacena u cvrstom plasticnom blisteru velicine platne kartice. Na pakovanju su odstampani logo rafinerije, cistota, tezina i jedinstveni serijski broj koji je laserski upisan i na samu plocicu. To pakovanje je vas sertifikat. Nikada ga ne otvarajte — otvoreno pakovanje trajno smanjuje otkupnu vrednost plocice.",
+            q: "Da li uz pločicu dobijam sertifikat?",
+            a: "Da. Pločica dolazi fabrički zapečaćena u čvrstom plastičnom blisteru veličine platne kartice. Na pakovanju su odštampani logo rafinerije, čistoća, težina i jedinstveni serijski broj koji je laserski upisan i na samu pločicu. To pakovanje je vaš sertifikat. Nikada ga ne otvarajte — otvoreno pakovanje trajno smanjuje otkupnu vrednost pločice.",
           },
           {
-            q: "Da li se na plocicu od 1g placa PDV?",
-            a: "Ne. Sve plocice cistote iznad 995/1000 tretiraju se po zakonu kao investiciono zlato i u potpunosti su oslobodjene placanja PDV-a od 20% i poreza na kapitalnu dobit u Republici Srbiji.",
+            q: "Da li se na pločicu od 1g plaća PDV?",
+            a: "Ne. Sve pločice čistoće iznad 995/1000 tretiraju se po zakonu kao investiciono zlato i u potpunosti su oslobođene plaćanja PDV-a od 20% i poreza na kapitalnu dobit u Republici Srbiji.",
           },
           {
-            q: "Kako da plocicu poklonite kao poklon za krstenje?",
-            a: "Plocica od 1g vec u svom originalnom blisteru izgleda izuzetno elegantno i luksuzno. Gold Invest dodatno nudi mogucnost pakovanja u ekskluzivnu poklon kutijicu, sto dar cini potpuno gotovim za predaju. Kontaktirajte nas za detalje o pakovanju.",
+            q: "Kako da pločicu poklonite kao poklon za krštenje?",
+            a: "Pločica od 1g već u svom originalnom blisteru izgleda izuzetno elegantno i luksuzno. Gold Invest dodatno nudi mogućnost pakovanja u ekskluzivnu poklon kutijicu, što dar čini potpuno gotovim za predaju. Kontaktirajte nas za detalje o pakovanju.",
           },
           {
-            q: "Koji je limit za placanje u gotovini?",
-            a: "Zakon o sprecavanju pranja novca dozvoljava gotovinska placanja do 1.160.000 dinara (10.000 evra). S obzirom na cenu plocice od 1g, mozete bez ikakvih problema kupiti i veci broj plocica i platiti u kesu.",
+            q: "Koji je limit za plaćanje u gotovini?",
+            a: "Zakon o sprečavanju pranja novca dozvoljava gotovinska plaćanja do 1.160.000 dinara (10.000 evra). S obzirom na cenu pločice od 1g, možete bez ikakvih problema kupiti i veći broj pločica i platiti u kešu.",
           },
           {
             q: "Koliko traje isporuka?",
-            a: "Za klijente u Beogradu nudimo isporuku dan za dan — ukoliko je porudzbina evidentirana radnim danima do 12h, zlato stize na vasu adresu istog dana do 18h. Za porudzbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana.",
+            a: "Za klijente u Beogradu nudimo isporuku dan za dan — ukoliko je porudžbina evidentirana radnim danima do 12h, zlato stiže na vašu adresu istog dana do 18h. Za porudžbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana.",
           },
         ],
       },
@@ -201,87 +201,87 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
       "Zlatna pločica od 2 grama je savršen balans između simboličnog poklona i ozbiljnog prvog koraka u štednji. Duplo više zlata od najmanjih pločica, uz nešto povoljniju premiju po gramu — a i dalje sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
     seo: {
       brands: {
-        heading: "Nasa ponuda — plocice od 2g (LBMA standard)",
+        heading: "Naša ponuda — pločice od 2g (LBMA standard)",
         description:
-          "Sve plocice od 2g u nasoj ponudi poticu od svetski priznatih LBMA rafinerija. Svaka dolazi fabricki zapecacena — pakovanje je ujedno i sertifikat cistote 999,9, sa upisanim serijskim brojem.",
+          "Sve pločice od 2g u našoj ponudi potiču od svetski priznatih LBMA rafinerija. Svaka dolazi fabrički zapečaćena — pakovanje je ujedno i sertifikat čistoće 999,9, sa upisanim serijskim brojem.",
         cards: [
           {
-            title: "Argor-Heraeus 2g — Svajcarska",
-            body: "Svajcarski Argor-Heraeus je jedan od simbola pouzdanosti na globalnom trzistu zlata. Njihova plocica od 2g nosi precizni laserski serijski broj, logo kovnice i oznaku cistote. Svedeni, klasicni dizajn garantuje maksimalnu prepoznatljivost i likvidnost na svim trzistima.",
+            title: "Argor-Heraeus 2g — Švajcarska",
+            body: "Švajcarski Argor-Heraeus je jedan od simbola pouzdanosti na globalnom tržištu zlata. Njihova pločica od 2g nosi precizni laserski serijski broj, logo kovnice i oznaku čistoće. Sveden, klasičan dizajn garantuje maksimalnu prepoznatljivost i likvidnost na svim tržištima.",
           },
           {
-            title: "C. Hafner 2g — Nemacka",
-            body: "Nemacka rafinerija C. Hafner kuje plocice iskljucivo od recikliranog zlata, sto ih cini posebno privlacnim za kupce koji vode racuna o etickom poreklu metala. Plocica od 2g pakuje se u karakteristicni tamni blister sa hologramom — elegantan i upecatljiv i kao poklon.",
+            title: "C. Hafner 2g — Nemačka",
+            body: "Nemačka rafinerija C. Hafner kuje pločice isključivo od recikliranog zlata, što ih čini posebno privlačnim za kupce koji vode računa o etičkom poreklu metala. Pločica od 2g pakuje se u karakteristični tamni blister sa hologramom — elegantan i upečatljiv i kao poklon.",
           },
           {
             title: "The Royal Mint 2g — Velika Britanija",
-            body: "Zvanicna britanska kovnica, jedna od najstarijih na svetu, nudi plocice od 2g sa prepoznatljivim ikonografskim dizajnom. Dolaze u sigurnosnom blisteru i nose autoritet britanske drzavne institucije — idealne i za kolekcionare i za investitore.",
+            body: "Zvanična britanska kovnica, jedna od najstarijih na svetu, nudi pločice od 2g sa prepoznatljivim ikonografskim dizajnom. Dolaze u sigurnosnom blisteru i nose autoritet britanske državne institucije — idealne i za kolekcionare i za investitore.",
           },
         ],
       },
       whyBuy: {
-        heading: "Zasto kupiti zlatnu plocicu od 2g?",
+        heading: "Zašto kupiti zlatnu pločicu od 2g?",
         description:
-          "Plocica od 2g je idealan kompromis — vredna je vise od simbolicne plocice od 1g, a i dalje pristupacna kao poklon ili pocetna stednja. Evo konkretnih razloga:",
+          "Pločica od 2g je idealan kompromis — vredna je više od simbolične pločice od 1g, a i dalje pristupačna kao poklon ili početna štednja. Evo konkretnih razloga:",
         cards: [
           {
-            title: "Povoljnija premija nego plocica od 1g",
-            body: "Isti fiksni troskovi proizvodnje i pakovanja sada se dele na duplo vise grama zlata. To znaci da je cena po gramu cistog zlata kod plocice od 2g niza nego kod plocice od 1g — uz isti nivo kvaliteta, pakovanja i sertifikacije. Matematicki pametniji korak ako imate budzet.",
+            title: "Povoljnija premija nego pločica od 1g",
+            body: "Isti fiksni troškovi proizvodnje i pakovanja sada se dele na duplo više grama zlata. To znači da je cena po gramu čistog zlata kod pločice od 2g niža nego kod pločice od 1g — uz isti nivo kvaliteta, pakovanja i sertifikacije. Matematički pametniji korak ako imate budžet.",
           },
           {
-            title: "Poklon koji impresionira — za svadbe, krstenja, rodjendane",
-            body: "Plocica od 2g u svom blisteru izgleda impresivno i luksuzno, a apsolutna vrednost poklona je opipljivo veca od plocice od 1g. Postala je popularni izbor za kumove i blizu rodbinu na krstenjima, ali i kao godisnjicki poklon partnerima i roditeljima.",
+            title: "Poklon koji impresionira — za svadbe, krštenja, rođendane",
+            body: "Pločica od 2g u svom blisteru izgleda impresivno i luksuzno, a apsolutna vrednost poklona je opipljivo veća od pločice od 1g. Postala je popularni izbor za kumove i blisku rodbinu na krštenjima, ali i kao godišnji poklon partnerima i roditeljima.",
           },
           {
-            title: "Pocetna tacka sistemske stednje",
-            body: "Kupovina jedne plocice od 2g mesecno je disciplinovana strategija gradnje zlatnog portfolija. Za godinu dana imate 24 grama investicionog zlata koje je u potpunosti sacuvano od inflacije — bez bankovnih provizija, bez poreza, bez rizika.",
+            title: "Početna tačka sistemske štednje",
+            body: "Kupovina jedne pločice od 2g mesečno je disciplinovana strategija gradnje zlatnog portfolija. Za godinu dana imate 24 grama investicionog zlata koje je u potpunosti sačuvano od inflacije — bez bankovnih provizija, bez poreza, bez rizika.",
           },
         ],
       },
       priceStructure: {
-        title: "Cena zlatne plocice od 2g",
+        title: "Cena zlatne pločice od 2g",
         description:
-          "Transparentnost je osnova naseg poslovanja. Svaka plocica od 2g ima jasno istaknute sve tri cene:",
+          "Transparentnost je osnova našeg poslovanja. Svaka pločica od 2g ima jasno istaknute sve tri cene:",
         card1Body:
-          "Cena za plocice koje su fizicki u nasem trezoru. Uplatite i preuzmite istog dana — bez cekanja i skrivenih troskova.",
+          "Cena za pločice koje su fizički u našem trezoru. Uplatite i preuzmite istog dana — bez čekanja i skrivenih troškova.",
         card2Body:
-          "Kupujete vise plocica od 2g? Unaprednom uplatom zakljucavate trenutnu berzansku cenu i robu direktno porucujemo iz rafinerije uz znacajnu ustedu po gramu.",
+          "Kupujete više pločica od 2g? Unaprednom uplatom zaključavate trenutnu berzansku cenu i robu direktno poručujemo iz rafinerije uz značajnu uštedu po gramu.",
         card3Body:
-          "Iznos po kom Gold Invest garantovano otkupljuje vase plocice od 2g u svakom trenutku — uvek javno istaknut, bez iznenadenja.",
+          "Iznos po kom Gold Invest garantovano otkupljuje vaše pločice od 2g u svakom trenutku — uvek javno istaknut, bez iznenađenja.",
       },
       delivery: {
-        heading: "Prodaja zlatnih plocica 2g Beograd — Gold Invest",
+        heading: "Prodaja zlatnih pločica 2g Beograd — Gold Invest",
         description:
-          "Kupovina plocica od 2g je brza i potpuno bezbedna. Nudimo vise nacina preuzimanja — uvek diskretno i osigurano.",
+          "Kupovina pločica od 2g je brza i potpuno bezbedna. Nudimo više načina preuzimanja — uvek diskretno i osigurano.",
         pickupCardBody:
-          "Posetite nas licno u Beogradu. Diskretno okruzenje, strucna provera autenticnosti i preuzimanje na licu mesta — bez cekanja.",
+          "Posetite nas lično u Beogradu. Diskretno okruženje, stručna provera autentičnosti i preuzimanje na licu mesta — bez čekanja.",
       },
       faq: {
-        title: "Cesta pitanja o zlatnoj plocici od 2g",
+        title: "Česta pitanja o zlatnoj pločici od 2g",
         items: [
           {
-            q: "Koja je razlika izmedju plocice od 1g i 2g — koja se vise isplati?",
-            a: "Oba formata su odlican izbor, ali plocica od 2g nudi nesto povoljniju premiju (marzu) po gramu, jer se fiksni troskovi proizvodnje i pakovanja dele na duplo vise zlata. Ako vam je cilj iskljucivo poklon sa simbolicnom vrednoscu — 1g je dovoljna. Ako zelite maksimalnu vrednost za isti budzet — 2g je pametniji izbor.",
+            q: "Koja je razlika između pločice od 1g i 2g — koja se više isplati?",
+            a: "Oba formata su odličan izbor, ali pločica od 2g nudi nešto povoljniju premiju (maržu) po gramu, jer se fiksni troškovi proizvodnje i pakovanja dele na duplo više zlata. Ako vam je cilj isključivo poklon sa simboličnom vrednošću — 1g je dovoljna. Ako želite maksimalnu vrednost za isti budžet — 2g je pametniji izbor.",
           },
           {
-            q: "Da li uz plocicu dobijam sertifikat?",
-            a: "Da. Plocica dolazi fabricki zapecacena u cvrstom blisteru sa logom rafinerije, cistotom, tezinom i jedinstvenim serijskim brojem laserski upisanim i na samu plocicu. To pakovanje je vas sertifikat. Nikada ga ne otvarajte — otvoreno pakovanje smanjuje otkupnu vrednost.",
+            q: "Da li uz pločicu dobijam sertifikat?",
+            a: "Da. Pločica dolazi fabrički zapečaćena u čvrstom blisteru sa logom rafinerije, čistoćom, težinom i jedinstvenim serijskim brojem laserski upisanim i na samu pločicu. To pakovanje je vaš sertifikat. Nikada ga ne otvarajte — otvoreno pakovanje smanjuje otkupnu vrednost.",
           },
           {
-            q: "Da li se na plocicu od 2g placa PDV?",
-            a: "Ne. Sve plocice cistote iznad 995/1000 po zakonu su investiciono zlato i potpuno su oslobodjene PDV-a od 20% i poreza na kapitalnu dobit u Srbiji.",
+            q: "Da li se na pločicu od 2g plaća PDV?",
+            a: "Ne. Sve pločice čistoće iznad 995/1000 po zakonu su investiciono zlato i potpuno su oslobođene PDV-a od 20% i poreza na kapitalnu dobit u Srbiji.",
           },
           {
-            q: "Mogu li da kupim vise plocica odjednom?",
-            a: "Apsolutno. Kupovina vece kolicine plocica od 2g je cest slucaj — bilo za poklone (krstenja, svadbe), bilo za sistematsku mesecnu stednju. Za vece kolicine preporucujemo avansnu kupovinu kojom zakljucavate povoljniju cenu.",
+            q: "Mogu li da kupim više pločica odjednom?",
+            a: "Apsolutno. Kupovina veće količine pločica od 2g je čest slučaj — bilo za poklone (krštenja, svadbe), bilo za sistematsku mesečnu štednju. Za veće količine preporučujemo avansnu kupovinu kojom zaključavate povoljniju cenu.",
           },
           {
-            q: "Koji je limit za placanje u gotovini?",
-            a: "Zakon dozvoljava gotovinska placanja do 1.160.000 dinara (10.000 evra). S obzirom na cenu plocice od 2g, bez ikakvih problema mozete kupiti veci broj i platiti u kesu.",
+            q: "Koji je limit za plaćanje u gotovini?",
+            a: "Zakon dozvoljava gotovinska plaćanja do 1.160.000 dinara (10.000 evra). S obzirom na cenu pločice od 2g, bez ikakvih problema možete kupiti veći broj i platiti u kešu.",
           },
           {
             q: "Koliko traje isporuka?",
-            a: "Za klijente u Beogradu nudimo isporuku dan za dan — porudzbine evidentirane radnim danima do 12h stizu istog dana do 18h. Za ostatak Srbije, diskretna i osigurana dostava traje 1 do 3 radna dana.",
+            a: "Za klijente u Beogradu nudimo isporuku dan za dan — porudžbine evidentirane radnim danima do 12h stižu istog dana do 18h. Za ostatak Srbije, diskretna i osigurana dostava traje 1 do 3 radna dana.",
           },
         ],
       },
@@ -297,87 +297,87 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
       "Zlatna pločica od 5 grama je najpopularniji format za sistematsku mesečnu štednju u zlatu. Nudi značajno povoljniju premiju po gramu u poređenju sa manjim pločicama, dovoljno je pristupačna da je možete kupovati redovno, a dovoljno vredna da za godinu dana osetite razliku. Sadrži 99,99% čistog zlata (24 karata), potpuno je oslobođena PDV-a. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
     seo: {
       brands: {
-        heading: "Nasa ponuda — plocice od 5g (LBMA standard)",
+        heading: "Naša ponuda — pločice od 5g (LBMA standard)",
         description:
-          "Sve plocice od 5g u nasoj ponudi kuju se u rafinerijama sa LBMA liste — svetskog standarda za investiciono zlato. Svaka dolazi fabricki zapecacena u sigurnosnom blisteru koji je ujedno i sertifikat cistote 999,9.",
+          "Sve pločice od 5g u našoj ponudi kuju se u rafinerijama sa LBMA liste — svetskog standarda za investiciono zlato. Svaka dolazi fabrički zapečaćena u sigurnosnom blisteru koji je ujedno i sertifikat čistoće 999,9.",
         cards: [
           {
-            title: "Argor-Heraeus 5g — Svajcarska",
-            body: "Argor-Heraeus je referentna svajcarska rafinerija i jedan od najprepoznatljivijih brendova u svetu investicionog zlata. Njihova plocica od 5g je klasican, sveeden dizajn sa serijskim brojem, logom i oznakom cistote — garantovana likvidnost na svim kontinentima.",
+            title: "Argor-Heraeus 5g — Švajcarska",
+            body: "Argor-Heraeus je referentna švajcarska rafinerija i jedan od najprepoznatljivijih brendova u svetu investicionog zlata. Njihova pločica od 5g je klasičan, sveden dizajn sa serijskim brojem, logom i oznakom čistoće — garantovana likvidnost na svim kontinentima.",
           },
           {
-            title: "C. Hafner 5g — Nemacka",
-            body: "Nemacka rafinerija C. Hafner sa tradicijom od 170+ godina kuje plocice iskljucivo od recikliranog zlata. Plocica od 5g dolazi u elegantnom tamnom blisteru sa hologramom. Posebno popularna medju kupcima koji cene eticko poreklo metala uz vrhunski nemacki kvalitet.",
+            title: "C. Hafner 5g — Nemačka",
+            body: "Nemačka rafinerija C. Hafner sa tradicijom od 170+ godina kuje pločice isključivo od recikliranog zlata. Pločica od 5g dolazi u elegantnom tamnom blisteru sa hologramom. Posebno popularna među kupcima koji cene etičko poreklo metala uz vrhunski nemački kvalitet.",
           },
           {
             title: "The Royal Mint 5g — Velika Britanija",
-            body: "Britanska drzavna kovnica nudi plocice od 5g sa prepoznatljivim ikonografskim dizajnom i autoritetom jedne od najstarijih kovnica na svetu. Dolaze u sigurnosnom blisteru i odlican su izbor za kolekcionare koji zele da kombinuju estetiku i investicionu vrednost.",
+            body: "Britanska državna kovnica nudi pločice od 5g sa prepoznatljivim ikonografskim dizajnom i autoritetom jedne od najstarijih kovnica na svetu. Dolaze u sigurnosnom blisteru i odličan su izbor za kolekcionare koji žele da kombinuju estetiku i investicionu vrednost.",
           },
         ],
       },
       whyBuy: {
-        heading: "Zasto je zlatna plocica od 5g idealna za mesecnu stednju?",
+        heading: "Zašto je zlatna pločica od 5g idealna za mesečnu štednju?",
         description:
-          "Format od 5 grama je tacka na kojoj premija po gramu pocinje ozbiljno da pada, a vrednost svake kupovine pocinje ozbiljno da raste. Evo zasto ga preporucujemo svima koji zele da sistematski grade portfolio:",
+          "Format od 5 grama je tačka na kojoj premija po gramu počinje ozbiljno da pada, a vrednost svake kupovine počinje ozbiljno da raste. Evo zašto ga preporučujemo svima koji žele da sistematski grade portfolio:",
         cards: [
           {
-            title: "Znacajno niza premija nego kod 1g i 2g",
-            body: "Na plocici od 5g isti fiksni troskovi proizvodnje i sertifikacije se dele na 5 puta vise zlata nego kod plocice od 1g. Rezultat: cena po gramu cistog zlata je osetno niza. To je finansijski najvaznija razlika — za isti budzet dobijate vise stvarnog zlata.",
+            title: "Značajno niža premija nego kod 1g i 2g",
+            body: "Na pločici od 5g isti fiksni troškovi proizvodnje i sertifikacije dele se na 5 puta više zlata nego kod pločice od 1g. Rezultat: cena po gramu čistog zlata je osetno niža. To je finansijski najvažnija razlika — za isti budžet dobijate više stvarnog zlata.",
           },
           {
-            title: "Optimalan format za mesecnu stednju",
-            body: "Kupovina jedne plocice od 5g mesecno je strategija kojom za godinu dana akumulirate 60 grama investicionog zlata. Svaki gram je zastitjen od inflacije, dostupan u svakom trenutku, i moze se unovciti bez poreza. Banka ne moze to da vam ponudi.",
+            title: "Optimalan format za mesečnu štednju",
+            body: "Kupovina jedne pločice od 5g mesečno je strategija kojom za godinu dana akumulirate 60 grama investicionog zlata. Svaki gram je zaštićen od inflacije, dostupan u svakom trenutku, i može se unovčiti bez poreza. Banka ne može to da vam ponudi.",
           },
           {
             title: "Dovoljno mala da je fleksibilna, dovoljno velika da je vredna",
-            body: "Za razliku od poluga od 50g ili 100g koje morate prodati odjednom, plocice od 5g vam daju kontrolu — prodate tacno onoliko koliko vam treba. Kombinacija fleksibilnosti i povoljne premije cini je 'zlatnim standardom' u kategoriji plocica.",
+            body: "Za razliku od poluga od 50g ili 100g koje morate prodati odjednom, pločice od 5g vam daju kontrolu — prodate tačno onoliko koliko vam treba. Kombinacija fleksibilnosti i povoljne premije čini je „zlatnim standardom“ u kategoriji pločica.",
           },
         ],
       },
       priceStructure: {
-        title: "Cena zlatne plocice od 5g",
+        title: "Cena zlatne pločice od 5g",
         description:
-          "Transparentnost je osnova naseg poslovanja. Svaka plocica od 5g ima jasno istaknute sve tri cene:",
+          "Transparentnost je osnova našeg poslovanja. Svaka pločica od 5g ima jasno istaknute sve tri cene:",
         card1Body:
-          "Cena za plocice koje su fizicki u nasem trezoru. Uplatite i preuzmite zlato istog dana — bez cekanja.",
+          "Cena za pločice koje su fizički u našem trezoru. Uplatite i preuzmite zlato istog dana — bez čekanja.",
         card2Body:
-          "Kupujete 5, 10 ili vise plocica od 5g? Avansom zakljucavate trenutnu berzansku cenu i robu direktno porucujemo iz rafinerije (Svajcarska, Nemacka). Vi dobijate najpovoljniju moguca cenu.",
+          "Kupujete 5, 10 ili više pločica od 5g? Avansom zaključavate trenutnu berzansku cenu i robu direktno poručujemo iz rafinerije (Švajcarska, Nemačka). Vi dobijate najpovoljniju moguću cenu.",
         card3Body:
-          "Garantovani iznos po kom Gold Invest otkupljuje vase plocice od 5g — uvek javno istaknut. Zbog visoke likvidnosti ovog formata, spread je minimalan.",
+          "Garantovani iznos po kom Gold Invest otkupljuje vaše pločice od 5g — uvek javno istaknut. Zbog visoke likvidnosti ovog formata, spread je minimalan.",
       },
       delivery: {
-        heading: "Prodaja zlatnih plocica 5g Beograd — Gold Invest",
+        heading: "Prodaja zlatnih pločica 5g Beograd — Gold Invest",
         description:
-          "Kupovina plocica od 5g je brza i potpuno bezbedna. Nudimo vise nacina preuzimanja — uvek diskretno i maksimalno osigurano.",
+          "Kupovina pločica od 5g je brza i potpuno bezbedna. Nudimo više načina preuzimanja — uvek diskretno i maksimalno osigurano.",
         pickupCardBody:
-          "Posetite nas licno u Beogradu. Strucna provera autenticnosti i preuzimanje na licu mesta — bez cekanja, u potpuno diskretnom okruzenju.",
+          "Posetite nas lično u Beogradu. Stručna provera autentičnosti i preuzimanje na licu mesta — bez čekanja, u potpuno diskretnom okruženju.",
       },
       faq: {
-        title: "Cesta pitanja o zlatnoj plocici od 5g",
+        title: "Česta pitanja o zlatnoj pločici od 5g",
         items: [
           {
-            q: "Da li je plocica od 5g bolja investicija od plocice od 1g?",
-            a: "Sa cisto finansijskog stanovista — da. Premija (marza) po gramu je niza kod plocice od 5g jer se fiksni troskovi proizvodnje i sertifikacije dele na pet puta vise zlata. Medutim, plocica od 1g ima prednost kao poklon (simbolicna vrednost, pristupacna cena). Za sistematsku stednju i investiranje, 5g je osetno isplativiji format.",
+            q: "Da li je pločica od 5g bolja investicija od pločice od 1g?",
+            a: "Sa čisto finansijskog stanovišta — da. Premija (marža) po gramu je niža kod pločice od 5g jer se fiksni troškovi proizvodnje i sertifikacije dele na pet puta više zlata. Međutim, pločica od 1g ima prednost kao poklon (simbolična vrednost, pristupačna cena). Za sistematsku štednju i investiranje, 5g je osetno isplativiji format.",
           },
           {
-            q: "Da li uz plocicu dobijam sertifikat?",
-            a: "Da. Plocica dolazi fabricki zapecacena u cvrstom blisteru sa logom rafinerije, cistotom, tezinom i jedinstvenim serijskim brojem laserski upisanim i na samu plocicu. To pakovanje je vas sertifikat autenticnosti. Zlatno pravilo: nikada ga ne otvarajte.",
+            q: "Da li uz pločicu dobijam sertifikat?",
+            a: "Da. Pločica dolazi fabrički zapečaćena u čvrstom blisteru sa logom rafinerije, čistoćom, težinom i jedinstvenim serijskim brojem laserski upisanim i na samu pločicu. To pakovanje je vaš sertifikat autentičnosti. Zlatno pravilo: nikada ga ne otvarajte.",
           },
           {
-            q: "Da li se na plocicu od 5g placa PDV?",
-            a: "Ne. Sve plocice cistote iznad 995/1000 tretiraju se po zakonu kao investiciono zlato i potpuno su oslobodjene PDV-a i poreza na kapitalnu dobit u Srbiji.",
+            q: "Da li se na pločicu od 5g plaća PDV?",
+            a: "Ne. Sve pločice čistoće iznad 995/1000 tretiraju se po zakonu kao investiciono zlato i potpuno su oslobođene PDV-a i poreza na kapitalnu dobit u Srbiji.",
           },
           {
-            q: "Koliko plocica od 5g treba kupiti da bi stednja imala smisla?",
-            a: "Ne postoji minimalni prag — cak i jedna plocica mesecno je korisna. Medutim, vecina nasih klijenata koji redovno steده odabira ritam od 2 do 4 plocice mesecno (10g do 20g), sto im godisnje da 120g do 240g zlata — ozbiljan finansijski jastuk.",
+            q: "Koliko pločica od 5g treba kupiti da bi štednja imala smisla?",
+            a: "Ne postoji minimalni prag — čak i jedna pločica mesečno je korisna. Međutim, većina naših klijenata koji redovno štede bira ritam od 2 do 4 pločice mesečno (10g do 20g), što im godišnje daje 120g do 240g zlata — ozbiljan finansijski jastuk.",
           },
           {
-            q: "Koji je limit za placanje u gotovini?",
-            a: "Zakon dozvoljava gotovinska placanja do 1.160.000 dinara (10.000 evra). Mozete bez problema kupiti veci broj plocica od 5g i platiti u kesu.",
+            q: "Koji je limit za plaćanje u gotovini?",
+            a: "Zakon dozvoljava gotovinska plaćanja do 1.160.000 dinara (10.000 evra). Možete bez problema kupiti veći broj pločica od 5g i platiti u kešu.",
           },
           {
             q: "Koliko traje isporuka?",
-            a: "Za klijente u Beogradu nudimo isporuku dan za dan — porudzbine evidentirane radnim danima do 12h stizu istog dana do 18h. Za ostatak Srbije, diskretna i osigurana dostava traje 1 do 3 radna dana.",
+            a: "Za klijente u Beogradu nudimo isporuku dan za dan — porudžbine evidentirane radnim danima do 12h stižu istog dana do 18h. Za ostatak Srbije, diskretna i osigurana dostava traje 1 do 3 radna dana.",
           },
         ],
       },
@@ -393,9 +393,9 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
       "Zlatna pločica 10 grama je idealan izbor za redovnu mesečnu štednju, ali i kao izuzetno vredan i prestižan poklon. U našoj ponudi se nalaze isključivo pločice čistoće 999,9 svetskih lidera: Argor-Heraeus, C. Hafner i The Royal Mint. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
     seo: {
       brands: {
-        heading: "Nasa ponuda — evropski brendovi (LBMA standard)",
+        heading: "Naša ponuda — evropski brendovi (LBMA standard)",
         description:
-          "Sve pločice su investiciono zlato koje ispunjava najstrože svetske LBMA ('Good Delivery') standarde, maksimalne finoće od 99.99% (24 karata) i dolaze fabrički zapečaćene u sigurnosno blister pakovanje — vaš zvanični sertifikat.",
+          "Sve pločice su investiciono zlato koje ispunjava najstrože svetske LBMA ('Good Delivery') standarde, maksimalne finoće od 99.99% (24 karata) i dolaze fabrički zapečaćene u sigurnosnom blister pakovanju — vaš zvanični sertifikat.",
         cards: [
           {
             title: "Argor-Heraeus 10g — Švajcarska",
@@ -437,7 +437,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         card1Body:
           "Važi za pločice koje su fizički prisutne u našem trezoru. Uplatite i preuzmite svoje zlato istog dana.",
         card2Body:
-          "Zelite da kupite 5, 10 ili više pločica od 10g? Uplatite celokupan iznos unapred i zaključajte trenutnu berzansku cenu. Mi robu direktno poručujemo iz kovnica (Švajcarska, Nemačka, Britanija), a vi dobijate najpovoljniju moguću cenu.",
+          "Želite da kupite 5, 10 ili više pločica od 10g? Uplatite celokupni iznos unapred i zaključajte trenutnu berzansku cenu. Mi robu direktno poručujemo iz kovnica (Švajcarska, Nemačka, Britanija), a vi dobijate najpovoljniju moguću cenu.",
         card3Body:
           "Garantovani iznos po kojem Gold Invest u svakom trenutku otkupljuje vaše pločice. Zbog ogromne popularnosti gramaže od 10g, naš spread (razlika između prodajne i otkupne cene) je minimalan.",
       },
@@ -446,7 +446,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         description:
           "Kupovina zlatnih pločica od 10g je brza i bezbedna. Nudimo tri načina preuzimanja — uvek diskretno i osigurano.",
         pickupCardBody:
-          "Cekamo vas u sigurnoj kancelariji u Beogradu. Bez čekanja, u potpuno diskretnom okruženju.",
+          "Čekamo vas u sigurnoj kancelariji u Beogradu. Bez čekanja, u potpuno diskretnom okruženju.",
       },
       faq: {
         title: "Česta pitanja o zlatnoj pločici od 10g",
@@ -457,7 +457,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           },
           {
             q: "Da li uz pločicu dobijam sertifikat?",
-            a: "Da. Sama pločica je isporučena iz kovnice u čvrstom plastičnom pakovanju (blisteru) veličine platne bankovne kartice. Na tom pakovanju su jasno odštampani logo rafinerije, čistoća, težina i jedinstveni serijski broj koji je laserski upisan i na samu pločicu. To pakovanje predstavlja vaš neosporivi sertifikat. Zlatno pravilo: nikada ne otvarajte i ne secite pakovanje, jer time trajno narušavate vrednost svog zlata.",
+            a: "Da. Sama pločica je isporučena iz kovnice u čvrstom plastičnom pakovanju (blisteru) veličine platne bankovne kartice. Na tom pakovanju su jasno odštampani logo rafinerije, čistoća, težina i jedinstveni serijski broj koji je laserski upisan i na samu pločicu. To pakovanje predstavlja vaš neosporivi sertifikat. Zlatno pravilo: nikada ne otvarajte i ne sečete pakovanje, jer time trajno narušavate vrednost svog zlata.",
           },
           {
             q: "Da li se na pločicu od 10g plaća PDV?",
@@ -469,7 +469,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           },
           {
             q: "Mogu li da plaćam platnom karticom?",
-            a: "Ne, plaćanje platnim karticama trenutno nije moguće. Razlog za to su visoke provizije banaka (često i do 2-3%) koje bi neizbežno morale da se ugrade u krajnju cenu zlata. Naš cilj je da vam obezbedimo najpovoljniju moguću cenu na tržištu bez skrivenih troškova, zbog čega prihvatamo isključivo plaćanje gotovinom, bankovnim transferom ili pouzećem.",
+            a: "Ne, plaćanje platnim karticama trenutno nije moguće. Razlog za to su visoke provizije banaka (često i do 2–3%) koje bi neizbežno morale da se ugrade u krajnju cenu zlata. Naš cilj je da vam obezbedimo najpovoljniju moguću cenu na tržištu bez skrivenih troškova, zbog čega prihvatamo isključivo plaćanje gotovinom, bankovnim transferom ili pouzećem.",
           },
           {
             q: "Koliko traje isporuka?",
@@ -489,87 +489,87 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
       "Zlatna pločica od 20 grama je najveći format u kategoriji pločica i nudi najbolju premiju po gramu u celoj liniji — bez kompromisa po pitanju fleksibilnosti. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Idealna za ozbiljne investitore koji žele veću vrednost u kompaktnom formatu. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
     seo: {
       brands: {
-        heading: "Nasa ponuda — plocice od 20g (LBMA standard)",
+        heading: "Naša ponuda — pločice od 20g (LBMA standard)",
         description:
-          "Sve plocice od 20g u nasoj ponudi kuju se iskljucivo u rafinerijama sa LBMA 'Good Delivery' liste — globalnog standarda koji garantuje cistotu od 99,99%, tacnu gramazu i legalno poreklo metala.",
+          "Sve pločice od 20g u našoj ponudi kuju se isključivo u rafinerijama sa LBMA 'Good Delivery' liste — globalnog standarda koji garantuje čistotu od 99,99%, tačnu gramažu i legalno poreklo metala.",
         cards: [
           {
-            title: "Argor-Heraeus 20g — Svajcarska",
-            body: "Svajcarski Argor-Heraeus je jedan od najvecih svetskih procesora plemenitih metala i sinonim za pouzdanost. Njihova plocica od 20g odlikuje se preciznom izradom, jasno istaknutim serijskim brojem i logom — maksimalna prepoznatljivost na globalnom trzistu garantuje i maksimalnu likvidnost.",
+            title: "Argor-Heraeus 20g — Švajcarska",
+            body: "Švajcarski Argor-Heraeus je jedan od najvećih svetskih procesora plemenitih metala i sinonim za pouzdanost. Njihova pločica od 20g odlikuje se preciznom izradom, jasno istaknutim serijskim brojem i logom — maksimalna prepoznatljivost na globalnom tržištu garantuje i maksimalnu likvidnost.",
           },
           {
-            title: "C. Hafner 20g — Nemacka",
-            body: "Nemacka rafinerija C. Hafner sa 170 godina tradicije kuje plocice iskljucivo od recikliranog zlata. Format od 20g je jedan od njihovih najtrazenijih — dolazi u karakteristicnom tamnom blisteru sa hologramom i kombinuje eticko poreklo sa besprekornoom izradom.",
+            title: "C. Hafner 20g — Nemačka",
+            body: "Nemačka rafinerija C. Hafner sa 170 godina tradicije kuje pločice isključivo od recikliranog zlata. Format od 20g je jedan od njihovih najtraženijih — dolazi u karakterističnom tamnom blisteru sa hologramom i kombinuje etičko poreklo sa besprekornom izradom.",
           },
           {
             title: "The Royal Mint 20g — Velika Britanija",
-            body: "Britanska drzavna kovnica nudi plocice od 20g sa prepoznatljivim dizajnom i autoritetom jedne od najstarijih i najuglednijih institucija u svetu kovanog novca. Dolaze u sigurnosnom blisteru — odlican izbor za ozbiljne investitore i kolekcionare.",
+            body: "Britanska državna kovnica nudi pločice od 20g sa prepoznatljivim dizajnom i autoritetom jedne od najstarijih i najuglednijih institucija u svetu kovanog novca. Dolaze u sigurnosnom blisteru — odličan izbor za ozbiljne investitore i kolekcionare.",
           },
         ],
       },
       whyBuy: {
-        heading: "Zasto je zlatna plocica od 20g idealna za ozbiljnog investitora?",
+        heading: "Zašto je zlatna pločica od 20g idealna za ozbiljnog investitora?",
         description:
-          "Format od 20g je tacka na kojoj plocice prestaju da budu 'poklon format' i postaju prava investiciona sredstvo. Evo konkretnih razloga zasto ovaj format privlaci ozbiljne investitore:",
+          "Format od 20g je tačka na kojoj pločice prestaju da budu „poklon format“ i postaju pravo investiciono sredstvo. Evo konkretnih razloga zašto ovaj format privlači ozbiljne investitore:",
         cards: [
           {
-            title: "Najbolja premija u celoj kategoriji plocica",
-            body: "Plocica od 20g nudi najnizu premiju (marzu) po gramu od svih plocica u nasoj ponudi. Fiksni troskovi proizvodnje i sertifikacije se ovde dele na 20 grama zlata, sto rezultira cenom po gramu koja se polako priblizava onoj kod malih poluga — ali uz zadrzanu fleksibilnost plocice.",
+            title: "Najbolja premija u celoj kategoriji pločica",
+            body: "Pločica od 20g nudi najnižu premiju (maržu) po gramu od svih pločica u našoj ponudi. Fiksni troškovi proizvodnje i sertifikacije se ovde dele na 20 grama zlata, što rezultira cenom po gramu koja se polako približava onoj kod malih poluga — ali uz zadržanu fleksibilnost pločice.",
           },
           {
-            title: "Fleksibilnost kakvu poluge ne mogu da pruze",
-            body: "Zlatna poluga od 50g ili 100g mora se prodati odjednom. Plocica od 20g je i dalje jedan komad koji mozete unovciti kada vam tacno ta vrednost zatreba — bez prinudne prodaje vise zlata nego sto je potrebno. Idealno za gradnju portfolija koji mozete precizno kontrolisati.",
+            title: "Fleksibilnost kakvu poluge ne mogu da pruže",
+            body: "Zlatna poluga od 50g ili 100g mora se prodati odjednom. Pločica od 20g je i dalje jedan komad koji možete unovčiti kada vam tačno ta vrednost zatreba — bez prinudne prodaje više zlata nego što je potrebno. Idealno za gradnju portfolija koji možete precizno kontrolisati.",
           },
           {
             title: "Ozbiljna vrednost, kompaktan format",
-            body: "Plocica od 20g ima vrednost koja ozbiljno impresionira, a fizicki je manja od bankovne kartice. To je format koji lako uskladistite, cuvate i po potrebi nosite — bez birokratije, bez troskova cuvanja, bez posrednika.",
+            body: "Pločica od 20g ima vrednost koja ozbiljno impresionira, a fizički je manja od bankovne kartice. To je format koji lako uskladištite, čuvate i po potrebi nosite — bez birokratije, bez troškova čuvanja, bez posrednika.",
           },
         ],
       },
       priceStructure: {
-        title: "Cena zlatne plocice od 20g",
+        title: "Cena zlatne pločice od 20g",
         description:
-          "Transparentnost je osnova naseg poslovanja. Svaka plocica od 20g ima jasno istaknute sve tri cene:",
+          "Transparentnost je osnova našeg poslovanja. Svaka pločica od 20g ima jasno istaknute sve tri cene:",
         card1Body:
-          "Cena za plocice koje su fizicki u nasem trezoru. Uplatite i preuzmite zlato istog dana — bez cekanja i skrivenih troskova.",
+          "Cena za pločice koje su fizički u našem trezoru. Uplatite i preuzmite zlato istog dana — bez čekanja i skrivenih troškova.",
         card2Body:
-          "Kupujete vise plocica od 20g ili zelite sto bolju cenu po gramu? Avansnom uplatom zakljucavate trenutnu berzansku cenu i mi robu direktno porucujemo iz rafinerije. Ovo je opcija s kojom nasi klijenti najcesce ostvare najvecu ustedu.",
+          "Kupujete više pločica od 20g ili želite što bolju cenu po gramu? Avansnom uplatom zaključavate trenutnu berzansku cenu i mi robu direktno poručujemo iz rafinerije. Ovo je opcija sa kojom naši klijenti najčešće ostvare najveću uštedu.",
         card3Body:
-          "Garantovani iznos po kom Gold Invest u svakom trenutku otkupljuje vase plocice od 20g — uvek javno istaknut. Zbog visoke vrednosti ovog formata, spread je medjuu najnizima u celoj ponudi.",
+          "Garantovani iznos po kom Gold Invest u svakom trenutku otkupljuje vaše pločice od 20g — uvek javno istaknut. Zbog visoke vrednosti ovog formata, spread je među najnižima u celoj ponudi.",
       },
       delivery: {
-        heading: "Prodaja zlatnih plocica 20g Beograd — Gold Invest",
+        heading: "Prodaja zlatnih pločica 20g Beograd — Gold Invest",
         description:
-          "Kupovina plocica od 20g je brza i potpuno bezbedna. Nudimo vise nacina preuzimanja — uvek diskretno i maksimalno osigurano.",
+          "Kupovina pločica od 20g je brza i potpuno bezbedna. Nudimo više načina preuzimanja — uvek diskretno i maksimalno osigurano.",
         pickupCardBody:
-          "Posetite nas licno u Beogradu. Strucna provera autenticnosti i preuzimanje na licu mesta — bez cekanja, u potpuno diskretnom okruzenju.",
+          "Posetite nas lično u Beogradu. Stručna provera autentičnosti i preuzimanje na licu mesta — bez čekanja, u potpuno diskretnom okruženju.",
       },
       faq: {
-        title: "Cesta pitanja o zlatnoj plocici od 20g",
+        title: "Česta pitanja o zlatnoj pločici od 20g",
         items: [
           {
-            q: "Koja je razlika izmedju plocice od 20g i poluge od 50g?",
-            a: "Oba formata su LBMA investiciono zlato cistote 999,9 i oba su oslobodjena PDV-a. Kljucna razlika je u premiji i fleksibilnosti. Poluga od 50g nudi jos nizu premiju po gramu, ali je morate prodati odjednom. Plocica od 20g je nesto skuplja po gramu, ali je jedan komad koji mozete unovciti tacno kada vam ta specificna vrednost zatreba. Za portfolije ispod 200g ukupne tezine, 20g plocice su cesto pametniji izbor.",
+            q: "Koja je razlika između pločice od 20g i poluge od 50g?",
+            a: "Oba formata su LBMA investiciono zlato čistoće 999,9 i oba su oslobođena PDV-a. Ključna razlika je u premiji i fleksibilnosti. Poluga od 50g nudi još nižu premiju po gramu, ali je morate prodati odjednom. Pločica od 20g je nešto skuplja po gramu, ali je jedan komad koji možete unovčiti tačno kada vam ta specifična vrednost zatreba. Za portfolije ispod 200g ukupne težine, 20g pločice su često pametniji izbor.",
           },
           {
-            q: "Da li uz plocicu dobijam sertifikat?",
-            a: "Da. Plocica dolazi fabricki zapecacena u cvrstom blisteru sa logom rafinerije, cistotom, tezinom i jedinstvenim serijskim brojem laserski upisanim i na samu plocicu. To pakovanje je vas sertifikat. Nikada ga ne otvarajte — otvoreno pakovanje smanjuje otkupnu vrednost.",
+            q: "Da li uz pločicu dobijam sertifikat?",
+            a: "Da. Pločica dolazi fabrički zapečaćena u čvrstom blisteru sa logom rafinerije, čistoćom, težinom i jedinstvenim serijskim brojem laserski upisanim i na samu pločicu. To pakovanje je vaš sertifikat. Nikada ga ne otvarajte — otvoreno pakovanje smanjuje otkupnu vrednost.",
           },
           {
-            q: "Da li se na plocicu od 20g placa PDV?",
-            a: "Ne. Sve plocice cistote iznad 995/1000 tretiraju se po zakonu kao investiciono zlato i potpuno su oslobodjene PDV-a od 20% i poreza na kapitalnu dobit u Republici Srbiji.",
+            q: "Da li se na pločicu od 20g plaća PDV?",
+            a: "Ne. Sve pločice čistoće iznad 995/1000 tretiraju se po zakonu kao investiciono zlato i potpuno su oslobođene PDV-a od 20% i poreza na kapitalnu dobit u Republici Srbiji.",
           },
           {
-            q: "Koji je limit za placanje u gotovini?",
-            a: "Zakon dozvoljava gotovinska placanja do 1.160.000 dinara (10.000 evra). U zavisnosti od trenutne cene zlata, jedna plocica od 20g se najcesce moze platiti u gotovini. Za vise plocica ili vece iznose, koristimo bankovni transfer.",
+            q: "Koji je limit za plaćanje u gotovini?",
+            a: "Zakon dozvoljava gotovinska plaćanja do 1.160.000 dinara (10.000 evra). U zavisnosti od trenutne cene zlata, jedna pločica od 20g se najčešće može platiti u gotovini. Za više pločica ili veće iznose, koristimo bankovni transfer.",
           },
           {
             q: "Mogu li da platim platnom karticom?",
-            a: "Ne, placanje karticama trenutno nije moguce. Visoke bankarske provizije (2-3%) bi se neizbezno ugradile u cenu zlata — a nas cilj je da vam obezbedimo najpovoljniju cenu na trzistu. Prihvatamo gotovinu, bankovni transfer i pouzecem.",
+            a: "Ne, plaćanje karticama trenutno nije moguće. Visoke bankarske provizije (2–3%) bi se neizbežno ugradile u cenu zlata — a naš cilj je da vam obezbedimo najpovoljniju cenu na tržištu. Prihvatamo gotovinu, bankovni transfer i pouzećem.",
           },
           {
             q: "Koliko traje isporuka?",
-            a: "Za klijente u Beogradu nudimo isporuku dan za dan — porudzbine evidentirane radnim danima do 12h stizu istog dana do 18h. Za ostatak Srbije, diskretna i osigurana dostava traje 1 do 3 radna dana.",
+            a: "Za klijente u Beogradu nudimo isporuku dan za dan — porudžbine evidentirane radnim danima do 12h stižu istog dana do 18h. Za ostatak Srbije, diskretna i osigurana dostava traje 1 do 3 radna dana.",
           },
         ],
       },
