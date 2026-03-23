@@ -15,7 +15,7 @@ import { buildBreadcrumbSchema, buildWebPageSchema, buildOrganizationSchema } fr
 export const metadata: Metadata = {
   title: "O nama | Gold Invest — Investiciono zlato Beograd",
   description:
-    "Gold Invest je specijalizovani diler investicionog zlata u Beogradu. LBMA proizvodi, transparentna cena prema London Fix, licni savetodavni pristup i otkup isti dan.",
+    "Gold Invest je specijalizovani diler investicionog zlata u Beogradu. LBMA proizvodi, transparentna cena prema London Fix, lični savetodavni pristup i otkup isti dan.",
   alternates: { canonical: "https://goldinvest.rs/o-nama" },
   openGraph: {
     title: "O nama | Gold Invest",
@@ -38,13 +38,13 @@ const BREADCRUMBS = [
 const VALUES = [
   {
     eyebrow: "01 — Transparentnost",
-    title: "Nasu cenu možete proveriti sami.",
+    title: "Našu cenu možete proveriti sami.",
     body: "Polazimo od London Fix kotacije — javne, svetske berzanske cene zlata koja se objavljuje dvaput dnevno. Sve što radimo je da primenimo kurs i fiksni spread. Otvorite Kitco.com ili LBMA.org i proverite nas. To je jedini način na koji želimo da radimo.",
   },
   {
-    eyebrow: "02 — Licni pristup",
+    eyebrow: "02 — Lični pristup",
     title: "Uvek razgovarate sa savetnicima, ne sa botom.",
-    body: "Nema call centra, nema automatskog odgovaranja, nema standardnih paketa. Kada nas pozovete, razgovarate direktno sa osobom koja razume vaše potrebe — bez obzira da li kupujete 1 gram ili 1 kilogram. Svaki klijent dobija isti nivo paznje.",
+    body: "Nema call centra, nema automatskog odgovaranja, nema standardnih paketa. Kada nas pozovete, razgovarate direktno sa osobom koja razume vaše potrebe — bez obzira da li kupujete 1 gram ili 1 kilogram. Svaki klijent dobija isti nivo pažnje.",
   },
   {
     eyebrow: "03 — Samo provereno",
@@ -59,32 +59,32 @@ const COMPARE_US = [
   "Personalizovani savet bez obaveze",
   "Otkup po berzanskoj ceni — isti dan isplata",
   "Originalna LBMA pakovanja sa serijskim brojem",
-  "PDV oslobodjen za investiciono zlato (Zakon o PDV, cl. 25)",
-  "Fiskalni racun i dokumentacija za svaku transakciju",
+  "PDV oslobođen za investiciono zlato (Zakon o PDV, čl. 25)",
+  "Fiskalni račun i dokumentacija za svaku transakciju",
 ];
 
 const COMPARE_BANK = [
   "Premijum 5–15% iznad tržišne cene",
-  "Ogranjena ponuda (obično 1g–50g, jedan brand)",
+  "Ograničena ponuda (obično 1g–50g, jedan brand)",
   "Bez savetnika — standardni bankarski prozor",
   "Otkup po netransparentnoj internoj ceni banke",
-  "Originalna pakovanja — ali bez mogucnosti pregovora",
+  "Originalna pakovanja — ali bez mogućnosti pregovora",
   "PDV isti status, ali bankarske naknade se dodaju",
-  "Racun da, ali fleksibilnost ne",
+  "Račun da, ali fleksibilnost ne",
 ];
 
 const FAQ_ITEMS = [
   {
     q: "Da li je Gold Invest registrovano privredno društvo?",
-    a: "Da. Gold Invest posluje kao registrovano privredno društvo u Srbiji, sa poreskim identifikacionim brojem. Svaka transakcija je dokumentovana fiskalnim racunom. Sve transakcije iznad zakonskog limita se prijavljuju Upravi za sprečavanje pranja novca (UNODC), u skladu sa srpskim zakonodavstvom.",
+    a: "Da. Gold Invest posluje kao registrovano privredno društvo u Srbiji, sa poreskim identifikacionim brojem. Svaka transakcija je dokumentovana fiskalnim računom. Sve transakcije iznad zakonskog limita se prijavljuju Upravi za sprečavanje pranja novca, u skladu sa srpskim zakonodavstvom.",
   },
   {
     q: "Odakle potiče zlato koje prodajete?",
-    a: "Iskljucivo od LBMA akreditovanih livarnica — Argor-Heraeus (Svajcarska), C. Hafner (Nemacka), Umicore (Belgija) i Heraeus (Nemacka). LBMA akreditacija podrazumeva godišnje nezavisne revizije koje garantuju tačnost težine i čistoću 999,9. Nema uvoza iz neakreditovanih izvora, nema kompromisa.",
+    a: "Isključivo od LBMA akreditovanih livarnica — Argor-Heraeus (Švajcarska), C. Hafner (Nemačka), Umicore (Belgija) i Heraeus (Nemačka). LBMA akreditacija podrazumeva godišnje nezavisne revizije koje garantuju tačnost težine i čistoću 999,9. Nema uvoza iz neakreditovanih izvora, nema kompromisa.",
   },
   {
-    q: "Zasto da kupim kod vas umesto u banci?",
-    a: "Banke prodaju zlato sa premijumom od 5 do 15% iznad berzanske cene, bez transparentne kalkulacije i bez mogucnosti pregovora. Mi primenjujemo fiksni spread koji možete proveriti prema aktuelnoj London Fix kotaciji — i uvek ga prikazujemo unapred. Uz to, nudimo licni savetodavni razgovor, širu ponudu formata i otkup po istoj principijelnoj ceni.",
+    q: "Zašto da kupim kod vas umesto u banci?",
+    a: "Banke prodaju zlato sa premijumom od 5 do 15% iznad berzanske cene, bez transparentne kalkulacije i bez mogućnosti pregovora. Mi primenjujemo fiksni spread koji možete proveriti prema aktuelnoj London Fix kotaciji — i uvek ga prikazujemo unapred. Uz to, nudimo lični savetodavni razgovor, širu ponudu formata i otkup po istoj principijelnoj ceni.",
   },
   {
     q: "Da li možete da garantujete autentičnost?",
@@ -92,7 +92,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Gde se nalazite i da li je potrebno zakazivanje?",
-    a: "Nalazimo se u Beogradu. Za manje količine (pločice i poluge koje imamo na stanju) možete doci bez zakazivanja tokom radnog vremena. Za veće količine i poluge od 500g naviše, kao i za otkup, preporučujemo da nas unapred kontaktirate — da bismo pripremili robu i optimizovali vas posetu.",
+    a: "Nalazimo se u Beogradu. Za manje količine (pločice i poluge koje imamo na stanju) možete doći bez zakazivanja tokom radnog vremena. Za veće količine i poluge od 500g naviše, kao i za otkup, preporučujemo da nas unapred kontaktirate — da bismo pripremili robu i optimizovali vašu posetu.",
   },
 ];
 
@@ -132,10 +132,10 @@ export default function ONamaPage() {
           paragraphs={[
             <p key="p1">
               Specijalizovani smo diler investicionog zlata iz Beograda. Prodajemo isključivo LBMA sertifikovane poluge, pločice i
-              dukate — direktno, transparentno i bez posrednika. Svaki klijent dobija konkretnu cenu, jasnu kalkulaciju i licni savet.
+              dukate — direktno, transparentno i bez posrednika. Svaki klijent dobija konkretnu cenu, jasnu kalkulaciju i lični savet.
             </p>,
             <p key="p2">
-              Nismo call centar. Nema automatizovanih odgovora. Kada nas pozovete, razgovarate sa osobom koja zna zlato — i koja ce vas
+              Nismo call centar. Nema automatizovanih odgovora. Kada nas pozovete, razgovarate sa osobom koja zna zlato — i koja će vas
               saslušati pre nego što predloži bilo šta.
             </p>,
           ]}
@@ -231,7 +231,7 @@ export default function ONamaPage() {
                   lineHeight: "1.7em",
                 }}
               >
-                Gold Invest je nastao iz jedne jednostavne observacije: ljudi u Srbiji žele da kupe investiciono zlato, ali im nedostaje pouzdan, domaći partner koji ce im objasniti kako to funkcioniše — bez prebukiranog marketinga i bez skrivenih troškova.
+                Gold Invest je nastao iz jednog jednostavnog zapažanja: ljudi u Srbiji žele da kupe investiciono zlato, ali im nedostaje pouzdan, domaći partner koji će im objasniti kako to funkcioniše — bez prebukiranog marketinga i bez skrivenih troškova.
               </p>
               <p
                 className="text-[#3A3A3A] leading-relaxed"
@@ -277,7 +277,7 @@ export default function ONamaPage() {
               className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-4 block"
               style={{ fontFamily: "var(--font-rethink), sans-serif" }}
             >
-              Nase vrednosti
+              Naše vrednosti
             </span>
             <h2
               className="text-[#1B1B1C]"
@@ -338,7 +338,7 @@ export default function ONamaPage() {
               className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-4 block"
               style={{ fontFamily: "var(--font-rethink), sans-serif" }}
             >
-              Zasto Gold Invest
+              Zašto Gold Invest
             </span>
             <h2
               className="text-white"
@@ -453,7 +453,7 @@ export default function ONamaPage() {
                 className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-5 block"
                 style={{ fontFamily: "var(--font-rethink), sans-serif" }}
               >
-                Nase livarnice
+                Naše livarnice
               </span>
               <h2
                 className="text-[#1B1B1C] mb-6"
@@ -464,7 +464,7 @@ export default function ONamaPage() {
                   lineHeight: "1.15",
                 }}
               >
-                Cetiri livarnice. Jedan standard. Bez izuzetka.
+                Četiri livarnice. Jedan standard. Bez izuzetka.
               </h2>
               <p
                 className="text-[#4C4C4C] leading-relaxed mb-5"
@@ -474,7 +474,7 @@ export default function ONamaPage() {
                   lineHeight: "1.7em",
                 }}
               >
-                Svaki proizvod u našoj ponudi potiče od jedne od četiri LBMA akreditovane livarnice — Argor-Heraeus (Svajcarska), C. Hafner (Nemacka), Umicore (Belgija) i Heraeus (Nemacka). Ove livarnice svake godine prolaze nezavisne revizije koje verificiraju tačnost težine, čistoću 999,9 i ispravnost serijskih brojeva.
+                Svaki proizvod u našoj ponudi potiče od jedne od četiri LBMA akreditovane livarnice — Argor-Heraeus (Švajcarska), C. Hafner (Nemačka), Umicore (Belgija) i Heraeus (Nemačka). Ove livarnice svake godine prolaze nezavisne revizije koje verifikuju tačnost težine, čistoću 999,9 i ispravnost serijskih brojeva.
               </p>
               <p
                 className="text-[#4C4C4C] leading-relaxed mb-8"
@@ -484,7 +484,7 @@ export default function ONamaPage() {
                   lineHeight: "1.7em",
                 }}
               >
-                LBMA akreditacija nije marketing oznaka — to je međunarodna garancija da vas proizvod može biti prodat na bilo kojoj berzi plemenitih metala u svetu bez ikakve dodatne verifikacije. Zlato koje kupite kod nas sutra možete prodati u Londonu, Cirihu ili Njujorku.
+                LBMA akreditacija nije marketing oznaka — to je međunarodna garancija da vaš proizvod može biti prodat na bilo kojoj berzi plemenitih metala u svetu bez ikakve dodatne verifikacije. Zlato koje kupite kod nas sutra možete prodati u Londonu, Cirihu ili Njujorku.
               </p>
 
               {/* Brand name strip */}
@@ -549,7 +549,7 @@ export default function ONamaPage() {
                 maxWidth: 520,
               }}
             >
-              Nema glupih pitanja kada je u pitanju vas novac. Pozovite nas ili pošaljite poruku — bez obaveze, bez prodajnog pritiska. Samo konkretan odgovor na vase konkretno pitanje.
+              Nema glupih pitanja kada je u pitanju vaš novac. Pozovite nas ili pošaljite poruku — bez obaveze, bez prodajnog pritiska. Samo konkretan odgovor na vaše konkretno pitanje.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
