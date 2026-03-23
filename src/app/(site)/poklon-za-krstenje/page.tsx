@@ -252,7 +252,7 @@ export default async function PoklonaZaKrstenjiePage() {
 
   const breadcrumbs = [
     { label: "Investiciono zlato", href: "/" },
-    { label: "Poklon za krstenje", href: "/poklon-za-krstenje" },
+    { label: "Poklon za krštenje", href: "/poklon-za-krstenje" },
   ];
 
   return (
@@ -314,10 +314,10 @@ export default async function PoklonaZaKrstenjiePage() {
               sortLabelText: "Sortiraj",
               weightOptions: [
                 { label: "Dukat Mali FJ (3.49g)", value: 3.49 },
-                { label: "Plocica 1g", value: 1 },
-                { label: "Plocica 2g", value: 2 },
-                { label: "Plocica 5g", value: 5 },
-                { label: "Plocica 10g", value: 10 },
+                { label: "Pločica 1g", value: 1 },
+                { label: "Pločica 2g", value: 2 },
+                { label: "Pločica 5g", value: 5 },
+                { label: "Pločica 10g", value: 10 },
                 { label: "Dukat Veliki FJ (13.96g)", value: 13.96 },
                 { label: "Filharmoniju 1/10 oz (3.11g)", value: 3.11 },
               ],
