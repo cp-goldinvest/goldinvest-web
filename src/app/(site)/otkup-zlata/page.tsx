@@ -367,16 +367,16 @@ export default function OtkupZlataPage() {
                 Isto možete proveriti u realnom vremenu na portalima kao što su Kitco, Gold Price ili LBMA.org — cena zlata je javna informacija. Naša jedina uloga je da vas povežemo sa tom cenom direktno, bez posrednika koji uzima deo vrednosti.
               </p>
               <div
-                className="bg-[#2A2A2A] border border-[#3A3A3A] rounded-2xl px-6 py-5"
+                className="bg-[#E9E6D9] border border-[#C9B896] rounded-2xl px-6 py-5 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.02] motion-reduce:transform-none motion-reduce:hover:scale-100"
               >
                 <p
-                  className="text-[#9D9072] text-xs font-semibold tracking-widest uppercase mb-3"
+                  className="text-[#1B1B1C] text-xs font-semibold tracking-widest uppercase mb-3"
                   style={{ fontFamily: "var(--font-rethink), sans-serif" }}
                 >
                   Formula
                 </p>
                 <p
-                  className="text-[#E9E6D9] font-semibold"
+                  className="text-[#1B1B1C] font-semibold"
                   style={{
                     fontFamily: "var(--font-rethink), sans-serif",
                     fontSize: 15,
@@ -410,7 +410,7 @@ export default function OtkupZlataPage() {
               ].map(({ label, body }) => (
                 <div
                   key={label}
-                  className="bg-[#242424] border border-[#333] rounded-xl px-5 py-4 flex gap-4 items-start"
+                  className="bg-[#242424] border border-[#333] rounded-xl px-5 py-4 flex gap-4 items-start transition-transform duration-300 ease-out hover:scale-[1.02] motion-reduce:transform-none motion-reduce:hover:scale-100"
                 >
                   <span
                     className="w-2 h-2 rounded-full bg-[#BEAD87] shrink-0 mt-[7px]"
@@ -570,35 +570,63 @@ export default function OtkupZlataPage() {
             description="Svaki aspekt otkupa projektovan je da zaštitimo vaš interes — ne samo naš."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {TRUST_ITEMS.map(({ Icon, title, body }) => (
-              <div
-                key={title}
-                className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7 flex gap-5 items-start"
-              >
-                <span className="w-10 h-10 rounded-xl bg-[#1B1B1C] text-white flex items-center justify-center shrink-0 mt-0.5">
-                  <Icon size={18} />
-                </span>
-                <div>
-                  <h3
-                    className="text-[#1B1B1C] mb-2 font-semibold"
-                    style={{
-                      fontFamily: "var(--font-rethink), sans-serif",
-                      fontSize: 15,
-                      lineHeight: "1.3",
-                    }}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:grid-cols-3 lg:grid-rows-2 lg:gap-6 lg:items-stretch">
+            {TRUST_ITEMS.map(({ Icon, title, body }, i) => {
+              const isDark = i === 2;
+              const isGoldBottom = i === 3;
+              return (
+                <div
+                  key={title}
+                  className={[
+                    "rounded-2xl p-6 sm:p-7 flex flex-row gap-5",
+                    isGoldBottom
+                      ? "items-center justify-start"
+                      : "items-center justify-center",
+                    isDark
+                      ? "bg-[#0D0D0D] border border-[#232324] lg:min-h-0"
+                      : isGoldBottom
+                        ? "bg-[#E9E6D9] border border-[#C9B896]"
+                        : "bg-[#F9F9F9] border border-[#F0EDE6]",
+                    i === 0 ? "lg:col-start-1 lg:row-start-1" : "",
+                    i === 1 ? "lg:col-start-2 lg:row-start-1" : "",
+                    i === 2 ? "lg:col-start-3 lg:row-start-1 lg:row-span-2" : "",
+                    i === 3 ? "lg:col-start-1 lg:row-start-2 lg:col-span-2" : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  <span
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${isDark ? "bg-[#BEAD87] text-[#1B1B1C]" : "bg-[#1B1B1C] text-white"}`}
                   >
-                    {title}
-                  </h3>
-                  <p
-                    className="text-[#6B6B6B] text-[13.5px] leading-relaxed"
-                    style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                    <Icon size={18} />
+                  </span>
+                  <div
+                    className={
+                      isGoldBottom
+                        ? "min-w-0 flex-1 text-left"
+                        : "min-w-0 max-w-[min(100%,28rem)] text-left"
+                    }
                   >
-                    {body}
-                  </p>
+                    <h3
+                      className={`mb-2 font-semibold ${isDark ? "text-[#BEAD87]" : "text-[#1B1B1C]"}`}
+                      style={{
+                        fontFamily: "var(--font-rethink), sans-serif",
+                        fontSize: 15,
+                        lineHeight: "1.3",
+                      }}
+                    >
+                      {title}
+                    </h3>
+                    <p
+                      className={`text-[13.5px] leading-relaxed ${isDark ? "text-[#D7D0C3]" : "text-[#6B6B6B]"}`}
+                      style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                    >
+                      {body}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </SectionContainer>
       </section>
