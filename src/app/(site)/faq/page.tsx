@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
+import { ArrowRight, Mail, Phone } from "lucide-react";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { CategoryHero } from "@/components/catalog/CategoryHero";
@@ -87,6 +90,86 @@ const FAQ_ITEMS = [
   },
 ];
 
+const FAQ_CTA_PHONE_HREF = "tel:+381612698569";
+
+function FaqContactCtaCard({
+  href,
+  title,
+  body,
+  Icon,
+  external,
+}: {
+  href: string;
+  title: string;
+  body: string;
+  Icon: LucideIcon;
+  external?: boolean;
+}) {
+  const cardClass =
+    "group block bg-[#F9F9F9] rounded-2xl overflow-hidden border border-[#F0EDE6] transition-shadow duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#BEAD87]";
+
+  const visual = (
+    <div className="relative min-h-[200px] overflow-hidden bg-[#1B1B1C] sm:min-h-[220px]">
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-[#BEAD87] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
+      />
+      <div className="relative z-[1] flex min-h-[200px] items-center justify-center sm:min-h-[220px]">
+        <Icon
+          className="h-10 w-10 text-[#BEAD87] transition-colors duration-300 group-hover:text-[#1B1B1C]"
+          strokeWidth={1.5}
+          aria-hidden
+        />
+      </div>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-4 right-4 z-[2] flex h-10 w-10 translate-y-1 items-center justify-center rounded-full border border-[#BEAD87] bg-[#1B1B1C] opacity-0 shadow-sm transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100"
+      >
+        <ArrowRight className="h-4 w-4 text-[#BEAD87]" strokeWidth={2} />
+      </div>
+    </div>
+  );
+
+  const textBlock = (
+    <div className="p-6 sm:p-7">
+      <h3
+        className="mb-2 font-semibold text-[#1B1B1C]"
+        style={{
+          fontFamily: "var(--font-rethink), sans-serif",
+          fontSize: 17,
+          lineHeight: "1.3",
+        }}
+      >
+        {title}
+      </h3>
+      <p
+        className="text-[14px] leading-relaxed text-[#6B6B6B]"
+        style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+      >
+        {body}
+      </p>
+    </div>
+  );
+
+  const label = `${title} — ${body}`;
+
+  if (external) {
+    return (
+      <a href={href} className={cardClass} aria-label={label}>
+        {visual}
+        {textBlock}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={cardClass} aria-label={label}>
+      {visual}
+      {textBlock}
+    </Link>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function FaqPage() {
@@ -122,6 +205,54 @@ export default function FaqPage() {
         expandableIntro={false}
         centerOnDesktop
       />
+
+      {/* ── Contact CTA (between hero and FAQ) ─────────────────────────────── */}
+      <section className="border-b border-[#F0EDE6] bg-white py-16 sm:py-20">
+        <SectionContainer>
+          <div className="mb-10 flex flex-col items-center text-center sm:mb-12">
+            <span
+              className="mb-4 block text-xs font-semibold uppercase tracking-widest text-[#BF8E41]"
+              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+            >
+              Kontakt
+            </span>
+            <h2
+              className="mb-4 max-w-[640px] leading-tight text-[#1B1B1C]"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 500,
+                fontSize: 30,
+                lineHeight: "1.1",
+                letterSpacing: "-1px",
+              }}
+            >
+              Imate dodatno pitanje?
+            </h2>
+            <p
+              className="max-w-[520px] text-[15px] leading-relaxed text-[#6B6B6B]"
+              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+            >
+              Pišite nam ili pozovite — tu smo da vam pomognemo oko investicionog zlata.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2">
+            <FaqContactCtaCard
+              href="/kontakt"
+              title="Pišite nam"
+              body="Pitajte šta vas interesuje i odgovorićemo vam što pre."
+              Icon={Mail}
+            />
+            <FaqContactCtaCard
+              href={FAQ_CTA_PHONE_HREF}
+              title="Pozovite nas"
+              body="Najbrži način da nas kontaktirate."
+              Icon={Phone}
+              external
+            />
+          </div>
+        </SectionContainer>
+      </section>
 
       <CategoryFaq
         title="Česta pitanja"
