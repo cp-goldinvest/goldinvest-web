@@ -114,6 +114,9 @@ export default async function ZlatniDukatiPage() {
 
   return (
     <CategoryPageTemplate
+      infoSectionBLayout="premium-bento"
+      infoSectionBImageSrc="/images/bento-coins.png"
+      infoSectionBImageAlt="Zlatni dukat"
       breadcrumbs={[
         { label: "Investiciono zlato", href: "/" },
         { label: "Zlatni dukati", href: "/kategorija/zlatni-dukati" },

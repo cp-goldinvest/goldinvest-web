@@ -127,6 +127,10 @@ export default async function ZlatnePolugePage() {
 
   return (
     <CategoryPageTemplate
+      infoSectionBLayout="premium-bento"
+      infoSectionBBentoBlackCardImageOnTop
+      infoSectionBImageSrc="/images/bento-gold-bar.png"
+      infoSectionBImageAlt="Zlatna poluga"
       breadcrumbs={[
         { label: "Investiciono zlato", href: "/" },
         { label: "Zlatne poluge", href: "/kategorija/zlatne-poluge" },

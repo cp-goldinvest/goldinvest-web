@@ -128,6 +128,7 @@ export default async function ZlatnePlocicePage() {
   return (
     <CategoryPageTemplate
       infoSectionBLayout="premium-bento"
+      infoSectionBBentoBlackCardImageOnTop
       breadcrumbs={[
         { label: "Investiciono zlato", href: "/" },
         { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },

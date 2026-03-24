@@ -61,6 +61,10 @@ type Props = {
   infoSectionA: InfoSectionData; // e.g. "Koje težine postoje?" — no border-t
   infoSectionB: InfoSectionData; // e.g. "Sertifikati" — has border-t, no info box
   infoSectionBLayout?: "default" | "premium-bento";
+  infoSectionBImageSrc?: string;
+  infoSectionBImageAlt?: string;
+  /** Gold plates only: black card image flush at top, text below (premium-bento). */
+  infoSectionBBentoBlackCardImageOnTop?: boolean;
 
   // Remaining sections — props forwarded directly to existing components
   darkQuote: {
@@ -107,12 +111,19 @@ export function CategoryPageTemplate({
   infoSectionA,
   infoSectionB,
   infoSectionBLayout = "default",
+  infoSectionBImageSrc = "/images/bento-gold-bar.png",
+  infoSectionBImageAlt = "Zlatna poluga",
+  infoSectionBBentoBlackCardImageOnTop = false,
   darkQuote,
   brandsSection,
   delivery,
   priceStructure,
   faq,
 }: Props) {
+  const isDukatBentoImage = infoSectionBImageAlt === "Zlatni dukat";
+  const isPlatesBentoImageOnTop =
+    infoSectionBBentoBlackCardImageOnTop && !isDukatBentoImage;
+
   return (
     <main className="bg-white">
       {/* Schema.org — BreadcrumbList + FAQPage */}
@@ -219,24 +230,49 @@ export function CategoryPageTemplate({
                   className="bg-[#0D0D0D] border border-[#232324] rounded-2xl overflow-hidden flex flex-col"
                   style={{ gridArea: "card2" }}
                 >
-                  <div className="pointer-events-none pt-0 pb-2 flex justify-center">
-                    <Image
-                      src="/images/bento-gold-bar.png"
-                      alt=""
-                      width={300}
-                      height={180}
-                      className="object-contain w-[72%] sm:w-[68%] -mt-2"
-                      aria-hidden
-                    />
-                  </div>
-                  <div className="px-6 sm:px-7 pb-6 sm:pb-7">
-                    <p className="text-[#F4F1E8] text-[15px] font-semibold mb-2 leading-snug">
-                    {infoSectionB.cards[1].title}
-                    </p>
-                    <p className="text-[#D7D0C3] text-[13.5px] leading-relaxed">
-                    {infoSectionB.cards[1].body}
-                    </p>
-                  </div>
+                  {isPlatesBentoImageOnTop ? (
+                    <>
+                      <div className="pointer-events-none pt-0 pb-2 flex justify-center">
+                        <Image
+                          src={infoSectionBImageSrc}
+                          alt={infoSectionBImageAlt}
+                          width={300}
+                          height={180}
+                          className="object-contain w-[72%] sm:w-[68%] -mt-2"
+                        />
+                      </div>
+                      <div className="px-6 sm:px-7 pb-6 sm:pb-7">
+                        <p className="text-[#F4F1E8] text-[15px] font-semibold mb-2 leading-snug">
+                          {infoSectionB.cards[1].title}
+                        </p>
+                        <p className="text-[#D7D0C3] text-[13.5px] leading-relaxed">
+                          {infoSectionB.cards[1].body}
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className={`px-6 sm:px-7 pb-6 sm:pb-7 ${isDukatBentoImage ? "pt-6 sm:pt-7" : ""}`}>
+                        <p className="text-[#F4F1E8] text-[15px] font-semibold mb-2 leading-snug">
+                          {infoSectionB.cards[1].title}
+                        </p>
+                        <p className="text-[#D7D0C3] text-[13.5px] leading-relaxed">
+                          {infoSectionB.cards[1].body}
+                        </p>
+                      </div>
+                      <div
+                        className={`pointer-events-none flex justify-center ${isDukatBentoImage ? "mt-auto items-end -mb-9 sm:-mb-10" : "pt-0 pb-2"}`}
+                      >
+                        <Image
+                          src={infoSectionBImageSrc}
+                          alt={infoSectionBImageAlt}
+                          width={300}
+                          height={180}
+                          className={`object-contain w-[72%] sm:w-[68%] ${isDukatBentoImage ? "" : "-mt-2"}`}
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <div
@@ -271,24 +307,49 @@ export function CategoryPageTemplate({
                 </div>
 
                 <div className="bg-[#0D0D0D] border border-[#232324] rounded-2xl overflow-hidden flex flex-col">
-                  <div className="pointer-events-none pt-0 pb-2 flex justify-center">
-                    <Image
-                      src="/images/bento-gold-bar.png"
-                      alt=""
-                      width={260}
-                      height={160}
-                      className="object-contain w-[74%] -mt-1"
-                      aria-hidden
-                    />
-                  </div>
-                  <div className="px-6 pb-6">
-                    <p className="text-[#F4F1E8] text-[15px] font-semibold mb-2 leading-snug">
-                    {infoSectionB.cards[1].title}
-                    </p>
-                    <p className="text-[#D7D0C3] text-[13.5px] leading-relaxed">
-                    {infoSectionB.cards[1].body}
-                    </p>
-                  </div>
+                  {isPlatesBentoImageOnTop ? (
+                    <>
+                      <div className="pointer-events-none pt-0 pb-2 flex justify-center">
+                        <Image
+                          src={infoSectionBImageSrc}
+                          alt={infoSectionBImageAlt}
+                          width={260}
+                          height={160}
+                          className="object-contain w-[74%] -mt-1"
+                        />
+                      </div>
+                      <div className="px-6 pb-6">
+                        <p className="text-[#F4F1E8] text-[15px] font-semibold mb-2 leading-snug">
+                          {infoSectionB.cards[1].title}
+                        </p>
+                        <p className="text-[#D7D0C3] text-[13.5px] leading-relaxed">
+                          {infoSectionB.cards[1].body}
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className={`px-6 pb-6 ${isDukatBentoImage ? "pt-6" : ""}`}>
+                        <p className="text-[#F4F1E8] text-[15px] font-semibold mb-2 leading-snug">
+                          {infoSectionB.cards[1].title}
+                        </p>
+                        <p className="text-[#D7D0C3] text-[13.5px] leading-relaxed">
+                          {infoSectionB.cards[1].body}
+                        </p>
+                      </div>
+                      <div
+                        className={`pointer-events-none flex justify-center ${isDukatBentoImage ? "mt-auto items-end -mb-9" : "pt-0 pb-2"}`}
+                      >
+                        <Image
+                          src={infoSectionBImageSrc}
+                          alt={infoSectionBImageAlt}
+                          width={260}
+                          height={160}
+                          className={`object-contain w-[74%] ${isDukatBentoImage ? "" : "-mt-1"}`}
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <div className="bg-[#E9E6D9] border border-[#E1DBCB] rounded-2xl p-6">
