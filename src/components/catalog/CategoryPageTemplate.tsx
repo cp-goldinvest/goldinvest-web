@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Image from "next/image";
 import { Info } from "lucide-react";
 import type { BrandCard } from "@/components/catalog/BrandCardsSection";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
@@ -59,6 +60,7 @@ type Props = {
   // Two middle info sections
   infoSectionA: InfoSectionData; // e.g. "Koje težine postoje?" — no border-t
   infoSectionB: InfoSectionData; // e.g. "Sertifikati" — has border-t, no info box
+  infoSectionBLayout?: "default" | "premium-bento";
 
   // Remaining sections — props forwarded directly to existing components
   darkQuote: {
@@ -104,6 +106,7 @@ export function CategoryPageTemplate({
   filterConfig,
   infoSectionA,
   infoSectionB,
+  infoSectionBLayout = "default",
   darkQuote,
   brandsSection,
   delivery,
@@ -188,13 +191,133 @@ export function CategoryPageTemplate({
             className={infoSectionB.headingClassName}
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {infoSectionB.cards.map((card, i) => (
-              <InfoCard key={i} title={card.title}>
-                {card.body}
-              </InfoCard>
-            ))}
-          </div>
+          {infoSectionBLayout === "premium-bento" ? (
+            <>
+              <div
+                className="hidden md:grid gap-6"
+                style={{
+                  gridTemplateColumns: "minmax(0, 1.35fr) minmax(0, 1fr)",
+                  gridTemplateAreas: `
+                    "card1 card2"
+                    "card3 card2"
+                  `,
+                }}
+              >
+                <div
+                  className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-7"
+                  style={{ gridArea: "card1" }}
+                >
+                  <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                    {infoSectionB.cards[0].title}
+                  </p>
+                  <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                    {infoSectionB.cards[0].body}
+                  </p>
+                </div>
+
+                <div
+                  className="bg-[#0D0D0D] border border-[#232324] rounded-2xl overflow-hidden flex flex-col"
+                  style={{ gridArea: "card2" }}
+                >
+                  <div className="pointer-events-none pt-0 pb-2 flex justify-center">
+                    <Image
+                      src="/images/bento-gold-bar.png"
+                      alt=""
+                      width={300}
+                      height={180}
+                      className="object-contain w-[72%] sm:w-[68%] -mt-2"
+                      aria-hidden
+                    />
+                  </div>
+                  <div className="px-6 sm:px-7 pb-6 sm:pb-7">
+                    <p className="text-[#F4F1E8] text-[15px] font-semibold mb-2 leading-snug">
+                    {infoSectionB.cards[1].title}
+                    </p>
+                    <p className="text-[#D7D0C3] text-[13.5px] leading-relaxed">
+                    {infoSectionB.cards[1].body}
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  className="bg-[#E9E6D9] border border-[#E1DBCB] rounded-2xl p-6 sm:p-7"
+                  style={{ gridArea: "card3" }}
+                >
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center mb-5"
+                    style={{ background: "rgba(194,178,128,0.22)" }}
+                  >
+                    <svg width="17" height="13" viewBox="0 0 17 13" fill="none" aria-hidden>
+                      <path d="M1.5 6.5L6 11L15.5 1.5" stroke="#BF8E41" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                    {infoSectionB.cards[2].title}
+                  </p>
+                  <p className="text-[#5B5A57] text-[13.5px] leading-relaxed">
+                    {infoSectionB.cards[2].body}
+                  </p>
+                </div>
+              </div>
+
+              <div className="md:hidden grid grid-cols-1 gap-4">
+                <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6">
+                  <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                    {infoSectionB.cards[0].title}
+                  </p>
+                  <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                    {infoSectionB.cards[0].body}
+                  </p>
+                </div>
+
+                <div className="bg-[#0D0D0D] border border-[#232324] rounded-2xl overflow-hidden flex flex-col">
+                  <div className="pointer-events-none pt-0 pb-2 flex justify-center">
+                    <Image
+                      src="/images/bento-gold-bar.png"
+                      alt=""
+                      width={260}
+                      height={160}
+                      className="object-contain w-[74%] -mt-1"
+                      aria-hidden
+                    />
+                  </div>
+                  <div className="px-6 pb-6">
+                    <p className="text-[#F4F1E8] text-[15px] font-semibold mb-2 leading-snug">
+                    {infoSectionB.cards[1].title}
+                    </p>
+                    <p className="text-[#D7D0C3] text-[13.5px] leading-relaxed">
+                    {infoSectionB.cards[1].body}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-[#E9E6D9] border border-[#E1DBCB] rounded-2xl p-6">
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center mb-3"
+                    style={{ background: "rgba(194,178,128,0.22)" }}
+                  >
+                    <svg width="15" height="11" viewBox="0 0 17 13" fill="none" aria-hidden>
+                      <path d="M1.5 6.5L6 11L15.5 1.5" stroke="#BF8E41" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
+                    {infoSectionB.cards[2].title}
+                  </p>
+                  <p className="text-[#5B5A57] text-[13.5px] leading-relaxed">
+                    {infoSectionB.cards[2].body}
+                  </p>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {infoSectionB.cards.map((card, i) => (
+                <InfoCard key={i} title={card.title}>
+                  {card.body}
+                </InfoCard>
+              ))}
+            </div>
+          )}
         </SectionContainer>
       </section>
 
