@@ -147,15 +147,14 @@ export default function BlogPage() {
       </section>
 
       {/* ── Hero ──────────────────────────────────────────────────────────────── */}
-      <section className="bg-white pt-14 pb-12 border-b border-[#F0EDE6]">
+      <section
+        className="pt-14 pb-12 border-b border-[#F0EDE6]"
+        style={{
+          background: "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)",
+        }}
+      >
         <SectionContainer>
-          <div className="max-w-2xl">
-            <span
-              className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-5 block"
-              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-            >
-              Gold Invest — Blog
-            </span>
+          <div className="max-w-2xl text-left md:text-center md:mx-auto">
             <h1
               className="text-[#1B1B1C] leading-[1.1] mb-5"
               style={{
@@ -169,7 +168,7 @@ export default function BlogPage() {
               <span style={{ fontStyle: "italic" }}>štiti vaš novac.</span>
             </h1>
             <p
-              className="text-[#4C4C4C] leading-relaxed"
+              className="text-[#4C4C4C] leading-relaxed md:mx-auto"
               style={{
                 fontFamily: "var(--font-rethink), sans-serif",
                 fontSize: 16,
