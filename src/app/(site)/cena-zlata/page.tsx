@@ -86,7 +86,7 @@ export default function CenaZlataPage() {
 
       {/* Hero */}
       <CategoryHero
-        title="Cena zlata na berzi (Grafikon uživo)"
+        title="Cena zlata na berzi"
         introFull="Pratite aktuelnu cenu zlata na svetskim berzama u realnom vremenu. Vrednost plemenitih metala se menja iz minuta u minut, a naš grafikon vam omogućava da transparentno analizirate trenutne trendove i istorijski rast zlata kako biste doneli najbolju odluku za investiciono zlato."
         pills={[]}
         introMaxWidth="none"
@@ -94,7 +94,15 @@ export default function CenaZlataPage() {
       />
 
       {/* Chart — currency + unit + period filters */}
-      <GoldPriceChartFull />
+      <div className="bg-[#F9F9F9]">
+        <SectionContainer className="pt-16 sm:pt-20">
+          <SectionHeading
+            title="Grafikon uživo"
+            description="Uvid u aktuelnu cenu zlata i tržišne trendove kroz dinamički prikaz u realnom vremenu."
+          />
+        </SectionContainer>
+        <GoldPriceChartFull />
+      </div>
 
       {/* Spot cena */}
       <section className="bg-white py-16 sm:py-20">
@@ -238,86 +246,82 @@ export default function CenaZlataPage() {
       {/* Otkupna cena i Spread */}
       <section className="bg-white py-16 sm:py-20">
         <SectionContainer>
-          <SectionHeading
-            title="Otkupna cena i Spread — garancija likvidnosti"
-            description="Pored prodajne cene, Gold Invest uvek jasno ističe i Otkupnu cenu — iznos po kojem garantovano otkupljujemo vaše zlato, uz isplatu istog dana. Razlika između ta dva iznosa naziva se Spread."
-          />
-          <div className="mt-6 grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr] gap-8 items-start">
-            {/* Left: premium concept */}
-            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-8">
-              <div className="mb-4">
-                <p className="text-xs font-semibold tracking-widest uppercase text-[#BF8E41] mb-3">
-                  Spread (razlika)
-                </p>
-                <h3
-                  className="text-[#1B1B1C] mb-4"
-                  style={{
-                    fontFamily: "var(--font-pp-editorial), Georgia, serif",
-                    fontSize: "clamp(22px, 2.3vw, 30px)",
-                    fontWeight: 400,
-                    lineHeight: "1.15",
-                  }}
-                >
-                  Spread je razlika između onoga što plaćate i onoga što dobijate nazad.
-                </h3>
-                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                  Kada je spread mali, lakše prelazite iz “troška kupovine” u zonu čistog profita —
-                  jer rast Spot cene brže stiže do vaše realne vrednosti.
-                </p>
-              </div>
+          <SectionHeading title="Otkupna cena i Spread — garancija likvidnosti" />
 
-              <div className="mt-6 bg-white border border-[#F0EDE6] rounded-2xl p-5 sm:p-6">
-                <p className="text-[#1B1B1C] font-semibold text-[14px] mb-2 leading-snug">
-                  Naša logika otkupa
-                </p>
-                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                  Otkupna cena se formira na osnovu Spot cene — uz jasno prikazan odbitak, tako da
-                  znate šta tačno dobijate.
-                </p>
-              </div>
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-5 lg:gap-8 lg:items-stretch">
+            {/* 1) Top-left light card */}
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-8 lg:col-start-1 lg:row-start-1 flex flex-col items-start justify-center text-left">
+              <h3 className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                Spread je razlika između onoga što plaćate i onoga što dobijate nazad.
+              </h3>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                Kada je spread mali, lakše prelazite iz “troška kupovine” u zonu čistog profita — jer rast Spot cene brže
+                stiže do vaše realne vrednosti.
+              </p>
             </div>
 
-            {/* Right: vertical list */}
-            <div className="bg-white border border-[#F0EDE6] rounded-2xl overflow-hidden">
-              <div className="px-5 sm:px-6 py-4 sm:py-5 bg-[#FAF8F2] border-b border-[#F0EDE6]">
-                <p className="text-[#1B1B1C] text-[14px] sm:text-[15px] font-semibold leading-snug mb-0">
-                  Šta treba da znate o Spread-u
-                </p>
+            {/* 2) Gold card (below top-left) */}
+            <div className="bg-[#E9E6D9] rounded-2xl p-7 flex flex-col items-start justify-center text-left lg:col-start-1 lg:row-start-2">
+              <div
+                className="w-9 h-9 rounded-full flex items-center justify-center mb-5"
+                style={{ background: "rgba(194,178,128,0.22)" }}
+              >
+                <svg width="17" height="13" viewBox="0 0 17 13" fill="none" aria-hidden="true">
+                  <path
+                    d="M1.5 6.5L6 11L15.5 1.5"
+                    stroke="#BF8E41"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
+              <p className="text-[#1B1B1C] font-semibold text-[15px] leading-snug mb-1">Naša logika otkupa</p>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                Otkupna cena se formira na osnovu Spot cene — uz jasno prikazan odbitak, tako da znate šta tačno dobijate.
+              </p>
+            </div>
 
-              <div className="divide-y divide-[#F0EDE6]">
-                {[
-                  {
-                    n: 1,
-                    title: "Šta je Spread?",
-                    body: "Spread je razlika između prodajne cene (po kojoj kupujete) i otkupne cene (po kojoj prodajete nazad).",
-                  },
-                  {
-                    n: 2,
-                    title: "Zašto mali spread znači bržu likvidnost",
-                    body: "Manji spread pomaže da vrednost vaše investicije brže pređe iz zone troška u zonu čistog profita.",
-                  },
-                  {
-                    n: 3,
-                    title: "Otkup po Spot osnovi — transparentno",
-                    body: "Otkupna cena se formira na osnovu Spot cene sa grafikona, uz minimalan i javno istaknut odbitak.",
-                  },
-                ].map((item) => (
-                  <div key={item.n} className="p-5 sm:p-6 flex items-start gap-3">
-                    <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1B1B1C] text-white text-sm font-semibold shrink-0">
-                      {item.n}
-                    </span>
-                    <div>
-                      <p className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
-                        {item.title}
-                      </p>
-                      <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                        {item.body}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+            {/* 3) Center light card (spans 2 rows) */}
+            <div className="bg-[#E9E6D9] rounded-2xl p-7 flex flex-col items-start justify-center text-left lg:col-start-3 lg:row-start-1">
+              <div
+                className="w-9 h-9 rounded-full flex items-center justify-center mb-5"
+                style={{ background: "rgba(194,178,128,0.22)" }}
+              >
+                <svg width="17" height="13" viewBox="0 0 17 13" fill="none" aria-hidden="true">
+                  <path
+                    d="M10 0.5L6 7H9.5L7.4 12.5L12.8 5.8H9.2L10 0.5Z"
+                    stroke="#BF8E41"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
+              <h3 className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                Zašto mali spread znači bržu likvidnost
+              </h3>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                Manji spread pomaže da vrednost vaše investicije brže pređe iz zone troška u zonu čistog profita.
+              </p>
+            </div>
+
+            {/* 4) Right black card (spans 2 rows) */}
+            <div className="bg-[#0D0D0D] border border-[#232324] rounded-2xl p-6 sm:p-8 lg:col-start-2 lg:row-start-1 lg:row-span-2 flex flex-col items-start justify-center text-left">
+              <h3 className="text-[#BEAD87] text-[15px] font-semibold leading-snug mb-1">Šta je Spread?</h3>
+              <p className="text-[#D7D0C3] text-[13.5px] leading-relaxed mb-0">
+                Spread je razlika između prodajne cene (po kojoj kupujete) i otkupne cene (po kojoj prodajete nazad).
+              </p>
+            </div>
+
+            {/* 5) Bottom-right light card */}
+            <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-8 lg:col-start-3 lg:row-start-2 flex flex-col items-start justify-center text-left">
+              <h3 className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
+                Otkup po Spot osnovi — transparentno
+              </h3>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
+                Otkupna cena se formira na osnovu Spot cene sa grafikona, uz minimalan i javno istaknut odbitak.
+              </p>
             </div>
           </div>
         </SectionContainer>
