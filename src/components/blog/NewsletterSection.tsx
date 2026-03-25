@@ -17,7 +17,12 @@ export function NewsletterSection() {
   }
 
   return (
-    <section className="bg-white py-16 sm:py-20 border-t border-[#F0EDE6]">
+    <section
+      className="py-16 sm:py-20 border-t border-[#F0EDE6]"
+      style={{
+        background: "linear-gradient(180deg, #D4C5A3 0%, #E7E5D9 37%, #EFE7DA 100%)",
+      }}
+    >
       <div className="max-w-[640px] mx-auto px-6 text-center">
 
         {/* Eyebrow */}
