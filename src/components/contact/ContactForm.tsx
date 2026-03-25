@@ -16,7 +16,7 @@ const SUBJECTS = [
   "Otkup zlata — procena",
   "Avansna kupovina / rezervacija",
   "Poklon pakovanje",
-  "Opste pitanje",
+  "Opšte pitanje",
 ];
 
 const inputClass =
@@ -68,7 +68,7 @@ export function ContactForm() {
           className="text-[#6B6B6B] leading-relaxed max-w-[420px]"
           style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 15 }}
         >
-          Javicemo vam se u toku istog radnog dana. Ako imate hitno pitanje, slobodno nas pozovite direktno na{" "}
+          Javićemo vam se u toku istog radnog dana. Ako imate hitno pitanje, slobodno nas pozovite direktno na{" "}
           <a
             href="tel:+381612698569"
             className="text-[#BF8E41] font-semibold hover:underline"
@@ -82,7 +82,7 @@ export function ContactForm() {
           className="mt-2 text-[13px] text-[#9D9072] hover:text-[#1B1B1C] transition-colors font-medium underline underline-offset-2"
           style={{ fontFamily: "var(--font-rethink), sans-serif" }}
         >
-          Posalji novu poruku
+          Pošalji novu poruku
         </button>
       </div>
     );
@@ -196,7 +196,7 @@ export function ContactForm() {
             Šaljem...
           </>
         ) : (
-          "POSALJI PORUKU"
+          "POŠALJI PORUKU"
         )}
       </button>
 
@@ -204,7 +204,7 @@ export function ContactForm() {
         className="text-center text-[12px] text-[#BDBDBD] leading-relaxed"
         style={{ fontFamily: "var(--font-rethink), sans-serif" }}
       >
-        Odgovaramo u toku istog radnog dana. Podaci se koriste isključivo za odgovor na vas upit.
+        Odgovaramo u toku istog radnog dana. Podaci se koriste isključivo za odgovor na vaš upit.
       </p>
     </form>
   );
