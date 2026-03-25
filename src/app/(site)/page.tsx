@@ -9,7 +9,8 @@ import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { GoldTypesSection } from "@/components/home/GoldTypesSection";
 import { PriceBreakdownSection } from "@/components/home/PriceBreakdownSection";
 import { GoldPriceChart } from "@/components/home/GoldPriceChart";
-import { EducationCarousel } from "@/components/home/EducationCarousel";
+import { HomeBlogBentoSection } from "@/components/home/HomeBlogBentoSection";
+import { BLOG_POSTS, getLatestBlogPosts } from "@/data/blog-posts";
 import { FaqSection } from "@/components/home/FaqSection";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 
@@ -60,6 +61,8 @@ export default async function HomePage() {
   } catch {
     // DB nedostupna — koristimo mock podatke
   }
+
+  const latestBlogPosts = getLatestBlogPosts(BLOG_POSTS, 5);
 
   return (
     <main className="bg-white">
@@ -123,8 +126,8 @@ export default async function HomePage() {
       {/* 6. Gold price chart */}
       <GoldPriceChart />
 
-      {/* 7. Edukacija carousel */}
-      <EducationCarousel />
+      {/* 7. Blog — bento (GoldTypes-style), 5 najnovijih članaka */}
+      <HomeBlogBentoSection posts={latestBlogPosts} />
 
       {/* 8. FAQ */}
       <FaqSection />
