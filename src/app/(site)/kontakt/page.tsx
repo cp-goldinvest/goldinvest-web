@@ -56,43 +56,49 @@ export default function KontaktPage() {
         </SectionContainer>
       </section>
 
+      {/* ── Hero ──────────────────────────────────────────────────────────────── */}
+      <section
+        className="overflow-hidden"
+        style={{ background: "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)" }}
+      >
+        <SectionContainer className="py-14 sm:py-20">
+          <div className="text-left md:text-center md:mx-auto max-w-[680px]">
+            <h1
+              className="text-[#1B1B1C] leading-[1.1] mb-6"
+              style={{
+                fontFamily: "var(--font-pp-editorial), Georgia, serif",
+                fontWeight: 400,
+                fontSize: "clamp(32px, 4vw, 52px)",
+              }}
+            >
+              <span style={{ fontStyle: "normal" }}>Razgovarajmo.</span>
+              <br />
+              <span style={{ fontStyle: "italic" }}>Odmah.</span>
+            </h1>
+            <p
+              className="text-[#4C4C4C] leading-relaxed mb-0"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontSize: 16,
+                lineHeight: "1.65em",
+                maxWidth: 520,
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
+            >
+              Najbrže do odgovora — telefonom. Javimo se u roku od nekoliko sekundi tokom radnog vremena. Za pisane upite, odgovaramo u toku istog dana.
+            </p>
+          </div>
+        </SectionContainer>
+      </section>
+
       {/* ── Main section — info + form ────────────────────────────────────────── */}
       <section className="bg-white py-16 sm:py-24">
         <SectionContainer>
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-20 items-start lg:items-center">
 
             {/* ── Left — contact info ─────────────────────────────────────── */}
             <div>
-              <span
-                className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-5 block"
-                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-              >
-                Kontakt
-              </span>
-              <h1
-                className="text-[#1B1B1C] leading-[1.1] mb-6"
-                style={{
-                  fontFamily: "var(--font-pp-editorial), Georgia, serif",
-                  fontWeight: 400,
-                  fontSize: "clamp(32px, 4vw, 52px)",
-                }}
-              >
-                <span style={{ fontStyle: "normal" }}>Razgovarajmo.</span>
-                <br />
-                <span style={{ fontStyle: "italic" }}>Odmah.</span>
-              </h1>
-              <p
-                className="text-[#4C4C4C] leading-relaxed mb-10"
-                style={{
-                  fontFamily: "var(--font-rethink), sans-serif",
-                  fontSize: 16,
-                  lineHeight: "1.65em",
-                  maxWidth: 460,
-                }}
-              >
-                Najbrže do odgovora — telefonom. Javimo se u roku od nekoliko sekundi tokom radnog vremena. Za pisane upite, odgovaramo u toku istog dana.
-              </p>
-
               {/* Phone — primary CTA */}
               <a
                 href="tel:+381612698569"
