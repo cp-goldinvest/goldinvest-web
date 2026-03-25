@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
+import { CheckCircle2, XCircle, ArrowRight } from "lucide-react";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { HeroSection } from "@/components/home/HeroSection";
 import { CategoryFaq } from "@/components/catalog/CategoryFaq";
@@ -147,21 +147,21 @@ export default function ONamaPage() {
       </div>
 
       {/* ── Stats strip ──────────────────────────────────────────────────────── */}
-      <section className="bg-[#1B1B1C] py-6">
+      <section className="bg-white py-6">
         <SectionContainer>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-[#2E2E2E]">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
               { value: "4", label: "LBMA akreditovane livarnice" },
               { value: "999,9", label: "Jedina čistoća u ponudi" },
               { value: "Isti dan", label: "Isplata pri otkupu" },
               { value: "1 savetnik", label: "Za svakog klijenta" },
-            ].map(({ value, label }) => (
+            ].map(({ value, label }, idx) => (
               <div
                 key={label}
-                className="flex flex-col items-start md:items-center md:text-center px-0 md:px-8 gap-1"
+                className="bg-[#EFE7DA] border border-[#E7E5D9] rounded-2xl px-6 sm:px-8 py-8 min-h-[108px] flex flex-col items-center text-center transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)]"
               >
                 <span
-                  className="text-[#BEAD87]"
+                  className="mt-5 text-[#1B1B1C]"
                   style={{
                     fontFamily: "var(--font-pp-editorial), Georgia, serif",
                     fontSize: "clamp(24px, 2.5vw, 32px)",
@@ -172,8 +172,11 @@ export default function ONamaPage() {
                 >
                   {value}
                 </span>
+
+                <div className="w-full h-px bg-[#BEAD87] mt-2" aria-hidden />
+
                 <span
-                  className="text-[#7A7060] text-[12.5px] leading-snug"
+                  className="mt-2 text-[#7A7060] text-[12.5px] leading-snug"
                   style={{ fontFamily: "var(--font-rethink), sans-serif" }}
                 >
                   {label}
@@ -508,75 +511,6 @@ export default function ONamaPage() {
                   </span>
                 ))}
               </div>
-            </div>
-          </div>
-        </SectionContainer>
-      </section>
-
-      {/* ── Contact CTA ──────────────────────────────────────────────────────── */}
-      <section
-        className="relative overflow-hidden py-20 sm:py-28"
-        style={{
-          background: "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)",
-        }}
-      >
-        <SectionContainer>
-          <div className="max-w-[620px]">
-            <span
-              className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-5 block"
-              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-            >
-              Razgovarajmo
-            </span>
-            <h2
-              className="text-[#1B1B1C] mb-6 leading-[1.12]"
-              style={{
-                fontFamily: "var(--font-pp-editorial), Georgia, serif",
-                fontWeight: 400,
-                fontSize: "clamp(28px, 3.5vw, 48px)",
-              }}
-            >
-              <span style={{ fontStyle: "normal" }}>Imate pitanje?</span>
-              <br />
-              <span style={{ fontStyle: "italic" }}>Pitajte nas direktno.</span>
-            </h2>
-            <p
-              className="text-[#3A3A3A] leading-relaxed mb-8"
-              style={{
-                fontFamily: "var(--font-rethink), sans-serif",
-                fontSize: 16,
-                lineHeight: "1.65em",
-                maxWidth: 520,
-              }}
-            >
-              Nema glupih pitanja kada je u pitanju vaš novac. Pozovite nas ili pošaljite poruku — bez obaveze, bez prodajnog pritiska. Samo konkretan odgovor na vaše konkretno pitanje.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="tel:+381612698569"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-semibold transition-all duration-200 hover:opacity-90"
-                style={{
-                  backgroundColor: "#1B1B1C",
-                  fontFamily: "var(--font-rethink), sans-serif",
-                  fontSize: 14,
-                  boxShadow: "0px 4px 14px rgba(0,0,0,0.18)",
-                }}
-              >
-                <Phone size={15} />
-                061/269-8569
-              </a>
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-200"
-                style={{
-                  border: "1.5px solid #1B1B1C",
-                  color: "#1B1B1C",
-                  fontFamily: "var(--font-rethink), sans-serif",
-                  fontSize: 14,
-                }}
-              >
-                KONTAKT FORMA
-              </Link>
             </div>
           </div>
         </SectionContainer>
