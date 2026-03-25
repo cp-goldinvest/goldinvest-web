@@ -681,12 +681,22 @@ export default async function PlocicaWeightPage({
         <SchemaScript schema={buildFaqSchema(config.seo.faq.items)} />
       )}
 
-      {/* ── Breadcrumb + hero (homepage style) ─────────────────────────── */}
-      <section className="bg-white py-6">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+      {/* ── Breadcrumb ─────────────────────────────────────────────────────── */}
+      <section className="bg-white py-4 border-b border-[#F0EDE6]">
+        <SectionContainer>
           <Breadcrumb items={breadcrumbs} variant="light" />
+        </SectionContainer>
+      </section>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
+      {/* ── Hero (homepage style) ────────────────────────────────────────── */}
+      <section
+        className="overflow-hidden py-6"
+        style={{
+          background: "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)",
+        }}
+      >
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
             {/* Left image */}
             <div className="relative rounded-2xl overflow-hidden bg-[#F9F9F9]" style={{ height: 320 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
