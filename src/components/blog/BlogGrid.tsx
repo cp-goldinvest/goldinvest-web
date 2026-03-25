@@ -30,7 +30,7 @@ const CATEGORY_STYLES: Record<Exclude<Category, "Svi tekstovi">, string> = {
   "Vodič":             "border border-[#BEAD87] text-[#9D9072] bg-transparent",
 };
 
-function CategoryBadge({ cat }: { cat: Exclude<Category, "Svi tekstovi"> }) {
+export function CategoryBadge({ cat }: { cat: Exclude<Category, "Svi tekstovi"> }) {
   return (
     <span
       className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10.5px] font-semibold tracking-wide uppercase ${CATEGORY_STYLES[cat]}`}

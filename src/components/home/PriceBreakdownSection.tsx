@@ -133,7 +133,7 @@ export function PriceBreakdownSection() {
             >
               Spot cena
             </h3>
-            <p className="text-[#6B6B6B] text-[14px] leading-relaxed mt-auto">
+            <p className="text-[#6B6B6B] text-[14px] leading-relaxed flex-1 min-h-0">
               Ovo je trenutna vrednost čistog zlata na globalnom tržištu. Menja
               se iz minuta u minut, a diktiraju je najveće svetske berze (LBMA u
               Londonu i COMEX u Njujorku).
