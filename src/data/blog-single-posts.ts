@@ -197,53 +197,51 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
           "Za poređenje: u periodu 1990–2009, centralne banke su bile neto prodavci zlata.",
       },
       { type: "heading", text: "Ko najviše kupuje i zašto?" },
-      { type: "heading", text: "1. Kina" },
       {
-        type: "paragraph",
-        text:
-          "Narodna banka Kine objavila je kupovinu zlata u svakom mesecu tokom 2023. godine. Kina strateški smanjuje zavisnost od dolara kao rezervne valute — proces poznat kao de-dolarizacija.",
+        type: "stepItem",
+        number: 1,
+        title: "Kina",
+        body: "Narodna banka Kine objavila je kupovinu zlata u svakom mesecu tokom 2023. godine. Kina strateški smanjuje zavisnost od dolara kao rezervne valute — proces poznat kao de-dolarizacija.",
       },
-      { type: "heading", text: "2. Turska" },
       {
-        type: "paragraph",
-        text:
-          "Centralna banka Turske kupuje zlato kao odgovor na inflaciju i nestabilnost valute.",
+        type: "stepItem",
+        number: 2,
+        title: "Turska",
+        body: "Centralna banka Turske kupuje zlato kao odgovor na inflaciju i nestabilnost valute.",
       },
-      { type: "heading", text: "3. Indija, Singapur, Češka, Poljska" },
       {
-        type: "paragraph",
-        text:
-          "Evropske centralne banke povećavaju učešće zlata u rezervama zbog geopolitičkih rizika.",
+        type: "stepItem",
+        number: 3,
+        title: "Indija, Singapur, Češka, Poljska",
+        body: "Evropske centralne banke povećavaju učešće zlata u rezervama zbog geopolitičkih rizika.",
       },
-      { type: "heading", text: "4. Srednji Istok" },
       {
-        type: "paragraph",
-        text:
-          "Centralne banke zemalja Zaliva diversifikuju rezerve iz dolara u zlato.",
+        type: "stepItem",
+        number: 4,
+        title: "Srednji Istok",
+        body: "Centralne banke zemalja Zaliva diversifikuju rezerve iz dolara u zlato.",
       },
       { type: "heading", text: "Zašto je ovo bitno za privatnog investitora?" },
-      { type: "heading", text: "1. Strukturna potražnja koja podiže cenu" },
       {
-        type: "paragraph",
-        text:
+        type: "stepItem",
+        number: 1,
+        title: "Strukturna potražnja koja podiže cenu",
+        body: [
           "Centralne banke nisu špekulanti — ne kupuju i prodaju na osnovu kratkoročnih kretanja. Kada kupuju, drže na godinama i decenijama. Ovo znači da se godišnje iz slobodnog tržišta povlači preko 1.000 tona zlata.",
-      },
-      {
-        type: "paragraph",
-        text:
           "Rudarska produkcija iznosi oko 3.500 tona godišnje, što znači da banke apsorbuju gotovo trećinu ponude.",
+        ],
       },
-      { type: "heading", text: "2. Signal o poverenju u globalni finansijski sistem" },
       {
-        type: "paragraph",
-        text:
-          "Centralne banke imaju pristup informacijama koje privatni investitori nemaju, pa njihova kupovina zlata šalje snažan signal.",
+        type: "stepItem",
+        number: 2,
+        title: "Signal o poverenju u globalni finansijski sistem",
+        body: "Centralne banke imaju pristup informacijama koje privatni investitori nemaju, pa njihova kupovina zlata šalje snažan signal.",
       },
-      { type: "heading", text: "3. De-dolarizacija menja globalnu finansijsku arhitekturu" },
       {
-        type: "paragraph",
-        text:
-          "Udeo dolara u rezervama opada, a zlato postaje ključna alternativa.",
+        type: "stepItem",
+        number: 3,
+        title: "De-dolarizacija menja globalnu finansijsku arhitekturu",
+        body: "Udeo dolara u rezervama opada, a zlato postaje ključna alternativa.",
       },
       { type: "heading", text: "Šta se dešavalo sa cenom zlata?" },
       {
