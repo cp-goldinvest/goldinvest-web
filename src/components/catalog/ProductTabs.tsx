@@ -1,0 +1,322 @@
+"use client";
+
+import { useState } from "react";
+
+type TabId =
+  | "opis"
+  | "svojstva"
+  | "placanje"
+  | "deklaracija"
+  | "poreski";
+
+type ProductSpec = {
+  label: string;
+  value: string;
+};
+
+type Props = {
+  weightG: number;
+  purity: number;
+  brand: string;
+  origin: string;
+  sku: string | null;
+  specs?: ProductSpec[];
+};
+
+const TABS: { id: TabId; label: string }[] = [
+  { id: "opis",        label: "Opis proizvoda" },
+  { id: "svojstva",    label: "Svojstva proizvoda" },
+  { id: "placanje",    label: "Način i vreme plaćanja" },
+  { id: "deklaracija", label: "Deklaracija proizvoda" },
+  { id: "poreski",     label: "Poreski i drugi relevantni tretmani" },
+];
+
+export function ProductTabs({ weightG, purity, brand, origin, sku }: Props) {
+  const [active, setActive] = useState<TabId>("opis");
+
+  const purityDisplay = (purity * 1000).toFixed(1).replace(".0", "");
+  const weightDisplay = weightG >= 1000 ? `${weightG / 1000} kg` : `${weightG} g`;
+
+  return (
+    <div>
+      {/* Tab bar — full width, horizontally scrollable on small screens */}
+      <div className="border-b border-[#F0EDE6] overflow-x-auto scrollbar-hide">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex min-w-max sm:min-w-0 sm:w-full">
+          {TABS.map((tab) => {
+            const isActive = active === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActive(tab.id)}
+                className="relative flex-1 px-5 py-4 text-sm font-medium whitespace-nowrap transition-colors text-center"
+                style={{
+                  fontFamily: "var(--font-rethink), sans-serif",
+                  fontSize: 13.5,
+                  color: isActive ? "#1B1B1C" : "#8A8A8A",
+                }}
+              >
+                {tab.label}
+                {isActive && (
+                  <span
+                    className="absolute bottom-0 left-0 right-0 h-[2px]"
+                    style={{ background: "#BF8E41" }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Tab content */}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
+        {active === "opis" && (
+          <div
+            className="max-w-[760px] text-[#4A4A4A] leading-relaxed space-y-4"
+            style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 15.5 }}
+          >
+            <p>
+              <strong className="text-[#1B1B1C]">Argor-Heraeus zlatna poluga {weightDisplay}</strong> je
+              jedno od najpriznatijih investicionih zlatnih ulaganja dostupnih na tržištu. Rafinerija
+              Argor-Heraeus iz Mendrisija u Švajcarskoj važi za jednu od tri najveće i najcenjenije
+              rafinerije plemenitih metala na svetu — uz Johnson Matthey i Umicore.
+            </p>
+            <p>
+              Svaka poluga sadrži tačno <strong className="text-[#1B1B1C]">{weightDisplay} čistog zlata</strong>{" "}
+              čistoće <strong className="text-[#1B1B1C]">{purityDisplay}/1000 (24 karata)</strong> i dolazi
+              fabrički zapečaćena u čvrstom sigurnosnom blisteru veličine bankovne kartice — koji je
+              ujedno i vaš zvanični sertifikat autentičnosti. Na blisteru i samoj poluzi laserski su
+              ugravirani: logo Argor-Heraeus, nominalna masa, čistoća i jedinstveni serijski broj.
+            </p>
+            <p>
+              Poluga nosi <strong className="text-[#1B1B1C]">LBMA &ldquo;Good Delivery&rdquo; status</strong> — najvišu
+              međunarodnu sertifikaciju za investiciono zlato, koju izdaje London Bullion Market
+              Association. Ovaj status garantuje da će poluga biti prihvaćena bez ikakve provere
+              autentičnosti kod svakog profesionalnog dilera, u svakoj banci i na svakom tržištu
+              plemenitih metala na svetu.
+            </p>
+            <p>
+              <span className="text-[#BF8E41] font-semibold">Zlatno pravilo:</span> Nikad ne otvarajte
+              fabrički blister — otvorena poluga gubi &ldquo;Good Delivery&rdquo; status i otkupljuje se po
+              nižoj ceni. Pakovanje je garancija, ne samo ambalaža.
+            </p>
+          </div>
+        )}
+
+        {active === "svojstva" && (
+          <div className="max-w-[640px]">
+            <div className="rounded-2xl border border-[#F0EDE6] overflow-hidden">
+              {[
+                { label: "Težina",           value: weightDisplay },
+                { label: "Čistoća",          value: `${purityDisplay}/1000 (24 karata, 999,9 finog zlata)` },
+                { label: "Format",           value: "Poluga (investicioni bar)" },
+                { label: "Proizvođač",       value: brand },
+                { label: "Zemlja porekla",   value: origin },
+                { label: "Pakovanje",        value: "Fabrički zapečaćen sigurnosni blister (optifit)" },
+                { label: "Sertifikacija",    value: "LBMA Good Delivery" },
+                { label: "Serijski broj",    value: "Da — laserski graviran na poluzi i blisteru" },
+                { label: "PDV",              value: "Oslobođeno PDV-a (investiciono zlato)" },
+                ...(sku ? [{ label: "Šifra proizvoda", value: sku }] : []),
+              ].map(({ label, value }, i) => (
+                <div
+                  key={label}
+                  className={`flex items-start gap-4 px-5 py-3.5 ${
+                    i % 2 === 0 ? "bg-white" : "bg-[#FAFAF8]"
+                  }`}
+                >
+                  <span
+                    className="shrink-0 text-[#8A8A8A] w-44"
+                    style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 13.5 }}
+                  >
+                    {label}
+                  </span>
+                  <span
+                    className="text-[#1B1B1C] font-medium"
+                    style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 13.5 }}
+                  >
+                    {value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {active === "placanje" && (
+          <div
+            className="max-w-[760px] space-y-6"
+            style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                {
+                  title: "Gotovinski polog",
+                  body: "Plaćanje gotovinom u prihvatamo do zakonskog limita od 1.160.000 RSD (10.000 EUR). Za iznose iznad ovog limita obavezno je plaćanje bankovnim transferom.",
+                },
+                {
+                  title: "Bankovni transfer",
+                  body: "Uplata na poslovni račun Gold Invest. Nakon što uplata bude evidentirana (isti ili sledeći radni dan), organizujemo preuzimanje ili dostavu.",
+                },
+                {
+                  title: "Avansna kupovina",
+                  body: "Uplatom avansa zaključavate trenutnu berzansku cenu. Roba se naručuje direktno iz rafinerije. Isporuka: 3–7 radnih dana od uplate.",
+                },
+                {
+                  title: "Plaćanje pouzećem",
+                  body: "Moguće za dostavu kurirskom službom uz limit osiguranja pošiljke. Kontaktirajte nas za detalje pre porudžbine.",
+                },
+              ].map(({ title, body }) => (
+                <div
+                  key={title}
+                  className="bg-[#FAFAF8] border border-[#F0EDE6] rounded-xl p-5"
+                >
+                  <p
+                    className="text-[#1B1B1C] font-semibold mb-2"
+                    style={{ fontSize: 14.5 }}
+                  >
+                    {title}
+                  </p>
+                  <p
+                    className="text-[#6B6B6B] leading-relaxed"
+                    style={{ fontSize: 13.5 }}
+                  >
+                    {body}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-[#FAF8F2] border border-[#F0EDE6] rounded-xl p-5">
+              <p
+                className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-2"
+              >
+                Vreme isporuke
+              </p>
+              <ul
+                className="text-[#4A4A4A] space-y-1.5"
+                style={{ fontSize: 14, lineHeight: "1.6em" }}
+              >
+                <li>
+                  <span className="font-semibold text-[#1B1B1C]">Lager (roba na stanju):</span>{" "}
+                  Beograd — isti dan (porudžbine do 12h), Srbija — 1–3 radna dana
+                </li>
+                <li>
+                  <span className="font-semibold text-[#1B1B1C]">Avansna kupovina:</span>{" "}
+                  3–7 radnih dana od potvrde uplate (direktno iz rafinerije)
+                </li>
+                <li>
+                  <span className="font-semibold text-[#1B1B1C]">Lično preuzimanje:</span>{" "}
+                  Odmah nakon evidentiranja uplate, u našoj poslovnici u Beogradu
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {active === "deklaracija" && (
+          <div
+            className="max-w-[760px] space-y-5"
+            style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+          >
+            <div className="rounded-2xl border border-[#F0EDE6] overflow-hidden">
+              {[
+                { label: "Naziv proizvoda",     value: `Zlatna poluga ${weightDisplay} — Argor-Heraeus` },
+                { label: "Zemlja porekla",       value: "Švajcarska (Argor-Heraeus SA, Mendrisio)" },
+                { label: "Sastav",               value: `Zlato (Au) ${purityDisplay}/1000 — čistoće 99,99%` },
+                { label: "Nominalna masa",        value: weightDisplay },
+                { label: "Pakovanje",            value: "Originalni sigurnosni blister (optifit) — fabrički zapečaćen" },
+                { label: "Uvoznik / Distributer",value: "Gold Invest d.o.o., Beograd, Srbija" },
+                { label: "Garancija porekla",    value: "LBMA Good Delivery sertifikat" },
+                { label: "Uslovi čuvanja",       value: "Na sobnoj temperaturi, zaštićeno od vlage i direktnog sunca" },
+              ].map(({ label, value }, i) => (
+                <div
+                  key={label}
+                  className={`flex items-start gap-4 px-5 py-3.5 ${
+                    i % 2 === 0 ? "bg-white" : "bg-[#FAFAF8]"
+                  }`}
+                >
+                  <span
+                    className="shrink-0 text-[#8A8A8A] w-48"
+                    style={{ fontSize: 13.5 }}
+                  >
+                    {label}
+                  </span>
+                  <span
+                    className="text-[#1B1B1C] font-medium"
+                    style={{ fontSize: 13.5 }}
+                  >
+                    {value}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p
+              className="text-[#8A8A8A] text-xs leading-relaxed"
+            >
+              Svi podaci na ovoj stranici su informativnog karaktera. Stvarni podaci o proizvodu
+              nalaze se na originalnom blisteru i sertifikatu koji dolaze uz polugu.
+            </p>
+          </div>
+        )}
+
+        {active === "poreski" && (
+          <div
+            className="max-w-[760px] space-y-5"
+            style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+          >
+            <div className="bg-[#FAF8F2] border border-[#F0EDE6] rounded-xl p-5 sm:p-6">
+              <p className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-3">
+                Oslobođenje od PDV-a
+              </p>
+              <p className="text-[#1B1B1C] font-semibold text-[15px] mb-2">
+                Zlatne poluge su u potpunosti oslobođene PDV-a
+              </p>
+              <p className="text-[#6B6B6B] text-[14px] leading-relaxed">
+                U skladu sa Zakonom o porezu na dodatu vrednost Republike Srbije (čl. 25, st. 1,
+                tač. 4), promet investicionog zlata — uključujući zlatne poluge čistoće iznad
+                995/1000 — u potpunosti je oslobođen PDV-a od 20%. Svaki dinar koji date ide
+                direktno u vrednost čistog zlata, bez dodatnog poreza.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-[#FAFAF8] border border-[#F0EDE6] rounded-xl p-5">
+                <p className="text-[#1B1B1C] font-semibold text-[14.5px] mb-2">
+                  Porez na kapitalnu dobit
+                </p>
+                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                  U Republici Srbiji, prihod od prodaje investicionog zlata fizičkih lica nije
+                  predmet poreza na kapitalnu dobit, ukoliko se radi o fizičkim licima koja ne
+                  obavljaju registrovanu delatnost prometom plemenitih metala. Preporučujemo da
+                  se konsultujete sa poreskim savetnikom za vašu specifičnu situaciju.
+                </p>
+              </div>
+              <div className="bg-[#FAFAF8] border border-[#F0EDE6] rounded-xl p-5">
+                <p className="text-[#1B1B1C] font-semibold text-[14.5px] mb-2">
+                  Zakon o sprečavanju pranja novca
+                </p>
+                <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                  U skladu sa Zakonom o sprečavanju pranja novca i finansiranja terorizma, gotovinska
+                  plaćanja dozvoljena su do 1.160.000 RSD (oko 10.000 EUR). Za veće iznose obavezno
+                  je plaćanje bezgotovinskim putem, uz odgovarajuću dokumentaciju o identitetu kupca.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#FAFAF8] border border-[#F0EDE6] rounded-xl p-5">
+              <p className="text-[#1B1B1C] font-semibold text-[14.5px] mb-2">
+                Nasledstvo i prenos imovine
+              </p>
+              <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+                Fizičko zlato u vidu poluga prenosi se kao i svaka druga imovina. Zlatne poluge
+                u originalnom LBMA blisteru sa serijskim brojem lako je moguće dokumentovati
+                za potrebe zaostavštine ili poklona. Za konkretne pravne i poreske aspekte
+                prenosa imovine, konsultujte se sa notarom ili poreskim savetnikom.
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
