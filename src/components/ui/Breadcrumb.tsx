@@ -39,7 +39,7 @@ export function Breadcrumb({ items, variant = "dark" }: Props) {
         {items.map((item, i) => {
           const isLast = i === items.length - 1;
           return (
-            <li key={item.href} className="flex items-center gap-1.5">
+            <li key={i} className="flex items-center gap-1.5">
               {i > 0 && <ChevronRight size={12} className="text-[#3A3A3B]" />}
               {isLast ? (
                 <span className={currentColor} aria-current="page">
