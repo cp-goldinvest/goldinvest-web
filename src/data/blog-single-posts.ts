@@ -825,5 +825,225 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       },
     ],
   },
+  "kako-cuvati-fizicko-zlato": {
+    metaTitle: "Kako čuvati fizičko zlato — sef, banka ili kuća | Gold Invest",
+    metaDescription:
+      "Čuvanje zlata kod kuće, u bankarskom sefu ili kod dilera — svaka opcija ima svoje prednosti i rizike. Ovaj vodič pomaže da donesete pravu odluku.",
+    post: {
+      slug: "kako-cuvati-fizicko-zlato",
+      title: "Kako čuvati fizičko zlato — sef, banka ili kuća",
+      excerpt:
+        "Gde čuvati fizičko zlato? Uporedite kućni sef, banku i profesionalne trezore.",
+      category: "Saveti",
+      date: "28. januar 2025.",
+      readMin: 5,
+      image: DEFAULT_IMAGE,
+      imageAlt: "Čuvanje zlatnih poluga",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        text:
+          "Kupili ste zlatnu polugu. Držite je u ruci, proveravate serijski broj na blisteru. I onda dolazi pitanje: gde je čuvati?",
+      },
+      {
+        type: "paragraph",
+        text: "Fizičko zlato je vredna imovina i zaslužuje ozbiljan pristup čuvanju.",
+      },
+      { type: "heading", text: "Opcije čuvanja" },
+      {
+        type: "storageComparisonTable",
+        rows: [
+          {
+            label: "Kućni sef",
+            subtitle: "Najpopularnija opcija za početnike — maksimalna kontrola i trenutni pristup.",
+            prednosti: [
+              { text: "Zlato je uvek dostupno" },
+              { text: "Nema godišnjih troškova" },
+              { text: "Privatnost" },
+            ],
+            nedostaci: [],
+            paznja: [
+              { text: "Klasa otpornosti (EN 1143-1 Grade I)", check: true },
+              { text: "Protivpožarna otpornost", check: true },
+              { text: "Težina i ugradnja", check: true },
+              { text: "Skrivena lokacija", check: true },
+              { text: "Preporučene marke: Burg-Wächter, Format, Döttling, Senator", check: false },
+            ],
+          },
+          {
+            label: "Bankarski sef",
+            subtitle: "Banke nude iznajmljivanje sefova uz godišnji trošak.",
+            prednosti: [
+              { text: "Visoka sigurnost" },
+              { text: "Nema potrebe za kupovinom sefa" },
+              { text: "Osiguranje (delimično)" },
+            ],
+            nedostaci: ["Ograničen pristup", "Rizik u kriznim situacijama", "Manja privatnost"],
+            paznja: [{ text: "Godišnji trošak iznajmljivanja sefa.", check: false }],
+          },
+          {
+            label: "Čuvanje kod dilera",
+            subtitle: "Neke dilerske kuće nude opciju profesionalnog čuvanja zlata u licenciranim trezorima.",
+            prednosti: [
+              { text: "Profesionalni trezori sa visokim nivoom sigurnosti." },
+              { text: "24/7 nadzor" },
+              { text: "osiguranje" },
+              { text: "allocated storage" },
+            ],
+            nedostaci: [],
+            paznja: [],
+          },
+          {
+            label: "Čuvanje u inostranstvu",
+            subtitle: "Rešenje za veće investitore (50k+ EUR).",
+            prednosti: [],
+            nedostaci: [],
+            paznja: [],
+          },
+        ],
+      },
+      { type: "heading", text: "Praktične preporuke" },
+      {
+        type: "list",
+        items: [
+          "Do 5.000 EUR → kućni sef",
+          "5.000–30.000 EUR → sef ili banka",
+          "30.000–100.000 EUR → kombinacija",
+          "100.000+ EUR → profesionalni trezor",
+        ],
+      },
+      { type: "heading", text: "Šta nikako ne treba raditi" },
+      {
+        type: "list",
+        items: [
+          "Ne govoriti drugima",
+          "Ne držati sve na jednom mestu",
+          "Ne otvarati blister",
+          "Ne čuvati podatke online",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Za savete o kupovini i čuvanju zlata pozovite 061/269-8569.",
+      },
+    ],
+  },
+  "kamatne-stope-i-cena-zlata": {
+    metaTitle: "Kamatne stope i cena zlata — inverzna veza | Gold Invest",
+    metaDescription:
+      "Kada kamatne stope rastu, cena zlata obično pada — i obrnuto. Razumevanje ove veze pomaže vam da bolje planirate trenutak ulaska u investiciju.",
+    post: {
+      slug: "kamatne-stope-i-cena-zlata",
+      title: "Kamatne stope i cena zlata — inverzna veza koju morate razumeti",
+      excerpt:
+        "Razumevanje veze između kamatnih stopa i cene zlata može vam pomoći da bolje procenite trenutak kupovine.",
+      category: "Tržište",
+      date: "20. januar 2025.",
+      readMin: 5,
+      image: DEFAULT_IMAGE,
+      imageAlt: "Kamatne stope i cena zlata",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        text:
+          "Postoji jedna veza na finansijskim tržištima koja je toliko konzistentna da ju je skoro nemoguće ignorisati: kada centralne banke podižu kamatne stope, cena zlata obično pada. Kada stope padaju — ili kada se tržište sprema za pad — zlato raste.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "Razumevanje ove veze nije potrebno samo ekonomistima. Za svakog ko razmišlja o kupovini zlatne poluge, ovo znanje može da znači razliku između kupovine na vrhu i kupovine na dnu.",
+      },
+      { type: "heading", text: "Zašto zlato i kamatne stope imaju inverznu vezu?" },
+      {
+        type: "stepItem",
+        number: 1,
+        title: "Zlato ne nosi kamatu",
+        body: [
+          "Ovo je ključ svega. Zlatna poluga u vašem sefu ne isplaćuje ni kamatu ni dividendu. Njen jedini \"prinos\" je potencijalni rast cene.",
+          "Kada bankarski depoziti ili državne obveznice nose kamatu od 5–6% godišnje, investitori imaju razlog da izaberu ove instrumente umesto zlata. Alternativni trošak držanja zlata je visok.",
+          "Kada kamatne stope padnu na 0–1% (ili ispod inflacije), depoziti i obveznice gube privlačnost. Zlato postaje konkurentno jer su ostali bezrizični instrumenti prestali da zarađuju realne prinose.",
+        ],
+      },
+      {
+        type: "stepItem",
+        number: 2,
+        title: "Realne kamatne stope su ključna mera",
+        body: [
+          "Ekonomisti prave razliku između nominalnih i realnih kamatnih stopa:",
+          "Realna kamatna stopa = nominalna kamatna stopa − stopa inflacije",
+          "Ako je nominalna kamatna stopa 4%, a inflacija 6%, realna kamatna stopa je negativna (−2%). U tom scenariju zlato postaje atraktivno uprkos visokim nominalnim stopama.",
+          "Ovo je tačno ono što se desilo u periodu 2020–2022: realne stope su bile negativne, i cena zlata je rasla na rekordne vrednosti.",
+        ],
+      },
+      { type: "heading", text: "Istorijski primeri" },
+      {
+        type: "timeline",
+        items: [
+          {
+            period: "2004–2006: rast stopa, pad rasta zlata",
+            inflation:
+              "Fed je podigao kamatne stope sa 1% na 5,25%. Cena zlata je rasla, ali sporije.",
+          },
+          {
+            period: "2008–2015: nulte stope, eksplozija cene zlata",
+            inflation:
+              "Fed je spustio stope na 0–0,25%. Cena zlata je porasla sa oko 800 USD na gotovo 1.900 USD po unci.",
+          },
+          {
+            period: "2022–2023: agresivno dizanje stopa",
+            inflation:
+              "Fed je podigao stope sa 0,25% na 5,5%. Cena zlata nije drastično pala jer su realne stope ostale niske ili negativne.",
+          },
+          {
+            period: "2024: naznake smanjenja stopa",
+            inflation:
+              "Čim je Fed počeo da signalizira kraj ciklusa dizanja stopa, cena zlata je probila istorijske rekorde.",
+          },
+        ],
+      },
+      { type: "heading", text: "Šta ovo znači za kupovinu zlatne poluge?" },
+      {
+        type: "stepItem",
+        number: 1,
+        title: "Kada su stope na vrhuncu — dobar momenat za kupovinu",
+        body:
+          "Kada su kamatne stope visoke, cena zlata je često pod pritiskom. Kada centralne banke počnu da ih snižavaju, kapital prelazi iz obveznica u zlato.",
+      },
+      {
+        type: "stepItem",
+        number: 2,
+        title: "Dugoročno: tajming je manje važan nego vreme u tržištu",
+        body: [
+          "Za dugoročnog investitora kratkoročna veza između stopa i cene zlata manje je bitna od dugoročnog trenda.",
+          "Ko je kupio zlato 2010, 2015. ili 2018. — svi su danas u plusu.",
+        ],
+      },
+      { type: "heading", text: "Praktičan zaključak" },
+      {
+        type: "paragraph",
+        text:
+          "Kamatne stope su jedan od najvažnijih faktora kratkoročnog kretanja cene zlata — ali nisu jedini.",
+      },
+      {
+        type: "paragraph",
+        text: "Geopolitički rizici, kupovine centralnih banaka i kretanje dolara jednako utiču.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "Za dugoročnog investitora pouka je jednostavna: pokušaj savršenog tajminga obično košta više nego što donese.",
+      },
+      {
+        type: "paragraph",
+        text: "Redovna kupovina u manjim iznosima (DCA strategija) eliminiše rizik od pogrešnog ulaska.",
+      },
+      {
+        type: "paragraph",
+        text: "Za aktuelne cene i dostupnost zlatnih poluga, pozovite nas na 061/269-8569.",
+      },
+    ],
+  },
 };
 

@@ -38,8 +38,18 @@ export type BlogBlock =
     }
   | { type: "goldPriceChart" }
   | { type: "worldMap" }
-  | { type: "timeline"; items: Array<{ period: string; inflation: string; goldChange: string }> }
-  | { type: "quote"; text: string };
+  | { type: "timeline"; items: Array<{ period: string; inflation: string; goldChange?: string }> }
+  | { type: "quote"; text: string }
+  | {
+      type: "storageComparisonTable";
+      rows: Array<{
+        label: string;
+        subtitle?: string;
+        prednosti: Array<{ text: string; check?: boolean }>;
+        nedostaci: string[];
+        paznja: Array<{ text: string; check?: boolean }>;
+      }>;
+    };
 
 type Props = {
   post: Post;
@@ -63,6 +73,63 @@ function CategoryPill({ category }: { category: string }) {
     >
       {category}
     </span>
+  );
+}
+
+function StorageComparisonCheckList({
+  lines,
+  defaultCheck,
+}: {
+  lines: Array<{ text: string; check?: boolean }>;
+  defaultCheck: boolean;
+}) {
+  if (lines.length === 0) {
+    return <span className="text-[#9D9072]">—</span>;
+  }
+  return (
+    <ul className="m-0 flex flex-col gap-2.5 list-none p-0">
+      {lines.map((line, i) => {
+        const showCheck = line.check !== undefined ? line.check : defaultCheck;
+        return (
+          <li
+            key={i}
+            className="flex gap-2.5 items-start text-[#4C4C4C]"
+            style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 14, lineHeight: "1.6em" }}
+          >
+            {showCheck ? (
+              <span
+                className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#BF8E41] text-[#BF8E41] text-[11px] font-semibold leading-none"
+                aria-hidden
+              >
+                ✓
+              </span>
+            ) : (
+              <span className="mt-0.5 inline-block w-5 shrink-0" aria-hidden />
+            )}
+            <span>{line.text}</span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function StorageComparisonPlainList({ lines }: { lines: string[] }) {
+  if (lines.length === 0) {
+    return <span className="text-[#9D9072]">—</span>;
+  }
+  return (
+    <ul className="m-0 flex flex-col gap-2 list-none p-0">
+      {lines.map((line, i) => (
+        <li
+          key={i}
+          className="text-[#4C4C4C]"
+          style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 14, lineHeight: "1.6em" }}
+        >
+          {line}
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -277,6 +344,87 @@ export function SingleBlogPostTemplate({ post, blocks }: Props) {
                 );
               }
 
+              if (b.type === "storageComparisonTable") {
+                return (
+                  <div key={idx} className="my-8 -mx-4 sm:mx-0">
+                    <div className="overflow-x-auto rounded-2xl border border-[#F0EDE6] bg-[#FAF8F2] shadow-[0_8px_28px_rgba(0,0,0,0.04)]">
+                      <table className="min-w-[720px] w-full border-collapse text-left">
+                        <thead>
+                          <tr className="border-b border-[#F0EDE6] bg-[#FDFCF9]">
+                            <th
+                              scope="col"
+                              className="sticky left-0 z-[1] bg-[#FDFCF9] px-4 py-3 text-[13px] font-semibold text-[#1B1B1C] w-[min(28%,220px)] shadow-[2px_0_8px_rgba(0,0,0,0.04)]"
+                              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                            >
+                              Opcija
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-4 py-3 text-[13px] font-semibold text-[#1B1B1C] min-w-[200px]"
+                              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                            >
+                              Prednosti
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-4 py-3 text-[13px] font-semibold text-[#1B1B1C] min-w-[200px]"
+                              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                            >
+                              Nedostaci
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-4 py-3 text-[13px] font-semibold text-[#1B1B1C] min-w-[220px]"
+                              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                            >
+                              Na šta obratiti pažnju
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {b.rows.map((row, ri) => (
+                            <tr key={ri} className="border-b border-[#F0EDE6] last:border-0 align-top">
+                              <th
+                                scope="row"
+                                className="sticky left-0 z-[1] bg-[#FAF8F2] px-4 py-4 align-top shadow-[2px_0_8px_rgba(0,0,0,0.04)]"
+                              >
+                                <span
+                                  className="block text-[#1B1B1C] font-semibold"
+                                  style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 14 }}
+                                >
+                                  {row.label}
+                                </span>
+                                {row.subtitle ? (
+                                  <span
+                                    className="mt-2 block text-[#4C4C4C] font-normal"
+                                    style={{
+                                      fontFamily: "var(--font-rethink), sans-serif",
+                                      fontSize: 13,
+                                      lineHeight: "1.55em",
+                                    }}
+                                  >
+                                    {row.subtitle}
+                                  </span>
+                                ) : null}
+                              </th>
+                              <td className="px-4 py-4 align-top border-l border-[#F0EDE6]/80">
+                                <StorageComparisonCheckList lines={row.prednosti} defaultCheck />
+                              </td>
+                              <td className="px-4 py-4 align-top border-l border-[#F0EDE6]/80">
+                                <StorageComparisonPlainList lines={row.nedostaci} />
+                              </td>
+                              <td className="px-4 py-4 align-top border-l border-[#F0EDE6]/80">
+                                <StorageComparisonCheckList lines={row.paznja} defaultCheck={false} />
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                );
+              }
+
               if (b.type === "checklist") {
                 return (
                   <div
@@ -463,18 +611,22 @@ export function SingleBlogPostTemplate({ post, blocks }: Props) {
                             >
                               {item.period}
                             </p>
-                            <p
-                              className="m-0 text-[#4C4C4C]"
-                              style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 16, lineHeight: "1.7em" }}
-                            >
-                              {item.inflation}
-                            </p>
-                            <p
-                              className="m-0 text-[#4C4C4C]"
-                              style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 16, lineHeight: "1.7em" }}
-                            >
-                              {item.goldChange}
-                            </p>
+                            {item.inflation ? (
+                              <p
+                                className="m-0 text-[#4C4C4C]"
+                                style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 16, lineHeight: "1.7em" }}
+                              >
+                                {item.inflation}
+                              </p>
+                            ) : null}
+                            {item.goldChange ? (
+                              <p
+                                className="m-0 mt-2 text-[#4C4C4C]"
+                                style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 16, lineHeight: "1.7em" }}
+                              >
+                                {item.goldChange}
+                              </p>
+                            ) : null}
                           </div>
                         ))}
                       </div>
