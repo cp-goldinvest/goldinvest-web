@@ -17,7 +17,7 @@ export type BlogBlock =
   | { type: "orderedList"; items: string[] }
   | { type: "ruleBox"; text: string }
   | { type: "image"; src: string; alt: string }
-  | { type: "stepItem"; number: number; title: string; body: string }
+  | { type: "stepItem"; number: number; title: string; body: string | string[] }
   | { type: "macroChart" }
   | {
       type: "comparison";
@@ -179,6 +179,7 @@ export function SingleBlogPostTemplate({ post, blocks }: Props) {
 
               if (b.type === "stepItem") {
                 const isLast = blocks[idx + 1]?.type !== "stepItem";
+                const paragraphs = Array.isArray(b.body) ? b.body : [b.body];
                 return (
                   <div
                     key={idx}
@@ -219,16 +220,22 @@ export function SingleBlogPostTemplate({ post, blocks }: Props) {
                       >
                         {b.title}
                       </h3>
-                      <p
-                        className="text-[#4C4C4C] leading-relaxed mb-3"
-                        style={{
-                          fontFamily: "var(--font-rethink), sans-serif",
-                          fontSize: 15,
-                          lineHeight: "1.65em",
-                        }}
-                      >
-                        {b.body}
-                      </p>
+                      <div className="flex flex-col gap-3">
+                        {paragraphs.map((p, pIdx) => (
+                          <p
+                            // eslint-disable-next-line react/no-array-index-key
+                            key={pIdx}
+                            className="text-[#4C4C4C] leading-relaxed m-0"
+                            style={{
+                              fontFamily: "var(--font-rethink), sans-serif",
+                              fontSize: 15,
+                              lineHeight: "1.65em",
+                            }}
+                          >
+                            {p}
+                          </p>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 );
