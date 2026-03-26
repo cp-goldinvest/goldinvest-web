@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { seededRandom } from "@/lib/chartUtils";
+import historicalData from "@/data/gold-historical.json";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -25,34 +25,42 @@ const PERIODS: { label: string; value: Period; days: number }[] = [
   { label: "10G", value: "10G", days: 365 * 10 },
 ];
 
-
-const FIXED_NOW = new Date("2026-03-11T00:00:00Z");
-const EUR_RSD = 117.5; // za konverziju mock podataka u RSD
 const GRAMS_PER_OUNCE = 31.1034768;
+const EUR_RSD_FALLBACK = 117.5;
 
-const generateMockData = (days: number) => {
-  const rand = seededRandom(days * 7919);
-  const data = [];
-  let priceEurPerOunce = 4418 - days * 0.3;
-  for (let i = days; i >= 0; i--) {
-    const date = new Date(FIXED_NOW);
-    date.setUTCDate(FIXED_NOW.getUTCDate() - i);
-    priceEurPerOunce = priceEurPerOunce + (rand() - 0.47) * (days > 365 ? 6 : 3);
-    const label =
-      days <= 90
-        ? `${String(date.getUTCDate()).padStart(2, "0")}.${String(date.getUTCMonth() + 1).padStart(2, "0")}`
-        : `${String(date.getUTCMonth() + 1).padStart(2, "0")}.${String(date.getUTCFullYear()).slice(-2)}`;
-    const priceEurPerGram = priceEurPerOunce / GRAMS_PER_OUNCE;
-    const priceRsd = Math.round(priceEurPerGram * EUR_RSD);
-    data.push({ date: label, value: priceRsd });
+type DataPoint = { date: string; xau_eur: number };
+
+function formatLabel(dateStr: string, days: number): string {
+  const [y, m, d] = dateStr.split("-");
+  if (days <= 90)  return `${d}.${m}`;
+  if (days <= 365) return `${d}.${m}.${y.slice(2)}`;
+  return `${m}.${y.slice(2)}`;
+}
+
+function buildData(days: number, eurRsd: number, liveRsdPerGram?: number) {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+  const cutoffStr = cutoff.toISOString().slice(0, 10);
+
+  const filtered = (historicalData as DataPoint[]).filter(d => d.date >= cutoffStr);
+
+  const maxPoints = 120;
+  const step = filtered.length > maxPoints ? Math.ceil(filtered.length / maxPoints) : 1;
+
+  const points = filtered
+    .filter((_, i) => i % step === 0 || i === filtered.length - 1)
+    .map(d => ({
+      date: formatLabel(d.date, days),
+      value: Math.round((d.xau_eur / GRAMS_PER_OUNCE) * eurRsd),
+    }));
+
+  // Zameni poslednju tačku sa live cenom (ista kao u trakici)
+  if (liveRsdPerGram && points.length > 0) {
+    points[points.length - 1] = { ...points[points.length - 1], value: liveRsdPerGram };
   }
-  return data;
-};
 
-// Pre-generate all datasets
-const ALL_DATA = Object.fromEntries(
-  PERIODS.map((p) => [p.value, generateMockData(p.days)])
-) as Record<Period, { date: string; value: number }[]>;
+  return points;
+}
 
 interface CustomTooltipProps {
   active?: boolean;
@@ -66,7 +74,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
     <div className="bg-[#1B1B1C] text-white text-xs px-3 py-2 rounded-lg shadow-lg">
       <p className="text-[#9D9072] mb-0.5">{label}</p>
       <p className="font-semibold">
-        {payload[0].value.toLocaleString("sr-RS")} RSD
+        {payload[0].value.toLocaleString("sr-RS")} RSD/g
       </p>
     </div>
   );
@@ -74,21 +82,33 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
 
 export function GoldPriceChart() {
   const [period, setPeriod] = useState<Period>("1G");
+  const [live, setLive] = useState<{ rsdPerGram: number; eurRsd: number } | null>(null);
 
-  const data = ALL_DATA[period];
-  const current = data[data.length - 1].value;
-  const first = data[0].value;
-  const diff = current - first;
-  const diffPct = (diff / first) * 100;
-  const isUp = diff >= 0;
+  useEffect(() => {
+    fetch("/api/prices")
+      .then(r => r.json())
+      .then(d => {
+        if (d.rsd_per_gram && d.eur_rsd) {
+          setLive({ rsdPerGram: d.rsd_per_gram, eurRsd: d.eur_rsd });
+        }
+      })
+      .catch(() => {});
+  }, []);
 
-  // Thin out data points for longer periods to keep chart clean
-  const displayData = useMemo(() => {
-    const maxPoints = 120;
-    if (data.length <= maxPoints) return data;
-    const step = Math.ceil(data.length / maxPoints);
-    return data.filter((_, i) => i % step === 0 || i === data.length - 1);
-  }, [data]);
+  const data = useMemo(
+    () => buildData(
+      PERIODS.find(p => p.value === period)!.days,
+      live?.eurRsd ?? EUR_RSD_FALLBACK,
+      live?.rsdPerGram
+    ),
+    [period, live]
+  );
+
+  const current = data[data.length - 1]?.value ?? 0;
+  const first   = data[0]?.value ?? 0;
+  const diff    = current - first;
+  const diffPct = first > 0 ? (diff / first) * 100 : 0;
+  const isUp    = diff >= 0;
 
   return (
     <section className="bg-[#F9F9F9] py-16">
@@ -145,9 +165,7 @@ export function GoldPriceChart() {
                   <span>({isUp ? "+" : ""}{diffPct.toFixed(2)}%)</span>
                 </span>
               </div>
-              <p className="text-[#9D9072] text-xs mt-1">
-                cena za gram
-              </p>
+              <p className="text-[#9D9072] text-xs mt-1">cena za gram</p>
             </div>
 
             {/* Period tabs */}
@@ -171,7 +189,7 @@ export function GoldPriceChart() {
           {/* Chart */}
           <div className="h-[260px] w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={displayData} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
+              <AreaChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
                 <defs>
                   <linearGradient id="goldGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#BF8E41" stopOpacity={0.18} />

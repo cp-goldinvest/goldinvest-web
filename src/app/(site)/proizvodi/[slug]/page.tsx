@@ -28,7 +28,7 @@ const MOCK_TIERS = [{
 const ALL_MOCK_VARIANTS = [
   { id: "p1", product_id: "p1", slug: "zlatna-poluga-1-unca-argor",  weight_g: 31.1,  weight_oz: 1,      purity: 0.9999, fine_weight_g: 31.1,  sku: "AH-1OZ",   stock_qty: 4, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 1, is_active: true, products: { name: "Zlatna poluga 1 unca",  brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
   { id: "p2", product_id: "p2", slug: "zlatna-poluga-50g-hafner",    weight_g: 50,    weight_oz: 1.607,  purity: 0.9999, fine_weight_g: 50,    sku: "CH-50G",   stock_qty: 3, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 2, is_active: true, products: { name: "Zlatna poluga 50g",     brand: "C. Hafner",     origin: "Nemačka",    category: "poluga" }, pricing_rules: null },
-  { id: "p3", product_id: "p3", slug: "zlatna-poluga-100g-argor",   weight_g: 100,   weight_oz: 3.215,  purity: 0.9999, fine_weight_g: 100,   sku: "AH-100G",  stock_qty: 3, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 3, is_active: true, products: { name: "Argor-Heraeus zlatna poluga 100g", brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
+  { id: "p3", product_id: "p3", slug: "argor-heraeus-100g-zlatna-poluga",   weight_g: 100,   weight_oz: 3.215,  purity: 0.9999, fine_weight_g: 100,   sku: "AH-100G",  stock_qty: 3, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 3, is_active: true, products: { name: "Argor-Heraeus zlatna poluga 100g", brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
   { id: "p4", product_id: "p4", slug: "zlatna-poluga-250g-argor",   weight_g: 250,   weight_oz: 8.037,  purity: 0.9999, fine_weight_g: 250,   sku: "AH-250G",  stock_qty: 1, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 4, is_active: true, products: { name: "Zlatna poluga 250g",    brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
   { id: "p5", product_id: "p5", slug: "zlatna-poluga-500g-argor",   weight_g: 500,   weight_oz: 16.075, purity: 0.9999, fine_weight_g: 500,   sku: "AH-500G",  stock_qty: 1, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 5, is_active: true, products: { name: "Zlatna poluga 500g",    brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
   { id: "p6", product_id: "p6", slug: "zlatna-poluga-1kg-argor",    weight_g: 1000,  weight_oz: 32.151, purity: 0.9999, fine_weight_g: 1000,  sku: "AH-1KG",   stock_qty: 1, availability: "available_on_request", lead_time_weeks: 1,  images: ["/images/product-poluga.png"], sort_order: 6, is_active: true, products: { name: "Zlatna poluga 1kg",     brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
@@ -77,7 +77,7 @@ export default async function ProizvodPage({
 
   try {
     const supabase = createServiceClient();
-    const [r1, r2, r3] = await Promise.all([
+    const [r1, r2, r3]: any = await Promise.all([
       supabase
         .from("product_variants")
         .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
@@ -138,11 +138,63 @@ export default async function ProizvodPage({
   const isPreorder = variant.availability === "preorder";
   const weightDisplay = formatWeight(variant.weight_g);
 
+  const normalized = (s: string) => s.toLowerCase().replace(/\s+/g, "");
+  const productNameWithWeight =
+    normalized(product.name).includes(normalized(weightDisplay))
+      ? product.name
+      : `${product.name} ${weightDisplay}`;
+
+  const categoryMeta: Record<string, { label: string; href: string }> = {
+    poluga:  { label: "Zlatne poluge",  href: "/kategorija/zlatne-poluge" },
+    plocica: { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
+    dukat:   { label: "Zlatni dukati",  href: "/kategorija/zlatni-dukati" },
+    novac:   { label: "Zlatni novac",   href: "/kategorija/zlatni-novac" },
+  };
+  const cat = categoryMeta[product.category] ?? categoryMeta.poluga;
+
+  const categoryWeightLabelMap: Record<string, string> = {
+    poluga: "Zlatna poluga",
+    plocica: "Zlatna pločica",
+    dukat: "Zlatni dukat",
+    novac: "Zlatni novac",
+  };
+  const categoryWeightLabel = `${categoryWeightLabelMap[product.category] ?? "Proizvod"} ${weightDisplay}`;
+
+  const categoryWeightHrefMap: Record<string, string | null> = {
+    // Pločice imaju stabilne weight slugove
+    plocica: `/kategorija/zlatne-plocice/zlatna-plocica-${
+      variant.weight_g === 1
+        ? "1g"
+        : variant.weight_g === 2
+        ? "2g"
+        : variant.weight_g === 5
+        ? "5g"
+        : variant.weight_g === 10
+        ? "10g"
+        : variant.weight_g === 20
+        ? "20g"
+        : ""
+    }`,
+    // Poluge imaju stabilne weight slugove
+    poluga: `/kategorija/zlatne-poluge/zlatna-poluga-${
+      variant.weight_g === 31.1
+        ? "1-unca"
+        : variant.weight_g >= 1000
+        ? "1kg"
+        : `${variant.weight_g}g`
+    }`,
+    // Za dukate/novac nema pouzdanog weight slug šablona, ostajemo na listi kategorije
+    dukat: null,
+    novac: null,
+  };
+  const categoryWeightHrefRaw = categoryWeightHrefMap[product.category] ?? null;
+  const categoryWeightHref = categoryWeightHrefRaw?.endsWith("-") ? cat.href : categoryWeightHrefRaw ?? cat.href;
+
   const breadcrumbs = [
     { label: "Investiciono zlato", href: "/" },
-    { label: "Zlatne poluge", href: "/kategorija/zlatne-poluge" },
-    { label: `${weightDisplay} — ${product.brand}`, href: `/kategorija/zlatne-poluge/zlatna-poluga-${variant.weight_g === 31.1 ? "1-unca" : variant.weight_g >= 1000 ? "1kg" : `${variant.weight_g}g`}` },
-    { label: product.name, href: `/proizvodi/${slug}` },
+    { label: cat.label, href: cat.href },
+    { label: categoryWeightLabel, href: categoryWeightHref },
+    { label: productNameWithWeight, href: `/proizvodi/${slug}` },
   ];
 
   const relatedVariants = allVariants.filter(
@@ -236,7 +288,7 @@ export default async function ProizvodPage({
                   fontWeight: 400,
                 }}
               >
-                {product.name}
+                {productNameWithWeight}
               </h1>
 
               {/* Short description */}
@@ -347,13 +399,12 @@ export default async function ProizvodPage({
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
                   href="tel:+381612698569"
-                  className="flex-1 inline-flex items-center justify-center gap-2.5 rounded-full font-bold transition-opacity hover:opacity-90"
+                  className="flex-1 inline-flex items-center justify-center gap-2.5 rounded-full font-bold transition-opacity hover:opacity-90 min-h-[60px] sm:min-h-[52px]"
                   style={{
                     backgroundColor: "#BEAD87",
                     color: "#1B1B1C",
                     fontFamily: "var(--font-rethink), sans-serif",
                     fontSize: 14,
-                    height: 52,
                     boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)",
                   }}
                 >
@@ -362,13 +413,12 @@ export default async function ProizvodPage({
                 </a>
                 <Link
                   href="/kontakt"
-                  className="flex-1 inline-flex items-center justify-center rounded-full font-semibold transition-colors hover:bg-black/5"
+                  className="flex-1 inline-flex items-center justify-center rounded-full font-semibold transition-colors hover:bg-black/5 min-h-[60px] sm:min-h-[52px]"
                   style={{
                     border: "1.5px solid #1B1B1C",
                     color: "#1B1B1C",
                     fontFamily: "var(--font-rethink), sans-serif",
                     fontSize: 13.5,
-                    height: 52,
                   }}
                 >
                   Pošaljite upit
