@@ -10,7 +10,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Investiciono zlato",
     date: "15. mart 2025.",
     readMin: 7,
-    image: "/images/bento-gold-bar.png",
+    image: "/images/blog/zasto.png",
     imageAlt: "Zlatna poluga kao investicija",
     featured: true,
   },
@@ -22,18 +22,18 @@ export const BLOG_POSTS: Post[] = [
     category: "Tržište",
     date: "8. mart 2025.",
     readMin: 5,
-    image: "/images/faktori-1.png",
+    image: "/images/blog/formiranje.png",
     imageAlt: "Grafikon cene zlata na berzi",
   },
   {
     slug: "zlatne-poluge-vs-novcanice",
-    title: "Zlatne poluge ili novčanice — šta je bolje za početnike",
+    title: "Zlatne poluge ili zlatnici — šta je bolje za početnike",
     excerpt:
       "Poluge nude nižu premiju za veće iznose, dok novčanice omogućavaju fleksibilnu prodaju u manjim količinama. Uporedite prednosti i mane oba formata.",
     category: "Vodič",
     date: "1. mart 2025.",
     readMin: 6,
-    image: "/images/bento-coins.png",
+    image: "/images/blog/poluga-zlatnik.png",
     imageAlt: "Zlatne poluge i zlatnici",
   },
   {
@@ -44,7 +44,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Saveti",
     date: "22. februar 2025.",
     readMin: 8,
-    image: "/images/faktori-inflacija.png",
+    image: "/images/blog/inflacija.png",
     imageAlt: "Inflacija i zaštita ušteđevine zlatom",
   },
   {
@@ -55,7 +55,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Vodič",
     date: "14. februar 2025.",
     readMin: 4,
-    image: "/images/edu-sertifikati-lbma.png",
+    image: "/images/blog/sertifikacija.png",
     imageAlt: "LBMA sertifikat za zlatnu polugu",
   },
   {
@@ -66,7 +66,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Tržište",
     date: "5. februar 2025.",
     readMin: 6,
-    image: "/images/faktori-centralne-banke.png",
+    image: "/images/blog/banka.png",
     imageAlt: "Centralne banke i zlato",
   },
   {
@@ -77,7 +77,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Saveti",
     date: "28. januar 2025.",
     readMin: 5,
-    image: "/images/jastuk-poluga.png",
+    image: "/images/blog/sef.png",
     imageAlt: "Čuvanje fizičkog zlata u sefu",
   },
   {
@@ -88,7 +88,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Tržište",
     date: "20. januar 2025.",
     readMin: 5,
-    image: "/images/faktori-kamatne-stope.png",
+    image: "/images/blog/kamatna.png",
     imageAlt: "Kamatne stope i kretanje cene zlata",
   },
 ];

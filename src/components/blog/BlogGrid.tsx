@@ -44,6 +44,7 @@ export function CategoryBadge({ cat }: { cat: Exclude<Category, "Svi tekstovi"> 
 // ─── Featured card (large horizontal) ────────────────────────────────────────
 
 function FeaturedCard({ post }: { post: Post }) {
+  const isInflationPost = post.slug === "inflacija-i-zlato";
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -56,7 +57,11 @@ function FeaturedCard({ post }: { post: Post }) {
             src={post.image}
             alt={post.imageAlt}
             fill
-            className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+            className={`object-cover transition-transform duration-500 ${
+              isInflationPost
+                ? "scale-[1.12] object-[50%_52%] group-hover:scale-[1.14]"
+                : "group-hover:scale-[1.02]"
+            }`}
           />
           <span className="absolute top-5 left-5">
             <span
@@ -121,6 +126,7 @@ function FeaturedCard({ post }: { post: Post }) {
 // ─── Regular card ─────────────────────────────────────────────────────────────
 
 function PostCard({ post }: { post: Post }) {
+  const isInflationPost = post.slug === "inflacija-i-zlato";
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -132,7 +138,11 @@ function PostCard({ post }: { post: Post }) {
           src={post.image}
           alt={post.imageAlt}
           fill
-          className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+          className={`object-cover transition-transform duration-500 ${
+            isInflationPost
+              ? "scale-[1.14] object-[50%_52%] group-hover:scale-[1.16]"
+              : "group-hover:scale-[1.03]"
+          }`}
         />
       </div>
 

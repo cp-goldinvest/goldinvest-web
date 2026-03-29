@@ -70,166 +70,15 @@ const FAQ_ITEMS = [
 
 // ─── Mock fallback data ────────────────────────────────────────────────────────
 
-const MOCK_SNAPSHOT = {
-  id: "mock",
-  xau_usd: 2700,
-  xau_eur: 4375,
-  usd_rsd: 108,
-  eur_rsd: 117.5,
-  price_per_g_rsd: 16500,
-  source: "mock",
-  fetched_at: new Date().toISOString(),
-};
 
-const MOCK_TIERS = [
-  {
-    id: "t1",
-    name: "default",
-    category: null,
-    min_g: 0,
-    max_g: 99999,
-    margin_stock_pct: 4.5,
-    margin_advance_pct: 3.5,
-    margin_purchase_pct: 2,
-    created_at: "",
-  },
-];
 
-const MOCK_VARIANTS = [
-  {
-    id: "p1g",
-    product_id: "p1",
-    slug: "zlatna-plocica-1g",
-    weight_g: 1,
-    weight_oz: 0.032,
-    purity: 0.9999,
-    fine_weight_g: 1,
-    sku: null,
-    stock_qty: 20,
-    availability: "in_stock",
-    lead_time_weeks: null,
-    images: ["/images/product-poluga.png"],
-    sort_order: 1,
-    is_active: true,
-    products: { name: "Zlatna pločica 1g", brand: "C. Hafner", origin: "Nemačka", category: "plocica" },
-    pricing_rules: null,
-  },
-  {
-    id: "p2g",
-    product_id: "p2",
-    slug: "zlatna-plocica-2g",
-    weight_g: 2,
-    weight_oz: 0.064,
-    purity: 0.9999,
-    fine_weight_g: 2,
-    sku: null,
-    stock_qty: 15,
-    availability: "in_stock",
-    lead_time_weeks: null,
-    images: ["/images/product-poluga.png"],
-    sort_order: 2,
-    is_active: true,
-    products: { name: "Zlatna pločica 2g", brand: "Argor-Heraeus", origin: "Švajcarska", category: "plocica" },
-    pricing_rules: null,
-  },
-  {
-    id: "p5g",
-    product_id: "p3",
-    slug: "zlatna-plocica-5g",
-    weight_g: 5,
-    weight_oz: 0.161,
-    purity: 0.9999,
-    fine_weight_g: 5,
-    sku: null,
-    stock_qty: 10,
-    availability: "in_stock",
-    lead_time_weeks: null,
-    images: ["/images/product-poluga.png"],
-    sort_order: 3,
-    is_active: true,
-    products: { name: "Zlatna pločica 5g", brand: "Argor-Heraeus", origin: "Švajcarska", category: "plocica" },
-    pricing_rules: null,
-  },
-  {
-    id: "p10g",
-    product_id: "p4",
-    slug: "zlatna-plocica-10g",
-    weight_g: 10,
-    weight_oz: 0.321,
-    purity: 0.9999,
-    fine_weight_g: 10,
-    sku: null,
-    stock_qty: 6,
-    availability: "in_stock",
-    lead_time_weeks: null,
-    images: ["/images/product-poluga.png"],
-    sort_order: 4,
-    is_active: true,
-    products: { name: "Zlatna pločica 10g", brand: "C. Hafner", origin: "Nemačka", category: "plocica" },
-    pricing_rules: null,
-  },
-  {
-    id: "fj-mali",
-    product_id: "d1",
-    slug: "mali-dukat-franc-jozef",
-    weight_g: 3.49,
-    weight_oz: 0.112,
-    purity: 0.986,
-    fine_weight_g: 3.44,
-    sku: null,
-    stock_qty: 10,
-    availability: "in_stock",
-    lead_time_weeks: null,
-    images: ["/images/product-poluga.png"],
-    sort_order: 5,
-    is_active: true,
-    products: { name: "Mali dukat Franc Jozef", brand: "Austrijska kovnica", origin: "Austrija", category: "dukat" },
-    pricing_rules: null,
-  },
-  {
-    id: "fj-veliki",
-    product_id: "d2",
-    slug: "veliki-dukat-franc-jozef",
-    weight_g: 13.96,
-    weight_oz: 0.449,
-    purity: 0.986,
-    fine_weight_g: 13.76,
-    sku: null,
-    stock_qty: 5,
-    availability: "in_stock",
-    lead_time_weeks: null,
-    images: ["/images/product-poluga.png"],
-    sort_order: 6,
-    is_active: true,
-    products: { name: "Veliki dukat Franc Jozef", brand: "Austrijska kovnica", origin: "Austrija", category: "dukat" },
-    pricing_rules: null,
-  },
-  {
-    id: "filh-110",
-    product_id: "d3",
-    slug: "filharmonija-1-10-oz",
-    weight_g: 3.11,
-    weight_oz: 0.1,
-    purity: 0.9999,
-    fine_weight_g: 3.11,
-    sku: null,
-    stock_qty: 7,
-    availability: "in_stock",
-    lead_time_weeks: null,
-    images: ["/images/product-poluga.png"],
-    sort_order: 7,
-    is_active: true,
-    products: { name: "Bečka Filharmonija 1/10 oz", brand: "Austrijska kovnica", origin: "Austrija", category: "dukat" },
-    pricing_rules: null,
-  },
-];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function PoklonaZaRodjenjePage() {
-  let variants: any = MOCK_VARIANTS;
-  let tiers: any = MOCK_TIERS;
-  let snapshotRow: any = MOCK_SNAPSHOT;
+  let variants: any = [];
+  let tiers: any = [];
+  let snapshotRow: any = null;
 
   try {
     const supabase = createServiceClient();
@@ -257,13 +106,11 @@ export default async function PoklonaZaRodjenjePage() {
         .limit(1)
         .single(),
     ]);
-    if (r1.data?.length) {
-      variants = r1.data;
-      tiers = r2.data;
-      snapshotRow = r3.data;
-    }
+    variants = r1.data ?? [];
+      tiers = r2.data ?? [];
+      snapshotRow = r3.data ?? null;
   } catch {
-    // Supabase nedostupan — koristimo mock podatke
+    // DB nedostupna
   }
 
   const breadcrumbs = [

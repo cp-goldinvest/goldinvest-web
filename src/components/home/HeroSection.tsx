@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { HeroExpandableParagraphs } from "@/components/home/HeroExpandableParagraphs";
 
 type HeroButton = { label: string; href: string };
 
@@ -9,6 +9,8 @@ type Props = {
   title?: ReactNode;
   paragraphs?: ReactNode[];
   buttons?: HeroButton[];
+  /** Početna: prvi pasus uvek vidljiv, ostatak iza „…“ */
+  collapseExtraParagraphs?: boolean;
 };
 
 const DEFAULT_BUTTONS: HeroButton[] = [
@@ -38,19 +40,46 @@ const DEFAULT_PARAGRAPHS: ReactNode[] = [
   </p>,
 ];
 
-export function HeroSection({ eyebrow, title = DEFAULT_TITLE, paragraphs = DEFAULT_PARAGRAPHS, buttons = DEFAULT_BUTTONS }: Props) {
+export function HeroSection({
+  eyebrow,
+  title = DEFAULT_TITLE,
+  paragraphs = DEFAULT_PARAGRAPHS,
+  buttons = DEFAULT_BUTTONS,
+  collapseExtraParagraphs = false,
+}: Props) {
   const buttonClassName =
     "inline-flex items-center justify-center px-3 py-2 sm:px-5 sm:py-2.5 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:bg-[#1B1B1C] hover:text-white whitespace-nowrap shrink-0";
 
   return (
     <section
-      className="overflow-hidden"
-      style={{ background: "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)" }}
+      className="relative overflow-hidden"
+      style={{ background: "#E0DCCC" }}
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-16 lg:px-24">
+      {/* Hero illustration (SVG) — samo desna „kolona“, centrirano u tom prostoru (ne uz ivicu) */}
+      <div className="pointer-events-none absolute left-0 right-0 bottom-0 top-[52%] sm:inset-y-0 sm:left-[30%] lg:left-[32%] flex items-end sm:items-center justify-center px-6 sm:px-10 lg:px-14">
+        <img
+          src={`/images/${encodeURIComponent("image 62.svg")}`}
+          alt="Zlatna poluga — investiciono zlato Gold Invest"
+          className="h-full w-full max-h-full max-w-[62%] sm:max-w-none object-contain object-center"
+        />
+      </div>
 
-        {/* Desktop: grid — tekst fiksna širina, slika uzima ostatak bez guranja */}
-        <div className="grid grid-cols-1 sm:grid-cols-[minmax(380px,440px)_1fr] sm:items-center sm:gap-10 lg:gap-14 sm:h-[581px]">
+      {/* Text readability (left-only), keeps gold bar side clean */}
+      <div
+        aria-hidden="true"
+        className="hidden sm:block absolute inset-y-0 left-0 w-[68%] max-w-[840px] pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(224,220,204,0.72) 0%, rgba(224,220,204,0.58) 42%, rgba(224,220,204,0.22) 72%, rgba(224,220,204,0) 100%)",
+        }}
+      />
+
+      {/* (Removed) top seam overlay – caused visible cut lines */}
+
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-16 lg:px-24">
+
+        {/* Desktop: tekst levo, animacija desno */}
+        <div className="grid grid-cols-1 sm:grid-cols-[minmax(380px,440px)_1fr] sm:items-center sm:gap-10 lg:gap-14 min-h-[820px] sm:min-h-0 sm:h-[581px]">
 
           {/* ── Text block ── */}
           <div className="pt-14 pb-8 sm:py-0">
@@ -67,17 +96,32 @@ export function HeroSection({ eyebrow, title = DEFAULT_TITLE, paragraphs = DEFAU
               style={{
                 fontFamily: "var(--font-pp-editorial), Georgia, serif",
                 fontSize: "clamp(32px, 4.2vw, 58px)",
+                textShadow: "0 2px 18px rgba(255,255,255,0.42), 0 1px 2px rgba(0,0,0,0.10)",
               }}
             >
               {title}
             </h1>
 
-            <div
-              className="text-[#3A3A3A] mb-8 leading-relaxed space-y-3"
-              style={{ fontSize: "clamp(14px, 1.2vw, 17px)", maxWidth: 440 }}
-            >
-              {paragraphs}
-            </div>
+            {collapseExtraParagraphs ? (
+              <HeroExpandableParagraphs
+                paragraphs={paragraphs}
+                className="text-[#3A3A3A] mb-8 leading-relaxed max-w-[26ch] lg:max-w-[440px]"
+                style={{
+                  fontSize: "clamp(14px, 1.2vw, 17px)",
+                  textShadow: "0 1px 12px rgba(255,255,255,0.34), 0 1px 2px rgba(0,0,0,0.08)",
+                }}
+              />
+            ) : (
+              <div
+                className="text-[#3A3A3A] mb-8 leading-relaxed space-y-3 max-w-[26ch] lg:max-w-[440px]"
+                style={{
+                  fontSize: "clamp(14px, 1.2vw, 17px)",
+                  textShadow: "0 1px 12px rgba(255,255,255,0.34), 0 1px 2px rgba(0,0,0,0.08)",
+                }}
+              >
+                {paragraphs}
+              </div>
+            )}
 
             <div className="flex items-center gap-2 sm:gap-3 flex-nowrap overflow-x-auto scrollbar-hide">
               {buttons.map((btn) => {
@@ -99,17 +143,8 @@ export function HeroSection({ eyebrow, title = DEFAULT_TITLE, paragraphs = DEFAU
             </div>
           </div>
 
-          {/* ── Gold bar image ── */}
-          <div className="w-full flex justify-end sm:min-w-0">
-            <Image
-              src="/images/jastuk-poluga.png"
-              alt="Zlatna poluga 1kg sa motivima Srbije na plavom baršunastom jastuku — investiciono zlato"
-              width={772}
-              height={473}
-              className="w-full h-auto sm:ml-auto"
-              priority
-            />
-          </div>
+          {/* Spacer column to preserve layout */}
+          <div className="hidden sm:block" aria-hidden="true" />
 
         </div>
       </div>

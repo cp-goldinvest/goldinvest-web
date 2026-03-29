@@ -23,13 +23,12 @@ export function computePrices(
 ): ComputedPrices {
   const spotPerGramRsd = snapshot.price_per_g_rsd;
 
-  // Find matching tier
-  const tier = tiers.find(
-    (t) =>
-      weightG >= t.min_g &&
-      weightG <= t.max_g &&
-      (t.category === null || t.category === category)
-  );
+  // Find matching tier — priority: exact weight+category > exact weight (any category) > catch-all+category > global catch-all
+  const tier =
+    tiers.find((t) => t.weight_g !== null && Math.abs(t.weight_g - weightG) < 0.001 && t.category === category) ??
+    tiers.find((t) => t.weight_g !== null && Math.abs(t.weight_g - weightG) < 0.001 && t.category === null) ??
+    tiers.find((t) => t.weight_g === null && t.category === category) ??
+    tiers.find((t) => t.weight_g === null && t.category === null);
 
   const marginStock    = tier?.margin_stock_pct    ?? 3.0;
   const marginAdvance  = tier?.margin_advance_pct  ?? 2.0;

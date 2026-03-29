@@ -4,6 +4,7 @@ import type { Post } from "@/components/blog/BlogGrid";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { BLOG_SINGLE_POSTS } from "@/data/blog-single-posts";
+import { BLOG_POSTS } from "@/data/blog-posts";
 import { ReadingProgressBar } from "@/components/blog/ReadingProgressBar";
 import { WorldGoldMap } from "@/components/blog/WorldGoldMap";
 import { GoldPriceChart } from "@/components/blog/GoldPriceChart";
@@ -136,6 +137,19 @@ function StorageComparisonPlainList({ lines }: { lines: string[] }) {
 export function SingleBlogPostTemplate({ post, blocks }: Props) {
   const relatedEntries = Object.values(BLOG_SINGLE_POSTS)
     .filter((entry) => entry.post.slug !== post.slug)
+    .map((entry) => {
+      const listPost = BLOG_POSTS.find((p) => p.slug === entry.post.slug);
+      if (!listPost) return entry;
+      return {
+        ...entry,
+        post: {
+          ...entry.post,
+          title: listPost.title,
+          image: listPost.image,
+          imageAlt: listPost.imageAlt,
+        },
+      };
+    })
     .slice(0, 3);
 
   const isHighlightParagraph = (text: string) =>
@@ -185,10 +199,10 @@ export function SingleBlogPostTemplate({ post, blocks }: Props) {
 
             {/* Right — image */}
             <div
-              className="relative rounded-2xl overflow-hidden bg-[#F9F9F9] shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
+              className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
               style={{ height: 360 }}
             >
-              <Image src={post.image} alt={post.imageAlt} fill className="object-contain p-8" />
+              <Image src={post.image} alt={post.imageAlt} fill className="object-cover" />
             </div>
           </div>
         </SectionContainer>

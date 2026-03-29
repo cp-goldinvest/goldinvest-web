@@ -51,8 +51,7 @@ export type Database = {
           id: string;
           name: string;
           category: string | null;
-          min_g: number;
-          max_g: number;
+          weight_g: number | null;
           margin_stock_pct: number;
           margin_advance_pct: number;
           margin_purchase_pct: number;

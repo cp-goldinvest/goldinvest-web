@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   TrendingUp,
   Package,
@@ -10,6 +11,7 @@ import {
   ChevronRight,
   LayoutList,
 } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 
 // Dnevne operacije — koriste se svaki dan
 const NAV_DAILY = [
@@ -25,8 +27,16 @@ const NAV_ADMIN = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   if (pathname === "/admin/login") return <>{children}</>;
+
+  async function handleLogout() {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/admin/login");
+    router.refresh();
+  }
 
   return (
     <div className="min-h-screen bg-[#111112] flex">
@@ -67,7 +77,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Bottom: spot price + logout */}
         <div className="px-3 py-4 border-t border-[#2E2E2F] space-y-2">
           <SpotPriceBadge />
-          <button className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-[#555] hover:text-[#E9E6D9] hover:bg-[#2E2E2F] transition-colors text-sm">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-[#555] hover:text-[#E9E6D9] hover:bg-[#2E2E2F] transition-colors text-sm"
+          >
             <LogOut size={14} />
             Odjavi se
           </button>
@@ -110,11 +123,29 @@ function NavLink({ href, label, icon: Icon, desc, active, muted = false }: {
 }
 
 function SpotPriceBadge() {
+  const [data, setData] = useState<{ rsd_per_gram: number; xau_eur: number } | null>(null);
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch("/api/prices");
+        if (res.ok) setData(await res.json());
+      } catch { /* ignore */ }
+    }
+    load();
+    const id = setInterval(load, 60_000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <div className="px-3 py-2 rounded-lg bg-[#111112] border border-[#2E2E2F]">
       <p className="text-[10px] text-[#555] uppercase tracking-wider">Spot cena</p>
-      <p className="text-sm font-semibold text-[#BF8E41] tabular-nums mt-0.5">10.168 RSD/g</p>
-      <p className="text-[10px] text-[#555]">$2.905,50 / oz</p>
+      <p className="text-sm font-semibold text-[#BF8E41] tabular-nums mt-0.5">
+        {data ? `${data.rsd_per_gram.toLocaleString("sr-RS")} RSD/g` : "—"}
+      </p>
+      <p className="text-[10px] text-[#555]">
+        {data ? `€${data.xau_eur.toLocaleString("sr-RS")} / oz` : "učitavanje..."}
+      </p>
     </div>
   );
 }

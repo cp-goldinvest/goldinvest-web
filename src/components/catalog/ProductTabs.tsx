@@ -20,6 +20,7 @@ type Props = {
   brand: string;
   origin: string;
   sku: string | null;
+  description?: string | null;
   specs?: ProductSpec[];
 };
 
@@ -31,7 +32,7 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "poreski",     label: "Poreski i drugi relevantni tretmani" },
 ];
 
-export function ProductTabs({ weightG, purity, brand, origin, sku }: Props) {
+export function ProductTabs({ weightG, purity, brand, origin, sku, description }: Props) {
   const [active, setActive] = useState<TabId>("opis");
 
   // Baza čuva purity kao integer (9999) ili decimal (0.9999) — normalizujemo
@@ -74,34 +75,43 @@ export function ProductTabs({ weightG, purity, brand, origin, sku }: Props) {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
         {active === "opis" && (
           <div
-            className="w-full text-[#4A4A4A] leading-relaxed space-y-4"
+            className="w-full text-[#4A4A4A] leading-relaxed"
             style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 15.5 }}
           >
-            <p>
-              <strong className="text-[#1B1B1C]">Argor-Heraeus zlatna poluga {weightDisplay}</strong> je
-              jedno od najpriznatijih investicionih zlatnih ulaganja dostupnih na tržištu. Rafinerija
-              Argor-Heraeus iz Mendrisija u Švajcarskoj važi za jednu od tri najveće i najcenjenije
-              rafinerije plemenitih metala na svetu — uz Johnson Matthey i Umicore.
-            </p>
-            <p>
-              Svaka poluga sadrži tačno <strong className="text-[#1B1B1C]">{weightDisplay} čistog zlata</strong>{" "}
-              čistoće <strong className="text-[#1B1B1C]">{purityDisplay}/1000 (24 karata)</strong> i dolazi
-              fabrički zapečaćena u čvrstom sigurnosnom blisteru veličine bankovne kartice — koji je
-              ujedno i vaš zvanični sertifikat autentičnosti. Na blisteru i samoj poluzi laserski su
-              ugravirani: logo Argor-Heraeus, nominalna masa, čistoća i jedinstveni serijski broj.
-            </p>
-            <p>
-              Poluga nosi <strong className="text-[#1B1B1C]">LBMA &ldquo;Good Delivery&rdquo; status</strong> — najvišu
-              međunarodnu sertifikaciju za investiciono zlato, koju izdaje London Bullion Market
-              Association. Ovaj status garantuje da će poluga biti prihvaćena bez ikakve provere
-              autentičnosti kod svakog profesionalnog dilera, u svakoj banci i na svakom tržištu
-              plemenitih metala na svetu.
-            </p>
-            <p>
-              <span className="text-[#BF8E41] font-semibold">Zlatno pravilo:</span> Nikad ne otvarajte
-              fabrički blister — otvorena poluga gubi &ldquo;Good Delivery&rdquo; status i otkupljuje se po
-              nižoj ceni. Pakovanje je garancija, ne samo ambalaža.
-            </p>
+            {description ? (
+              <div
+                className="space-y-4 prose-custom"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            ) : (
+              <div className="space-y-4">
+                <p>
+                  <strong className="text-[#1B1B1C]">Argor-Heraeus zlatna poluga {weightDisplay}</strong> je
+                  jedno od najpriznatijih investicionih zlatnih ulaganja dostupnih na tržištu. Rafinerija
+                  Argor-Heraeus iz Mendrisija u Švajcarskoj važi za jednu od tri najveće i najcenjenije
+                  rafinerije plemenitih metala na svetu — uz Johnson Matthey i Umicore.
+                </p>
+                <p>
+                  Svaka poluga sadrži tačno <strong className="text-[#1B1B1C]">{weightDisplay} čistog zlata</strong>{" "}
+                  čistoće <strong className="text-[#1B1B1C]">{purityDisplay}/1000 (24 karata)</strong> i dolazi
+                  fabrički zapečaćena u čvrstom sigurnosnom blisteru veličine bankovne kartice — koji je
+                  ujedno i vaš zvanični sertifikat autentičnosti. Na blisteru i samoj poluzi laserski su
+                  ugravirani: logo Argor-Heraeus, nominalna masa, čistoća i jedinstveni serijski broj.
+                </p>
+                <p>
+                  Poluga nosi <strong className="text-[#1B1B1C]">LBMA &ldquo;Good Delivery&rdquo; status</strong> — najvišu
+                  međunarodnu sertifikaciju za investiciono zlato, koju izdaje London Bullion Market
+                  Association. Ovaj status garantuje da će poluga biti prihvaćena bez ikakve provere
+                  autentičnosti kod svakog profesionalnog dilera, u svakoj banci i na svakom tržištu
+                  plemenitih metala na svetu.
+                </p>
+                <p>
+                  <span className="text-[#BF8E41] font-semibold">Zlatno pravilo:</span> Nikad ne otvarajte
+                  fabrički blister — otvorena poluga gubi &ldquo;Good Delivery&rdquo; status i otkupljuje se po
+                  nižoj ceni. Pakovanje je garancija, ne samo ambalaža.
+                </p>
+              </div>
+            )}
           </div>
         )}
 

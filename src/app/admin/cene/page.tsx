@@ -8,8 +8,7 @@ type Tier = {
   id: string;
   name: string;
   category: string | null;
-  min_g: number;
-  max_g: number;
+  weight_g: number | null;
   margin_stock_pct: number;
   margin_advance_pct: number;
   margin_purchase_pct: number;
@@ -36,16 +35,25 @@ const CATEGORY_LABELS: Record<string, string> = {
   poluga: "Poluge", plocica: "Pločice", dukat: "Dukati", novac: "Kovanice",
 };
 
-function tierRangeLabel(t: Tier): string {
-  if (t.max_g >= 99000) return `${t.min_g}g+`;
-  return `${t.min_g}g – ${t.max_g >= 1000 ? `${t.max_g / 1000}kg` : `${t.max_g}g`}`;
+function tierWeightLabel(t: Tier): string {
+  if (t.weight_g === null) return "sve gramaže (catch-all)";
+  const w = t.weight_g;
+  if (w >= 1000) return `${w / 1000}kg`;
+  if (Number.isInteger(w)) return `${w}g`;
+  const oz = w / 31.1035;
+  if (Math.abs(oz - 1) < 0.01) return "1 oz";
+  if (Math.abs(oz - 0.5) < 0.01) return "1/2 oz";
+  if (Math.abs(oz - 0.25) < 0.01) return "1/4 oz";
+  if (Math.abs(oz - 0.1) < 0.01) return "1/10 oz";
+  return `${w}g`;
 }
 
 function computeAutoPrice(weightG: number, category: string, tiers: Tier[], spotPerGram: number): { stock: number; advance: number; purchase: number } {
-  const tier = tiers.find(t =>
-    weightG >= t.min_g && weightG <= t.max_g &&
-    (t.category === null || t.category === category)
-  );
+  const tier =
+    tiers.find(t => t.weight_g !== null && Math.abs(t.weight_g - weightG) < 0.001 && t.category === category) ??
+    tiers.find(t => t.weight_g !== null && Math.abs(t.weight_g - weightG) < 0.001 && t.category === null) ??
+    tiers.find(t => t.weight_g === null && t.category === category) ??
+    tiers.find(t => t.weight_g === null && t.category === null);
   const ms = tier?.margin_stock_pct    ?? 3.0;
   const ma = tier?.margin_advance_pct  ?? 2.0;
   const mp = tier?.margin_purchase_pct ?? -2.0;
@@ -398,7 +406,7 @@ export default function AdminCenePage() {
               <div key={tier.id} className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-px bg-[#2E2E2F] border-t border-[#2E2E2F] first:border-t-0">
                 <div className="bg-[#1B1B1C] px-4 py-4">
                   <p className="text-sm font-medium text-[#E9E6D9]">{tier.name}</p>
-                  <p className="text-[11px] text-[#555] mt-0.5">{tierRangeLabel(tier)}{tier.category ? ` · ${CATEGORY_LABELS[tier.category] ?? tier.category}` : ""}</p>
+                  <p className="text-[11px] text-[#555] mt-0.5">{tierWeightLabel(tier)}{tier.category ? ` · ${CATEGORY_LABELS[tier.category] ?? tier.category}` : ""}</p>
                 </div>
                 <TierCell value={tierEdits[tier.id]?.stock    ?? ""} onChange={v => setTierEdits(p => ({ ...p, [tier.id]: { ...p[tier.id], stock: v }    }))} color="gold" />
                 <TierCell value={tierEdits[tier.id]?.advance  ?? ""} onChange={v => setTierEdits(p => ({ ...p, [tier.id]: { ...p[tier.id], advance: v }  }))} />

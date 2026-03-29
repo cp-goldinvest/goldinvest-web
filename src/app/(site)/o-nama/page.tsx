@@ -442,8 +442,8 @@ export default function ONamaPage() {
               style={{ height: 460, background: "#F9F9F9" }}
             >
               <Image
-                src="/images/edu-sertifikati-lbma.png"
-                alt="LBMA sertifikat i zlatna poluga — autentičnost investicionog zlata"
+                src="/images/onamapage.png"
+                alt="Poslovne zgrade — Gold Invest"
                 fill
                 className="object-cover"
                 style={{ objectPosition: "50% 40%" }}

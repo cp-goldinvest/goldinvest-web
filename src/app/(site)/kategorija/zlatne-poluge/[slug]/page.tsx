@@ -521,24 +521,6 @@ export async function generateMetadata({
   };
 }
 
-// ── Mock data ──────────────────────────────────────────────────────────────
-const MOCK_SNAPSHOT = {
-  id: "mock", xau_usd: 2700, xau_eur: 4375, usd_rsd: 108, eur_rsd: 117.5,
-  price_per_g_rsd: 16500, source: "mock", fetched_at: new Date().toISOString(),
-};
-const MOCK_TIERS = [{
-  id: "t1", name: "default", category: null, min_g: 0, max_g: 99999,
-  margin_stock_pct: 3.5, margin_advance_pct: 2.5, margin_purchase_pct: 1.5, created_at: "",
-}];
-const ALL_MOCK_POLUGE = [
-  { id: "p1", product_id: "p1", slug: "zlatna-poluga-1-unca-argor", weight_g: 31.1, weight_oz: 1, purity: 0.9999, fine_weight_g: 31.1, sku: null, stock_qty: 4, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 1, is_active: true, products: { name: "Zlatna poluga 1 unca", brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-  { id: "p2", product_id: "p2", slug: "zlatna-poluga-50g-hafner", weight_g: 50, weight_oz: 1.607, purity: 0.9999, fine_weight_g: 50, sku: null, stock_qty: 3, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 2, is_active: true, products: { name: "Zlatna poluga 50g", brand: "C. Hafner", origin: "Nemačka", category: "poluga" }, pricing_rules: null },
-  { id: "p3", product_id: "p3", slug: "argor-heraeus-100g-zlatna-poluga", weight_g: 100, weight_oz: 3.215, purity: 0.9999, fine_weight_g: 100, sku: null, stock_qty: 3, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 3, is_active: true, products: { name: "Zlatna poluga 100g", brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-  { id: "p4", product_id: "p4", slug: "zlatna-poluga-250g-argor", weight_g: 250, weight_oz: 8.037, purity: 0.9999, fine_weight_g: 250, sku: null, stock_qty: 1, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 4, is_active: true, products: { name: "Zlatna poluga 250g", brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-  { id: "p5", product_id: "p5", slug: "zlatna-poluga-500g-argor", weight_g: 500, weight_oz: 16.075, purity: 0.9999, fine_weight_g: 500, sku: null, stock_qty: 1, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 5, is_active: true, products: { name: "Zlatna poluga 500g", brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-  { id: "p6", product_id: "p6", slug: "zlatna-poluga-1kg-argor", weight_g: 1000, weight_oz: 32.151, purity: 0.9999, fine_weight_g: 1000, sku: null, stock_qty: 1, availability: "available_on_request", lead_time_weeks: 1, images: ["/images/product-poluga.png"], sort_order: 6, is_active: true, products: { name: "Zlatna poluga 1kg", brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-];
-
 // ── Page ───────────────────────────────────────────────────────────────────
 export default async function PolugaWeightPage({
   params,
@@ -549,20 +531,25 @@ export default async function PolugaWeightPage({
   const config = WEIGHT_CONFIGS[slug];
   if (!config) notFound();
 
-  let variants: any = ALL_MOCK_POLUGE.filter((v) => Number(v.weight_g) === config.grams);
-  let tiers: any = MOCK_TIERS;
-  let snapshotRow: any = MOCK_SNAPSHOT;
+  const isOneOunce = Math.abs(config.grams - 31.1) < 0.01;
+  let variants: any = [];
+  let tiers: any = [];
+  let snapshotRow: any = null;
 
   try {
     const supabase = createServiceClient();
+    const variantsQuery = supabase
+      .from("product_variants")
+      .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
+      .eq("products.category", "poluga")
+      .eq("is_active", true);
+
+    const variantsByWeight = isOneOunce
+      ? variantsQuery.gte("weight_g", 31).lte("weight_g", 31.2).order("sort_order")
+      : variantsQuery.eq("weight_g", config.grams).order("sort_order");
+
     const [r1, r2, r3] = await Promise.all([
-      supabase
-        .from("product_variants")
-        .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
-        .eq("products.category", "poluga")
-        .eq("weight_g", config.grams)
-        .eq("is_active", true)
-        .order("sort_order"),
+      variantsByWeight,
       supabase.from("pricing_tiers").select("*"),
       supabase
         .from("gold_price_snapshots")
@@ -571,13 +558,11 @@ export default async function PolugaWeightPage({
         .limit(1)
         .single(),
     ]);
-    if (r1.data?.length) {
-      variants = r1.data;
-      tiers = r2.data;
-      snapshotRow = r3.data;
-    }
+    variants = r1.data ?? [];
+      tiers = r2.data ?? [];
+      snapshotRow = r3.data ?? null;
   } catch {
-    // Supabase nedostupan ili nema ENV — koristimo mock podatke
+    // DB nedostupna
   }
 
   const breadcrumbs = [

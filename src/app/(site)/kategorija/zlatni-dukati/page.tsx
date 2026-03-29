@@ -67,24 +67,10 @@ const FAQ_ITEMS = [
   },
 ];
 
-// Mock fallback
-const MOCK_SNAPSHOT = { id: "mock", xau_usd: 2700, xau_eur: 4375, usd_rsd: 108, eur_rsd: 117.5, price_per_g_rsd: 16500, source: "mock", fetched_at: new Date().toISOString() };
-const MOCK_TIERS = [{ id: "t1", name: "default", category: null, min_g: 0, max_g: 99999, margin_stock_pct: 4.5, margin_advance_pct: 3.5, margin_purchase_pct: 2, created_at: "" }];
-const MOCK_DUKATI = [
-  { id: "d1", product_id: "d1", slug: "franc-jozef-1-dukat", weight_g: 3.49, weight_oz: 0.1123, purity: 0.9860, fine_weight_g: 3.44, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 1, is_active: true, products: { name: "Franc Jozef 1 dukat", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "d2", product_id: "d2", slug: "franc-jozef-4-dukati", weight_g: 13.96, weight_oz: 0.4492, purity: 0.9860, fine_weight_g: 13.76, sku: null, stock_qty: 5, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 2, is_active: true, products: { name: "Franc Jozef 4 dukati", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "d3", product_id: "d3", slug: "becka-filharmonija-1-10-oz", weight_g: 3.11, weight_oz: 0.1, purity: 0.9999, fine_weight_g: 3.11, sku: null, stock_qty: 8, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 3, is_active: true, products: { name: "Bečka Filharmonija 1/10 oz", brand: "Münze Österreich", origin: "Austrija", category: "kovanica" }, pricing_rules: null },
-  { id: "d4", product_id: "d4", slug: "becka-filharmonija-1-4-oz", weight_g: 7.78, weight_oz: 0.25, purity: 0.9999, fine_weight_g: 7.78, sku: null, stock_qty: 6, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 4, is_active: true, products: { name: "Bečka Filharmonija 1/4 oz", brand: "Münze Österreich", origin: "Austrija", category: "kovanica" }, pricing_rules: null },
-  { id: "d5", product_id: "d5", slug: "becka-filharmonija-1-2-oz", weight_g: 15.55, weight_oz: 0.5, purity: 0.9999, fine_weight_g: 15.55, sku: null, stock_qty: 4, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 5, is_active: true, products: { name: "Bečka Filharmonija 1/2 oz", brand: "Münze Österreich", origin: "Austrija", category: "kovanica" }, pricing_rules: null },
-  { id: "d6", product_id: "d6", slug: "becka-filharmonija-1-oz", weight_g: 31.1, weight_oz: 1, purity: 0.9999, fine_weight_g: 31.1, sku: null, stock_qty: 3, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 6, is_active: true, products: { name: "Bečka Filharmonija 1 oz", brand: "Münze Österreich", origin: "Austrija", category: "kovanica" }, pricing_rules: null },
-  { id: "d7", product_id: "d7", slug: "maple-leaf-1-oz", weight_g: 31.1, weight_oz: 1, purity: 0.9999, fine_weight_g: 31.1, sku: null, stock_qty: 3, availability: "in_stock", lead_time_weeks: null, images: ["/images/gold-coins.png"], sort_order: 7, is_active: true, products: { name: "Maple Leaf 1 oz", brand: "Royal Canadian Mint", origin: "Kanada", category: "kovanica" }, pricing_rules: null },
-  { id: "d8", product_id: "d8", slug: "britannia-1-oz", weight_g: 31.1, weight_oz: 1, purity: 0.9999, fine_weight_g: 31.1, sku: null, stock_qty: 2, availability: "available_on_request", lead_time_weeks: 1, images: ["/images/gold-coins.png"], sort_order: 8, is_active: true, products: { name: "Britannia 1 oz", brand: "The Royal Mint", origin: "Velika Britanija", category: "kovanica" }, pricing_rules: null },
-];
-
 export default async function ZlatniDukatiPage() {
-  let variants: any = MOCK_DUKATI;
-  let tiers: any = MOCK_TIERS;
-  let snapshotRow: any = MOCK_SNAPSHOT;
+  let variants: any = [];
+  let tiers: any = [];
+  let snapshotRow: any = null;
 
   try {
     const supabase = createServiceClient();
@@ -103,13 +89,11 @@ export default async function ZlatniDukatiPage() {
         .limit(1)
         .single(),
     ]);
-    if (r1.data?.length) {
-      variants = r1.data;
-      tiers = r2.data;
-      snapshotRow = r3.data;
-    }
+    variants = r1.data ?? [];
+      tiers = r2.data ?? [];
+      snapshotRow = r3.data ?? null;
   } catch {
-    // Supabase nedostupan ili nema ENV — koristimo mock podatke
+    // DB nedostupna
   }
 
   return (

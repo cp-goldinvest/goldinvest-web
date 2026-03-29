@@ -329,24 +329,6 @@ export async function generateMetadata({
   };
 }
 
-// ── Mock data ──────────────────────────────────────────────────────────────
-const MOCK_SNAPSHOT = {
-  id: "mock", xau_usd: 2700, xau_eur: 4375, usd_rsd: 108, eur_rsd: 117.5,
-  price_per_g_rsd: 16500, source: "mock", fetched_at: new Date().toISOString(),
-};
-const MOCK_TIERS = [{
-  id: "t1", name: "default", category: null, min_g: 0, max_g: 99999,
-  margin_stock_pct: 4.5, margin_advance_pct: 3.5, margin_purchase_pct: 2, created_at: "",
-}];
-const ALL_MOCK_DUKATI = [
-  { id: "d1", product_id: "d1", slug: "franc-jozef-1-dukat", weight_g: 3.49, weight_oz: 0.1123, purity: 0.9860, fine_weight_g: 3.44, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 1, is_active: true, products: { name: "Franc Jozef 1 dukat", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "d2", product_id: "d2", slug: "franc-jozef-4-dukati", weight_g: 13.96, weight_oz: 0.4492, purity: 0.9860, fine_weight_g: 13.76, sku: null, stock_qty: 5, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/franc-jozef-transparent.png"], sort_order: 2, is_active: true, products: { name: "Franc Jozef 4 dukati", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "bf1", product_id: "bf1", slug: "becka-filharmonija-1-10-oz", weight_g: 3.11, weight_oz: 0.1000, purity: 0.9999, fine_weight_g: 3.109, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/becka-filharmonija.png"], sort_order: 3, is_active: true, products: { name: "Bečka Filharmonija 1/10 oz", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "bf2", product_id: "bf2", slug: "becka-filharmonija-1-4-oz", weight_g: 7.78, weight_oz: 0.2500, purity: 0.9999, fine_weight_g: 7.779, sku: null, stock_qty: 8, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/becka-filharmonija.png"], sort_order: 4, is_active: true, products: { name: "Bečka Filharmonija 1/4 oz", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "bf3", product_id: "bf3", slug: "becka-filharmonija-1-2-oz", weight_g: 15.55, weight_oz: 0.5000, purity: 0.9999, fine_weight_g: 15.549, sku: null, stock_qty: 6, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/becka-filharmonija.png"], sort_order: 5, is_active: true, products: { name: "Bečka Filharmonija 1/2 oz", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-  { id: "bf4", product_id: "bf4", slug: "becka-filharmonija-1-oz", weight_g: 31.10, weight_oz: 1.0000, purity: 0.9999, fine_weight_g: 31.097, sku: null, stock_qty: 4, availability: "in_stock", lead_time_weeks: null, images: ["/images/products/becka-filharmonija.png"], sort_order: 6, is_active: true, products: { name: "Bečka Filharmonija 1 oz", brand: "Münze Österreich", origin: "Austrija", category: "dukat" }, pricing_rules: null },
-];
-
 // ── Page ───────────────────────────────────────────────────────────────────
 export default async function DukatSlugPage({
   params,
@@ -357,11 +339,13 @@ export default async function DukatSlugPage({
   const config = SLUG_CONFIGS[slug];
   if (!config) notFound();
 
-  let variants: any = ALL_MOCK_DUKATI.filter((v) =>
-    config.mockWeights.includes(Number(v.weight_g))
-  );
-  let tiers: any = MOCK_TIERS;
-  let snapshotRow: any = MOCK_SNAPSHOT;
+  const matchesConfigVariant = (v: any) =>
+    config.variantSlugs.includes(v.slug) ||
+    config.mockWeights.some((w) => Math.abs(Number(v.weight_g) - Number(w)) < 0.02);
+
+  let variants: any = [];
+  let tiers: any = [];
+  let snapshotRow: any = null;
 
   try {
     const supabase = createServiceClient();
@@ -369,7 +353,7 @@ export default async function DukatSlugPage({
       supabase
         .from("product_variants")
         .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
-        .in("slug", config.variantSlugs)
+        .in("products.category", ["dukat", "kovanica"])
         .eq("is_active", true)
         .order("sort_order"),
       supabase.from("pricing_tiers").select("*"),
@@ -380,13 +364,11 @@ export default async function DukatSlugPage({
         .limit(1)
         .single(),
     ]);
-    if (r1.data?.length) {
-      variants = r1.data;
-      tiers = r2.data;
-      snapshotRow = r3.data;
-    }
+    variants = (r1.data ?? []).filter(matchesConfigVariant);
+      tiers = r2.data ?? [];
+      snapshotRow = r3.data ?? null;
   } catch {
-    // Supabase nedostupan ili nema ENV — koristimo mock podatke
+    // DB nedostupna
   }
 
   const breadcrumbs = [

@@ -8,7 +8,7 @@ export async function GET() {
   const { data, error } = await supabase
     .from("pricing_tiers")
     .select("*")
-    .order("min_g");
+    .order("category").order("weight_g", { nullsFirst: false });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(data);
 }

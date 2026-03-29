@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -14,14 +15,17 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    // TODO: Supabase auth.signInWithPassword
-    // For now, mock check
-    if (email === "nikolapajovic67@gmail.com" && password === "goldinvest") {
-      router.push("/admin/cene");
-    } else {
+
+    const supabase = createClient();
+    const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (authError) {
       setError("Pogrešan email ili lozinka.");
+      setLoading(false);
+    } else {
+      router.push("/admin/cene");
+      router.refresh();
     }
-    setLoading(false);
   }
 
   return (

@@ -11,28 +11,22 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { ProductTabs } from "@/components/catalog/ProductTabs";
+import { ProductHeroImage } from "@/components/catalog/ProductHeroImage";
 
 export const revalidate = 60;
 
-// ── Mock data ───────────────────────────────────────────────────────────────
+function getVariantDisplayName(baseName: string, variantSlug: string, weightG: number) {
+  const slug = (variantSlug ?? "").toLowerCase();
+  const name = (baseName ?? "").toLowerCase();
 
-const MOCK_SNAPSHOT = {
-  id: "mock", xau_usd: 2700, xau_eur: 4375, usd_rsd: 108, eur_rsd: 117.5,
-  price_per_g_rsd: 16500, source: "mock", fetched_at: new Date().toISOString(),
-};
-const MOCK_TIERS = [{
-  id: "t1", name: "default", category: null, min_g: 0, max_g: 99999,
-  margin_stock_pct: 3.5, margin_advance_pct: 2.5, margin_purchase_pct: 1.5, created_at: "",
-}];
+  if (slug.includes("c-hafner-set") || name.includes("hafner") && name.includes("set")) {
+    if (Math.abs(Number(weightG) - 10) < 0.02) return "C.Hafner zlatne pločice 10g (10x1g)";
+    if (Math.abs(Number(weightG) - 20) < 0.02) return "C.Hafner zlatne pločice 20g (10x2g)";
+    if (Math.abs(Number(weightG) - 25) < 0.02) return "C.Hafner zlatne pločice 25g (25x1g)";
+  }
 
-const ALL_MOCK_VARIANTS = [
-  { id: "p1", product_id: "p1", slug: "zlatna-poluga-1-unca-argor",  weight_g: 31.1,  weight_oz: 1,      purity: 0.9999, fine_weight_g: 31.1,  sku: "AH-1OZ",   stock_qty: 4, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 1, is_active: true, products: { name: "Zlatna poluga 1 unca",  brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-  { id: "p2", product_id: "p2", slug: "zlatna-poluga-50g-hafner",    weight_g: 50,    weight_oz: 1.607,  purity: 0.9999, fine_weight_g: 50,    sku: "CH-50G",   stock_qty: 3, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 2, is_active: true, products: { name: "Zlatna poluga 50g",     brand: "C. Hafner",     origin: "Nemačka",    category: "poluga" }, pricing_rules: null },
-  { id: "p3", product_id: "p3", slug: "argor-heraeus-100g-zlatna-poluga",   weight_g: 100,   weight_oz: 3.215,  purity: 0.9999, fine_weight_g: 100,   sku: "AH-100G",  stock_qty: 3, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 3, is_active: true, products: { name: "Argor-Heraeus zlatna poluga 100g", brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-  { id: "p4", product_id: "p4", slug: "zlatna-poluga-250g-argor",   weight_g: 250,   weight_oz: 8.037,  purity: 0.9999, fine_weight_g: 250,   sku: "AH-250G",  stock_qty: 1, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 4, is_active: true, products: { name: "Zlatna poluga 250g",    brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-  { id: "p5", product_id: "p5", slug: "zlatna-poluga-500g-argor",   weight_g: 500,   weight_oz: 16.075, purity: 0.9999, fine_weight_g: 500,   sku: "AH-500G",  stock_qty: 1, availability: "in_stock",           lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 5, is_active: true, products: { name: "Zlatna poluga 500g",    brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-  { id: "p6", product_id: "p6", slug: "zlatna-poluga-1kg-argor",    weight_g: 1000,  weight_oz: 32.151, purity: 0.9999, fine_weight_g: 1000,  sku: "AH-1KG",   stock_qty: 1, availability: "available_on_request", lead_time_weeks: 1,  images: ["/images/product-poluga.png"], sort_order: 6, is_active: true, products: { name: "Zlatna poluga 1kg",     brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-];
+  return baseName;
+}
 
 // ── Metadata ────────────────────────────────────────────────────────────────
 
@@ -42,21 +36,32 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const mock = ALL_MOCK_VARIANTS.find((v) => v.slug === slug);
-  const name = mock?.products?.name ?? "Zlatna poluga";
-  const weight = mock ? formatWeight(mock.weight_g) : "";
-  return {
-    title: `${name} | Cena i Prodaja — Gold Invest Beograd`,
-    description: `Kupite ${name} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođena PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/269-8569.`,
-    alternates: {
-      canonical: `https://goldinvest.rs/proizvodi/${slug}`,
-    },
-    openGraph: {
-      title: `${name} ${weight} | Gold Invest`,
-      description: `${name} — LBMA Good Delivery, čistoća 999,9, bez PDV-a. Brza dostava.`,
-      images: [{ url: mock?.images?.[0] ?? "/images/product-poluga.png", width: 800, height: 800 }],
-    },
-  };
+  try {
+    const supabase = createServiceClient();
+    const { data } = await supabase
+      .from("product_variants")
+      .select("weight_g, images, products!inner(name)")
+      .eq("slug", slug)
+      .eq("is_active", true)
+      .single();
+    const row = (data ?? null) as any;
+    const rawName = row?.products?.name ?? "Investicioni zlatni proizvod";
+    const name = row ? getVariantDisplayName(rawName, slug, Number(row.weight_g)) : rawName;
+    const weight = row ? formatWeight(row.weight_g) : "";
+    const image = row?.images?.[0] ?? "/images/product-poluga.png";
+    return {
+      title: `${name} ${weight} | Cena i Prodaja — Gold Invest Beograd`,
+      description: `Kupite ${name} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/269-8569.`,
+      alternates: { canonical: `https://goldinvest.rs/proizvodi/${slug}` },
+      openGraph: {
+        title: `${name} ${weight} | Gold Invest`,
+        description: `${name} — LBMA Good Delivery, čistoća 999,9, bez PDV-a. Brza dostava.`,
+        images: [{ url: image, width: 800, height: 800 }],
+      },
+    };
+  } catch {
+    return { title: "Investicioni zlatni proizvod | Gold Invest" };
+  }
 }
 
 // ── Page ────────────────────────────────────────────────────────────────────
@@ -68,12 +73,10 @@ export default async function ProizvodPage({
 }) {
   const { slug } = await params;
 
-  let variant: (typeof ALL_MOCK_VARIANTS)[0] | undefined = ALL_MOCK_VARIANTS.find(
-    (v) => v.slug === slug
-  );
-  let allVariants: typeof ALL_MOCK_VARIANTS = ALL_MOCK_VARIANTS;
-  let tiers: any = MOCK_TIERS;
-  let snapshotRow: any = MOCK_SNAPSHOT;
+  let variant: any = null;
+  let allVariants: any[] = [];
+  let tiers: any = [];
+  let snapshotRow: any = null;
 
   try {
     const supabase = createServiceClient();
@@ -95,8 +98,8 @@ export default async function ProizvodPage({
 
     if (r1.data) {
       variant = r1.data as any;
-      tiers = r2.data ?? MOCK_TIERS;
-      snapshotRow = r3.data ?? MOCK_SNAPSHOT;
+      tiers = r2.data ?? [];
+      snapshotRow = r3.data ?? null;
 
       // Fetch related products (same category, different slug)
       const category = (r1.data as any).products?.category ?? "poluga";
@@ -113,7 +116,7 @@ export default async function ProizvodPage({
       }
     }
   } catch {
-    // Supabase nedostupan — koristimo mock podatke
+    // DB nedostupna
   }
 
   if (!variant) notFound();
@@ -133,16 +136,19 @@ export default async function ProizvodPage({
     tiers
   );
 
-  const heroImg = variant.images?.[0] ?? "/images/product-poluga.png";
+  const heroImages = variant.images?.length
+    ? variant.images
+    : ["/images/product-poluga.png"];
   const inStock = variant.availability === "in_stock";
   const isPreorder = variant.availability === "preorder";
   const weightDisplay = formatWeight(variant.weight_g);
 
   const normalized = (s: string) => s.toLowerCase().replace(/\s+/g, "");
+  const displayName = getVariantDisplayName(product.name, slug, Number(variant.weight_g));
   const productNameWithWeight =
-    normalized(product.name).includes(normalized(weightDisplay))
-      ? product.name
-      : `${product.name} ${weightDisplay}`;
+    normalized(displayName).includes(normalized(weightDisplay))
+      ? displayName
+      : `${displayName} ${weightDisplay}`;
 
   const categoryMeta: Record<string, { label: string; href: string }> = {
     poluga:  { label: "Zlatne poluge",  href: "/kategorija/zlatne-poluge" },
@@ -221,38 +227,8 @@ export default async function ProizvodPage({
         <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 xl:gap-16 items-center">
 
-            {/* Left — image */}
-            <div
-              className="relative rounded-2xl overflow-hidden bg-white/60 backdrop-blur-sm"
-              style={{
-                boxShadow: "0 8px 40px rgba(0,0,0,0.10)",
-                minHeight: 340,
-                maxHeight: 480,
-                height: "clamp(340px, 36vw, 480px)",
-              }}
-            >
-              <Image
-                src={heroImg}
-                alt={product.name}
-                fill
-                priority
-                className="object-contain p-10 sm:p-14"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-
-              {/* LBMA badge */}
-              <div
-                className="absolute bottom-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm"
-                style={{ border: "0.5px solid rgba(190,173,135,0.5)" }}
-              >
-                <span
-                  className="text-[#BF8E41] font-semibold"
-                  style={{ fontSize: 10.5, letterSpacing: "0.05em" }}
-                >
-                  LBMA GOOD DELIVERY
-                </span>
-              </div>
-            </div>
+            {/* Left — image(s): images[0] = prednja, images[1] = zadnja */}
+            <ProductHeroImage images={heroImages} productName={product.name} />
 
             {/* Right — product info */}
             <div className="flex flex-col">
@@ -446,6 +422,7 @@ export default async function ProizvodPage({
           brand={product.brand}
           origin={product.origin}
           sku={variant.sku}
+          description={variant.description ?? null}
         />
       </section>
 

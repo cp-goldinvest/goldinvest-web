@@ -13,9 +13,9 @@ export function InfoCard({ title, children, className }: Props) {
       <p className="text-[#1B1B1C] text-[15px] font-semibold mb-2 leading-snug">
         {title}
       </p>
-      <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
+      <div className="text-[#6B6B6B] text-[13.5px] leading-relaxed">
         {children}
-      </p>
+      </div>
     </div>
   );
 }

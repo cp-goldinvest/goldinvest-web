@@ -26,12 +26,13 @@ export function CategoryFaq({ title, items, ctaHref, ctaLabel }: Props) {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
         <div className="flex flex-col items-start text-left md:items-center md:text-center mb-10">
           <span
+            className="text-white"
             style={{
               fontFamily: "var(--font-rethink), sans-serif",
               fontWeight: 400,
               fontSize: 19,
               lineHeight: "31px",
-              color: "#C2B280",
+              textShadow: "0 1px 2px rgba(0,0,0,0.12)",
             }}
           >
             Edukacija

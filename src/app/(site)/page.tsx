@@ -32,21 +32,9 @@ export const metadata: Metadata = {
   },
 };
 
-const MOCK_SNAPSHOT = { id: "mock", xau_usd: 2700, xau_eur: 4375, usd_rsd: 108, eur_rsd: 117.5, price_per_g_rsd: 16500, source: "mock", fetched_at: new Date().toISOString() };
-const MOCK_TIERS = [{ id: "t1", name: "default", category: null, min_g: 0, max_g: 99999, margin_stock_pct: 4.5, margin_advance_pct: 3.5, margin_purchase_pct: 2, created_at: "" }];
-const MOCK_VARIANTS = [
-  { id: "1", product_id: "p1", slug: "zlatna-plocica-1g-pamp", weight_g: 1, weight_oz: 0.032, purity: 0.9999, fine_weight_g: 1, sku: null, stock_qty: 10, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 1, is_active: true, products: { name: "Zlatna pločica 1g", brand: "PAMP Suisse", origin: "Švajcarska", category: "plocica" }, pricing_rules: null },
-  { id: "2", product_id: "p2", slug: "zlatna-plocica-2g-pamp", weight_g: 2, weight_oz: 0.064, purity: 0.9999, fine_weight_g: 2, sku: null, stock_qty: 8, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 2, is_active: true, products: { name: "Zlatna pločica 2g", brand: "PAMP Suisse", origin: "Švajcarska", category: "plocica" }, pricing_rules: null },
-  { id: "3", product_id: "p3", slug: "zlatna-plocica-5g-heraeus", weight_g: 5, weight_oz: 0.161, purity: 0.9999, fine_weight_g: 5, sku: null, stock_qty: 5, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 3, is_active: true, products: { name: "Zlatna pločica 5g", brand: "Heraeus", origin: "Nemačka", category: "plocica" }, pricing_rules: null },
-  { id: "4", product_id: "p4", slug: "zlatna-plocica-10g-heraeus", weight_g: 10, weight_oz: 0.321, purity: 0.9999, fine_weight_g: 10, sku: null, stock_qty: 3, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 4, is_active: true, products: { name: "Zlatna pločica 10g", brand: "Heraeus", origin: "Nemačka", category: "plocica" }, pricing_rules: null },
-  { id: "5", product_id: "p5", slug: "zlatna-poluga-1oz-argor", weight_g: 31.1, weight_oz: 1, purity: 0.9999, fine_weight_g: 31.1, sku: null, stock_qty: 4, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 5, is_active: true, products: { name: "Zlatna poluga 1 unca", brand: "Argor-Heraeus", origin: "Švajcarska", category: "poluga" }, pricing_rules: null },
-  { id: "6", product_id: "p6", slug: "zlatna-poluga-50g-umicore", weight_g: 50, weight_oz: 1.607, purity: 0.9999, fine_weight_g: 50, sku: null, stock_qty: 2, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 6, is_active: true, products: { name: "Zlatna poluga 50g", brand: "Umicore", origin: "Belgija", category: "poluga" }, pricing_rules: null },
-  { id: "7", product_id: "p7", slug: "zlatni-dukat-1-4oz-maple", weight_g: 7.78, weight_oz: 0.25, purity: 0.9999, fine_weight_g: 7.78, sku: null, stock_qty: 6, availability: "in_stock", lead_time_weeks: null, images: ["/images/product-poluga.png"], sort_order: 7, is_active: true, products: { name: "Zlatni Maple Leaf 1/4oz", brand: "Royal Canadian Mint", origin: "Kanada", category: "dukat" }, pricing_rules: null },
-  { id: "8", product_id: "p8", slug: "zlatni-dukat-1oz-krugerrand", weight_g: 31.1, weight_oz: 1, purity: 0.9167, fine_weight_g: 31.1, sku: null, stock_qty: 3, availability: "available_on_request", lead_time_weeks: 1, images: ["/images/product-poluga.png"], sort_order: 8, is_active: true, products: { name: "Krugerrand 1oz", brand: "South African Mint", origin: "Južna Afrika", category: "dukat" }, pricing_rules: null },
-];
 
 export default async function HomePage() {
-  let variants: any = MOCK_VARIANTS, tiers: any = MOCK_TIERS, snapshotRow: any = MOCK_SNAPSHOT;
+  let variants: any = [], tiers: any = [], snapshotRow: any = null;
   try {
     const supabase = createServiceClient();
     const withTimeout = <T,>(p: Promise<T>): Promise<T> =>
@@ -57,9 +45,11 @@ export default async function HomePage() {
       supabase.from("pricing_tiers").select("*"),
       supabase.from("gold_price_snapshots").select("*").order("fetched_at", { ascending: false }).limit(1).single(),
     ]));
-    if (r1.data?.length) { variants = r1.data; tiers = r2.data; snapshotRow = r3.data; }
+    variants = r1.data ?? [];
+      tiers = r2.data ?? [];
+      snapshotRow = r3.data ?? null;
   } catch {
-    // DB nedostupna — koristimo mock podatke
+    // DB nedostupna
   }
 
   const latestBlogPosts = getLatestBlogPosts(BLOG_POSTS, 5);
@@ -69,7 +59,7 @@ export default async function HomePage() {
       <SchemaScript schema={buildOrganizationSchema()} />
 
       {/* 1. Hero */}
-      <HeroSection />
+      <HeroSection collapseExtraParagraphs />
 
       {/* 2. Products */}
       <section className="bg-white py-12">

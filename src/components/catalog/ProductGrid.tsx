@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { ProductCard } from "./ProductCard";
 import { FilterSortBar, type SortOption, type Filters, type Option } from "./FilterSortBar";
-import { computePrices } from "@/lib/pricing";
+import { computePrices, formatWeight } from "@/lib/pricing";
 import type { ProductVariant, PricingTier, PricingRule, GoldPriceSnapshot } from "@/lib/supabase/types";
 
 type VariantWithRelations = ProductVariant & {
@@ -32,6 +32,37 @@ type Props = {
   /** Limit number of visible cards. */
   maxItems?: number;
 };
+
+function getCardName(v: VariantWithRelations): string {
+  const productName = v.products.name?.trim();
+  const category = (v.products.category ?? "").toLowerCase();
+  const slug = (v.slug ?? "").toLowerCase();
+  const brand = (v.products.brand ?? "").toLowerCase();
+  const weight = Number(v.weight_g);
+
+  // Dukat cards should show concrete variant names (Mali/Veliki), not generic family title.
+  if (category === "dukat" && (slug.includes("franc-jozef") || productName?.toLowerCase().includes("franc jozef"))) {
+    if (Math.abs(weight - 3.49) < 0.02 || slug.includes("1-dukat")) return "Franc Jozef dukat mali";
+    if (Math.abs(weight - 13.96) < 0.02 || slug.includes("4-dukati")) return "Franc Jozef dukat veliki";
+  }
+
+  // Explicit naming for C.Hafner "multi-pack" plate sets.
+  if (brand.includes("hafner") || slug.includes("hafner") || productName?.toLowerCase().includes("hafner")) {
+    const p = productName?.toLowerCase() ?? "";
+    if (slug.includes("10x1") || p.includes("10x1g") || (Math.abs(weight - 10) < 0.02 && p.includes("set"))) {
+      return "C.Hafner zlatne pločice 10g (10x1g)";
+    }
+    if (slug.includes("10x2") || p.includes("10x2g") || (Math.abs(weight - 20) < 0.02 && p.includes("set"))) {
+      return "C.Hafner zlatne pločice 20g (10x2g)";
+    }
+    if (slug.includes("25x1") || p.includes("25x1g") || (Math.abs(weight - 25) < 0.02 && p.includes("set"))) {
+      return "C.Hafner zlatne pločice 25g (25x1g)";
+    }
+  }
+
+  if (productName) return productName;
+  return `${v.products.brand} ${formatWeight(weight)}`;
+}
 
 export function ProductGrid({ variants, tiers, snapshot, filterConfig, hideFilterSortBar, gridClassName, maxItems }: Props) {
   const [sort, setSort] = useState<SortOption>("price_asc");
@@ -128,7 +159,7 @@ export function ProductGrid({ variants, tiers, snapshot, filterConfig, hideFilte
             <ProductCard
               key={v.id}
               slug={v.slug}
-              name={`${v.products.brand} ${v.weight_g >= 1000 ? `${Number(v.weight_g) / 1000}kg` : `${v.weight_g}g`}`}
+              name={getCardName(v)}
               weightG={Number(v.weight_g)}
               images={v.images}
               availability={v.availability}

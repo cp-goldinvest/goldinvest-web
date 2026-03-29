@@ -46,13 +46,14 @@ export function FaqSection() {
         {/* Header */}
         <div className="flex flex-col items-start text-left md:items-center md:text-center mb-10">
           <span
+            className="text-white"
             style={{
               fontFamily: "var(--font-rethink), sans-serif",
               fontWeight: 400,
               fontSize: 19.01,
               lineHeight: "30.9px",
               letterSpacing: 0,
-              color: "#C2B280",
+              textShadow: "0 1px 2px rgba(0,0,0,0.12)",
             }}
           >
             Edukacija

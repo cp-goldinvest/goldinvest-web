@@ -6,8 +6,9 @@ const PRODUCTS = [
   { label: "Zlatne poluge", href: "/kategorija/zlatne-poluge" },
   { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
   { label: "Zlatni dukati", href: "/kategorija/zlatni-dukati" },
-  { label: "Investiciono srebro", href: "/kategorija/srebro" },
-  { label: "Premijum pokloni", href: "/kategorija/pokloni" },
+  { label: "Zlatnici", href: "/kategorija/zlatni-dukati" },
+  { label: "Poklon za krštenje", href: "/poklon-za-krstenje" },
+  { label: "Poklon za rođenje deteta", href: "/poklon-za-rodjenje-deteta" },
 ];
 
 const INFO = [
