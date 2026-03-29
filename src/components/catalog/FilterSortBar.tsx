@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { SlidersHorizontal, ArrowUpDown, ChevronDown, X } from "lucide-react";
 
-export type SortOption = "price_asc" | "price_desc" | "weight_asc" | "weight_desc";
+export type SortOption = "price_asc" | "price_desc" | "weight_asc" | "weight_desc" | "brand_asc";
 
 export type Filters = {
   categories: string[];
@@ -62,6 +62,7 @@ const SORT_LABELS: Record<SortOption, string> = {
   price_desc:  "Od najviše cene",
   weight_asc:  "Od najmanje težine",
   weight_desc: "Od najveće težine",
+  brand_asc:   "Po brendu (A–Ž)",
 };
 
 type OpenDropdown = "category" | "weight" | "price" | "brand" | "origin" | "sort" | null;

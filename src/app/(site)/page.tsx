@@ -13,6 +13,7 @@ import { HomeBlogBentoSection } from "@/components/home/HomeBlogBentoSection";
 import { BLOG_POSTS, getLatestBlogPosts } from "@/data/blog-posts";
 import { FaqSection } from "@/components/home/FaqSection";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
+import { buildHomepagePlateShowcase } from "@/lib/home-product-showcase";
 
 export const revalidate = 60;
 
@@ -52,6 +53,10 @@ export default async function HomePage() {
     // DB nedostupna
   }
 
+  const curatedPlates = buildHomepagePlateShowcase(variants);
+  const homeProductVariants = curatedPlates.length > 0 ? curatedPlates : variants;
+  const homeShowcaseCurated = curatedPlates.length > 0;
+
   const latestBlogPosts = getLatestBlogPosts(BLOG_POSTS, 5);
 
   return (
@@ -65,10 +70,26 @@ export default async function HomePage() {
       <section className="bg-white py-12">
         <SectionContainer>
           <ProductGrid
-            variants={variants as any}
+            variants={homeProductVariants as any}
             tiers={tiers}
             snapshot={snapshotRow}
+            defaultSort={homeShowcaseCurated ? "weight_asc" : "brand_asc"}
+            groupByBrand
+            maxItems={homeShowcaseCurated ? undefined : 8}
           />
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="/proizvodi"
+              className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#1B1B1C] text-white font-semibold transition-opacity hover:opacity-90"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontSize: 12.5,
+                boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)",
+              }}
+            >
+              Pregledaj sve proizvode
+            </Link>
+          </div>
         </SectionContainer>
       </section>
 

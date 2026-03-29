@@ -11,10 +11,80 @@ type VariantWithRelations = ProductVariant & {
   pricing_rules: PricingRule | null;
 };
 
+function getCardName(v: VariantWithRelations): string {
+  if (v.name) return v.name;
+  if (v.products.name) return v.products.name;
+  return `${v.products.brand} ${formatWeight(Number(v.weight_g))}`;
+}
+
+type ProcessedRow = {
+  variant: VariantWithRelations;
+  prices: ReturnType<typeof computePrices>;
+};
+
+function compareProcessed(a: ProcessedRow, b: ProcessedRow, sort: SortOption): number {
+  switch (sort) {
+    case "price_asc":
+      return a.prices.stock - b.prices.stock;
+    case "price_desc":
+      return b.prices.stock - a.prices.stock;
+    case "weight_asc":
+      return Number(a.variant.weight_g) - Number(b.variant.weight_g);
+    case "weight_desc":
+      return Number(b.variant.weight_g) - Number(a.variant.weight_g);
+    case "brand_asc": {
+      const wa = Number(a.variant.weight_g) - Number(b.variant.weight_g);
+      if (wa !== 0) return wa;
+      return (a.variant.slug ?? "").localeCompare(b.variant.slug ?? "", "sr", { sensitivity: "base" });
+    }
+  }
+}
+
+function buildBrandGroups(
+  processed: ProcessedRow[],
+  sort: SortOption,
+  maxItems: number | undefined
+): { brand: string; items: ProcessedRow[] }[] {
+  const byBrand = new Map<string, ProcessedRow[]>();
+  for (const row of processed) {
+    const b = row.variant.products.brand?.trim() || "Ostalo";
+    const list = byBrand.get(b) ?? [];
+    list.push(row);
+    byBrand.set(b, list);
+  }
+  for (const arr of byBrand.values()) {
+    arr.sort((a, b) => compareProcessed(a, b, sort));
+  }
+  const brandKeys = [...byBrand.keys()].sort((a, b) => a.localeCompare(b, "sr", { sensitivity: "base" }));
+
+  const cap = maxItems ?? Number.POSITIVE_INFINITY;
+  const limited: ProcessedRow[] = [];
+  outer: for (const key of brandKeys) {
+    const items = byBrand.get(key)!;
+    for (const item of items) {
+      if (limited.length >= cap) break outer;
+      limited.push(item);
+    }
+  }
+
+  const groups: { brand: string; items: ProcessedRow[] }[] = [];
+  for (const row of limited) {
+    const b = row.variant.products.brand?.trim() || "Ostalo";
+    const last = groups[groups.length - 1];
+    if (!last || last.brand !== b) groups.push({ brand: b, items: [row] });
+    else last.items.push(row);
+  }
+  return groups;
+}
+
 type Props = {
   variants: VariantWithRelations[];
   tiers: PricingTier[];
   snapshot: GoldPriceSnapshot;
+  /** Initial sort; user can still change it in the bar when visible. */
+  defaultSort?: SortOption;
+  /** Jedan vizuelni blok (redovi mreže) po brendu, brendovi A–Ž. */
+  groupByBrand?: boolean;
   filterConfig?: {
     showCategoryFilter?: boolean;
     weightOptions?: Option<number>[];
@@ -29,18 +99,22 @@ type Props = {
   hideFilterSortBar?: boolean;
   /** Override cards grid layout. */
   gridClassName?: string;
-  /** Limit number of visible cards. */
+  /** Limit number of visible cards (omit for no limit). */
   maxItems?: number;
 };
 
-function getCardName(v: VariantWithRelations): string {
-  if (v.name) return v.name;
-  if (v.products.name) return v.products.name;
-  return `${v.products.brand} ${formatWeight(Number(v.weight_g))}`;
-}
-
-export function ProductGrid({ variants, tiers, snapshot, filterConfig, hideFilterSortBar, gridClassName, maxItems }: Props) {
-  const [sort, setSort] = useState<SortOption>("price_asc");
+export function ProductGrid({
+  variants,
+  tiers,
+  snapshot,
+  defaultSort,
+  groupByBrand,
+  filterConfig,
+  hideFilterSortBar,
+  gridClassName,
+  maxItems,
+}: Props) {
+  const [sort, setSort] = useState<SortOption>(defaultSort ?? "price_asc");
   const [filters, setFilters] = useState<Filters>({
     categories: [],
     weights: [],
@@ -91,9 +165,25 @@ export function ProductGrid({ variants, tiers, snapshot, filterConfig, hideFilte
           case "price_desc":  return b.prices.stock - a.prices.stock;
           case "weight_asc":  return Number(a.variant.weight_g) - Number(b.variant.weight_g);
           case "weight_desc": return Number(b.variant.weight_g) - Number(a.variant.weight_g);
+          case "brand_asc": {
+            const ba = (a.variant.products.brand ?? "").localeCompare(b.variant.products.brand ?? "", "sr", {
+              sensitivity: "base",
+            });
+            if (ba !== 0) return ba;
+            const wa = Number(a.variant.weight_g) - Number(b.variant.weight_g);
+            if (wa !== 0) return wa;
+            return (a.variant.slug ?? "").localeCompare(b.variant.slug ?? "", "sr", { sensitivity: "base" });
+          }
         }
       });
   }, [variants, tiers, snapshot, sort, filters]);
+
+  const brandSections = useMemo(() => {
+    if (!groupByBrand) return null;
+    return buildBrandGroups(processed, sort, maxItems);
+  }, [groupByBrand, processed, sort, maxItems]);
+
+  const grid = gridClassName ?? "grid grid-cols-2 md:grid-cols-4 gap-4";
 
   return (
     <div>
@@ -128,9 +218,36 @@ export function ProductGrid({ variants, tiers, snapshot, filterConfig, hideFilte
             Obriši sve filtere
           </button>
         </div>
+      ) : brandSections ? (
+        <div className="mt-6 space-y-10">
+          {brandSections.map(({ brand, items }) => (
+            <div key={brand}>
+              <p
+                className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#6B5E3F] mb-4 border-b border-[#F0EDE6] pb-2"
+                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+              >
+                {brand}
+              </p>
+              <div className={grid}>
+                {items.map(({ variant: v, prices }) => (
+                  <ProductCard
+                    key={v.id}
+                    slug={v.slug}
+                    name={getCardName(v)}
+                    weightG={Number(v.weight_g)}
+                    images={v.images}
+                    availability={v.availability}
+                    leadTimeWeeks={v.lead_time_weeks}
+                    prices={prices}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
-        <div className={gridClassName ?? "grid grid-cols-2 md:grid-cols-4 gap-4 mt-6"}>
-          {processed.slice(0, maxItems ?? 8).map(({ variant: v, prices }) => (
+        <div className={`${grid} mt-6`}>
+          {processed.slice(0, maxItems ?? Number.POSITIVE_INFINITY).map(({ variant: v, prices }) => (
             <ProductCard
               key={v.id}
               slug={v.slug}
