@@ -34,34 +34,9 @@ type Props = {
 };
 
 function getCardName(v: VariantWithRelations): string {
-  const productName = v.products.name?.trim();
-  const category = (v.products.category ?? "").toLowerCase();
-  const slug = (v.slug ?? "").toLowerCase();
-  const brand = (v.products.brand ?? "").toLowerCase();
-  const weight = Number(v.weight_g);
-
-  // Dukat cards should show concrete variant names (Mali/Veliki), not generic family title.
-  if (category === "dukat" && (slug.includes("franc-jozef") || productName?.toLowerCase().includes("franc jozef"))) {
-    if (Math.abs(weight - 3.49) < 0.02 || slug.includes("1-dukat")) return "Franc Jozef dukat mali";
-    if (Math.abs(weight - 13.96) < 0.02 || slug.includes("4-dukati")) return "Franc Jozef dukat veliki";
-  }
-
-  // Explicit naming for C.Hafner "multi-pack" plate sets.
-  if (brand.includes("hafner") || slug.includes("hafner") || productName?.toLowerCase().includes("hafner")) {
-    const p = productName?.toLowerCase() ?? "";
-    if (slug.includes("10x1") || p.includes("10x1g") || (Math.abs(weight - 10) < 0.02 && p.includes("set"))) {
-      return "C.Hafner zlatne pločice 10g (10x1g)";
-    }
-    if (slug.includes("10x2") || p.includes("10x2g") || (Math.abs(weight - 20) < 0.02 && p.includes("set"))) {
-      return "C.Hafner zlatne pločice 20g (10x2g)";
-    }
-    if (slug.includes("25x1") || p.includes("25x1g") || (Math.abs(weight - 25) < 0.02 && p.includes("set"))) {
-      return "C.Hafner zlatne pločice 25g (25x1g)";
-    }
-  }
-
-  if (productName) return productName;
-  return `${v.products.brand} ${formatWeight(weight)}`;
+  if (v.name) return v.name;
+  if (v.products.name) return v.products.name;
+  return `${v.products.brand} ${formatWeight(Number(v.weight_g))}`;
 }
 
 export function ProductGrid({ variants, tiers, snapshot, filterConfig, hideFilterSortBar, gridClassName, maxItems }: Props) {
@@ -147,7 +122,7 @@ export function ProductGrid({ variants, tiers, snapshot, filterConfig, hideFilte
         <div className="py-20 text-left md:text-center text-[#8A8A8A]">
           <p className="text-lg">Nema proizvoda koji odgovaraju filterima.</p>
           <button
-            onClick={() => setFilters({ weights: [], maxPrice: null, brands: [], origins: [], availability: [] })}
+            onClick={() => setFilters({ categories: [], weights: [], maxPrice: null, brands: [], origins: [], availability: [] })}
             className="mt-4 text-sm text-[#BF8E41] hover:underline"
           >
             Obriši sve filtere

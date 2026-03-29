@@ -12,6 +12,7 @@ type LagerItem = {
   product_variants: {
     id: string;
     slug: string;
+    name: string | null;
     weight_g: number;
     purity: number;
     sku: string | null;
@@ -323,6 +324,7 @@ function VariantCard({
 type VariantRow = {
   id: string;
   slug: string;
+  name: string | null;
   weight_g: number;
   purity: number;
   sku: string | null;
@@ -361,7 +363,7 @@ export default function AdminZalikePage() {
     seen.set(v.id, {
       variantId: v.id,
       slug: v.slug,
-      name: v.products.name,
+      name: v.name ?? v.products.name,
       brand: v.products.brand,
       category: v.products.category,
       weightG: v.weight_g,
@@ -376,7 +378,7 @@ export default function AdminZalikePage() {
       seen.set(v.id, {
         variantId: v.id,
         slug: v.slug,
-        name: v.products.name,
+        name: v.name ?? v.products.name,
         brand: v.products.brand,
         category: v.products.category,
         weightG: v.weight_g,

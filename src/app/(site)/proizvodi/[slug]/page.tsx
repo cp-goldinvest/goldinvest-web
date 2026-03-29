@@ -15,19 +15,6 @@ import { ProductHeroImage } from "@/components/catalog/ProductHeroImage";
 
 export const revalidate = 60;
 
-function getVariantDisplayName(baseName: string, variantSlug: string, weightG: number) {
-  const slug = (variantSlug ?? "").toLowerCase();
-  const name = (baseName ?? "").toLowerCase();
-
-  if (slug.includes("c-hafner-set") || name.includes("hafner") && name.includes("set")) {
-    if (Math.abs(Number(weightG) - 10) < 0.02) return "C.Hafner zlatne pločice 10g (10x1g)";
-    if (Math.abs(Number(weightG) - 20) < 0.02) return "C.Hafner zlatne pločice 20g (10x2g)";
-    if (Math.abs(Number(weightG) - 25) < 0.02) return "C.Hafner zlatne pločice 25g (25x1g)";
-  }
-
-  return baseName;
-}
-
 // ── Metadata ────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({
@@ -40,13 +27,12 @@ export async function generateMetadata({
     const supabase = createServiceClient();
     const { data } = await supabase
       .from("product_variants")
-      .select("weight_g, images, products!inner(name)")
+      .select("name, weight_g, images, products!inner(name)")
       .eq("slug", slug)
       .eq("is_active", true)
       .single();
     const row = (data ?? null) as any;
-    const rawName = row?.products?.name ?? "Investicioni zlatni proizvod";
-    const name = row ? getVariantDisplayName(rawName, slug, Number(row.weight_g)) : rawName;
+    const name = row?.name ?? row?.products?.name ?? "Investicioni zlatni proizvod";
     const weight = row ? formatWeight(row.weight_g) : "";
     const image = row?.images?.[0] ?? "/images/product-poluga.png";
     return {
@@ -144,7 +130,7 @@ export default async function ProizvodPage({
   const weightDisplay = formatWeight(variant.weight_g);
 
   const normalized = (s: string) => s.toLowerCase().replace(/\s+/g, "");
-  const displayName = getVariantDisplayName(product.name, slug, Number(variant.weight_g));
+  const displayName = variant.name ?? product.name;
   const productNameWithWeight =
     normalized(displayName).includes(normalized(weightDisplay))
       ? displayName

@@ -83,6 +83,9 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
 export function GoldPriceChart() {
   const [period, setPeriod] = useState<Period>("1G");
   const [live, setLive] = useState<{ rsdPerGram: number; eurRsd: number } | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
     fetch("/api/prices")
@@ -188,7 +191,7 @@ export function GoldPriceChart() {
 
           {/* Chart */}
           <div className="h-[260px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
+            {mounted && <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
                 <defs>
                   <linearGradient id="goldGradient" x1="0" y1="0" x2="0" y2="1">
@@ -223,7 +226,7 @@ export function GoldPriceChart() {
                   activeDot={{ r: 4, fill: "#BF8E41", strokeWidth: 0 }}
                 />
               </AreaChart>
-            </ResponsiveContainer>
+            </ResponsiveContainer>}
           </div>
 
         </div>

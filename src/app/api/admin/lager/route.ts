@@ -18,6 +18,7 @@ export async function GET() {
       product_variants!inner(
         id,
         slug,
+        name,
         weight_g,
         purity,
         sku,

@@ -32,6 +32,7 @@ export type Database = {
           weight_oz: number;        // computed
           purity: number;
           fine_weight_g: number;    // computed
+          name: string | null;
           sku: string | null;
           stock_qty: number;
           availability: "in_stock" | "available_on_request" | "preorder";

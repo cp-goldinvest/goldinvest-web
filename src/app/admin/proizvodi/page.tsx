@@ -8,6 +8,7 @@ type Category = "poluga" | "plocica" | "dukat" | "novac";
 
 type Variant = {
   id: string;
+  name: string;
   weight_g: number;
   purity: number;
   sku: string;
@@ -36,30 +37,30 @@ const MOCK_PRODUCTS: Product[] = [
     id: "p1", slug: "argor-heraeus-poluga", name: "Argor-Heraeus", category: "poluga",
     brand: "Argor-Heraeus", refinery: "Argor-Heraeus SA", origin: "Švajcarska", is_active: true,
     variants: [
-      { id: "v1", weight_g: 1,    purity: 999.9, sku: "AH-1G",    stock_qty: 12, availability: "in_stock",             lead_time_weeks: null, sort_order: 1, is_active: true },
-      { id: "v2", weight_g: 5,    purity: 999.9, sku: "AH-5G",    stock_qty: 6,  availability: "in_stock",             lead_time_weeks: null, sort_order: 2, is_active: true },
-      { id: "v3", weight_g: 10,   purity: 999.9, sku: "AH-10G",   stock_qty: 3,  availability: "in_stock",             lead_time_weeks: null, sort_order: 3, is_active: true },
-      { id: "v4", weight_g: 20,   purity: 999.9, sku: "AH-20G",   stock_qty: 0,  availability: "available_on_request", lead_time_weeks: null, sort_order: 4, is_active: true },
-      { id: "v5", weight_g: 50,   purity: 999.9, sku: "AH-50G",   stock_qty: 2,  availability: "in_stock",             lead_time_weeks: null, sort_order: 5, is_active: true },
-      { id: "v6", weight_g: 100,  purity: 999.9, sku: "AH-100G",  stock_qty: 1,  availability: "in_stock",             lead_time_weeks: null, sort_order: 6, is_active: true },
-      { id: "v7", weight_g: 250,  purity: 999.9, sku: "AH-250G",  stock_qty: 0,  availability: "preorder",             lead_time_weeks: 3,    sort_order: 7, is_active: true },
-      { id: "v8", weight_g: 1000, purity: 999.9, sku: "AH-1KG",   stock_qty: 0,  availability: "preorder",             lead_time_weeks: 4,    sort_order: 8, is_active: true },
+      { id: "v1", name: "Argor-Heraeus zlatna poluga 1g",    weight_g: 1,    purity: 999.9, sku: "AH-1G",    stock_qty: 12, availability: "in_stock",             lead_time_weeks: null, sort_order: 1, is_active: true },
+      { id: "v2", name: "Argor-Heraeus zlatna poluga 5g",    weight_g: 5,    purity: 999.9, sku: "AH-5G",    stock_qty: 6,  availability: "in_stock",             lead_time_weeks: null, sort_order: 2, is_active: true },
+      { id: "v3", name: "Argor-Heraeus zlatna poluga 10g",   weight_g: 10,   purity: 999.9, sku: "AH-10G",   stock_qty: 3,  availability: "in_stock",             lead_time_weeks: null, sort_order: 3, is_active: true },
+      { id: "v4", name: "Argor-Heraeus zlatna poluga 20g",   weight_g: 20,   purity: 999.9, sku: "AH-20G",   stock_qty: 0,  availability: "available_on_request", lead_time_weeks: null, sort_order: 4, is_active: true },
+      { id: "v5", name: "Argor-Heraeus zlatna poluga 50g",   weight_g: 50,   purity: 999.9, sku: "AH-50G",   stock_qty: 2,  availability: "in_stock",             lead_time_weeks: null, sort_order: 5, is_active: true },
+      { id: "v6", name: "Argor-Heraeus zlatna poluga 100g",  weight_g: 100,  purity: 999.9, sku: "AH-100G",  stock_qty: 1,  availability: "in_stock",             lead_time_weeks: null, sort_order: 6, is_active: true },
+      { id: "v7", name: "Argor-Heraeus zlatna poluga 250g",  weight_g: 250,  purity: 999.9, sku: "AH-250G",  stock_qty: 0,  availability: "preorder",             lead_time_weeks: 3,    sort_order: 7, is_active: true },
+      { id: "v8", name: "Argor-Heraeus zlatna poluga 1kg",   weight_g: 1000, purity: 999.9, sku: "AH-1KG",   stock_qty: 0,  availability: "preorder",             lead_time_weeks: 4,    sort_order: 8, is_active: true },
     ],
   },
   {
     id: "p2", slug: "c-hafner-poluga", name: "C. Hafner", category: "poluga",
     brand: "C. Hafner", refinery: "C.Hafner GmbH", origin: "Nemačka", is_active: true,
     variants: [
-      { id: "v9",  weight_g: 100,  purity: 999.9, sku: "CH-100G",  stock_qty: 2,  availability: "in_stock",  lead_time_weeks: null, sort_order: 1, is_active: true },
-      { id: "v10", weight_g: 250,  purity: 999.9, sku: "CH-250G",  stock_qty: 0,  availability: "preorder",  lead_time_weeks: 3,    sort_order: 2, is_active: true },
+      { id: "v9",  name: "C. Hafner zlatna poluga 100g", weight_g: 100,  purity: 999.9, sku: "CH-100G",  stock_qty: 2,  availability: "in_stock",  lead_time_weeks: null, sort_order: 1, is_active: true },
+      { id: "v10", name: "C. Hafner zlatna poluga 250g", weight_g: 250,  purity: 999.9, sku: "CH-250G",  stock_qty: 0,  availability: "preorder",  lead_time_weeks: 3,    sort_order: 2, is_active: true },
     ],
   },
   {
     id: "p3", slug: "franc-jozef-dukat", name: "Franc Jozef", category: "dukat",
     brand: "Austrijska kovnica", refinery: "Münze Österreich", origin: "Austrija", is_active: true,
     variants: [
-      { id: "v11", weight_g: 3.49,  purity: 986, sku: "FJ-MALI",   stock_qty: 5,  availability: "in_stock",  lead_time_weeks: null, sort_order: 1, is_active: true },
-      { id: "v12", weight_g: 13.96, purity: 986, sku: "FJ-VELIKI", stock_qty: 2,  availability: "in_stock",  lead_time_weeks: null, sort_order: 2, is_active: true },
+      { id: "v11", name: "Franc Jozef dukat mali (3,49g)",   weight_g: 3.49,  purity: 986, sku: "FJ-MALI",   stock_qty: 5,  availability: "in_stock",  lead_time_weeks: null, sort_order: 1, is_active: true },
+      { id: "v12", name: "Franc Jozef dukat veliki (13,96g)", weight_g: 13.96, purity: 986, sku: "FJ-VELIKI", stock_qty: 2,  availability: "in_stock",  lead_time_weeks: null, sort_order: 2, is_active: true },
     ],
   },
 ];
@@ -76,7 +77,7 @@ const AVAILABILITY_LABELS = {
 
 // ── Empty form defaults ────────────────────────────────────────────────────
 const EMPTY_PRODUCT = { name: "", brand: "", category: "poluga" as Category, refinery: "", origin: "" };
-const EMPTY_VARIANT = { weight_g: "", purity: "999.9", sku: "", stock_qty: "0", availability: "in_stock" as Variant["availability"], lead_time_weeks: "", sort_order: "1" };
+const EMPTY_VARIANT = { name: "", weight_g: "", purity: "999.9", sku: "", stock_qty: "0", availability: "in_stock" as Variant["availability"], lead_time_weeks: "", sort_order: "1" };
 
 // ── Main page ──────────────────────────────────────────────────────────────
 export default function AdminProizvodiPage() {
@@ -142,6 +143,7 @@ export default function AdminProizvodiPage() {
     await new Promise((r) => setTimeout(r, 500));
     const newVariant: Variant = {
       id: `v${Date.now()}`,
+      name: variantForm.name,
       weight_g: parseFloat(variantForm.weight_g),
       purity: parseFloat(variantForm.purity) || 999.9,
       sku: variantForm.sku,
@@ -450,6 +452,16 @@ export default function AdminProizvodiPage() {
           onClose={() => setAddVariantFor(null)}
         >
           <div className="space-y-4">
+            <Field label="Naziv varijante *" hint="npr. Argor-Heraeus zlatna poluga 100g">
+              <input
+                type="text"
+                value={variantForm.name}
+                onChange={(e) => setVariantForm((f) => ({ ...f, name: e.target.value }))}
+                placeholder="npr. Franc Jozef dukat mali (3,49g)"
+                className={inputCls}
+              />
+            </Field>
+
             <div className="grid grid-cols-2 gap-3">
               <Field label="Težina (g) *">
                 <input

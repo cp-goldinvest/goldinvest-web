@@ -8,7 +8,7 @@ export async function GET() {
 
   const { data, error } = await supabase
     .from("product_variants")
-    .select("id, weight_g, purity, sku, products!inner(name, brand, category), pricing_rules(*)")
+    .select("id, name, weight_g, purity, sku, products!inner(name, brand, category), pricing_rules(*)")
     .eq("is_active", true)
     .order("weight_g");
 
