@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { HeroExpandableParagraphs } from "@/components/home/HeroExpandableParagraphs";
-import { GoldHeroBar } from "@/components/home/goldinvest_hero_animation";
 
 type HeroButton = { label: string; href: string };
 
@@ -54,20 +53,7 @@ export function HeroSection({
   collapseExtraParagraphs = false,
 }: Props) {
   return (
-    <>
-      {/* CSS-only entrance animations — no JS cost */}
-      <style>{`
-        @keyframes heroFadeUp {
-          from { opacity: 0; transform: translateY(14px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .hero-anim { animation: heroFadeUp 0.55s ease-out both; }
-        @media (prefers-reduced-motion: reduce) {
-          .hero-anim { animation: none !important; }
-        }
-      `}</style>
-
-      <section className="relative overflow-hidden bg-[#0D0D0D] pt-6 pb-6">
+    <section className="relative overflow-hidden bg-[#0D0D0D] pt-6 pb-6">
 
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch">
@@ -126,7 +112,7 @@ export function HeroSection({
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex-1 inline-flex items-center justify-center rounded-full border border-white/[0.18] bg-white/[0.04] py-3 text-[13px] font-semibold text-white/90 backdrop-blur transition-all duration-200 hover:bg-white/[0.08] hover:border-white/[0.26] hover:text-white"
+                      className="flex-1 inline-flex items-center justify-center rounded-full border border-white/[0.18] bg-white/[0.04] py-3 text-[13px] font-semibold text-white/90 transition-colors duration-200 hover:bg-white/[0.08] hover:border-white/[0.26] hover:text-white"
                       style={{ fontFamily: "var(--font-rethink), sans-serif" }}
                     >
                       {item.label}
@@ -136,13 +122,18 @@ export function HeroSection({
               </div>
             </div>
 
-            {/* ── Right: Cube with bar + aligned content ── */}
+            {/* ── Right: Cube with bar ── */}
             <div className="relative hidden lg:flex items-stretch justify-start self-stretch">
               <div className="relative flex flex-col w-full max-w-[620px] min-h-[440px] rounded-[28px] border border-white/[0.10] bg-[#262626] overflow-hidden">
-                <div className="relative z-10 flex-1 p-6 flex items-center justify-center">
-                  <div className="w-full max-w-[500px] h-[420px]">
-                    <GoldHeroBar staticBar imageSrc="/images/image%2062.svg" />
-                  </div>
+                <div className="flex-1 flex items-center justify-center p-6">
+                  <img
+                    src="/images/image%2062.svg"
+                    alt="Zlatna poluga — investiciono zlato Gold Invest"
+                    fetchPriority="high"
+                    width={500}
+                    height={420}
+                    className="h-full w-full max-h-[420px] object-contain drop-shadow-[0_24px_56px_rgba(0,0,0,0.55)] select-none pointer-events-none"
+                  />
                 </div>
               </div>
             </div>
@@ -150,6 +141,5 @@ export function HeroSection({
           </div>
         </div>
       </section>
-    </>
   );
 }

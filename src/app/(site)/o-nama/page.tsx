@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2, XCircle, ArrowRight } from "lucide-react";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
-import { HeroSection } from "@/components/home/HeroSection";
 import { CategoryFaq } from "@/components/catalog/CategoryFaq";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -113,38 +112,62 @@ export default function ONamaPage() {
       />
 
       {/* Breadcrumb */}
-      <div className="relative">
-        {/* Breadcrumb overlay on top of hero (no layout push) */}
-        <div className="absolute top-0 left-0 right-0 z-20 bg-white/80 backdrop-blur border-b border-[#F0EDE6]">
-          <SectionContainer className="py-3 sm:py-4">
-            <Breadcrumb items={BREADCRUMBS} variant="light" />
-          </SectionContainer>
-        </div>
+      <section className="bg-white py-4 border-b border-[#F0EDE6]">
+        <SectionContainer>
+          <Breadcrumb items={BREADCRUMBS} variant="light" />
+        </SectionContainer>
+      </section>
 
-        <HeroSection
-          title={
-            <>
+      {/* Hero */}
+      <section
+        className="pt-14 pb-12 border-b border-[#F0EDE6]"
+        style={{ background: "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)" }}
+      >
+        <SectionContainer>
+          <div className="max-w-2xl text-left md:text-center md:mx-auto">
+            <h1
+              className="text-[#1B1B1C] leading-[1.1] mb-5"
+              style={{
+                fontFamily: "var(--font-pp-editorial), Georgia, serif",
+                fontWeight: 400,
+                fontSize: "clamp(32px, 4vw, 54px)",
+              }}
+            >
               <span style={{ fontStyle: "normal" }}>Direktno zlato.</span>
               <br />
               <span style={{ fontStyle: "italic" }}>Bez posrednika.</span>
-            </>
-          }
-          paragraphs={[
-            <p key="p1">
-              Specijalizovani smo diler investicionog zlata iz Beograda. Prodajemo isključivo LBMA sertifikovane poluge, pločice i
-              dukate — direktno, transparentno i bez posrednika. Svaki klijent dobija konkretnu cenu, jasnu kalkulaciju i lični savet.
-            </p>,
-            <p key="p2">
-              Nismo call centar. Nema automatizovanih odgovora. Kada nas pozovete, razgovarate sa osobom koja zna zlato — i koja će vas
-              saslušati pre nego što predloži bilo šta.
-            </p>,
-          ]}
-          buttons={[
-            { label: "POZOVITE NAS", href: "tel:+381612698569" },
-            { label: "POSALJITE UPIT", href: "/kontakt" },
-          ]}
-        />
-      </div>
+            </h1>
+            <p
+              className="text-[#4C4C4C] leading-relaxed mb-8 md:mx-auto"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontSize: 16,
+                lineHeight: "1.65em",
+                maxWidth: 520,
+              }}
+            >
+              Specijalizovani smo diler investicionog zlata iz Beograda. Prodajemo isključivo LBMA sertifikovane
+              poluge, pločice i dukate — direktno, transparentno i bez posrednika.
+            </p>
+            <div className="flex flex-wrap gap-3 md:justify-center">
+              <a
+                href="tel:+381612698569"
+                className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#1B1B1C] text-white text-[12.5px] font-semibold transition-opacity hover:opacity-80"
+                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+              >
+                Pozovite nas
+              </a>
+              <Link
+                href="/kontakt"
+                className="inline-flex items-center justify-center px-6 py-2.5 rounded-full border border-[#1B1B1C] text-[#1B1B1C] text-[12.5px] font-semibold transition-colors hover:bg-[#1B1B1C] hover:text-white"
+                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+              >
+                Pošaljite upit
+              </Link>
+            </div>
+          </div>
+        </SectionContainer>
+      </section>
 
       {/* ── Stats strip ──────────────────────────────────────────────────────── */}
       <section className="bg-white py-6">
