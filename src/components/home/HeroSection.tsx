@@ -45,6 +45,8 @@ const CATEGORY_QUICK_LINKS: { label: string; href: string }[] = [
   { label: "Dukati", href: "/kategorija/zlatni-dukati" },
 ];
 
+const HERO_IMAGE = "/images/ispravljena.webp";
+
 export function HeroSection({
   eyebrow,
   title = DEFAULT_TITLE,
@@ -53,21 +55,34 @@ export function HeroSection({
   collapseExtraParagraphs = false,
 }: Props) {
   return (
-    <section
-      className="relative overflow-hidden pt-6 pb-6"
-      style={{
-        backgroundImage: "url('/images/heroPozadina1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-[#0D0D0D]/70" aria-hidden="true" />
+    <>
+      {/* Preload hint — browser fetches the LCP image at highest priority
+          before even parsing the component body */}
+      <link rel="preload" href={HERO_IMAGE} as="image" type="image/webp" />
+
+      <section className="relative overflow-hidden bg-[#0D0D0D] pt-6 pb-6">
+
+        {/* LCP background — <img> instead of CSS background-image so the
+            preload scanner discovers it in HTML, not after CSS parsing */}
+        <img
+          src={HERO_IMAGE}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="sync"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          style={{ pointerEvents: "none", userSelect: "none" }}
+        />
+
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-[#0D0D0D]/65" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-8">
           <div>
 
-            {/* ── Left: Text ── */}
+            {/* ── Text ── */}
             <div className="py-8 lg:py-6 flex flex-col lg:h-full">
 
               {/* Top: eyebrow + title */}
@@ -91,7 +106,7 @@ export function HeroSection({
                 </h1>
               </div>
 
-              {/* Bottom: paragraph + buttons — anchored to bottom */}
+              {/* Bottom: paragraph + buttons */}
               <div className="mt-auto max-w-[520px]">
                 <div
                   className="hero-anim mb-5 pt-6"
@@ -131,9 +146,9 @@ export function HeroSection({
               </div>
             </div>
 
-
           </div>
         </div>
       </section>
+    </>
   );
 }
