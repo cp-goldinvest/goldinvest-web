@@ -26,9 +26,9 @@ const DEFAULT_TITLE = (
   <>
     <span style={{ fontWeight: 400, fontStyle: "normal", whiteSpace: "nowrap" }}>Investiciono zlato,</span>
     <br />
-    <span style={{ fontWeight: 400, fontStyle: "italic", whiteSpace: "nowrap" }}>Sigurna budućnost</span>
+    <span style={{ fontWeight: 400, fontStyle: "normal", whiteSpace: "nowrap" }}>Sigurna budućnost</span>
     <br />
-    <span style={{ fontWeight: 400, fontStyle: "italic", whiteSpace: "nowrap" }}>u vašim rukama</span>
+    <span style={{ fontWeight: 400, fontStyle: "normal", whiteSpace: "nowrap" }}>u vašim rukama</span>
   </>
 );
 
@@ -59,42 +59,20 @@ export function HeroSection({
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <section className="relative overflow-hidden bg-[#0C0A06]">
+    <section className="relative overflow-hidden bg-[#0D0D0D]">
 
-      {/* Radial gold glow behind the bar */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 55% 65% at 78% 48%, rgba(191,142,65,0.14) 0%, transparent 68%), " +
-            "radial-gradient(ellipse 35% 45% at 18% 22%, rgba(191,142,65,0.05) 0%, transparent 60%)",
-        }}
-      />
-
-      {/* Subtle dot grid */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.032]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px)",
-          backgroundSize: "44px 44px",
-        }}
-      />
-
-      <div className="relative z-10 mx-auto max-w-[1400px] px-6 sm:px-14 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center min-h-[88svh]">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch min-h-[74svh]">
 
           {/* ── Left: Text ── */}
-          <div className="py-20 lg:py-0 max-w-[500px]">
+          <div className="py-10 lg:py-0 max-w-[560px]">
 
             {/* Eyebrow */}
             <motion.p
               initial={reduced ? undefined : { opacity: 0, y: 10 }}
               animate={reduced ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="mb-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#BF8E41]"
+              className="mb-4 text-[12px] font-semibold uppercase tracking-[0.22em] text-[#BF8E41]"
               style={{ fontFamily: "var(--font-rethink), sans-serif" }}
             >
               {eyebrow ?? "LBMA Sertifikovano · Investiciono Zlato"}
@@ -105,10 +83,10 @@ export function HeroSection({
               initial={reduced ? undefined : { opacity: 0, y: 18 }}
               animate={reduced ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.08, ease: "easeOut" }}
-              className="text-white leading-[1.1] mb-6"
+              className="text-white leading-[1.1] mb-4"
               style={{
                 fontFamily: "var(--font-pp-editorial), Georgia, serif",
-                fontSize: "clamp(36px, 4.6vw, 64px)",
+                fontSize: "clamp(34px, 4.1vw, 58px)",
               }}
             >
               {title}
@@ -119,7 +97,7 @@ export function HeroSection({
               initial={reduced ? undefined : { opacity: 0, y: 14 }}
               animate={reduced ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.17, ease: "easeOut" }}
-              className="mb-8"
+              className="mb-6"
             >
               {collapseExtraParagraphs ? (
                 <HeroExpandableParagraphs
@@ -142,107 +120,106 @@ export function HeroSection({
               initial={reduced ? undefined : { opacity: 0, y: 12 }}
               animate={reduced ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.26, ease: "easeOut" }}
-              className="flex flex-wrap gap-2 mb-10"
+              className="flex flex-wrap gap-3 mb-2"
             >
               {CATEGORY_QUICK_LINKS.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="inline-flex items-center justify-center rounded-full border border-white/[0.14] bg-white/[0.05] px-4 py-2 text-[12px] font-semibold text-white/80 backdrop-blur transition-all duration-200 hover:bg-white/[0.1] hover:border-white/[0.22] hover:text-white"
+                  className="inline-flex items-center justify-center rounded-full border border-white/[0.18] bg-white/[0.04] px-7 py-3.5 text-[14px] font-semibold text-white/90 backdrop-blur transition-all duration-200 hover:bg-white/[0.08] hover:border-white/[0.26] hover:text-white whitespace-nowrap"
                   style={{ fontFamily: "var(--font-rethink), sans-serif" }}
                 >
                   {item.label}
                 </Link>
               ))}
             </motion.div>
-
-            {/* CTA buttons */}
-            <motion.div
-              initial={reduced ? undefined : { opacity: 0, y: 12 }}
-              animate={reduced ? undefined : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.34, ease: "easeOut" }}
-              className="flex items-center gap-3 flex-wrap"
-            >
-              {buttons.map((btn, i) => {
-                const isFirst = i === 0;
-                const sharedStyle = { fontFamily: "var(--font-rethink), sans-serif" };
-                const sharedClass = isFirst
-                  ? "inline-flex items-center justify-center rounded-full bg-[#BF8E41] px-6 py-3 text-[13px] font-semibold text-[#0C0A06] transition-all duration-200 hover:bg-[#D4A04D] hover:-translate-y-0.5"
-                  : "inline-flex items-center justify-center rounded-full border border-white/[0.18] bg-white/[0.04] px-6 py-3 text-[13px] font-semibold text-white backdrop-blur transition-all duration-200 hover:bg-white/[0.09] hover:-translate-y-0.5";
-                if (btn.href.startsWith("/")) {
-                  return <Link key={btn.href} href={btn.href} className={sharedClass} style={sharedStyle}>{btn.label}</Link>;
-                }
-                return <a key={btn.href} href={btn.href} className={sharedClass} style={sharedStyle}>{btn.label}</a>;
-              })}
-            </motion.div>
           </div>
 
-          {/* ── Right: Gold bar + floating credential cards ── */}
-          <div className="relative hidden lg:flex items-center justify-center self-stretch">
+          {/* ── Right: Cube with bar + aligned content ── */}
+          <div className="relative hidden lg:flex items-stretch justify-start self-stretch">
+            <div
+              className="relative flex flex-col w-full max-w-[560px] h-full rounded-[28px] border border-white/[0.10] bg-[#18140C]/55 backdrop-blur-xl overflow-hidden"
+            >
+              {/* Subtle static “fensi” highlight, no motion */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(191,142,65,0.10) 0%, rgba(255,255,255,0.03) 40%, rgba(0,0,0,0) 70%)",
+                }}
+              />
 
-            {/* Gold bar — centered in this column */}
-            <div className="relative h-[500px] w-full max-w-[400px]">
-              <GoldHeroBar />
+              <div className="relative z-10 flex-1 px-6 pt-8 pb-4 grid grid-cols-[1fr_1fr] gap-6">
+                {/* Left side: cards + buttons */}
+                <div className="flex flex-col">
+                  <div className="grid grid-cols-1 gap-3">
+                    <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D]/55 px-5 py-4">
+                      <p
+                        className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30"
+                        style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                      >
+                        Sigurnost
+                      </p>
+                      <p
+                        className="text-[13px] font-medium text-white/78"
+                        style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                      >
+                        Fizičko zlato · Sertifikovano · Otkupljivo
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D]/55 px-5 py-4">
+                      <p
+                        className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30"
+                        style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                      >
+                        Poreklo
+                      </p>
+                      <p
+                        className="text-[13px] font-medium text-white/78"
+                        style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                      >
+                        LBMA rafinerije · Bez PDV-a
+                      </p>
+                    </div>
+                  </div>
+
+                  {buttons.length >= 2 ? (
+                    <div className="mt-4 grid grid-cols-1 gap-3">
+                      {/* Pogledaj proizvode */}
+                      <Link
+                        href={buttons[0].href}
+                        className="inline-flex items-center justify-center rounded-full bg-[#BF8E41] px-4 py-3 text-[13px] font-semibold text-[#0C0A06] transition-colors hover:bg-[#D4A04D]"
+                        style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                      >
+                        {buttons[0].label}
+                      </Link>
+
+                      {/* Prati cenu zlata + Spot cena · Live */}
+                      <Link
+                        href={buttons[1].href}
+                        className="inline-flex flex-col items-center justify-center gap-1 rounded-full border border-white/[0.18] bg-white/[0.04] px-4 py-3 text-[13px] font-semibold text-white backdrop-blur transition-colors hover:bg-white/[0.09]"
+                        style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                      >
+                        <span className="inline-flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.85)]" />
+                          <span className="text-[12px] font-medium text-white/65">Spot cena · Live</span>
+                        </span>
+                        <span className="text-[13px] font-semibold text-white/90">{buttons[1].label}</span>
+                      </Link>
+                    </div>
+                  ) : null}
+                </div>
+
+                {/* Right side: poluga */}
+                <div className="flex items-start justify-center pt-2">
+                  <div className="w-full max-w-[340px] h-[320px]">
+                    <GoldHeroBar staticBar />
+                  </div>
+                </div>
+              </div>
             </div>
-
-            {/* Floating card: SIGURNOST (top-left of bar) */}
-            <motion.div
-              initial={reduced ? undefined : { opacity: 0, x: -22 }}
-              animate={reduced ? undefined : { opacity: 1, x: 0 }}
-              transition={{ delay: 0.55, duration: 0.65, ease: "easeOut" }}
-              className="absolute left-0 top-[22%] rounded-2xl border border-white/[0.08] bg-[#18140C]/85 px-5 py-4 backdrop-blur-xl"
-            >
-              <p
-                className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30"
-                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-              >
-                Sigurnost
-              </p>
-              <p
-                className="text-[13px] font-medium text-white/78"
-                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-              >
-                Fizičko zlato · Sertifikovano · Otkupljivo
-              </p>
-            </motion.div>
-
-            {/* Floating card: POREKLO (mid-right) */}
-            <motion.div
-              initial={reduced ? undefined : { opacity: 0, x: 22 }}
-              animate={reduced ? undefined : { opacity: 1, x: 0 }}
-              transition={{ delay: 0.7, duration: 0.65, ease: "easeOut" }}
-              className="absolute right-0 top-[42%] rounded-2xl border border-white/[0.08] bg-[#18140C]/85 px-5 py-4 backdrop-blur-xl"
-            >
-              <p
-                className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30"
-                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-              >
-                Poreklo
-              </p>
-              <p
-                className="text-[13px] font-medium text-white/78"
-                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-              >
-                LBMA rafinerije · Bez PDV-a
-              </p>
-            </motion.div>
-
-            {/* Floating pill: Spot cena · Live (bottom) */}
-            <motion.div
-              initial={reduced ? undefined : { opacity: 0, y: 16 }}
-              animate={reduced ? undefined : { opacity: 1, y: 0 }}
-              transition={{ delay: 0.85, duration: 0.65, ease: "easeOut" }}
-              className="absolute bottom-[14%] left-[8%] flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-[#18140C]/85 px-4 py-2.5 backdrop-blur-xl"
-            >
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.85)]" />
-              <span
-                className="text-[12px] font-medium text-white/65"
-                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-              >
-                Spot cena · Live
-              </span>
-            </motion.div>
-
           </div>
 
         </div>

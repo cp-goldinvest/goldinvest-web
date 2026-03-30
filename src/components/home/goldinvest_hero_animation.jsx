@@ -100,9 +100,10 @@ export default function GoldHeroAnimated({
 
 // Named export used inside existing HeroSection layout.
 // Renders only the animated bar (no headings/text), so it can replace the static SVG.
-export function GoldHeroBar({ imageSrc = "/images/image%2062.svg" }) {
+export function GoldHeroBar({ imageSrc = "/images/image%2062.svg", staticBar = false }) {
   const prefersReducedMotion = useReducedMotion();
-  return <AnimatedBar imageSrc={imageSrc} reduced={!!prefersReducedMotion} />;
+  const reduced = staticBar || !!prefersReducedMotion;
+  return <AnimatedBar imageSrc={imageSrc} reduced={reduced} />;
 }
 
 function TrustCard({ icon, label }) {
@@ -117,6 +118,22 @@ function TrustCard({ icon, label }) {
 }
 
 function AnimatedBar({ imageSrc, reduced }) {
+  // Kada renderujemo statički (npr. u desnoj “kocki”), potpuno gasimo sve
+  // glow/highlight slojeve da ne bude belog efekta preko poluge.
+  if (reduced) {
+    return (
+      <div className="relative h-full w-full">
+        <div className="relative h-full w-full max-h-full max-w-full" style={{ perspective: 1600 }}>
+          <img
+            src={imageSrc}
+            alt="GoldInvest investiciona poluga"
+            className="pointer-events-none absolute inset-0 m-auto max-h-full max-w-full object-contain drop-shadow-[0_28px_60px_rgba(0,0,0,0.55)] select-none"
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative h-full w-full">
       {/* Pozadinski glow – vezan za ceo frame, ne menja centriranje poluge */}
