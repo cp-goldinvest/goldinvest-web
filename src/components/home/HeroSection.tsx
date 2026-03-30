@@ -53,10 +53,19 @@ export function HeroSection({
   collapseExtraParagraphs = false,
 }: Props) {
   return (
-    <section className="relative overflow-hidden bg-[#0D0D0D] pt-6 pb-6">
+    <section
+      className="relative overflow-hidden pt-6 pb-6"
+      style={{
+        backgroundImage: "url('/images/heroPozadina1.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-[#0D0D0D]/70" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch">
+          <div>
 
             {/* ── Left: Text ── */}
             <div className="py-8 lg:py-6 flex flex-col lg:h-full">
@@ -122,21 +131,6 @@ export function HeroSection({
               </div>
             </div>
 
-            {/* ── Right: Cube with bar ── */}
-            <div className="relative hidden lg:flex items-stretch justify-start self-stretch">
-              <div className="relative flex flex-col w-full max-w-[620px] min-h-[440px] rounded-[28px] border border-white/[0.10] bg-[#262626] overflow-hidden">
-                <div className="flex-1 flex items-center justify-center p-6">
-                  <img
-                    src="/images/image%2062.svg"
-                    alt="Zlatna poluga — investiciono zlato Gold Invest"
-                    fetchPriority="high"
-                    width={500}
-                    height={420}
-                    className="h-full w-full max-h-[420px] object-contain drop-shadow-[0_24px_56px_rgba(0,0,0,0.55)] select-none pointer-events-none"
-                  />
-                </div>
-              </div>
-            </div>
 
           </div>
         </div>
