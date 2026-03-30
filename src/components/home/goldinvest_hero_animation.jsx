@@ -120,8 +120,16 @@ function AnimatedBar({ imageSrc, reduced }) {
     <div className="relative h-full w-full">
       {/* Pozadinski glow – vezan za ceo frame, ne menja centriranje poluge */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C8A93C]/18 blur-3xl" />
-        <div className="absolute right-[10%] top-[18%] h-32 w-32 rounded-full bg-white/8 blur-3xl" />
+        <motion.div
+          className="absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C8A93C]/18 blur-3xl"
+          animate={reduced ? undefined : { scale: [1, 1.035, 1], opacity: [0.75, 1, 0.75] }}
+          transition={reduced ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute right-[10%] top-[18%] h-32 w-32 rounded-full bg-white/8 blur-3xl"
+          animate={reduced ? undefined : { scale: [1, 1.06, 1], opacity: [0.6, 1, 0.6] }}
+          transition={reduced ? undefined : { duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
 
       {/* Unutrašnji okvir koji se centrira kao i statična slika */}
@@ -179,14 +187,37 @@ function AnimatedBar({ imageSrc, reduced }) {
                     ease: "easeInOut",
                   }
             }
-            className="pointer-events-none absolute inset-y-[18%] left-[10%] w-[22%] skew-x-[-22deg] rounded-full bg-gradient-to-r from-transparent via-white/45 to-transparent blur-[12px] mix-blend-screen"
+            className="pointer-events-none absolute inset-y-[18%] left-[10%] w-[22%] skew-x-[-22deg] rounded-full bg-gradient-to-r from-transparent via-white/60 to-transparent blur-[14px] mix-blend-screen"
+          />
+
+          {/* Drugi, sporiji sweep (subtilnije) za “bogatiji” sjaj */}
+          <motion.div
+            animate={
+              reduced
+                ? undefined
+                : {
+                    x: ["-35%", "140%"],
+                    opacity: [0.12, 0.22, 0.12],
+                  }
+            }
+            transition={
+              reduced
+                ? undefined
+                : {
+                    duration: 4.2,
+                    repeat: Infinity,
+                    repeatDelay: 0.9,
+                    ease: "easeInOut",
+                  }
+            }
+            className="pointer-events-none absolute inset-y-[28%] left-[8%] w-[16%] skew-x-[-22deg] rounded-full bg-gradient-to-r from-transparent via-white/30 to-transparent blur-[10px] mix-blend-screen"
           />
         </motion.div>
 
         <motion.div
-          animate={reduced ? undefined : { opacity: [0.18, 0.32, 0.18], scale: [0.98, 1.02, 0.98] }}
-          transition={reduced ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[10%] left-1/2 -z-10 h-11 w-[48%] -translate-x-1/2 rounded-full bg-black/60 blur-2xl"
+          animate={reduced ? undefined : { opacity: [0.14, 0.5, 0.14], scale: [0.97, 1.04, 0.97] }}
+          transition={reduced ? undefined : { duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[10%] left-1/2 -z-10 h-11 w-[48%] -translate-x-1/2 rounded-full bg-black/75 blur-2xl"
         />
       </motion.div>
     </div>
