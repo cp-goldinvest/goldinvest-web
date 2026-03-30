@@ -13,8 +13,9 @@ import { ArrowRight, ShieldCheck, BadgeEuro, Clock3 } from "lucide-react";
  * 4) Optional: tweak title/subtitle and badges below
  */
 
+/** Hero poluga: fajl u public/ je `image 62.svg` (malo „i”); na Linux/Vercelu putanje su case-sensitive. */
 export default function GoldHeroAnimated({
-  imageSrc = "/images/Image 62.svg",
+  imageSrc = "/images/image%2062.svg",
 }) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -99,7 +100,7 @@ export default function GoldHeroAnimated({
 
 // Named export used inside existing HeroSection layout.
 // Renders only the animated bar (no headings/text), so it can replace the static SVG.
-export function GoldHeroBar({ imageSrc = "/images/Image 62.svg" }) {
+export function GoldHeroBar({ imageSrc = "/images/image%2062.svg" }) {
   const prefersReducedMotion = useReducedMotion();
   return <AnimatedBar imageSrc={imageSrc} reduced={!!prefersReducedMotion} />;
 }
