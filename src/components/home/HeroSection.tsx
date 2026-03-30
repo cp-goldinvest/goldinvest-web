@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { HeroExpandableParagraphs } from "@/components/home/HeroExpandableParagraphs";
+import { GoldHeroBar } from "@/components/home/goldinvest_hero_animation";
 
 type HeroButton = { label: string; href: string };
 
@@ -56,12 +57,10 @@ export function HeroSection({
       style={{ background: "#E0DCCC" }}
     >
       {/* Hero illustration (SVG) — samo desna „kolona“, centrirano u tom prostoru (ne uz ivicu) */}
-      <div className="pointer-events-none absolute left-0 right-0 bottom-0 top-[52%] sm:inset-y-0 sm:left-[30%] lg:left-[32%] flex items-end sm:items-center justify-center px-6 sm:px-10 lg:px-14">
-        <img
-          src={`/images/${encodeURIComponent("image 62.svg")}`}
-          alt="Zlatna poluga — investiciono zlato Gold Invest"
-          className="h-full w-full max-h-full max-w-[62%] sm:max-w-none object-contain object-center"
-        />
+      <div className="pointer-events-none absolute left-0 right-0 bottom-0 top-[52%] sm:inset-y-0 sm:left-[30%] lg:left-[32%] flex items-center sm:items-center justify-center px-6 sm:px-10 lg:px-14">
+        <div className="h-full w-full max-h-full max-w-[62%] sm:max-w-none translate-x-3 sm:translate-x-4 lg:translate-x-5">
+          <GoldHeroBar imageSrc={`/images/${encodeURIComponent("image 62.svg")}`} />
+        </div>
       </div>
 
       {/* Text readability (left-only), keeps gold bar side clean */}
