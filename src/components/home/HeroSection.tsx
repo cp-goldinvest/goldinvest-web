@@ -45,7 +45,7 @@ const CATEGORY_QUICK_LINKS: { label: string; href: string }[] = [
   { label: "Dukati", href: "/kategorija/zlatni-dukati" },
 ];
 
-const HERO_IMAGE = "/images/ispravljena.webp";
+const HERO_IMAGE = "/images/novaTraka.png";
 
 export function HeroSection({
   eyebrow,
@@ -58,7 +58,7 @@ export function HeroSection({
     <>
       {/* Preload hint — browser fetches the LCP image at highest priority
           before even parsing the component body */}
-      <link rel="preload" href={HERO_IMAGE} as="image" type="image/webp" />
+      <link rel="preload" href={HERO_IMAGE} as="image" type="image/png" />
 
       <section className="relative overflow-hidden bg-[#0D0D0D] pt-6 pb-6">
 
