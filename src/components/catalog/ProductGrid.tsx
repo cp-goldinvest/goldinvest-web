@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { FilterSortBar, type SortOption, type Filters, type Option } from "./FilterSortBar";
 import { computePrices, formatWeight } from "@/lib/pricing";
@@ -23,7 +23,47 @@ type ProcessedRow = {
 };
 
 function compareProcessed(a: ProcessedRow, b: ProcessedRow, sort: SortOption): number {
+  const weightRank = (w: number) => {
+    if (Math.abs(w - 1) < 0.02) return 0;
+    if (Math.abs(w - 2) < 0.02) return 1;
+    if (Math.abs(w - 5) < 0.02) return 2;
+    if (Math.abs(w - 10) < 0.02) return 3;
+    return 999;
+  };
+  const brandPriority = (brandRaw: string) => {
+    const b = (brandRaw ?? "").toLowerCase();
+    if (b.includes("argor") && b.includes("heraeus")) return 0;
+    if (b.includes("hafner")) return 1;
+    return 999;
+  };
+  const featuredRank = (row: ProcessedRow) => {
+    const category = row.variant.products.category;
+    const bp = brandPriority(row.variant.products.brand);
+    const wr = weightRank(Number(row.variant.weight_g));
+
+    // Strict homepage featured order:
+    // Argor 1/2/5/10, then Hafner 1/2/5/10.
+    if (category === "plocica" && bp <= 1 && wr <= 3) return bp * 10 + wr;
+
+    // Everything else comes after those 8 featured slots.
+    return 1000;
+  };
+
   switch (sort) {
+    case "featured_home": {
+      const fr = featuredRank(a) - featuredRank(b);
+      if (fr !== 0) return fr;
+
+      const bp = brandPriority(a.variant.products.brand) - brandPriority(b.variant.products.brand);
+      if (bp !== 0) return bp;
+
+      const wr = weightRank(Number(a.variant.weight_g)) - weightRank(Number(b.variant.weight_g));
+      if (wr !== 0) return wr;
+
+      const w = Number(a.variant.weight_g) - Number(b.variant.weight_g);
+      if (w !== 0) return w;
+      return (a.variant.slug ?? "").localeCompare(b.variant.slug ?? "", "sr", { sensitivity: "base" });
+    }
     case "price_asc":
       return a.prices.stock - b.prices.stock;
     case "price_desc":
@@ -101,6 +141,10 @@ type Props = {
   gridClassName?: string;
   /** Limit number of visible cards (omit for no limit). */
   maxItems?: number;
+  /** Enable pagination controls for current result set. */
+  enablePagination?: boolean;
+  /** Page size when pagination is enabled. */
+  pageSize?: number;
 };
 
 export function ProductGrid({
@@ -113,8 +157,11 @@ export function ProductGrid({
   hideFilterSortBar,
   gridClassName,
   maxItems,
+  enablePagination,
+  pageSize = 8,
 }: Props) {
   const [sort, setSort] = useState<SortOption>(defaultSort ?? "price_asc");
+  const [page, setPage] = useState(1);
   const [filters, setFilters] = useState<Filters>({
     categories: [],
     weights: [],
@@ -161,6 +208,11 @@ export function ProductGrid({
       })
       .sort((a, b) => {
         switch (sort) {
+          case "featured_home": {
+            const cmp = compareProcessed(a, b, "featured_home");
+            if (cmp !== 0) return cmp;
+            return 0;
+          }
           case "price_asc":   return a.prices.stock - b.prices.stock;
           case "price_desc":  return b.prices.stock - a.prices.stock;
           case "weight_asc":  return Number(a.variant.weight_g) - Number(b.variant.weight_g);
@@ -178,10 +230,30 @@ export function ProductGrid({
       });
   }, [variants, tiers, snapshot, sort, filters]);
 
+  const limitedProcessed = useMemo(
+    () => processed.slice(0, maxItems ?? Number.POSITIVE_INFINITY),
+    [processed, maxItems]
+  );
+
+  const shouldPaginate = Boolean(enablePagination);
+  const totalPages = shouldPaginate ? Math.max(1, Math.ceil(limitedProcessed.length / pageSize)) : 1;
+  const safePage = Math.min(page, totalPages);
+  const pageStart = (safePage - 1) * pageSize;
+  const pageEnd = pageStart + pageSize;
+  const visibleProcessed = shouldPaginate ? limitedProcessed.slice(pageStart, pageEnd) : limitedProcessed;
+
+  useEffect(() => {
+    setPage(1);
+  }, [sort, filters, variants.length]);
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
+
   const brandSections = useMemo(() => {
     if (!groupByBrand) return null;
-    return buildBrandGroups(processed, sort, maxItems);
-  }, [groupByBrand, processed, sort, maxItems]);
+    return buildBrandGroups(visibleProcessed, sort, undefined);
+  }, [groupByBrand, visibleProcessed, sort]);
 
   const grid = gridClassName ?? "grid grid-cols-2 md:grid-cols-4 gap-4";
 
@@ -192,7 +264,7 @@ export function ProductGrid({
           availableWeights={availableWeights}
           availableBrands={availableBrands}
           availableOrigins={availableOrigins}
-          totalCount={processed.length}
+          totalCount={limitedProcessed.length}
           sort={sort}
           filters={filters}
           onSortChange={setSort}
@@ -208,7 +280,7 @@ export function ProductGrid({
         />
       )}
 
-      {processed.length === 0 ? (
+      {limitedProcessed.length === 0 ? (
         <div className="py-20 text-left md:text-center text-[#8A8A8A]">
           <p className="text-lg">Nema proizvoda koji odgovaraju filterima.</p>
           <button
@@ -247,7 +319,7 @@ export function ProductGrid({
         </div>
       ) : (
         <div className={`${grid} mt-6`}>
-          {processed.slice(0, maxItems ?? Number.POSITIVE_INFINITY).map(({ variant: v, prices }) => (
+          {visibleProcessed.map(({ variant: v, prices }) => (
             <ProductCard
               key={v.id}
               slug={v.slug}
@@ -259,6 +331,30 @@ export function ProductGrid({
               prices={prices}
             />
           ))}
+        </div>
+      )}
+
+      {shouldPaginate && totalPages > 1 && (
+        <div className="mt-8 flex items-center justify-center gap-2">
+          <button
+            type="button"
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={safePage === 1}
+            className="inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold border border-[#1B1B1C]/20 text-[#1B1B1C] disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Prethodna
+          </button>
+          <span className="px-2 text-sm text-[#6B6B6B]">
+            {safePage} / {totalPages}
+          </span>
+          <button
+            type="button"
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            disabled={safePage === totalPages}
+            className="inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold border border-[#1B1B1C]/20 text-[#1B1B1C] disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Sledeća
+          </button>
         </div>
       )}
     </div>

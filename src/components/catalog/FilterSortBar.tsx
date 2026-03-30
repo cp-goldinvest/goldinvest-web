@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { SlidersHorizontal, ArrowUpDown, ChevronDown, X } from "lucide-react";
 
-export type SortOption = "price_asc" | "price_desc" | "weight_asc" | "weight_desc" | "brand_asc";
+export type SortOption =
+  | "featured_home"
+  | "price_asc"
+  | "price_desc"
+  | "weight_asc"
+  | "weight_desc"
+  | "brand_asc";
 
 export type Filters = {
   categories: string[];
@@ -58,6 +64,7 @@ const DEFAULT_PRICE_OPTIONS: Option<number>[] = [
 ];
 
 const SORT_LABELS: Record<SortOption, string> = {
+  featured_home: "Preporučeno",
   price_asc:   "Od najniže cene",
   price_desc:  "Od najviše cene",
   weight_asc:  "Od najmanje težine",
