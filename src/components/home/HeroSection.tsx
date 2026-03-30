@@ -115,12 +115,12 @@ export function HeroSection({
                   {collapseExtraParagraphs ? (
                     <HeroExpandableParagraphs
                       paragraphs={paragraphs}
-                      className="text-white/50 leading-relaxed"
+                      className="text-white leading-relaxed"
                       style={{ fontSize: "clamp(14px, 1.15vw, 16px)" }}
                     />
                   ) : (
                     <div
-                      className="text-white/50 leading-relaxed space-y-3"
+                      className="text-white leading-relaxed space-y-3"
                       style={{ fontSize: "clamp(14px, 1.15vw, 16px)" }}
                     >
                       {paragraphs}
