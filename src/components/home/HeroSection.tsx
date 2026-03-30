@@ -138,76 +138,11 @@ export function HeroSection({
 
             {/* ── Right: Cube with bar + aligned content ── */}
             <div className="relative hidden lg:flex items-stretch justify-start self-stretch">
-              <div className="relative flex flex-col w-full h-full rounded-[28px] border border-white/[0.10] bg-[#262626] backdrop-blur-xl overflow-hidden">
-
-                <div className="relative z-10 flex-1 px-6 pt-6 pb-5 grid grid-cols-[1fr_1fr] gap-5 items-stretch">
-
-                  {/* Left side: cards + buttons */}
-                  <div className="flex flex-col justify-between">
-                    <div className="grid grid-cols-1 gap-3">
-                      <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] px-5 py-4">
-                        <p
-                          className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30"
-                          style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-                        >
-                          Sigurnost
-                        </p>
-                        <p
-                          className="text-[13px] font-medium text-white/80"
-                          style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-                        >
-                          Fizičko zlato · Sertifikovano · Otkupljivo
-                        </p>
-                      </div>
-
-                      <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] px-5 py-4">
-                        <p
-                          className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30"
-                          style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-                        >
-                          Poreklo
-                        </p>
-                        <p
-                          className="text-[13px] font-medium text-white/80"
-                          style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-                        >
-                          LBMA rafinerije · Bez PDV-a
-                        </p>
-                      </div>
-                    </div>
-
-                    {buttons.length >= 2 && (
-                      <div className="mt-4 grid grid-cols-1 gap-3">
-                        <Link
-                          href={buttons[0].href}
-                          className="inline-flex items-center justify-center rounded-full bg-[#BF8E41] px-4 py-3 text-[13px] font-semibold text-[#0C0A06] transition-colors hover:bg-[#D4A04D]"
-                          style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-                        >
-                          {buttons[0].label}
-                        </Link>
-
-                        <Link
-                          href={buttons[1].href}
-                          className="inline-flex flex-col items-center justify-center gap-1 rounded-full border border-white/[0.18] bg-white/[0.04] px-4 py-3 text-[13px] font-semibold text-white backdrop-blur transition-colors hover:bg-white/[0.09]"
-                          style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-                        >
-                          <span className="inline-flex items-center gap-2">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.85)]" />
-                            <span className="text-[12px] font-medium text-white/65">Spot cena · Live</span>
-                          </span>
-                          <span className="text-[13px] font-semibold text-white/90">{buttons[1].label}</span>
-                        </Link>
-                      </div>
-                    )}
+              <div className="relative flex flex-col w-full max-w-[620px] min-h-[440px] rounded-[28px] border border-white/[0.10] bg-[#262626] overflow-hidden">
+                <div className="relative z-10 flex-1 p-6 flex items-center justify-center">
+                  <div className="w-full max-w-[500px] h-[420px]">
+                    <GoldHeroBar staticBar imageSrc="/images/image%2062.svg" />
                   </div>
-
-                  {/* Right side: poluga */}
-                  <div className="flex items-center justify-center h-full">
-                    <div className="w-full h-full">
-                      <GoldHeroBar staticBar />
-                    </div>
-                  </div>
-
                 </div>
               </div>
             </div>

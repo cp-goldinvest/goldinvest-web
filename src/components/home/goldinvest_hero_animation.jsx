@@ -13,7 +13,7 @@ import { ArrowRight, ShieldCheck, BadgeEuro, Clock3 } from "lucide-react";
  * 4) Optional: tweak title/subtitle and badges below
  */
 
-/** Hero poluga: fajl u public/ je `image 62.svg` (malo „i”); na Linux/Vercelu putanje su case-sensitive. */
+/** Hero poluga: koristimo `image 62.svg`; na Linux/Vercelu putanje su case-sensitive. */
 export default function GoldHeroAnimated({
   imageSrc = "/images/image%2062.svg",
 }) {
@@ -127,7 +127,7 @@ function AnimatedBar({ imageSrc, reduced }) {
           <img
             src={imageSrc}
             alt="GoldInvest investiciona poluga"
-            className="pointer-events-none absolute inset-0 m-auto max-h-full max-w-full object-contain drop-shadow-[0_28px_60px_rgba(0,0,0,0.55)] select-none"
+            className="pointer-events-none absolute inset-0 m-auto max-h-full max-w-full object-contain select-none"
           />
         </div>
       </div>
