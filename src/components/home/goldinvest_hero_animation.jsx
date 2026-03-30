@@ -169,48 +169,27 @@ function AnimatedBar({ imageSrc, reduced }) {
             className="pointer-events-none absolute inset-0 m-auto max-h-full max-w-full object-contain drop-shadow-[0_28px_60px_rgba(0,0,0,0.55)] select-none"
           />
 
+          {/* Blagi zlatni sjaj unutar kadra poluge (bez jakog belog „strela“ sa leve strane) */}
           <motion.div
             animate={
               reduced
                 ? undefined
                 : {
-                    x: ["-25%", "130%"],
+                    left: ["22%", "58%"],
                   }
             }
             transition={
               reduced
                 ? undefined
                 : {
-                    duration: 2.3,
+                    duration: 3.4,
                     repeat: Infinity,
-                    repeatDelay: 1.4,
+                    repeatDelay: 2.2,
                     ease: "easeInOut",
                   }
             }
-            className="pointer-events-none absolute inset-y-[18%] left-[10%] w-[22%] skew-x-[-22deg] rounded-full bg-gradient-to-r from-transparent via-white/60 to-transparent blur-[14px] mix-blend-screen"
-          />
-
-          {/* Drugi, sporiji sweep (subtilnije) za “bogatiji” sjaj */}
-          <motion.div
-            animate={
-              reduced
-                ? undefined
-                : {
-                    x: ["-35%", "140%"],
-                    opacity: [0.12, 0.22, 0.12],
-                  }
-            }
-            transition={
-              reduced
-                ? undefined
-                : {
-                    duration: 4.2,
-                    repeat: Infinity,
-                    repeatDelay: 0.9,
-                    ease: "easeInOut",
-                  }
-            }
-            className="pointer-events-none absolute inset-y-[28%] left-[8%] w-[16%] skew-x-[-22deg] rounded-full bg-gradient-to-r from-transparent via-white/30 to-transparent blur-[10px] mix-blend-screen"
+            className="pointer-events-none absolute inset-y-[22%] w-[12%] skew-x-[-18deg] rounded-full bg-gradient-to-r from-transparent via-[rgba(245,220,160,0.2)] to-transparent blur-[7px] mix-blend-soft-light"
+            style={{ left: "22%" }}
           />
         </motion.div>
 
