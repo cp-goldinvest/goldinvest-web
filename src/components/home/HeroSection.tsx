@@ -140,7 +140,7 @@ export function HeroSection({
           {/* ── Right: Cube with bar + aligned content ── */}
           <div className="relative hidden lg:flex items-stretch justify-start self-stretch">
             <div
-              className="relative flex flex-col w-full h-full rounded-[28px] border border-white/[0.10] bg-[#18140C]/55 backdrop-blur-xl overflow-hidden"
+              className="relative flex flex-col w-full h-full rounded-[28px] border border-white/[0.10] bg-[#262626] backdrop-blur-xl overflow-hidden"
             >
               {/* Subtle static “fensi” highlight, no motion */}
               <div
@@ -156,7 +156,7 @@ export function HeroSection({
                 {/* Left side: cards + buttons */}
                 <div className="flex flex-col justify-between">
                   <div className="grid grid-cols-1 gap-3">
-                    <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D]/55 px-5 py-4">
+                    <div className="rounded-2xl border border-white/[0.08] bg-[#262626] px-5 py-4">
                       <p
                         className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30"
                         style={{ fontFamily: "var(--font-rethink), sans-serif" }}
@@ -171,7 +171,7 @@ export function HeroSection({
                       </p>
                     </div>
 
-                    <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D]/55 px-5 py-4">
+                    <div className="rounded-2xl border border-white/[0.08] bg-[#262626] px-5 py-4">
                       <p
                         className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30"
                         style={{ fontFamily: "var(--font-rethink), sans-serif" }}
