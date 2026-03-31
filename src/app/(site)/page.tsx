@@ -59,7 +59,7 @@ export default async function HomePage() {
       <SchemaScript schema={buildOrganizationSchema()} />
 
       {/* 1. Hero */}
-      <HeroSection collapseExtraParagraphs />
+      <HeroSection />
 
       {/* 2. Products */}
       <section className="bg-white py-12">
