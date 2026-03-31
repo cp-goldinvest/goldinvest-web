@@ -2,6 +2,20 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   trailingSlash: false,
+  poweredByHeader: false,
+  compress: true,
+  async headers() {
+    return [
+      {
+        source: "/images/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+    ];
+  },
   async redirects() {
     return [
       { source: "/kategorija/zlatne-poluge/", destination: "/kategorija/zlatne-poluge", permanent: true },
