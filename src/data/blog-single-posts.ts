@@ -8,7 +8,7 @@ export type SingleBlogPostEntry = {
   blocks: BlogBlock[];
 };
 
-const DEFAULT_IMAGE = "/images/bento-gold-bar.png";
+const DEFAULT_IMAGE = "/images/bento-gold-bar.webp";
 const DEFAULT_IMAGE_ALT = "Zlatna poluga kao investicija";
 
 export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
@@ -490,7 +490,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
         text:
           "Ključna karakteristika poluga: minimalna premija po gramu — posebno u većim formatima.",
       },
-      { type: "image", src: "/images/bento-gold-bar.png", alt: "Zlatna poluga" },
+      { type: "image", src: "/images/bento-gold-bar.webp", alt: "Zlatna poluga" },
       { type: "heading", text: "Šta su investicioni zlatnici?" },
       {
         type: "paragraph",
@@ -512,7 +512,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
         text:
           "Svi investicioni zlatnici su čistoće 999,9 (ili 916,7 kod nekih starijih formata).",
       },
-      { type: "image", src: "/images/bento-coins.png", alt: "Investicioni zlatnici" },
+      { type: "image", src: "/images/bento-coins.webp", alt: "Investicioni zlatnici" },
       { type: "heading", text: "Ključne razlike: poluga vs. zlatnik" },
       {
         type: "comparison",

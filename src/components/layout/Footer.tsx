@@ -146,7 +146,7 @@ export function Footer() {
             {[
               { label: "Uslovi korišćenja", href: "/uslovi-koriscenja" },
               { label: "Politika privatnosti", href: "/politika-privatnosti" },
-              { label: "Podešavanje kolačića", href: "/kolacici" },
+              { label: "Podešavanje kolačića", href: "/podesavanje-kolacica" },
             ].map((item) => (
               <Link
                 key={item.href}

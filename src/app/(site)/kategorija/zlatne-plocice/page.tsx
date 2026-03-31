@@ -203,20 +203,20 @@ export default async function ZlatnePlocicePage() {
           "Naš asortiman se oslanja na apsolutne lidere u preradi plemenitih metala, čime vam garantujemo sigurnost i laku utrživost svuda u svetu.",
         brands: [
           {
-            img: "/images/brands/argor-heraeus.png",
+            img: "/images/brands/argor-heraeus.webp",
             title: "Argor-Heraeus",
             origin: "Švajcarska",
             text: "Industrijski standard i jedna od najpouzdanijih svetskih rafinerija. Švajcarska preciznost u svakom detalju — pločice Argor-Heraeusa su sinonim za sigurnost i izuzetno su tražene na celom evropskom tržištu.",
           },
           {
-            img: "/images/brands/c-hafner.png",
+            img: "/images/brands/c-hafner.webp",
             title: "C. Hafner",
             origin: "Nemačka",
             text: "Rafinerija sa tradicijom od preko 170 godina, poznata po besprekornoj izradi i etičkom poreklu zlata — koriste isključivo reciklirano zlato. Nemački premium kvalitet bez kompromisa.",
             imageScale: 0.9,
           },
           {
-            img: "/images/brands/logo-royal-mint.png",
+            img: "/images/brands/logo-royal-mint.webp",
             title: "The Royal Mint",
             origin: "Velika Britanija",
             text: "Zvanična britanska državna kovnica čije pločice nose ogroman istorijski prestiž i autoritet. Jedan od najprepoznatljivijih brendova na globalnom tržištu investicionog zlata.",

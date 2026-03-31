@@ -8,7 +8,7 @@ export function WhatIsGoldSection() {
       {/* Background image — 20% opacity */}
       <div className="absolute inset-0" style={{ opacity: 0.2 }}>
         <Image
-          src="/images/cta-background.png"
+          src="/images/cta-background.webp"
           alt=""
           fill
           className="object-cover"

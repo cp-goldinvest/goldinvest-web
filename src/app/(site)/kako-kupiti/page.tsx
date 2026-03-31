@@ -180,7 +180,7 @@ export default function KakoKupitiPage() {
         introFull="Bez kase i bez komplikacija. Kupovina investicionog zlata kod nas funkcioniše kao savetodavni razgovor — prilagođen vašim ciljevima i budžetu. Na ovoj stranici objašnjavamo svaki korak, od odabira formata do isporuke sa sertifikatom."
         pills={[
           { label: "Zlatne poluge", href: "/kategorija/zlatne-poluge" },
-          { label: "Zlatne pločice", href: "/kategorija/zlatne-pločice" },
+          { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
           { label: "Zlatni dukati", href: "/kategorija/zlatni-dukati" },
           { label: "Kontaktirajte nas", href: "/kontakt" },
         ]}

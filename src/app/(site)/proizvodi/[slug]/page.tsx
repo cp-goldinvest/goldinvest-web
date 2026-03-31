@@ -34,7 +34,7 @@ export async function generateMetadata({
     const row = (data ?? null) as any;
     const name = row?.name ?? row?.products?.name ?? "Investicioni zlatni proizvod";
     const weight = row ? formatWeight(row.weight_g) : "";
-    const image = row?.images?.[0] ?? "/images/product-poluga.png";
+    const image = row?.images?.[0] ?? "/images/product-poluga.webp";
     return {
       title: `${name} ${weight} | Cena i Prodaja — Gold Invest Beograd`,
       description: `Kupite ${name} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/269-8569.`,
@@ -42,6 +42,10 @@ export async function generateMetadata({
       openGraph: {
         title: `${name} ${weight} | Gold Invest`,
         description: `${name} — LBMA Good Delivery, čistoća 999,9, bez PDV-a. Brza dostava.`,
+        url: `https://goldinvest.rs/proizvodi/${slug}`,
+        siteName: "Gold Invest",
+        locale: "sr_RS",
+        type: "website",
         images: [{ url: image, width: 800, height: 800 }],
       },
     };
@@ -69,7 +73,7 @@ export default async function ProizvodPage({
     const [r1, r2, r3]: any = await Promise.all([
       supabase
         .from("product_variants")
-        .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
+        .select("*, products!inner(name, brand, origin, category), pricing_rules(*), length_mm, width_mm, thickness_mm")
         .eq("slug", slug)
         .eq("is_active", true)
         .single(),
@@ -124,7 +128,7 @@ export default async function ProizvodPage({
 
   const heroImages = variant.images?.length
     ? variant.images
-    : ["/images/product-poluga.png"];
+    : ["/images/product-poluga.webp"];
   const inStock = variant.availability === "in_stock";
   const isPreorder = variant.availability === "preorder";
   const weightDisplay = formatWeight(variant.weight_g);
@@ -169,7 +173,7 @@ export default async function ProizvodPage({
     }`,
     // Poluge imaju stabilne weight slugove
     poluga: `/kategorija/zlatne-poluge/zlatna-poluga-${
-      variant.weight_g === 31.1
+      Math.abs(variant.weight_g - 31.1) < 0.05
         ? "1-unca"
         : variant.weight_g >= 1000
         ? "1kg"
@@ -226,7 +230,7 @@ export default async function ProizvodPage({
                   style={{ border: "1px solid rgba(190,173,135,0.4)" }}
                 >
                   <Image
-                    src="/images/brands/argor-heraeus.png"
+                    src="/images/brands/argor-heraeus.webp"
                     alt={product.brand}
                     fill
                     className="object-contain p-0.5"
@@ -407,8 +411,13 @@ export default async function ProizvodPage({
           purity={variant.purity}
           brand={product.brand}
           origin={product.origin}
+          category={product.category}
           sku={variant.sku}
+          variantName={variant.name ?? null}
           description={variant.description ?? null}
+          lengthMm={variant.length_mm ?? null}
+          widthMm={variant.width_mm ?? null}
+          thicknessMm={variant.thickness_mm ?? null}
         />
       </section>
 

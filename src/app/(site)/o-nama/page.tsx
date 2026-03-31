@@ -465,7 +465,7 @@ export default function ONamaPage() {
               style={{ height: 460, background: "#F9F9F9" }}
             >
               <Image
-                src="/images/onamapage.png"
+                src="/images/onamapage.webp"
                 alt="Poslovne zgrade — Gold Invest"
                 fill
                 className="object-cover"

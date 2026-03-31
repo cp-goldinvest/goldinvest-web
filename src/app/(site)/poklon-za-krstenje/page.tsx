@@ -287,20 +287,20 @@ export default async function PoklonaZaKrstenjiePage() {
         description="Svaka pločica i dukat iz naše ponude potiču od svetski priznatih kovnica i kovanica — garancija autenticiteta i trajne vrednosti."
         brands={[
           {
-            img: "/images/brands/argor-heraeus.png",
+            img: "/images/brands/argor-heraeus.webp",
             title: "Argor-Heraeus",
             origin: "Svajcarska",
             text: "Industrijski standard i jedna od najpouzdanijih svetskih rafinerija. Švajcarska preciznost u svakom detalju — pločice Argor-Heraeusa su sinonim za sigurnost.",
           },
           {
-            img: "/images/brands/c-hafner.png",
+            img: "/images/brands/c-hafner.webp",
             title: "C. Hafner",
             origin: "Nemacka",
             text: "Rafinerija sa tradicijom od preko 170 godina, poznata po besprekornoj izradi i etičkom poreklu zlata. Koriste isključivo reciklirano zlato — nemački premium bez kompromisa.",
             imageScale: 0.9,
           },
           {
-            img: "/images/brands/logo-royal-mint.png",
+            img: "/images/brands/logo-royal-mint.webp",
             title: "Austrijska kovnica",
             origin: "Austrija",
             text: "Zvanična austrijska državna kovnica — izdaje i Bečku Filharmoniju i legendarni Dukat Franc Jozef. Jedan od najpoznatijih brendova u istoriji evropskog kovanog novca.",

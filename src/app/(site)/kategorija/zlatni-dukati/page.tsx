@@ -99,7 +99,7 @@ export default async function ZlatniDukatiPage() {
   return (
     <CategoryPageTemplate
       infoSectionBLayout="premium-bento"
-      infoSectionBImageSrc="/images/bento-coins.png"
+      infoSectionBImageSrc="/images/bento-coins.webp"
       infoSectionBImageAlt="Zlatni dukat"
       breadcrumbs={[
         { label: "Investiciono zlato", href: "/" },
@@ -201,21 +201,21 @@ export default async function ZlatniDukatiPage() {
         description: "Gold Invest u ponudi ima isključivo kovanice najeminentnijih svetskih kovnica. Sve kovanice su originalne, dolaze u originalnoj ambalaži i ispunjavaju najstrože investicione standarde:",
         brands: [
           {
-            img: "/images/gold-coins.png",
+            img: "/images/gold-coins.webp",
             title: "Münze Österreich (Bečka kovnica)",
             origin: "Austrija",
             text: "Austrija je dom dve najvoljenije zlatne kovanice — Franc Jozef dukati, neodvojivi deo srpske tradicije, i Bečka Filharmonija, najprodavanija zlatna kovanica u Evropi. Münze Österreich kuje zlatne kovanice od 1194. godine.",
             imageMode: "photo",
           },
           {
-            img: "/images/gold-coins.png",
+            img: "/images/gold-coins.webp",
             title: "Royal Canadian Mint",
             origin: "Kanada",
             text: "Kanadska Maple Leaf kovanica je jedna od najprepoznatljivijih investicionih kovanica na svetu. Kovana od zlata čistoće 999,9/1000, sa naprednim laserskim sigurnosnim elementima, izuzetno je likvidan i globalno prihvaćen format.",
             imageMode: "photo",
           },
           {
-            img: "/images/brands/logo-royal-mint.png",
+            img: "/images/brands/logo-royal-mint.webp",
             title: "The Royal Mint (Kraljevska kovnica)",
             origin: "Velika Britanija",
             text: "Britannia je britanska investiciona kovanica sa tradicijom koja seže u 1987. godinu. Izrađena od zlata čistoće 999,9/1000, nosi autoritet jedne od najstarijih i najuglednijih državnih kovnica na svetu.",

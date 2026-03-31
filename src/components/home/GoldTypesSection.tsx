@@ -63,7 +63,7 @@ export function GoldTypesSection() {
             </div>
             <div className="flex-1 relative min-h-[200px] overflow-hidden">
               <Image
-                src="/images/bento-center-gold.png"
+                src="/images/bento-center-gold.webp"
                 alt="Zlatna poluga, pločica i dukat"
                 fill
                 className="object-cover scale-[1.1]"
@@ -80,7 +80,7 @@ export function GoldTypesSection() {
             {/* Slika — gornja polovina */}
             <div className="relative bg-[#F9F9F9]" style={{ minHeight: 340, flex: "1 1 auto" }}>
               <Image
-                src="/images/bento-gold-bar.png"
+                src="/images/bento-gold-bar.webp"
                 alt="1g Switzerland Fine Gold poluga"
                 fill
                 className="object-cover object-top"
@@ -110,7 +110,7 @@ export function GoldTypesSection() {
             {/* Slika cela vidljiva, naslonjena na dno (kompenzujemo p-7 padding) */}
             <div className="flex-1 flex items-end justify-center -mb-7">
               <Image
-                src="/images/bento-coins.png"
+                src="/images/bento-coins.webp"
                 alt="Zlatni dukat — Franc Jozef"
                 width={280}
                 height={280}
@@ -146,7 +146,7 @@ export function GoldTypesSection() {
             <div className="relative w-1/2 shrink-0 p-5">
               <div className="relative w-full h-full rounded-xl overflow-hidden min-h-[220px]">
                 <Image
-                  src="/images/bento-dollars.png"
+                  src="/images/bento-dollars.webp"
                   alt="Papirni novac vs zlatna vrednost"
                   fill
                   className="object-cover"
@@ -187,7 +187,7 @@ export function GoldTypesSection() {
               </p>
             </div>
             <div className="relative w-full h-[200px] overflow-hidden">
-              <Image src="/images/bento-center-gold.png" alt="Zlatne poluge i dukati" fill className="object-cover scale-[1.1]" style={{ objectPosition: "50% 28%" }} />
+              <Image src="/images/bento-center-gold.webp" alt="Zlatne poluge i dukati" fill className="object-cover scale-[1.1]" style={{ objectPosition: "50% 28%" }} />
             </div>
           </div>
 
@@ -217,14 +217,14 @@ export function GoldTypesSection() {
               <span className="font-bold">Pravilo za kovanice (dukate)</span> — minimalna čistoća mora biti 900/1000 (21,6 karata). Uz to, moraju biti iskovani nakon 1800. godine, a njihova prodajna cena ne sme da prelazi vrednost samog zlata za više od 80%.
             </p>
             <div className="flex justify-center items-end -mx-6">
-              <Image src="/images/bento-coins.png" alt="Zlatni dukat" width={260} height={180} className="object-contain object-bottom" />
+              <Image src="/images/bento-coins.webp" alt="Zlatni dukat" width={260} height={180} className="object-contain object-bottom" />
             </div>
           </div>
 
           {/* Svrha — slika + tekst */}
           <div className="bg-[#F9F9F9] rounded-2xl overflow-hidden flex flex-col">
             <div className="relative w-full h-[200px]">
-              <Image src="/images/bento-dollars.png" alt="Papirni novac vs zlato" fill className="object-cover" />
+              <Image src="/images/bento-dollars.webp" alt="Papirni novac vs zlato" fill className="object-cover" />
             </div>
             <div className="p-6">
               <p className="text-[#3A3A3A] text-[14px] leading-relaxed">

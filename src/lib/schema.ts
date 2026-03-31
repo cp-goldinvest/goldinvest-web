@@ -87,7 +87,7 @@ export function buildOrganizationSchema() {
     "@id": `${BASE_URL}/#organization`,
     name: "Gold Invest",
     url: BASE_URL,
-    logo: `${BASE_URL}/images/logo.png`,
+    logo: `${BASE_URL}/images/logo.webp`,
     telephone: "+381612698569",
     email: "info@goldinvest.rs",
     address: {

@@ -81,7 +81,7 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
     heroTitle: "Franc Jozef dukat",
     intro:
       "Zlatni dukat Franc Jozef je najprepoznatljivija investiciona kovanica i najpopularniji tradicionalni poklon na našim prostorima. Idealan za krštenja, rođenja i svadbe, ali i kao sigurno utočište za vaš kapital. Gold Invest vam nudi male i velike dukate iz austrijske državne kovnice, uz garantovanu autentičnost, transparentne cene i oslobođenje od PDV-a. Poručite putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
-    heroImage: "/images/products/franc-jozef-transparent.png",
+    heroImage: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/product-images/dukati/Veliki%20dukat%20Franc%20Jozef%20cetvorostruki.webp",
     variantSlugs: ["franc-jozef-1-dukat", "franc-jozef-4-dukati"],
     mockWeights: [3.49, 13.96],
     formatsHeading: "Mali i Veliki Franc Jozef — Koja je razlika?",
@@ -191,7 +191,7 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
     purity: "999.9/1000",
     intro:
       "Zlatna kovanica Bečka Filharmonija (Wiener Philharmoniker) jedina je investiciona kovanica sveta iskovana u zlatu čistoće 999,9/1000 i istovremeno zakonsko sredstvo plaćanja u eurozoni. Kotirana na londonskoj LBMA berzi, potpuno oslobođena PDV-a i jedna od najprodavanijih zlatnih kovanica u istoriji. Gold Invest nudi sve formate — od pristupačnih 1/10 oz do investicionih 1 oz — direktno iz austrijske državne kovnice, uz garantovanu autentičnost i transparentnu cenu. Upit na broj 0612698569 ili putem kontakt forme — brza dostava za Beograd i čitavu Srbiju.",
-    heroImage: "/images/products/becka-filharmonija.png",
+    heroImage: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/product-images/dukati/Becka%20filharmonija%200.5%20oz%20zlatni%20dukat_2.webp",
     variantSlugs: [
       "becka-filharmonija-1-10-oz",
       "becka-filharmonija-1-4-oz",

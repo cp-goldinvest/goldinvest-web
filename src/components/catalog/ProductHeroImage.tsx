@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
-const FALLBACK = "/images/product-poluga.png";
+const FALLBACK = "/images/product-poluga.webp";
 
 const LABELS = ["Prednja", "Zadnja"] as const;
 

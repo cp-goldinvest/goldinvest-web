@@ -405,20 +405,20 @@ export default async function PoklonaZaRodjenjePage() {
         description="Zlatne pločice i dukati iz naše ponude potiču od svetski priznatih livarnica i kovnica — međunarodni sertifikat kvaliteta i garantovana preprodajna vrednost."
         brands={[
           {
-            img: "/images/brands/argor-heraeus.png",
+            img: "/images/brands/argor-heraeus.webp",
             title: "Argor-Heraeus",
             origin: "Švajcarska",
             text: "Jedna od vodećih svetskih rafinerija plemenitih metala sa sedištem u Mendriziju. Svaka pločica Argor-Heraeus nosi LBMA sertifikat i garantovanu čistoću 999,9 — standard koji se prihvata na svim tržištima.",
           },
           {
-            img: "/images/brands/c-hafner.png",
+            img: "/images/brands/c-hafner.webp",
             title: "C. Hafner",
             origin: "Nemačka",
             text: "Nemačka rafinerija sa tradicijom od preko 170 godina i strogim etičkim standardima. C. Hafner koristi isključivo reciklirano zlato verifikovanog porekla — poklon koji je dobar i za planetu.",
             imageScale: 0.9,
           },
           {
-            img: "/images/brands/logo-royal-mint.png",
+            img: "/images/brands/logo-royal-mint.webp",
             title: "Austrijska kovnica",
             origin: "Austrija",
             text: "Zvanična austrijska državna kovnica — izdaje i čuvenu Bečku filharmoniju i legendarni dukat Franc Jozef. Više od 800 godina tradicije kovanja — jedan od najprepoznatljivijih brendova na svetu.",

@@ -52,7 +52,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
           />
         ) : (
           <Image
-            src="/images/product-poluga.png"
+            src="/images/product-poluga.webp"
             alt={name}
             fill
             className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"

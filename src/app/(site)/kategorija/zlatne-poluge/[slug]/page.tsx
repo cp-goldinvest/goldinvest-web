@@ -6,7 +6,7 @@ import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { PriceStructureSection } from "@/components/catalog/PriceStructureSection";
 import { DeliverySection } from "@/components/catalog/DeliverySection";
 import { CategoryFaq } from "@/components/catalog/CategoryFaq";
-import { BrandCardsSection } from "@/components/catalog/BrandCardsSection";
+import { BrandCardsSection, mapBrandsToLogos } from "@/components/catalog/BrandCardsSection";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { SectionContainer } from "@/components/ui/SectionContainer";
@@ -71,9 +71,9 @@ const BRAND_HAFNER = (weight: string) => ({
   body: "Nemačka rafinerija C. Hafner sa tradicijom od preko 170 godina kuje poluge isključivo od recikliranog zlata — bez negativnog uticaja na životnu sredinu. Besprekoran nemački kvalitet (999,9), elegantno blister pakovanje sa hologramom i etički lanac nabavke metala.",
 });
 
-const BRAND_UMICORE = (weight: string) => ({
-  title: `Umicore ${weight} — Belgija`,
-  body: "Belgijska Umicore je globalni lider u recikliranju i preradi plemenitih metala. Njihove poluge nose LBMA 'Good Delivery' status i posebno su cenjene u zapadnoj Evropi zbog stroge kontrole kvaliteta i etičkog porekla zlata.",
+const BRAND_ROYALMINT = (weight: string) => ({
+  title: `The Royal Mint ${weight} — Britanija`,
+  body: "The Royal Mint je britanska kraljevska kovnica s više od 1.100 godina tradicije — jedna od najstarijih i najcenjenijih institucija u svetu plemenitih metala. Njihove poluge nose LBMA 'Good Delivery' status, izrađene su od recikliranog zlata i dolaze u elegantnom sigurnosnom pakovanju prepoznatljivom na svim tržištima.",
 });
 
 // ── Shared FAQ items ───────────────────────────────────────────────────────
@@ -132,7 +132,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         cards: [
           BRAND_ARGOR("1 unca"),
           BRAND_HAFNER("1 unca"),
-          BRAND_UMICORE("1 unca"),
+          BRAND_ROYALMINT("1 unca"),
         ],
       },
       whyBuy: {
@@ -146,7 +146,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           },
           {
             title: "Prihvaćena svuda u svetu bez provere",
-            body: "Poluge od 1 unce svetskih LBMA rafinerija (Argor-Heraeus, C. Hafner, Umicore) prihvataju se bez ikakve provere u svakoj menjačnici zlata, kod svakog dilera i u svakoj banci koja trguje plemenitim metalima. To je maksimalna likvidnost — možete je unovčiti u roku od minuta, bilo gde na planeti.",
+            body: "Poluge od 1 unce svetskih LBMA rafinerija (Argor-Heraeus, C. Hafner, The Royal Mint) prihvataju se bez ikakve provere u svakoj menjačnici zlata, kod svakog dilera i u svakoj banci koja trguje plemenitim metalima. To je maksimalna likvidnost — možete je unovčiti u roku od minuta, bilo gde na planeti.",
           },
           {
             title: "Povoljnija premija od pločica, fleksibilnija od većih poluga",
@@ -205,7 +205,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         cards: [
           BRAND_ARGOR("50g"),
           BRAND_HAFNER("50g"),
-          BRAND_UMICORE("50g"),
+          BRAND_ROYALMINT("50g"),
         ],
       },
       whyBuy: {
@@ -275,7 +275,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         cards: [
           BRAND_ARGOR("100g"),
           BRAND_HAFNER("100g"),
-          BRAND_UMICORE("100g"),
+          BRAND_ROYALMINT("100g"),
         ],
       },
       whyBuy: {
@@ -359,7 +359,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         cards: [
           BRAND_ARGOR("500g"),
           BRAND_HAFNER("500g"),
-          BRAND_UMICORE("500g"),
+          BRAND_ROYALMINT("500g"),
         ],
       },
       whyBuy: {
@@ -433,7 +433,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         cards: [
           BRAND_ARGOR("1kg"),
           BRAND_HAFNER("1kg"),
-          BRAND_UMICORE("1kg"),
+          BRAND_ROYALMINT("1kg"),
         ],
       },
       whyBuy: {
@@ -571,7 +571,7 @@ export default async function PolugaWeightPage({
     { label: config.label, href: `/kategorija/zlatne-poluge/${slug}` },
   ];
 
-  const heroImg = variants?.[0]?.images?.[0] ?? "/images/product-poluga.png";
+  const heroImg = variants?.[0]?.images?.[0] ?? "/images/product-poluga.webp";
   const heroTitle = config.label;
 
   return (
@@ -582,7 +582,7 @@ export default async function PolugaWeightPage({
         schema={buildProductSchema({
           name: config.label,
           description: config.metaDescription,
-          brand: "Argor-Heraeus / C. Hafner / Umicore",
+          brand: "Argor-Heraeus / C. Hafner / The Royal Mint",
           slug: `/kategorija/zlatne-poluge/${slug}`,
           image: heroImg,
           purity: "999.9/1000",
@@ -751,15 +751,7 @@ export default async function PolugaWeightPage({
           <BrandCardsSection
             title={config.seo.brands.heading}
             description={config.seo.brands.description}
-            brands={config.seo.brands.cards.map((c) => {
-              const lower = c.title.toLowerCase();
-              let img = "/images/brands/bento-center-gold.png";
-              let origin = "—";
-              if (lower.includes("argor")) { img = "/images/brands/argor-heraeus.png"; origin = "Švajcarska"; }
-              else if (lower.includes("hafner")) { img = "/images/brands/c-hafner.png"; origin = "Nemačka"; }
-              else if (lower.includes("umicore")) { img = "/images/brands/bento-center-gold.png"; origin = "Belgija"; }
-              return { img, title: c.title.split("—")[0].trim(), origin, text: c.body };
-            })}
+            brands={mapBrandsToLogos(config.seo.brands.cards)}
           />
 
           {/* Delivery */}

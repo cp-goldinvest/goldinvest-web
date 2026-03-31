@@ -17,6 +17,9 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/faq`,                                         lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   { url: `${BASE_URL}/o-nama`,                                      lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
   { url: `${BASE_URL}/kontakt`,                                     lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+  { url: `${BASE_URL}/uslovi-koriscenja`,                           lastModified: new Date(), changeFrequency: "yearly",  priority: 0.3 },
+  { url: `${BASE_URL}/politika-privatnosti`,                        lastModified: new Date(), changeFrequency: "yearly",  priority: 0.3 },
+  { url: `${BASE_URL}/podesavanje-kolacica`,                        lastModified: new Date(), changeFrequency: "yearly",  priority: 0.3 },
   // Product slug pages — zlatne poluge
   { url: `${BASE_URL}/kategorija/zlatne-poluge/zlatna-poluga-1-unca`,  lastModified: new Date(), changeFrequency: "daily", priority: 0.8 },
   { url: `${BASE_URL}/kategorija/zlatne-poluge/zlatna-poluga-50g`,     lastModified: new Date(), changeFrequency: "daily", priority: 0.8 },

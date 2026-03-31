@@ -19,9 +19,14 @@ type Props = {
   purity: number;
   brand: string;
   origin: string;
+  category?: string | null;
   sku: string | null;
+  variantName?: string | null;
   description?: string | null;
   specs?: ProductSpec[];
+  lengthMm?: number | null;
+  widthMm?: number | null;
+  thicknessMm?: number | null;
 };
 
 const TABS: { id: TabId; label: string }[] = [
@@ -32,13 +37,22 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "poreski",     label: "Poreski i drugi relevantni tretmani" },
 ];
 
-export function ProductTabs({ weightG, purity, brand, origin, sku, description }: Props) {
+export function ProductTabs({ weightG, purity, brand, origin, category, sku, variantName, description, lengthMm, widthMm, thicknessMm }: Props) {
   const [active, setActive] = useState<TabId>("opis");
 
   // Baza čuva purity kao integer (9999) ili decimal (0.9999) — normalizujemo
   const purityNorm = purity > 1 ? purity / 10000 : purity;
   const purityDisplay = (purityNorm * 1000).toFixed(1).replace(".0", "");
   const weightDisplay = weightG >= 1000 ? `${weightG / 1000} kg` : `${weightG} g`;
+
+  const formatLabel =
+    category === "plocica" ? "Pločica (investicioni bar)" :
+    category === "dukat"   ? "Dukat (investiciona kovanica)" :
+    "Poluga (investicioni bar)";
+
+  const dimensionsDisplay = lengthMm && widthMm && thicknessMm
+    ? `${lengthMm} × ${widthMm} × ${thicknessMm} mm`
+    : null;
 
   return (
     <div>
@@ -86,28 +100,25 @@ export function ProductTabs({ weightG, purity, brand, origin, sku, description }
             ) : (
               <div className="space-y-4">
                 <p>
-                  <strong className="text-[#1B1B1C]">Argor-Heraeus zlatna poluga {weightDisplay}</strong> je
-                  jedno od najpriznatijih investicionih zlatnih ulaganja dostupnih na tržištu. Rafinerija
-                  Argor-Heraeus iz Mendrisija u Švajcarskoj važi za jednu od tri najveće i najcenjenije
-                  rafinerije plemenitih metala na svetu — uz Johnson Matthey i Umicore.
+                  <strong className="text-[#1B1B1C]">{variantName ?? `${brand} ${weightDisplay}`}</strong> je
+                  investicioni zlatni proizvod čistoće{" "}
+                  <strong className="text-[#1B1B1C]">{purityDisplay}/1000 (24 karata)</strong>, proizveden od strane
+                  rafinerije <strong className="text-[#1B1B1C]">{brand}</strong> iz {origin}a.
                 </p>
                 <p>
-                  Svaka poluga sadrži tačno <strong className="text-[#1B1B1C]">{weightDisplay} čistog zlata</strong>{" "}
-                  čistoće <strong className="text-[#1B1B1C]">{purityDisplay}/1000 (24 karata)</strong> i dolazi
-                  fabrički zapečaćena u čvrstom sigurnosnom blisteru veličine bankovne kartice — koji je
-                  ujedno i vaš zvanični sertifikat autentičnosti. Na blisteru i samoj poluzi laserski su
-                  ugravirani: logo Argor-Heraeus, nominalna masa, čistoća i jedinstveni serijski broj.
+                  Svaki proizvod dolazi fabrički zapečaćen u originalnom sigurnosnom blisteru koji je ujedno
+                  i vaš zvanični sertifikat autentičnosti. Na blisteru i samom proizvodu laserski su ugravirani
+                  logo proizvođača, nominalna masa, čistoća i jedinstveni serijski broj.
                 </p>
                 <p>
-                  Poluga nosi <strong className="text-[#1B1B1C]">LBMA &ldquo;Good Delivery&rdquo; status</strong> — najvišu
-                  međunarodnu sertifikaciju za investiciono zlato, koju izdaje London Bullion Market
-                  Association. Ovaj status garantuje da će poluga biti prihvaćena bez ikakve provere
-                  autentičnosti kod svakog profesionalnog dilera, u svakoj banci i na svakom tržištu
-                  plemenitih metala na svetu.
+                  Proizvod nosi <strong className="text-[#1B1B1C]">LBMA &ldquo;Good Delivery&rdquo; status</strong> — najvišu
+                  međunarodnu sertifikaciju za investiciono zlato, koju izdaje London Bullion Market Association.
+                  Ovaj status garantuje prihvatanje bez ikakve provere autentičnosti kod svakog profesionalnog
+                  dilera, u svakoj banci i na svakom tržištu plemenitih metala na svetu.
                 </p>
                 <p>
                   <span className="text-[#BF8E41] font-semibold">Zlatno pravilo:</span> Nikad ne otvarajte
-                  fabrički blister — otvorena poluga gubi &ldquo;Good Delivery&rdquo; status i otkupljuje se po
+                  fabrički blister — otvoren proizvod gubi &ldquo;Good Delivery&rdquo; status i otkupljuje se po
                   nižoj ceni. Pakovanje je garancija, ne samo ambalaža.
                 </p>
               </div>
@@ -121,12 +132,13 @@ export function ProductTabs({ weightG, purity, brand, origin, sku, description }
               {[
                 { label: "Težina",           value: weightDisplay },
                 { label: "Čistoća",          value: `${purityDisplay}/1000 (24 karata, 999,9 finog zlata)` },
-                { label: "Format",           value: "Poluga (investicioni bar)" },
+                { label: "Format",           value: formatLabel },
                 { label: "Proizvođač",       value: brand },
                 { label: "Zemlja porekla",   value: origin },
+                ...(dimensionsDisplay ? [{ label: "Dimenzije", value: dimensionsDisplay }] : []),
                 { label: "Pakovanje",        value: "Fabrički zapečaćen sigurnosni blister (optifit)" },
                 { label: "Sertifikacija",    value: "LBMA Good Delivery" },
-                { label: "Serijski broj",    value: "Da — laserski graviran na poluzi i blisteru" },
+                { label: "Serijski broj",    value: "Da — laserski graviran na proizvodu i blisteru" },
                 { label: "PDV",              value: "Oslobođeno PDV-a (investiciono zlato)" },
                 ...(sku ? [{ label: "Šifra proizvoda", value: sku }] : []),
               ].map(({ label, value }, i) => (
@@ -220,14 +232,16 @@ export function ProductTabs({ weightG, purity, brand, origin, sku, description }
           >
             <div className="rounded-2xl border border-[#F0EDE6] overflow-hidden">
               {[
-                { label: "Naziv proizvoda",     value: `Zlatna poluga ${weightDisplay} — Argor-Heraeus` },
-                { label: "Zemlja porekla",       value: "Švajcarska (Argor-Heraeus SA, Mendrisio)" },
-                { label: "Sastav",               value: `Zlato (Au) ${purityDisplay}/1000 — čistoće 99,99%` },
-                { label: "Nominalna masa",        value: weightDisplay },
-                { label: "Pakovanje",            value: "Originalni sigurnosni blister (optifit) — fabrički zapečaćen" },
-                { label: "Uvoznik / Distributer",value: "Gold Invest d.o.o., Beograd, Srbija" },
-                { label: "Garancija porekla",    value: "LBMA Good Delivery sertifikat" },
-                { label: "Uslovi čuvanja",       value: "Na sobnoj temperaturi, zaštićeno od vlage i direktnog sunca" },
+                { label: "Naziv proizvoda",      value: variantName ?? `${brand} zlatni proizvod ${weightDisplay}` },
+                { label: "Zemlja porekla",        value: origin },
+                { label: "Proizvođač",            value: brand },
+                { label: "Sastav",                value: `Zlato (Au) ${purityDisplay}/1000 — čistoće 99,99%` },
+                { label: "Nominalna masa",         value: weightDisplay },
+                ...(dimensionsDisplay ? [{ label: "Dimenzije", value: dimensionsDisplay }] : []),
+                { label: "Pakovanje",             value: "Originalni sigurnosni blister (optifit) — fabrički zapečaćen" },
+                { label: "Uvoznik / Distributer", value: "Gold Invest d.o.o., Beograd, Srbija" },
+                { label: "Garancija porekla",     value: "LBMA Good Delivery sertifikat" },
+                { label: "Uslovi čuvanja",        value: "Na sobnoj temperaturi, zaštićeno od vlage i direktnog sunca" },
               ].map(({ label, value }, i) => (
                 <div
                   key={label}

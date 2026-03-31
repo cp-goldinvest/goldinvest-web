@@ -111,7 +111,7 @@ export function CategoryPageTemplate({
   infoSectionA,
   infoSectionB,
   infoSectionBLayout = "default",
-  infoSectionBImageSrc = "/images/bento-gold-bar.png",
+  infoSectionBImageSrc = "/images/bento-gold-bar.webp",
   infoSectionBImageAlt = "Zlatna poluga",
   infoSectionBBentoBlackCardImageOnTop = false,
   darkQuote,

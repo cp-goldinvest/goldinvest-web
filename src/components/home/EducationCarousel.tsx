@@ -5,42 +5,42 @@ import Image from "next/image";
 
 const SLIDES = [
   {
-    img: "/images/faktori-3.png",
+    img: "/images/faktori-3.webp",
     title: "Struktura cena (prodajna, avansna, otkupna)",
     text: "Prodajna cena važi za kupovinu sa trenutnim preuzimanjem. Avansna cena je česta riza za određen rok isporuke. Otkupna cena predstavlja garantovani iznos za koji trgovac otkupljuje zlato natrag.",
   },
   {
-    img: "/images/bento-gold-bar.png",
+    img: "/images/bento-gold-bar.webp",
     title: "Šta je LBMA sertifikat i zašto je važan?",
     text: "London Bullion Market Association (LBMA) je globalni standard kvaliteta za plemenite metale. Poluge i kovanice sa LBMA sertifikatom garantuju čistoću od minimum 999,9/1000 i prihvaćene su na svim svetskim tržištima.",
   },
   {
-    img: "/images/bento-coins.png",
+    img: "/images/bento-coins.webp",
     title: "Zlatnici vs poluge — šta je isplativije?",
     text: "Zlatnici imaju nešto višu premiju zbog troškova kovanja i numizmatičke vrednosti, ali su lakši za preprodaju u manjim iznosima. Poluge su isplativije za veće investicije jer premija po gramu opada sa povećanjem težine.",
   },
   {
-    img: "/images/faktori-1.png",
+    img: "/images/faktori-1.webp",
     title: "PDV i poreske olakšice na investiciono zlato",
     text: "Investiciono zlato (poluge i kovanice čistoće ≥ 995/1000) oslobođeno je PDV-a u Srbiji i celoj EU. Ovo ga čini znatno isplativijom investicijom u odnosu na nakit ili industrijske metale koji se oporezuju.",
   },
   {
-    img: "/images/faktori-2.png",
+    img: "/images/faktori-2.webp",
     title: "Kako bezbedno čuvati investiciono zlato?",
     text: "Zlato možete čuvati u kućnom sefu, bankarskom sefu ili kod ovlašćenog čuvara vrednosti. Preporučujemo osiguran sef sa certifikatom — fizička posedovost zlata je jedna od ključnih prednosti ove investicije.",
   },
   {
-    img: "/images/bento-center-gold.png",
+    img: "/images/bento-center-gold.webp",
     title: "Kada je pravo vreme za kupovinu zlata?",
     text: "Za dugoročne investitore, vreme kupovine je manje važno od redovnosti ulaganja. Strategija prosečenja troška (DCA) — kupovati redovno manje količine — pokazala se efikasnom u volatilnim tržišnim uslovima.",
   },
   {
-    img: "/images/bento-dollars.png",
+    img: "/images/bento-dollars.webp",
     title: "Zlato kao zaštita od inflacije",
     text: "Istorijski gledano, zlato čuva kupovnu moć tokom inflatornih perioda. Dok papirni novac gubi vrednost štampanjem, ukupna količina zlata na svetu raste manje od 2% godišnje, što mu čuva vrednost.",
   },
   {
-    img: "/images/gold-bar-edu.png",
+    img: "/images/gold-bar-edu.webp",
     title: "Kako funkcioniše otkup zlata?",
     text: "Pri otkupu, cena se određuje na osnovu trenutne spot cene sa odbitkom otkupne marže. LBMA sertifikovane poluge i kovanice uvek postižu bolju otkupnu cenu. Preporučujemo čuvanje originalnog certifikata i ambalaže.",
   },

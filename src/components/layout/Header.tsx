@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { Phone, Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { GoldInvestLogo } from "@/components/ui/GoldInvestLogo";
@@ -12,14 +13,15 @@ type MegaItem = { label: string; href: string };
 type MegaColumn = { title: string; viewAllHref: string; items: MegaItem[] };
 type NavItem =
   | { label: string; href: string; children?: never; mega?: never }
-  | { label: string; href?: never; children: NavChild[]; mega?: never }
-  | { label: string; href?: never; mega: MegaColumn[]; children?: never };
+  | { label: string; href?: string; children: NavChild[]; mega?: never }
+  | { label: string; href?: string; mega: MegaColumn[]; children?: never };
 
 // ── Nav structure ─────────────────────────────────────────────
 const NAV_ITEMS: NavItem[] = [
   { label: "Početna", href: "/" },
   {
     label: "Proizvodi",
+    href: "/proizvodi",
     mega: [
       {
         title: "Zlatne pločice",
@@ -80,6 +82,7 @@ const NAV_ITEMS: NavItem[] = [
 
 // ── Header component ──────────────────────────────────────────
 export function Header() {
+  const router = useRouter();
   const [menuOpen, setMenuOpen]           = useState(false);
   const [scrolled, setScrolled]           = useState(false);
   const [barsVisible, setBarsVisible]     = useState(true);
@@ -175,6 +178,7 @@ export function Header() {
                     <MegaDropdown
                       key={item.label}
                       label={item.label}
+                      href={item.href}
                       columns={item.mega}
                       isOpen={openDropdown === item.label}
                       onEnter={() => handleMouseEnter(item.label)}
@@ -337,9 +341,10 @@ export function Header() {
 
 // ── Mega menu dropdown ────────────────────────────────────────
 function MegaDropdown({
-  label, columns, isOpen, onEnter, onLeave, onClose,
+  label, href, columns, isOpen, onEnter, onLeave, onClose,
 }: {
   label: string;
+  href?: string;
   columns: MegaColumn[];
   isOpen: boolean;
   onEnter: () => void;
@@ -354,6 +359,12 @@ function MegaDropdown({
           isOpen ? "text-[#BF8E41]" : "text-[#1A1A1A] hover:text-[#BF8E41]",
         ].join(" ")}
         aria-expanded={isOpen}
+        onClick={() => {
+          if (href) {
+            // use window.location to avoid hook usage in this helper component
+            window.location.href = href;
+          }
+        }}
       >
         {label}
         <ChevronDown size={13} className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />

@@ -10,7 +10,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Investiciono zlato",
     date: "15. mart 2025.",
     readMin: 7,
-    image: "/images/blog/zasto.png",
+    image: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/blog-images/zasto.webp",
     imageAlt: "Zlatna poluga kao investicija",
     featured: true,
   },
@@ -22,7 +22,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Tržište",
     date: "8. mart 2025.",
     readMin: 5,
-    image: "/images/blog/formiranje.png",
+    image: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/blog-images/formiranje.webp",
     imageAlt: "Grafikon cene zlata na berzi",
   },
   {
@@ -33,7 +33,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Vodič",
     date: "1. mart 2025.",
     readMin: 6,
-    image: "/images/blog/poluga-zlatnik.png",
+    image: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/blog-images/poluga-zlatnik.webp",
     imageAlt: "Zlatne poluge i zlatnici",
   },
   {
@@ -44,7 +44,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Saveti",
     date: "22. februar 2025.",
     readMin: 8,
-    image: "/images/blog/inflacija.png",
+    image: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/blog-images/inflacija.webp",
     imageAlt: "Inflacija i zaštita ušteđevine zlatom",
   },
   {
@@ -55,7 +55,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Vodič",
     date: "14. februar 2025.",
     readMin: 4,
-    image: "/images/blog/sertifikacija.png",
+    image: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/blog-images/sertifikacija.webp",
     imageAlt: "LBMA sertifikat za zlatnu polugu",
   },
   {
@@ -66,7 +66,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Tržište",
     date: "5. februar 2025.",
     readMin: 6,
-    image: "/images/blog/banka.png",
+    image: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/blog-images/banka.webp",
     imageAlt: "Centralne banke i zlato",
   },
   {
@@ -77,7 +77,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Saveti",
     date: "28. januar 2025.",
     readMin: 5,
-    image: "/images/blog/sef.png",
+    image: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/blog-images/sef.webp",
     imageAlt: "Čuvanje fizičkog zlata u sefu",
   },
   {
@@ -88,7 +88,7 @@ export const BLOG_POSTS: Post[] = [
     category: "Tržište",
     date: "20. januar 2025.",
     readMin: 5,
-    image: "/images/blog/kamatna.png",
+    image: "https://ucngtcsmkxuxuubrobsc.supabase.co/storage/v1/object/public/blog-images/kamatna.webp",
     imageAlt: "Kamatne stope i kretanje cene zlata",
   },
 ];

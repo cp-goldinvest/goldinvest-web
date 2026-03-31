@@ -11,41 +11,9 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
-import { BrandCardsSection, type BrandCard } from "@/components/catalog/BrandCardsSection";
+import { BrandCardsSection, mapBrandsToLogos } from "@/components/catalog/BrandCardsSection";
 import { SchemaScript } from "@/components/ui/SchemaScript";
 import { buildBreadcrumbSchema, buildFaqSchema, buildProductSchema } from "@/lib/schema";
-
-function mapBrandsToLogos(brands: { title: string; body: string }[]): BrandCard[] {
-  return brands.map((b) => {
-    const rawTitle = b.title ?? "";
-    const lower = rawTitle.toLowerCase();
-
-    let img = "/images/brands/bento-center-gold.png";
-    let origin = "—";
-
-    if (lower.includes("argor")) {
-      img = "/images/brands/argor-heraeus.png";
-      origin = "Švajcarska";
-    } else if (lower.includes("hafner")) {
-      img = "/images/brands/c-hafner.png";
-      origin = "Nemačka";
-    } else if (lower.includes("royal mint") || lower.includes("britannia")) {
-      img = "/images/brands/logo-royal-mint.png";
-      origin = "Britanija";
-    }
-
-    const left = rawTitle.split("—")[0]?.trim() ?? rawTitle.trim();
-    // remove trailing weight part, e.g. "10g"
-    const cleanedTitle = left.replace(/\s*\d+\s*g\s*$/i, "").trim();
-
-    return {
-      img,
-      title: cleanedTitle || rawTitle,
-      origin,
-      text: b.body,
-    };
-  });
-}
 
 export const revalidate = 60;
 
@@ -646,7 +614,7 @@ export default async function PlocicaWeightPage({
   ];
 
   const heroImg =
-    variants?.[0]?.images?.[0] ?? "/images/product-poluga.png";
+    variants?.[0]?.images?.[0] ?? "/images/product-poluga.webp";
   const heroTitle = config.label.replace("g", " grama");
 
   return (

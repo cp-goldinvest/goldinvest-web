@@ -16,6 +16,32 @@ type Props = {
   brands: BrandCard[];
 };
 
+export function mapBrandsToLogos(brands: { title: string; body: string }[]): BrandCard[] {
+  return brands.map((b) => {
+    const rawTitle = b.title ?? "";
+    const lower = rawTitle.toLowerCase();
+
+    let img = "/images/brands/argor-heraeus.webp";
+    let origin = "—";
+
+    if (lower.includes("argor")) {
+      img = "/images/brands/argor-heraeus.webp";
+      origin = "Švajcarska";
+    } else if (lower.includes("hafner")) {
+      img = "/images/brands/c-hafner.webp";
+      origin = "Nemačka";
+    } else if (lower.includes("royal mint") || lower.includes("britannia")) {
+      img = "/images/brands/logo-royal-mint.webp";
+      origin = "Britanija";
+    }
+
+    const left = rawTitle.split("—")[0]?.trim() ?? rawTitle.trim();
+    const cleanedTitle = left.replace(/\s*\d+\s*g\s*$/i, "").trim() || left;
+
+    return { img, title: cleanedTitle, origin, text: b.body };
+  });
+}
+
 export function BrandCardsSection({ title, description, brands }: Props) {
   return (
     <section className="bg-white py-16 sm:py-20">

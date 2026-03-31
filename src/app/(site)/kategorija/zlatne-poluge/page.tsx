@@ -117,7 +117,7 @@ export default async function ZlatnePolugePage() {
     <CategoryPageTemplate
       infoSectionBLayout="premium-bento"
       infoSectionBBentoBlackCardImageOnTop
-      infoSectionBImageSrc="/images/bento-gold-bar.png"
+      infoSectionBImageSrc="/images/bento-gold-bar.webp"
       infoSectionBImageAlt="Zlatna poluga"
       breadcrumbs={[
         { label: "Investiciono zlato", href: "/" },
@@ -227,20 +227,20 @@ export default async function ZlatnePolugePage() {
         description: 'Gold Invest u ponudi ima isključivo proizvode najeminentnijih evropskih kovnica sa LBMA "Good Delivery" sertifikatom. Naš asortiman se oslanja na apsolutne lidere u preradi plemenitih metala:',
         brands: [
           {
-            img: "/images/brands/argor-heraeus.png",
+            img: "/images/brands/argor-heraeus.webp",
             title: "Argor-Heraeus",
             origin: "Švajcarska",
             text: "Švajcarska preciznost i industrijski standard. Jedna od najvećih i najpouzdanijih svetskih rafinerija, čije su poluge sinonim za sigurnost i izuzetno su tražene na celom evropskom tržištu.",
           },
           {
-            img: "/images/brands/c-hafner.png",
+            img: "/images/brands/c-hafner.webp",
             title: "C. Hafner",
             origin: "Nemačka",
             text: "Nemački premium kvalitet bez kompromisa. Rafinerija sa tradicijom dugom preko 170 godina, poznata po najvišim tehnološkim standardima i besprekornoj izradi. Njihove poluge ulivaju ogromno poverenje tradicionalnim investitorima.",
             imageScale: 0.9,
           },
           {
-            img: "/images/brands/logo-royal-mint.png",
+            img: "/images/brands/logo-royal-mint.webp",
             title: "The Royal Mint (Kraljevska kovnica)",
             origin: "Velika Britanija",
             text: "Britanski prestiž. Zvanična državna kovnica Velike Britanije i jedna od najstarijih i najuglednijih institucija na svetu. Njihove investicione poluge predstavljaju sam vrh globalnog tržišta i nose dodatnu težinu istorijskog autoriteta.",
