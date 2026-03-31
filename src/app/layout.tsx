@@ -1,35 +1,24 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Rethink_Sans, Space_Grotesk } from "next/font/google";
+import { Rethink_Sans } from "next/font/google";
 import "./globals.css";
 
 const ppEditorial = localFont({
   src: [
-    { path: "../../public/fonts/PPEditorialNew-Thin.otf", weight: "100", style: "normal" },
-    { path: "../../public/fonts/PPEditorialNew-ThinItalic.otf", weight: "100", style: "italic" },
-    { path: "../../public/fonts/PPEditorialNew-Ultralight.otf", weight: "200", style: "normal" },
-    { path: "../../public/fonts/PPEditorialNew-UltralightItalic.otf", weight: "200", style: "italic" },
     { path: "../../public/fonts/PPEditorialNew-Regular.otf", weight: "400", style: "normal" },
     { path: "../../public/fonts/PPEditorialNew-Italic.otf", weight: "400", style: "italic" },
-    { path: "../../public/fonts/PPEditorialNew-Bold.otf", weight: "700", style: "normal" },
-    { path: "../../public/fonts/PPEditorialNew-BoldItalic.otf", weight: "700", style: "italic" },
-    { path: "../../public/fonts/PPEditorialNew-Heavy.otf", weight: "800", style: "normal" },
-    { path: "../../public/fonts/PPEditorialNew-HeavyItalic.otf", weight: "800", style: "italic" },
   ],
   variable: "--font-pp-editorial",
   display: "swap",
+  preload: true,
 });
 
 const rethinkSans = Rethink_Sans({
   variable: "--font-rethink",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -46,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sr">
-      <body className={`${rethinkSans.variable} ${ppEditorial.variable} ${spaceGrotesk.variable} antialiased`}>
+      <body className={`${rethinkSans.variable} ${ppEditorial.variable} antialiased`}>
         {children}
       </body>
     </html>

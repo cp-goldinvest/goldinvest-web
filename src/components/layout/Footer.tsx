@@ -34,7 +34,7 @@ const linkStyle: React.CSSProperties = {
 };
 
 const headingStyle: React.CSSProperties = {
-  fontFamily: "var(--font-space-grotesk), sans-serif",
+  fontFamily: "var(--font-rethink), sans-serif",
   fontWeight: 700,
   fontSize: 18,
   lineHeight: "1.556em",

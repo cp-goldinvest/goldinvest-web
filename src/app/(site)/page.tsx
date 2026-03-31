@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { createServiceClient } from "@/lib/supabase/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SchemaScript } from "@/components/ui/SchemaScript";
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
 };
 
 
-export default async function HomePage() {
+async function ProductsSection() {
   let variants: any = [], tiers: any = [], snapshotRow: any = null;
   try {
     const supabase = createServiceClient();
@@ -46,47 +47,55 @@ export default async function HomePage() {
       supabase.from("gold_price_snapshots").select("*").order("fetched_at", { ascending: false }).limit(1).single(),
     ]));
     variants = r1.data ?? [];
-      tiers = r2.data ?? [];
-      snapshotRow = r3.data ?? null;
+    tiers = r2.data ?? [];
+    snapshotRow = r3.data ?? null;
   } catch {
     // DB nedostupna
   }
 
+  return (
+    <section className="bg-white py-12">
+      <SectionContainer>
+        <ProductGrid
+          variants={variants as any}
+          tiers={tiers}
+          snapshot={snapshotRow}
+          defaultSort="featured_home"
+          enablePagination
+          pageSize={8}
+        />
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/proizvodi"
+            className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#1B1B1C] text-white font-semibold transition-opacity hover:opacity-90"
+            style={{
+              fontFamily: "var(--font-rethink), sans-serif",
+              fontSize: 12.5,
+              boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)",
+            }}
+          >
+            Pregledaj sve proizvode
+          </Link>
+        </div>
+      </SectionContainer>
+    </section>
+  );
+}
+
+export default async function HomePage() {
   const latestBlogPosts = getLatestBlogPosts(BLOG_POSTS, 5);
 
   return (
     <main className="bg-white">
       <SchemaScript schema={buildOrganizationSchema()} />
 
-      {/* 1. Hero */}
+      {/* 1. Hero — renderuje se odmah, bez čekanja na DB */}
       <HeroSection />
 
-      {/* 2. Products */}
-      <section className="bg-white py-12">
-        <SectionContainer>
-          <ProductGrid
-            variants={variants as any}
-            tiers={tiers}
-            snapshot={snapshotRow}
-            defaultSort="featured_home"
-            enablePagination
-            pageSize={8}
-          />
-          <div className="mt-10 flex justify-center">
-            <Link
-              href="/proizvodi"
-              className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#1B1B1C] text-white font-semibold transition-opacity hover:opacity-90"
-              style={{
-                fontFamily: "var(--font-rethink), sans-serif",
-                fontSize: 12.5,
-                boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)",
-              }}
-            >
-              Pregledaj sve proizvode
-            </Link>
-          </div>
-        </SectionContainer>
-      </section>
+      {/* 2. Products — streama se kada DB odgovori */}
+      <Suspense fallback={<section className="bg-white py-12" style={{ minHeight: 400 }} />}>
+        <ProductsSection />
+      </Suspense>
 
       {/* 3. Vrste i pravila */}
       <GoldTypesSection />
