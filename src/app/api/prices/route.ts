@@ -4,48 +4,68 @@ import { createServiceClient } from "@/lib/supabase/server";
 /**
  * GET /api/prices
  *
- * Vraća live cenu zlata + kurseve.
- * Strategija:
- *   1. Pokušaj da dobavimo live XAU/USD (Yahoo Finance, bez ključa)
- *   2. Uzmemo USD/RSD i EUR/RSD iz poslednjeg Supabase snapshot-a (radnik uneo jutros)
- *   3. Izračunamo RSD/g i vratimo JSON
+ * Returns current gold price from the latest DB snapshot.
  *
- * Ovaj route poziva browser direktno (iz PriceTicker-a) svakih 60 sekundi.
- * Nema potrebe za Vercel Cron za cenu zlata.
+ * Architecture: this route does NOT call any external API directly.
+ * All market fetching is done by the Vercel cron job (/api/cron/fetch-gold)
+ * which runs every 5 minutes and writes to gold_price_snapshots.
+ *
+ * Benefits:
+ *   - Fast: single Supabase read, no external network calls
+ *   - Stable: never fails due to Yahoo/goldprice.org downtime
+ *   - Consistent: every consumer (ticker, chart, product prices) sees the same value
+ *
+ * EUR/RSD source priority:
+ *   1. Admin manually sets rate via /api/admin/rates (creates snapshot with source='manual_rates')
+ *   2. Cron job carries forward the last known eur_rsd when inserting new snapshots
+ *
+ * Called by: PriceTicker (every 60s), GoldPriceChartFull (on mount), admin pages
  */
-export const dynamic = "force-dynamic";
+export const revalidate = 55;
+
+const GRAMS_PER_OZ = 31.1034768;
 
 export async function GET() {
   try {
-    // 1. Live XAU/USD sa Yahoo Finance (besplatno, bez ključa)
-    const xauEur = await fetchXauEur();
-
-    // 2. EUR/RSD iz Supabase (radnik unosi jutros)
     const supabase = createServiceClient();
-    const { data: snap } = await supabase
+
+    const { data: snap, error } = await supabase
       .from("gold_price_snapshots")
-      .select("eur_rsd, fetched_at")
+      .select("xau_eur, xau_usd, eur_rsd, usd_rsd, price_per_g_rsd, fetched_at, source, eur_rsd_source")
       .order("fetched_at", { ascending: false })
       .limit(1)
       .single();
 
-    const eurRsd = snap?.eur_rsd ?? 117.6;
-    const ratesUpdatedAt = snap?.fetched_at ?? new Date().toISOString();
+    if (error || !snap) {
+      console.error("[api/prices] No snapshot available:", error);
+      return NextResponse.json({ error: "Prices unavailable" }, { status: 503 });
+    }
 
-    // 3. Izračun: (XAU/EUR ÷ 31,1034) × EUR/RSD
-    const rsdPerGram = Math.round((xauEur / 31.1034) * eurRsd);
+    // Compute rsd_per_gram from EUR data when available (preferred — matches admin rate).
+    // Fall back to stored price_per_g_rsd (computed from USD) if EUR fields are missing.
+    const rsdPerGram =
+      snap.xau_eur != null && snap.eur_rsd != null
+        ? Math.round((snap.xau_eur / GRAMS_PER_OZ) * snap.eur_rsd)
+        : snap.price_per_g_rsd != null
+          ? Math.round(snap.price_per_g_rsd)
+          : null;
+
+    if (rsdPerGram == null) {
+      return NextResponse.json({ error: "Prices unavailable" }, { status: 503 });
+    }
 
     return NextResponse.json(
       {
-        xau_eur: Math.round(xauEur * 100) / 100,
-        eur_rsd: eurRsd,
+        xau_eur: snap.xau_eur,
+        eur_rsd: snap.eur_rsd,
         rsd_per_gram: rsdPerGram,
-        fetched_at: new Date().toISOString(),
-        rates_updated_at: ratesUpdatedAt,
+        fetched_at: snap.fetched_at,
+        source: snap.source,
+        eur_rsd_source: snap.eur_rsd_source ?? "fallback",
       },
       {
         headers: {
-          // Cache 55 sekundi — browser osvežava svakih 60s
+          // 55s browser cache — PriceTicker polls every 60s
           "Cache-Control": "public, s-maxage=55, stale-while-revalidate=10",
         },
       }
@@ -54,66 +74,4 @@ export async function GET() {
     console.error("[api/prices]", err);
     return NextResponse.json({ error: "Prices unavailable" }, { status: 503 });
   }
-}
-
-// ── Live XAU/EUR fetch ─────────────────────────────────────────────────────
-async function fetchXauEur(): Promise<number> {
-  // Pokušaj 1: GoldAPI.io — XAU/EUR direktno (ako je GOLD_API_KEY postavljen)
-  const goldApiKey = process.env.GOLD_API_KEY;
-  if (goldApiKey) {
-    try {
-      const res = await fetch("https://www.goldapi.io/api/XAU/EUR", {
-        headers: { "x-access-token": goldApiKey },
-        next: { revalidate: 0 },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.price && data.price > 100) return data.price;
-      }
-    } catch { /* fallthrough */ }
-  }
-
-  // Pokušaj 2: Yahoo Finance — XAUEUR=X spot
-  try {
-    const res = await fetch(
-      "https://query1.finance.yahoo.com/v8/finance/chart/XAUEUR%3DX?interval=1m&range=1d",
-      { headers: { "User-Agent": "Mozilla/5.0" }, next: { revalidate: 0 } }
-    );
-    if (res.ok) {
-      const data = await res.json();
-      const price: number | undefined = data?.chart?.result?.[0]?.meta?.regularMarketPrice;
-      if (price && price > 100) return price;
-    }
-  } catch { /* fallthrough */ }
-
-  // Pokušaj 3: Yahoo Finance GC=F (USD futures) + EUR/USD konverzija
-  try {
-    const [goldRes, fxRes] = await Promise.all([
-      fetch("https://query1.finance.yahoo.com/v8/finance/chart/GC%3DF?interval=1m&range=1d",
-        { headers: { "User-Agent": "Mozilla/5.0" }, next: { revalidate: 0 } }),
-      fetch("https://query1.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?interval=1m&range=1d",
-        { headers: { "User-Agent": "Mozilla/5.0" }, next: { revalidate: 0 } }),
-    ]);
-    if (goldRes.ok && fxRes.ok) {
-      const [gd, fd] = await Promise.all([goldRes.json(), fxRes.json()]);
-      const xauUsd: number = gd?.chart?.result?.[0]?.meta?.regularMarketPrice;
-      const eurUsd: number = fd?.chart?.result?.[0]?.meta?.regularMarketPrice;
-      if (xauUsd > 100 && eurUsd > 0) return xauUsd / eurUsd;
-    }
-  } catch { /* fallthrough */ }
-
-  // Fallback: poslednja poznata cena iz Supabase
-  try {
-    const { createServiceClient } = await import("@/lib/supabase/server");
-    const supabase = createServiceClient();
-    const { data } = await supabase
-      .from("gold_price_snapshots")
-      .select("xau_eur")
-      .order("fetched_at", { ascending: false })
-      .limit(1)
-      .single();
-    if (data?.xau_eur) return data.xau_eur;
-  } catch { /* fallthrough */ }
-
-  throw new Error("All gold price sources failed");
 }

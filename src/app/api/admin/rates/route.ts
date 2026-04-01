@@ -3,48 +3,84 @@ import { createServiceClient } from "@/lib/supabase/server";
 
 /**
  * POST /api/admin/rates
- * Radnik unosi jutarnje kurseve (USD/RSD, EUR/RSD).
- * Ažurira poslednji snapshot u bazi sa novim kursevima.
+ *
+ * Admin sets the daily EUR/RSD exchange rate (done every morning).
+ *
+ * Logic:
+ *   1. Validate input
+ *   2. Fetch latest XAU/EUR from the most recent snapshot
+ *   3. Insert a new snapshot with source='manual_rates'
+ *      — xau_usd / usd_rsd are omitted (nullable after migration)
+ *      — price_per_g_rsd is auto-computed by Postgres: xau_eur / 31.1035 * eur_rsd
+ *   4. Return computed rsd_per_gram so admin UI can show preview
+ *
+ * The cron job (/api/cron/fetch-gold) will carry this eur_rsd forward
+ * into all subsequent auto snapshots until admin updates it again.
  */
+
+const GRAMS_PER_OZ = 31.1034768;
+
+async function getLatestXauEur(
+  supabase: ReturnType<typeof createServiceClient>
+): Promise<number> {
+  const { data: last } = await supabase
+    .from("gold_price_snapshots")
+    .select("xau_eur")
+    .not("xau_eur", "is", null)
+    .order("fetched_at", { ascending: false })
+    .limit(1)
+    .single();
+  return last?.xau_eur ?? 4375;
+}
+
+async function insertManualRateSnapshot(
+  supabase: ReturnType<typeof createServiceClient>,
+  xauEur: number,
+  eurRsd: number
+) {
+  return supabase
+    .from("gold_price_snapshots")
+    .insert({
+      xau_eur: xauEur,
+      eur_rsd: eurRsd,
+      eur_rsd_source: "manual",
+      source: "manual_rates",
+      fetched_at: new Date().toISOString(),
+    })
+    .select()
+    .single();
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { eur_rsd } = body;
+    const eurRsdRaw = body.eur_rsd;
 
-    if (!eur_rsd) {
+    if (!eurRsdRaw) {
       return NextResponse.json({ error: "eur_rsd je obavezan" }, { status: 400 });
+    }
+
+    const eurRsd = Number(eurRsdRaw);
+    if (isNaN(eurRsd) || eurRsd < 50 || eurRsd > 500) {
+      return NextResponse.json({ error: "Nevažeći EUR/RSD kurs" }, { status: 400 });
     }
 
     const supabase = createServiceClient();
 
-    // Uzmi poslednji XAU/EUR iz snapshota
-    const { data: last } = await supabase
-      .from("gold_price_snapshots")
-      .select("xau_eur")
-      .order("fetched_at", { ascending: false })
-      .limit(1)
-      .single();
-
-    const xauEur = (last as any)?.xau_eur ?? 4375;
-
-    // Upiši novi snapshot sa novim EUR/RSD kursom
-    const { data, error } = await (supabase as any)
-      .from("gold_price_snapshots")
-      .insert({
-        xau_usd: null,
-        xau_eur: xauEur,
-        usd_rsd: null,
-        eur_rsd: Number(eur_rsd),
-        source: "manual_rates",
-        fetched_at: new Date().toISOString(),
-      })
-      .select()
-      .single();
+    const xauEur = await getLatestXauEur(supabase);
+    const { data, error } = await insertManualRateSnapshot(supabase, xauEur, eurRsd);
 
     if (error) throw error;
 
-    const rsdPerGram = ((xauEur / 31.1034) * Number(eur_rsd)).toFixed(2);
-    return NextResponse.json({ ok: true, rsd_per_gram: rsdPerGram, snapshot: data });
+    const rsdPerGram = Math.round((xauEur / GRAMS_PER_OZ) * eurRsd);
+
+    return NextResponse.json({
+      ok: true,
+      xau_eur: xauEur,
+      eur_rsd: eurRsd,
+      rsd_per_gram: rsdPerGram,
+      snapshot: data,
+    });
   } catch (err) {
     console.error("[api/admin/rates]", err);
     return NextResponse.json({ error: String(err) }, { status: 500 });

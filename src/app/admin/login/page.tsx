@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 
 export default function AdminLoginPage() {
@@ -34,8 +35,8 @@ export default function AdminLoginPage() {
 
         {/* Logo */}
         <div className="text-center mb-8">
-          <p className="font-serif text-2xl font-semibold text-[#BF8E41] tracking-widest">GOLD INVEST</p>
-          <p className="text-xs text-[#555] mt-1 tracking-wider uppercase">Admin panel</p>
+          <Image src="/logo.svg" alt="Gold Invest" width={200} height={60} className="mx-auto invert opacity-90" priority />
+          <p className="text-xs text-[#555] mt-3 tracking-wider uppercase">Admin panel</p>
         </div>
 
         {/* Card */}

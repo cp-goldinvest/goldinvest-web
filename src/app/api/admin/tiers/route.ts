@@ -34,3 +34,41 @@ export async function PATCH(request: Request) {
 
   return NextResponse.json({ ok: true });
 }
+
+export async function POST(request: Request) {
+  const body = await request.json();
+  const { name, category, weight_g, brand, margin_stock_pct, margin_advance_pct, margin_purchase_pct } = body;
+
+  if (!brand) return NextResponse.json({ error: "brand je obavezan" }, { status: 400 });
+
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from("pricing_tiers")
+    .insert({ name, category, weight_g, brand, margin_stock_pct, margin_advance_pct, margin_purchase_pct })
+    .select()
+    .single();
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(data, { status: 201 });
+}
+
+export async function DELETE(request: Request) {
+  const { id } = await request.json();
+  if (!id) return NextResponse.json({ error: "id je obavezan" }, { status: 400 });
+
+  const supabase = createServiceClient();
+
+  const { data: tier } = await supabase
+    .from("pricing_tiers")
+    .select("brand")
+    .eq("id", id)
+    .single();
+
+  if (!tier?.brand) {
+    return NextResponse.json({ error: "Ne možeš obrisati bazni tier" }, { status: 403 });
+  }
+
+  const { error } = await supabase.from("pricing_tiers").delete().eq("id", id);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json({ ok: true });
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
@@ -45,9 +46,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-64 shrink-0 bg-[#1B1B1C] border-r border-[#2E2E2F] flex flex-col">
 
         {/* Logo / brand */}
-        <div className="px-6 py-5 border-b border-[#2E2E2F]">
-          <p className="text-xs font-semibold text-[#BF8E41] tracking-widest uppercase">Gold Invest</p>
-          <p className="text-[11px] text-[#555] mt-0.5">Admin panel</p>
+        <div className="px-6 py-4 border-b border-[#2E2E2F]">
+          <Image src="/logo.svg" alt="Gold Invest" width={140} height={42} className="invert opacity-90" />
+          <p className="text-[11px] text-[#555] mt-1.5">Admin panel</p>
         </div>
 
         {/* Navigation */}

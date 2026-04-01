@@ -53,6 +53,7 @@ export type Database = {
           name: string;
           category: string | null;
           weight_g: number | null;
+          brand: string | null;
           margin_stock_pct: number;
           margin_advance_pct: number;
           margin_purchase_pct: number;
@@ -77,19 +78,36 @@ export type Database = {
       gold_price_snapshots: {
         Row: {
           id: string;
-          xau_usd: number;
+          xau_usd: number | null;         // nullable — EUR-only snapshots (manual_rates) omit USD
           xau_eur: number | null;
-          usd_rsd: number;
+          usd_rsd: number | null;         // nullable — EUR-only snapshots omit USD/RSD
           eur_rsd: number | null;
-          price_per_g_rsd: number;  // computed
-          source: string;
+          price_per_g_rsd: number | null; // computed: prefers xau_eur×eur_rsd, falls back to xau_usd×usd_rsd
+          source: string;                 // 'auto' | 'manual_rates'
+          eur_rsd_source: "manual" | "api" | "fallback" | null; // how EUR/RSD was resolved
           fetched_at: string;
         };
-        Insert: Omit<
-          Database["public"]["Tables"]["gold_price_snapshots"]["Row"],
-          "id" | "price_per_g_rsd"
-        >;
-        Update: Partial<Database["public"]["Tables"]["gold_price_snapshots"]["Insert"]>;
+        // Explicit Insert — price_per_g_rsd is generated (never inserted).
+        // xau_usd/usd_rsd are optional to support EUR-only admin rate snapshots.
+        Insert: {
+          id?: string;
+          xau_usd?: number | null;
+          xau_eur?: number | null;
+          usd_rsd?: number | null;
+          eur_rsd?: number | null;
+          source?: string;
+          eur_rsd_source?: "manual" | "api" | "fallback" | null;
+          fetched_at?: string;
+        };
+        Update: {
+          xau_usd?: number | null;
+          xau_eur?: number | null;
+          usd_rsd?: number | null;
+          eur_rsd?: number | null;
+          source?: string;
+          eur_rsd_source?: "manual" | "api" | "fallback" | null;
+          fetched_at?: string;
+        };
       };
       purchase_inquiries: {
         Row: {

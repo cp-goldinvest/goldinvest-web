@@ -123,7 +123,8 @@ export default async function ProizvodPage({
     product.category,
     snapshotRow,
     variant.pricing_rules ?? null,
-    tiers
+    tiers,
+    product.brand
   );
 
   const heroImages = variant.images?.length
@@ -317,12 +318,21 @@ export default async function ProizvodPage({
                       Prodajna cena
                     </p>
                   </div>
-                  <p
-                    className="text-[#1B1B1C] font-bold tabular-nums"
-                    style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: "clamp(20px, 2.2vw, 28px)" }}
-                  >
-                    {formatRsd(prices.stock)}
-                  </p>
+                  {prices.onRequest ? (
+                    <span
+                      className="inline-flex items-center justify-center px-3 py-1.5 rounded-full bg-[#F5F1E5] border border-[#D4C6A4] text-[11px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-[#7A6945]"
+                      style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                    >
+                      Na upit
+                    </span>
+                  ) : (
+                    <p
+                      className="text-[#1B1B1C] font-bold tabular-nums"
+                      style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: "clamp(20px, 2.2vw, 28px)" }}
+                    >
+                      {formatRsd(prices.stock)}
+                    </p>
+                  )}
                 </div>
 
                 {/* Avansna */}
@@ -336,12 +346,21 @@ export default async function ProizvodPage({
                   >
                     Avansna prodajna cena
                   </p>
-                  <p
-                    className="text-[#1B1B1C] font-semibold tabular-nums"
-                    style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 17 }}
-                  >
-                    {formatRsd(prices.advance)}
-                  </p>
+                  {prices.onRequest ? (
+                    <span
+                      className="inline-flex items-center justify-center px-3 py-1.5 rounded-full bg-[#F5F1E5] border border-[#D4C6A4] text-[11px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-[#7A6945]"
+                      style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                    >
+                      Na upit
+                    </span>
+                  ) : (
+                    <p
+                      className="text-[#1B1B1C] font-semibold tabular-nums"
+                      style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 17 }}
+                    >
+                      {formatRsd(prices.advance)}
+                    </p>
+                  )}
                 </div>
 
                 {/* Otkupna */}

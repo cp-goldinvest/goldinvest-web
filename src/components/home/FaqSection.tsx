@@ -1,8 +1,5 @@
-"use client";
-
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 
 const FAQS = [
   {
@@ -32,91 +29,28 @@ const FAQS = [
 ];
 
 export function FaqSection() {
-  const [open, setOpen] = useState<number | null>(null);
-
   return (
     <section
       className="py-20"
-      style={{
-        background: "linear-gradient(180deg, #D4C5A3 0%, #E7E5D9 37%, #EFE7DA 100%)",
-      }}
+      style={{ background: "linear-gradient(180deg, #D4C5A3 0%, #E7E5D9 37%, #EFE7DA 100%)" }}
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
-
-        {/* Header */}
         <div className="flex flex-col items-start text-left md:items-center md:text-center mb-10">
           <span
             className="text-white"
-            style={{
-              fontFamily: "var(--font-rethink), sans-serif",
-              fontWeight: 400,
-              fontSize: 19.01,
-              lineHeight: "30.9px",
-              letterSpacing: 0,
-              textShadow: "0 1px 2px rgba(0,0,0,0.12)",
-            }}
+            style={{ fontFamily: "var(--font-rethink), sans-serif", fontWeight: 400, fontSize: 19.01, lineHeight: "30.9px", textShadow: "0 1px 2px rgba(0,0,0,0.12)" }}
           >
             Edukacija
           </span>
           <h2
-            style={{
-              fontFamily: "var(--font-pp-editorial), Georgia, serif",
-              fontWeight: 400,
-              fontStyle: "italic",
-              fontSize: 35,
-              lineHeight: "60px",
-              letterSpacing: 0,
-              color: "#1B1B1C",
-            }}
+            style={{ fontFamily: "var(--font-pp-editorial), Georgia, serif", fontWeight: 400, fontStyle: "italic", fontSize: 35, lineHeight: "60px", color: "#1B1B1C" }}
           >
             Česta pitanja
           </h2>
         </div>
 
-        {/* FAQ cards */}
-        <div className="max-w-[760px] w-full md:mx-auto flex flex-col gap-3">
-          {FAQS.map((faq, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-xl overflow-hidden"
-              style={{ border: "1px solid rgba(190,173,135,0.68)" }}
-            >
-              <button
-                className="w-full flex items-center justify-between px-6 py-5 text-left"
-                onClick={() => setOpen(open === i ? null : i)}
-              >
-                <span
-                  className="text-[#1B1B1C] pr-6"
-                  style={{
-                    fontFamily: "var(--font-rethink), sans-serif",
-                    fontWeight: 600,
-                    fontSize: 18,
-                    lineHeight: "28px",
-                    letterSpacing: 0,
-                  }}
-                >
-                  {faq.q}
-                </span>
-                <ChevronDown
-                  size={18}
-                  className={`text-[#BEAD87] transition-transform shrink-0 ${open === i ? "rotate-180" : ""}`}
-                />
-              </button>
-              {open === i && (
-                <div className="px-6 pb-5 border-t border-[#F0EDE6]">
-                  <p
-                    className="text-[#6B5E3F] leading-relaxed pt-4"
-                    style={{ fontSize: 15 }}
-                  >
-                    {faq.a}
-                  </p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <FaqAccordion items={FAQS} />
 
-        {/* CTA — sve FAQ */}
         <div className="flex justify-start md:justify-center mt-8">
           <Link
             href="/faq"
@@ -126,7 +60,6 @@ export function FaqSection() {
             Pogledaj sva pitanja
           </Link>
         </div>
-
       </div>
     </section>
   );

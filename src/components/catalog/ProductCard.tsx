@@ -16,6 +16,7 @@ type Props = {
     stock: number;
     advance: number;
     purchase: number;
+    onRequest?: boolean;
   };
 };
 
@@ -23,6 +24,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
   const href = `/proizvodi/${slug}`;
   const inStock = availability === "in_stock";
   const isPreorder = availability === "preorder";
+  const onRequest = prices.onRequest ?? false;
 
   return (
     <div className="group relative flex flex-col bg-white border border-[#F3F4F6] rounded-2xl overflow-hidden hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300">
@@ -79,8 +81,8 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
 
         {/* Price rows — jedan red (label levo, cena desno) na mobile i desktop */}
         <div className="flex flex-col gap-1.5 mb-5">
-          <PriceRow label="Prodajna" labelFull="Prodajna cena" value={formatRsd(prices.stock)} bold />
-          <PriceRow label="Avansna" labelFull="Avansna cena" value={formatRsd(prices.advance)} />
+          <PriceRow label="Prodajna" labelFull="Prodajna cena" value={onRequest ? "Na upit" : formatRsd(prices.stock)} bold onRequest={onRequest} />
+          <PriceRow label="Avansna" labelFull="Avansna cena" value={onRequest ? "Na upit" : formatRsd(prices.advance)} onRequest={onRequest} />
           <PriceRow label="Otkupna" labelFull="Otkupna cena" value={formatRsd(prices.purchase)} muted />
         </div>
 
@@ -111,15 +113,29 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
   );
 }
 
-function PriceRow({ label, labelFull, value, bold, muted }: { label: string; labelFull?: string; value: string; bold?: boolean; muted?: boolean }) {
+function PriceRow({ label, labelFull, value, bold, muted, onRequest }: { label: string; labelFull?: string; value: string; bold?: boolean; muted?: boolean; onRequest?: boolean }) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-2 min-w-0">
       <span className={`text-sm shrink-0 ${muted ? "text-[#666]" : "text-[#464747]"}`}>
         {labelFull ?? label}
       </span>
-      <span className={`tabular-nums whitespace-nowrap sm:text-right ${bold ? "text-[13px] sm:text-base font-bold text-[#1B1B1C]" : muted ? "text-[12px] sm:text-sm text-[#555]" : "text-[12px] sm:text-[15px] font-medium text-[#1B1B1C]"}`}>
-        {value}
-      </span>
+      {onRequest ? (
+        <span className="inline-flex items-center justify-center whitespace-nowrap sm:text-right px-2.5 py-1 rounded-full bg-[#F5F1E5] border border-[#D4C6A4] text-[11px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-[#7A6945]">
+          {value}
+        </span>
+      ) : (
+        <span
+          className={`whitespace-nowrap sm:text-right tabular-nums ${
+            bold
+              ? "text-[13px] sm:text-base font-bold text-[#1B1B1C]"
+              : muted
+              ? "text-[12px] sm:text-sm text-[#555]"
+              : "text-[12px] sm:text-[15px] font-medium text-[#1B1B1C]"
+          }`}
+        >
+          {value}
+        </span>
+      )}
     </div>
   );
 }

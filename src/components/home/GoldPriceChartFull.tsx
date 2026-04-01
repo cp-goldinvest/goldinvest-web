@@ -182,7 +182,7 @@ export function GoldPriceChartFull() {
   };
 
   return (
-    <section className="bg-[#F9F9F9] py-16 border-b border-[#F0EDE6]">
+    <section className="bg-[#F9F9F9] pt-0 pb-16 border-b border-[#F0EDE6]">
       <SectionContainer>
         {/* Currency + Unit filter rows */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6 justify-between items-start sm:items-center">

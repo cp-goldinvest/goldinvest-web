@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { GoldPriceChartFull } from "@/components/home/GoldPriceChartFull";
 import { CategoryHero } from "@/components/catalog/CategoryHero";
 import { DarkQuoteSection } from "@/components/catalog/DarkQuoteSection";
@@ -10,6 +11,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
 import { SchemaScript } from "@/components/ui/SchemaScript";
 import { buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema } from "@/lib/schema";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Cena Zlata | Grafikon kretanja Cene na Berzi | Gold Invest",
@@ -87,7 +90,17 @@ export default function CenaZlataPage() {
       {/* Hero */}
       <CategoryHero
         title="Cena zlata na berzi"
-        introFull="Pratite aktuelnu cenu zlata na svetskim berzama u realnom vremenu. Vrednost plemenitih metala se menja iz minuta u minut, a naš grafikon vam omogućava da transparentno analizirate trenutne trendove i istorijski rast zlata kako biste doneli najbolju odluku za investiciono zlato."
+        introFull={
+          <>
+            Pratite aktuelnu cenu zlata na svetskim berzama u realnom vremenu. Vrednost plemenitih metala se menja iz
+            minuta u minut, a naš grafikon vam omogućava da transparentno analizirate trenutne trendove i istorijski rast
+            zlata kako biste doneli najbolju odluku za{" "}
+            <Link href="/" className="underline decoration-[#BF8E41]/60 underline-offset-4 hover:text-[#BF8E41]">
+              investiciono zlato
+            </Link>
+            .
+          </>
+        }
         pills={[]}
         introMaxWidth="none"
         centerOnDesktop
@@ -95,7 +108,7 @@ export default function CenaZlataPage() {
 
       {/* Chart — currency + unit + period filters */}
       <div className="bg-[#F9F9F9]">
-        <SectionContainer className="pt-16 sm:pt-20">
+        <SectionContainer className="pt-3 sm:pt-4 pb-0">
           <SectionHeading
             title="Grafikon uživo"
             description="Uvid u aktuelnu cenu zlata i tržišne trendove kroz dinamički prikaz u realnom vremenu."
