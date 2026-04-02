@@ -181,8 +181,8 @@ export function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === "sending"}
-        className="inline-flex items-center justify-center gap-2 w-full py-4 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90 disabled:opacity-60"
+        disabled
+        className="inline-flex items-center justify-center gap-2 w-full py-4 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         style={{
           backgroundColor: "#BEAD87",
           fontFamily: "var(--font-rethink), sans-serif",
@@ -190,14 +190,7 @@ export function ContactForm() {
           boxShadow: "0px 4px 14px rgba(190,173,135,0.35)",
         }}
       >
-        {status === "sending" ? (
-          <>
-            <Loader2 size={16} className="animate-spin" />
-            Šaljem...
-          </>
-        ) : (
-          "POŠALJI PORUKU"
-        )}
+        Forma privremeno nedostupna
       </button>
 
       <p
