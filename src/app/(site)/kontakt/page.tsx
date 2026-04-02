@@ -13,7 +13,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 export const metadata: Metadata = {
   title: "Kontakt | Gold Invest — Investiciono zlato Beograd",
   description:
-    "Kontaktirajte Gold Invest za upit o kupovini ili otkupu investicionog zlata. Beograd, radno vreme pon–pet 09–17h, sub 09–13h. Telefon: 061/269-8569.",
+    "Kontaktirajte Gold Invest za upit o kupovini ili otkupu investicionog zlata. Beograd, radno vreme pon–pet 09–17h, sub 09–13h. Telefon: 061/426-4129.",
   alternates: { canonical: "https://goldinvest.rs/kontakt" },
   openGraph: {
     title: "Kontakt | Gold Invest",
@@ -101,7 +101,7 @@ export default function KontaktPage() {
             <div>
               {/* Phone — primary CTA */}
               <a
-                href="tel:+381612698569"
+                href="tel:+381614264129"
                 className="group flex items-center gap-4 mb-10"
               >
                 <span
@@ -127,7 +127,7 @@ export default function KontaktPage() {
                       lineHeight: "1.1",
                     }}
                   >
-                    061/269-8569
+                    061/426-4129
                   </span>
                 </div>
               </a>
@@ -180,9 +180,7 @@ export default function KontaktPage() {
                         lineHeight: "1.5",
                       }}
                     >
-                      Bulevar oslobođenja 123
-                      <br />
-                      11000 Beograd, Srbija
+                      Beograd, Srbija
                     </p>
                   </div>
                 </div>
@@ -303,9 +301,7 @@ export default function KontaktPage() {
                     lineHeight: "1.2",
                   }}
                 >
-                  Bulevar oslobođenja 123,
-                  <br />
-                  Beograd
+                  Beograd, Srbija
                 </h2>
                 <p
                   className="text-[#8B806D] text-sm leading-relaxed mb-6"
@@ -315,7 +311,7 @@ export default function KontaktPage() {
                 </p>
               </div>
               <a
-                href="https://maps.google.com/?q=Bulevar+oslobodjenja+123,+Beograd"
+                href="https://maps.google.com/?q=Beograd,+Srbija"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[#BEAD87] font-semibold hover:gap-3 transition-all"
@@ -336,7 +332,7 @@ export default function KontaktPage() {
             >
               <iframe
                 title="Gold Invest lokacija"
-                src="https://maps.google.com/maps?q=Bulevar+oslobodjenja+123,+Beograd&output=embed&z=15"
+                src="https://maps.google.com/maps?q=Beograd,+Srbija&output=embed&z=12"
                 width="100%"
                 height="100%"
                 style={{ border: 0, display: "block", minHeight: 320 }}

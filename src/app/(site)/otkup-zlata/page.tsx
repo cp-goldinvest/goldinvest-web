@@ -288,7 +288,7 @@ export default function OtkupZlataPage() {
 
           <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-center mt-16">
             <a
-              href="tel:+381612698569"
+              href="tel:+381614264129"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-semibold transition-all duration-200 hover:opacity-90"
               style={{
                 backgroundColor: "#1B1B1C",
@@ -298,7 +298,7 @@ export default function OtkupZlataPage() {
               }}
             >
               <Phone size={15} />
-              POZOVITE: 061/269-8569
+              POZOVITE: 061/426-4129
             </a>
             <Link
               href="/kontakt"
@@ -667,7 +667,7 @@ export default function OtkupZlataPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
             <a
-              href="tel:+381612698569"
+              href="tel:+381614264129"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90"
               style={{
                 backgroundColor: "#BEAD87",
@@ -677,7 +677,7 @@ export default function OtkupZlataPage() {
               }}
             >
               <Phone size={15} />
-              POZOVITE: 061/269-8569
+              POZOVITE: 061/426-4129
             </a>
             <Link
               href="/kontakt"

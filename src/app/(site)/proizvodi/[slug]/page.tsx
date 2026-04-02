@@ -37,7 +37,7 @@ export async function generateMetadata({
     const image = row?.images?.[0] ?? "/images/product-poluga.webp";
     return {
       title: `${name} ${weight} | Cena i Prodaja — Gold Invest Beograd`,
-      description: `Kupite ${name} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/269-8569.`,
+      description: `Kupite ${name} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/426-4129.`,
       alternates: { canonical: `https://goldinvest.rs/proizvodi/${slug}` },
       openGraph: {
         title: `${name} ${weight} | Gold Invest`,
@@ -383,7 +383,7 @@ export default async function ProizvodPage({
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href="tel:+381612698569"
+                  href="tel:+381614264129"
                   className="flex-1 inline-flex items-center justify-center gap-2.5 rounded-full font-bold transition-opacity hover:opacity-90 min-h-[60px] sm:min-h-[52px]"
                   style={{
                     backgroundColor: "#BEAD87",
@@ -394,7 +394,7 @@ export default async function ProizvodPage({
                   }}
                 >
                   <Phone size={16} strokeWidth={2.2} />
-                  Pozovite — 061/269-8569
+                  Pozovite — 061/426-4129
                 </a>
                 <Link
                   href="/kontakt"

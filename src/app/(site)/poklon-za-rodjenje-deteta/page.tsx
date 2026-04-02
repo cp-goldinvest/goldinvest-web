@@ -64,7 +64,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Mogu li kupiti poklon za novorođenče onlajn i dobiti dostavu u Beogradu?",
-    a: "Da. Poklon možete poručiti telefonom (061/269-8569) ili putem upita na sajtu. Diskretna dostava kurirskom službom dostupna je na čitavoj teritoriji Srbije u roku od 1–2 radna dana. Lično preuzimanje u našoj poslovnici u Beogradu moguće je odmah po potvrdi narudžbine — bez prethodnog zakazivanja.",
+    a: "Da. Poklon možete poručiti telefonom (061/426-4129) ili putem upita na sajtu. Diskretna dostava kurirskom službom dostupna je na čitavoj teritoriji Srbije u roku od 1–2 radna dana. Lično preuzimanje u našoj poslovnici u Beogradu moguće je odmah po potvrdi narudžbine — bez prethodnog zakazivanja.",
   },
 ];
 
@@ -364,8 +364,8 @@ export default async function PoklonaZaRodjenjePage() {
                 Pored lične kupovine u Beogradu, dostava je dostupna na čitavoj teritoriji Srbije kurirskom službom —
                 diskretno, osigurano i u roku od 1–2 radna dana. Za hitne porudžbine (npr. kad saznate da je beba
                 stigla), pozovite nas direktno na{" "}
-                <a href="tel:+381612698569" className="text-[#BF8E41] font-semibold hover:underline">
-                  061/269-8569
+                <a href="tel:+381614264129" className="text-[#BF8E41] font-semibold hover:underline">
+                  061/426-4129
                 </a>{" "}
                 — organizujemo isporuku isti dan.
               </p>
@@ -377,7 +377,7 @@ export default async function PoklonaZaRodjenjePage() {
             </div>
             <div className="flex flex-wrap gap-3 mt-7">
               <a
-                href="tel:+381612698569"
+                href="tel:+381614264129"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[#1B1B1C] font-semibold text-[13px] hover:opacity-90 transition-opacity"
                 style={{
                   backgroundColor: "#BEAD87",
@@ -385,7 +385,7 @@ export default async function PoklonaZaRodjenjePage() {
                   boxShadow: "0px 4px 14px rgba(190,173,135,0.35)",
                 }}
               >
-                Pozovite: 061/269-8569
+                Pozovite: 061/426-4129
               </a>
               <Link
                 href="/kontakt"

@@ -70,10 +70,10 @@ export function ContactForm() {
         >
           Javićemo vam se u toku istog radnog dana. Ako imate hitno pitanje, slobodno nas pozovite direktno na{" "}
           <a
-            href="tel:+381612698569"
+            href="tel:+381614264129"
             className="text-[#BF8E41] font-semibold hover:underline"
           >
-            061/269-8569
+            061/426-4129
           </a>
           .
         </p>

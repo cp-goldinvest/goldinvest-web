@@ -93,7 +93,7 @@ Za ostvarivanje ovih prava pišite nam na: info@goldinvest.rs`,
     title: "10. Kontakt",
     content: `Gold Invest
 E-mail: info@goldinvest.rs
-Telefon: 061/269-8569`,
+Telefon: 061/426-4129`,
   },
 ];
 

@@ -47,7 +47,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Koliko košta dostava?",
-    a: "Cena bezbedne i osigurane dostave zavisi od vrednosti porudžbine. Kontaktirajte nas na 061 269 8569 ili putem kontakt forme za tačan iznos.",
+    a: "Cena bezbedne i osigurane dostave zavisi od vrednosti porudžbine. Kontaktirajte nas na 061 426 4129 ili putem kontakt forme za tačan iznos.",
   },
   {
     q: "Da li otkupljujete dukate koji su kupljeni na drugom mestu?",
@@ -106,7 +106,7 @@ export default async function ZlatniDukatiPage() {
         { label: "Zlatni dukati", href: "/kategorija/zlatni-dukati" },
       ]}
       heroTitle="Dukati"
-      heroIntro="Zlatni dukati su najtraženije svetske investicione kovanice, pogotovo čuveni Dukat Franc Jozef i prestižna Bečka Filharmonija. Obezbedili smo vam transparentne cene, oslobođenje od poreza i povoljne otkupne cene. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!"
+      heroIntro="Zlatni dukati su najtraženije svetske investicione kovanice, pogotovo čuveni Dukat Franc Jozef i prestižna Bečka Filharmonija. Obezbedili smo vam transparentne cene, oslobođenje od poreza i povoljne otkupne cene. Poruči putem kontakt forme ili na broj 0614264129 — BRZA dostava!"
       heroPills={[
         { label: "Franc Jozef dukat", href: "/kategorija/zlatni-dukati/franc-jozef-dukat" },
         { label: "Bečka filharmonija dukat", href: "/kategorija/zlatni-dukati/becka-filharmonija-dukat" },

@@ -70,7 +70,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite zlatnu pločicu 1g čistoće 999,9 — C. Hafner, Argor-Heraeus. Najpopularniji poklon za krštenje i rođenje, oslobođena PDV-a. Transparentne cene, brza dostava.",
     intro:
-      "Zlatna pločica od 1 grama je najpristupačniji ulaz u svet investicionog zlata i apsolutni broj jedan kada je reč o poklonima za krštenje i rođenje. Sadrži 99,99% čistog zlata (24 karata), dolazi fabrički zapečaćena u sigurnosnom blisteru koji je ujedno i sertifikat — i u potpunosti je oslobođena PDV-a. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
+      "Zlatna pločica od 1 grama je najpristupačniji ulaz u svet investicionog zlata i apsolutni broj jedan kada je reč o poklonima za krštenje i rođenje. Sadrži 99,99% čistog zlata (24 karata), dolazi fabrički zapečaćena u sigurnosnom blisteru koji je ujedno i sertifikat — i u potpunosti je oslobođena PDV-a. Poruči putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
     seo: {
       brands: {
         heading: "Naša ponuda — pločice od 1g (LBMA standard)",
@@ -166,7 +166,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite zlatnu pločicu 2g čistoće 999,9 — Argor-Heraeus, C. Hafner. Odličan poklon i početni korak u štednji zlata. Oslobođena PDV-a. Brza dostava Beograd i Srbija.",
     intro:
-      "Zlatna pločica od 2 grama je savršen balans između simboličnog poklona i ozbiljnog prvog koraka u štednji. Duplo više zlata od najmanjih pločica, uz nešto povoljniju premiju po gramu — a i dalje sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
+      "Zlatna pločica od 2 grama je savršen balans između simboličnog poklona i ozbiljnog prvog koraka u štednji. Duplo više zlata od najmanjih pločica, uz nešto povoljniju premiju po gramu — a i dalje sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poruči putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
     seo: {
       brands: {
         heading: "Naša ponuda — pločice od 2g (LBMA standard)",
@@ -262,7 +262,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite zlatnu pločicu 5g čistoće 999,9 — Argor-Heraeus, C. Hafner. Najpopularniji format za mesečnu štednju u zlatu. Oslobođena PDV-a. Brza dostava Beograd i Srbija.",
     intro:
-      "Zlatna pločica od 5 grama je najpopularniji format za sistematsku mesečnu štednju u zlatu. Nudi značajno povoljniju premiju po gramu u poređenju sa manjim pločicama, dovoljno je pristupačna da je možete kupovati redovno, a dovoljno vredna da za godinu dana osetite razliku. Sadrži 99,99% čistog zlata (24 karata), potpuno je oslobođena PDV-a. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
+      "Zlatna pločica od 5 grama je najpopularniji format za sistematsku mesečnu štednju u zlatu. Nudi značajno povoljniju premiju po gramu u poređenju sa manjim pločicama, dovoljno je pristupačna da je možete kupovati redovno, a dovoljno vredna da za godinu dana osetite razliku. Sadrži 99,99% čistog zlata (24 karata), potpuno je oslobođena PDV-a. Poruči putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
     seo: {
       brands: {
         heading: "Naša ponuda — pločice od 5g (LBMA standard)",
@@ -358,7 +358,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite LBMA sertifikovanu zlatnu pločicu 10g čistoće 999,9 — Argor-Heraeus, C. Hafner, The Royal Mint. Idealna za redovnu štednju i poklon. Transparentne cene, brza dostava.",
     intro:
-      "Zlatna pločica 10 grama je idealan izbor za redovnu mesečnu štednju, ali i kao izuzetno vredan i prestižan poklon. U našoj ponudi se nalaze isključivo pločice čistoće 999,9 svetskih lidera: Argor-Heraeus, C. Hafner i The Royal Mint. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
+      "Zlatna pločica 10 grama je idealan izbor za redovnu mesečnu štednju, ali i kao izuzetno vredan i prestižan poklon. U našoj ponudi se nalaze isključivo pločice čistoće 999,9 svetskih lidera: Argor-Heraeus, C. Hafner i The Royal Mint. Poruči putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
     seo: {
       brands: {
         heading: "Naša ponuda — evropski brendovi (LBMA standard)",
@@ -454,7 +454,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite zlatnu pločicu 20g čistoće 999,9 — Argor-Heraeus, C. Hafner. Najbolja premija u kategoriji pločica. Oslobođena PDV-a. Transparentne cene, brza dostava.",
     intro:
-      "Zlatna pločica od 20 grama je najveći format u kategoriji pločica i nudi najbolju premiju po gramu u celoj liniji — bez kompromisa po pitanju fleksibilnosti. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Idealna za ozbiljne investitore koji žele veću vrednost u kompaktnom formatu. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
+      "Zlatna pločica od 20 grama je najveći format u kategoriji pločica i nudi najbolju premiju po gramu u celoj liniji — bez kompromisa po pitanju fleksibilnosti. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Idealna za ozbiljne investitore koji žele veću vrednost u kompaktnom formatu. Poruči putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
     seo: {
       brands: {
         heading: "Naša ponuda — pločice od 20g (LBMA standard)",
@@ -697,11 +697,11 @@ export default async function PlocicaWeightPage({
                   UPIT ZA CENU
                 </a>
                 <a
-                  href="tel:+381612698569"
+                  href="tel:+381614264129"
                   className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-[#BEAD87] text-[#1B1B1C] font-semibold transition-opacity hover:opacity-90"
                   style={{ fontSize: 12.1 }}
                 >
-                  POZOVITE +381 61/269 8569
+                  POZOVITE +381 61/426 4129
                 </a>
               </div>
             </div>

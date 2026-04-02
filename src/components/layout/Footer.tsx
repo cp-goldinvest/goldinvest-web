@@ -114,13 +114,13 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin size={20} color="#99A1AF" className="mt-0.5 shrink-0" />
                 <span style={linkStyle}>
-                  Bulevar oslobođenja 123,<br />11000 Beograd, Srbija
+                  Beograd, Srbija
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={20} color="#99A1AF" className="shrink-0" />
-                <a href="tel:+381612698569" className="hover:text-white transition-colors" style={linkStyle}>
-                  061/269-8569
+                <a href="tel:+381614264129" className="hover:text-white transition-colors" style={linkStyle}>
+                  061/426-4129
                 </a>
               </li>
               <li className="flex items-center gap-3">

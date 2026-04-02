@@ -138,18 +138,18 @@ export function Header() {
       <div className="w-full h-10 flex items-center overflow-hidden">
         {/* Desktop: centrirano */}
         <div className="hidden sm:flex w-full items-center justify-center">
-          <a href="tel:+381612698569" className="flex items-center gap-2 text-[#4A3F2F] hover:opacity-80 transition-opacity">
+          <a href="tel:+381614264129" className="flex items-center gap-2 text-[#4A3F2F] hover:opacity-80 transition-opacity">
             <Phone size={15} color="#4A3F2F" />
             <span className="text-[14px]">Pozovite za sve informacije →</span>
-            <span className="text-[14px] font-bold ml-1 text-[#BF8E41]">061/269-8569</span>
+            <span className="text-[14px] font-bold ml-1 text-[#BF8E41]">061/426-4129</span>
           </a>
         </div>
         {/* Mobile: static (centered) */}
         <div className="flex sm:hidden w-full items-center justify-center">
-          <a href="tel:+381612698569" className="flex items-center gap-2 text-[#4A3F2F] text-[14px] hover:opacity-80 transition-opacity">
+          <a href="tel:+381614264129" className="flex items-center gap-2 text-[#4A3F2F] text-[14px] hover:opacity-80 transition-opacity">
             <Phone size={15} color="#4A3F2F" />
             <span>Pozovite za sve informacije →</span>
-            <span className="font-bold ml-1 text-[#BF8E41]">061/269-8569</span>
+            <span className="font-bold ml-1 text-[#BF8E41]">061/426-4129</span>
           </a>
         </div>
       </div>

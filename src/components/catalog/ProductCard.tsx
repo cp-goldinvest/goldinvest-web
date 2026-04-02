@@ -100,7 +100,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
 
           {/* Pozovi — outline */}
           <a
-            href="tel:+381612698569"
+            href="tel:+381614264129"
             onClick={(e) => e.stopPropagation()}
             className="flex-1 min-w-0 inline-flex items-center justify-center px-2 sm:px-3 py-1.5 rounded-full text-[#000] text-xs font-medium whitespace-nowrap transition-colors hover:bg-black/5"
             style={{ border: "0.5px solid rgba(0,0,0,0.75)", fontSize: 11 }}

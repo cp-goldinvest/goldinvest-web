@@ -69,7 +69,7 @@ Veze ka spoljnim sajtovima ne podrazumevaju našu preporuku ili odgovornost za n
     content: `Za pitanja u vezi sa ovim Uslovima možete nas kontaktirati:
 
 E-mail: info@goldinvest.rs
-Telefon: 061/269-8569`,
+Telefon: 061/426-4129`,
   },
 ];
 

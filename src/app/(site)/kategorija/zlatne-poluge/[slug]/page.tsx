@@ -123,7 +123,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite zlatnu polugu 1 troy uncu (31,1g) čistoće 999,9 — Argor-Heraeus, C. Hafner. Globalno najlikvidniji format. Oslobođena PDV-a. Brza dostava Beograd i Srbija.",
     intro:
-      "Zlatna poluga od 1 troy unce (31,1034g) je globalno najlikvidniji i najprepoznatljiviji format investicionog zlata. Sva berza i svi dileri na svetu kotiraju cenu u trojskim uncama — što znači da je ova poluga prihvaćena i odmah naplativa apsolutno svuda. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
+      "Zlatna poluga od 1 troy unce (31,1034g) je globalno najlikvidniji i najprepoznatljiviji format investicionog zlata. Sva berza i svi dileri na svetu kotiraju cenu u trojskim uncama — što znači da je ova poluga prihvaćena i odmah naplativa apsolutno svuda. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
     seo: {
       brands: {
         heading: "Naša ponuda — poluge od 1 unce (LBMA Good Delivery)",
@@ -196,7 +196,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite zlatnu polugu 50g čistoće 999,9 — Argor-Heraeus, C. Hafner. Ulaz u svet pravih poluga sa povoljnom premijom. Oslobođena PDV-a. Brza dostava Beograd i Srbija.",
     intro:
-      "Zlatna poluga od 50 grama je idealan prvi korak u svetu pravih investicionih poluga. Nudi osetno povoljniju premiju po gramu od svih zlatnih pločica, a još uvek je dovoljno pristupačna da je mogu priuštiti investitori sa srednjim budžetom. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
+      "Zlatna poluga od 50 grama je idealan prvi korak u svetu pravih investicionih poluga. Nudi osetno povoljniju premiju po gramu od svih zlatnih pločica, a još uvek je dovoljno pristupačna da je mogu priuštiti investitori sa srednjim budžetom. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
     seo: {
       brands: {
         heading: "Naša ponuda — poluge od 50g (LBMA Good Delivery)",
@@ -266,7 +266,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite zlatnu polugu 100g čistoće 999,9 — Argor-Heraeus, C. Hafner. Najprodavaniji format na srpskom i evropskom tržištu. Oslobođena PDV-a. Brza dostava.",
     intro:
-      "Zlatna poluga od 100 grama je apsolutno najprodavaniji format na domaćem i evropskom tržištu investicionog zlata — i to nije slučajnost. Nudi optimalan balans između povoljne premije po gramu, lakoće čuvanja i maksimalne likvidnosti pri prodaji. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0612698569 — BRZA dostava!",
+      "Zlatna poluga od 100 grama je apsolutno najprodavaniji format na domaćem i evropskom tržištu investicionog zlata — i to nije slučajnost. Nudi optimalan balans između povoljne premije po gramu, lakoće čuvanja i maksimalne likvidnosti pri prodaji. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
     seo: {
       brands: {
         heading: "Naša ponuda — poluge od 100g (LBMA Good Delivery)",
@@ -350,7 +350,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite zlatnu polugu 500g čistoće 999,9 — Argor-Heraeus, C. Hafner. Minimalna premija, maksimalna efikasnost kapitala. Oslobođena PDV-a. Individualna ponuda.",
     intro:
-      "Zlatna poluga od 500 grama je izbor ozbiljnih investitora koji žele da maksimizuju količinu čistog zlata za svaki uloženi dinar. Nudi jednu od najnižih premija u kategoriji, a vrednost poluge je dovoljno značajna da se tretira kao ozbiljna finansijska rezerva. Sadrži 99,99% čistog zlata (24 karata), u LBMA sertifikovanom blisteru, oslobođena PDV-a. Kontaktirajte nas za aktuelnu cenu: 0612698569.",
+      "Zlatna poluga od 500 grama je izbor ozbiljnih investitora koji žele da maksimizuju količinu čistog zlata za svaki uloženi dinar. Nudi jednu od najnižih premija u kategoriji, a vrednost poluge je dovoljno značajna da se tretira kao ozbiljna finansijska rezerva. Sadrži 99,99% čistog zlata (24 karata), u LBMA sertifikovanom blisteru, oslobođena PDV-a. Kontaktirajte nas za aktuelnu cenu: 0614264129.",
     seo: {
       brands: {
         heading: "Naša ponuda — poluge od 500g (LBMA Good Delivery)",
@@ -424,7 +424,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     metaDescription:
       "Kupite zlatnu polugu 1kg čistoće 999,9 — matematički najefikasniji format investicionog zlata. LBMA Good Delivery. Oslobođena PDV-a. Individualna ponuda — pozovite nas.",
     intro:
-      "Zlatna poluga od 1 kilograma je matematički najefikasniji format investicionog zlata i standard kojim trguju centralne banke celog sveta. Minimalan spread, maksimalna vrednost po gramu — i ni gram više premije nego što je neophodno. Sadrži 99,99% čistog zlata (24 karata), u LBMA 'Good Delivery' sertifikovanom pakovanju, u potpunosti oslobođena PDV-a. Za aktuelnu cenu i uslove, pozovite nas na 0612698569.",
+      "Zlatna poluga od 1 kilograma je matematički najefikasniji format investicionog zlata i standard kojim trguju centralne banke celog sveta. Minimalan spread, maksimalna vrednost po gramu — i ni gram više premije nego što je neophodno. Sadrži 99,99% čistog zlata (24 karata), u LBMA 'Good Delivery' sertifikovanom pakovanju, u potpunosti oslobođena PDV-a. Za aktuelnu cenu i uslove, pozovite nas na 0614264129.",
     seo: {
       brands: {
         heading: "Naša ponuda — poluge od 1kg (LBMA Good Delivery)",
@@ -484,7 +484,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           },
           {
             q: "Kako se organizuje kupovina poluge od 1kg?",
-            a: "Za poluge ove gramaže, kupovina se odvija uz kratku koordinaciju. Pozovite nas na 0612698569 ili pošaljite upit putem kontakt forme. Dogovorićemo aktuelnu cenu, način uplate i termin preuzimanja. Cela transakcija je diskretna, sa potpunom dokumentacijom i garancijom autentičnosti.",
+            a: "Za poluge ove gramaže, kupovina se odvija uz kratku koordinaciju. Pozovite nas na 0614264129 ili pošaljite upit putem kontakt forme. Dogovorićemo aktuelnu cenu, način uplate i termin preuzimanja. Cela transakcija je diskretna, sa potpunom dokumentacijom i garancijom autentičnosti.",
           },
           {
             q: "Šta je 'Good Delivery bar' standard?",
@@ -642,11 +642,11 @@ export default async function PolugaWeightPage({
                   UPIT ZA CENU
                 </a>
                 <a
-                  href="tel:+381612698569"
+                  href="tel:+381614264129"
                   className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-[#BEAD87] text-[#1B1B1C] font-semibold transition-opacity hover:opacity-90"
                   style={{ fontSize: 12.1 }}
                 >
-                  POZOVITE +381 61/269 8569
+                  POZOVITE +381 61/426 4129
                 </a>
               </div>
             </div>

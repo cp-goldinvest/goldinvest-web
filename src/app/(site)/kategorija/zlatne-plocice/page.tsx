@@ -55,7 +55,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Koliko košta dostava?",
-    a: "Cena bezbedne i osigurane dostave zavisi od težine i vrednosti porudžbine. Kontaktirajte nas na 061 269 8569 ili putem kontakt forme za tačan iznos.",
+    a: "Cena bezbedne i osigurane dostave zavisi od težine i vrednosti porudžbine. Kontaktirajte nas na 061 426 4129 ili putem kontakt forme za tačan iznos.",
   },
   {
     q: "Šta je bolji poklon — zlatna pločica ili zlatni dukat?",
@@ -101,7 +101,7 @@ export default async function ZlatnePlocicePage() {
         { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
       ]}
       heroTitle="Zlatne pločice"
-      heroIntro="Zlatne pločice su najpametniji način da započnete izgradnju svog investicionog portfolija, ali i najvredniji poklon za vama drage osobe. Nudimo isključivo LBMA sertifikovane pločice čistoće 999,9, prestižnih evropskih kovnica. Obezbedili smo transparentne cene i brzu isporuku. Poruči putem kontakt forme ili na broj 0612698569 — BRZA dostava!"
+      heroIntro="Zlatne pločice su najpametniji način da započnete izgradnju svog investicionog portfolija, ali i najvredniji poklon za vama drage osobe. Nudimo isključivo LBMA sertifikovane pločice čistoće 999,9, prestižnih evropskih kovnica. Obezbedili smo transparentne cene i brzu isporuku. Poruči putem kontakt forme ili na broj 0614264129 — BRZA dostava!"
       heroPills={[
         { label: "Zlatna pločica 1 gram", href: "/kategorija/zlatne-plocice/zlatna-plocica-1g" },
         { label: "Zlatna pločica 2 grama", href: "/kategorija/zlatne-plocice/zlatna-plocica-2g" },

@@ -155,7 +155,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Za sva pitanja o kupovini zlatnih poluga u Srbiji, pozovite nas na 061/269-8569 ili posetite naš centar u Beogradu.",
+          "Za sva pitanja o kupovini zlatnih poluga u Srbiji, pozovite nas na 061/426-4129 ili posetite naš centar u Beogradu.",
       },
     ],
   },
@@ -273,7 +273,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Za informacije o kupovini, pozovite 061/269-8569.",
+          "Za informacije o kupovini, pozovite 061/426-4129.",
       },
     ],
   },
@@ -449,7 +449,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Za konkretne informacije o aktuelnim cenama i dostupnim formatima, kontaktirajte nas na 061/269-8569 ili posetite našu poslovnicu u Beogradu.",
+          "Za konkretne informacije o aktuelnim cenama i dostupnim formatima, kontaktirajte nas na 061/426-4129 ili posetite našu poslovnicu u Beogradu.",
       },
     ],
   },
@@ -575,7 +575,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Pozovite nas na 061/269-8569 za savet.",
+          "Pozovite nas na 061/426-4129 za savet.",
       },
     ],
   },
@@ -720,7 +720,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       },
       {
         type: "paragraph",
-        text: "Za sve informacije o dostupnim LBMA polugama, pozovite nas na 061/269-8569.",
+        text: "Za sve informacije o dostupnim LBMA polugama, pozovite nas na 061/426-4129.",
       },
     ],
   },
@@ -821,7 +821,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       },
       {
         type: "paragraph",
-        text: "Za više informacija pozovite 061/269-8569.",
+        text: "Za više informacija pozovite 061/426-4129.",
       },
     ],
   },
@@ -925,7 +925,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       },
       {
         type: "paragraph",
-        text: "Za savete o kupovini i čuvanju zlata pozovite 061/269-8569.",
+        text: "Za savete o kupovini i čuvanju zlata pozovite 061/426-4129.",
       },
     ],
   },
@@ -1041,7 +1041,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       },
       {
         type: "paragraph",
-        text: "Za aktuelne cene i dostupnost zlatnih poluga, pozovite nas na 061/269-8569.",
+        text: "Za aktuelne cene i dostupnost zlatnih poluga, pozovite nas na 061/426-4129.",
       },
     ],
   },

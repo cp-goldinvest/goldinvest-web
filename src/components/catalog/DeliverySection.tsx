@@ -56,7 +56,7 @@ export function DeliverySection({ heading, description, pickupCardBody }: Props)
                 Kontakt forma
               </Link>
               <a
-                href="tel:+381612698569"
+                href="tel:+381614264129"
                 className="inline-flex items-center justify-center px-7 py-3 rounded-full font-semibold transition-all duration-200"
                 style={{
                   border: "0.5px solid #1B1B1C",
@@ -64,7 +64,7 @@ export function DeliverySection({ heading, description, pickupCardBody }: Props)
                   fontSize: "12.1px",
                 }}
               >
-                Pozovi: 061/269-8569
+                Pozovi: 061/426-4129
               </a>
             </div>
           </div>

@@ -151,7 +151,7 @@ export default function ONamaPage() {
             </p>
             <div className="flex flex-wrap gap-3 md:justify-center">
               <a
-                href="tel:+381612698569"
+                href="tel:+381614264129"
                 className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#1B1B1C] text-white text-[12.5px] font-semibold transition-opacity hover:opacity-80"
                 style={{ fontFamily: "var(--font-rethink), sans-serif" }}
               >

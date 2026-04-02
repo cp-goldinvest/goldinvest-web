@@ -58,7 +58,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Šta je avansna kupovina?",
-    a: "Avansna kupovina znači da rezervišete određenu količinu zlata po današnjoj ceni, a isporuku primite u dogovorenom roku — obično 7 do 30 dana. Ovo je korisno ako očekujete rast cene ili želite da rasporedite troškove u više rata pre preuzimanja. Kontaktirajte nas na 061/269-8569 za detalje i uslove.",
+    a: "Avansna kupovina znači da rezervišete određenu količinu zlata po današnjoj ceni, a isporuku primite u dogovorenom roku — obično 7 do 30 dana. Ovo je korisno ako očekujete rast cene ili želite da rasporedite troškove u više rata pre preuzimanja. Kontaktirajte nas na 061/426-4129 za detalje i uslove.",
   },
   {
     q: "Da li fizička lica mogu kupovati investiciono zlato bez ograničenja?",
@@ -70,7 +70,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Koliko košta dostava?",
-    a: "Za tačne troškove dostave kontaktirajte nas na 061/269-8569 ili pošaljite upit putem sajta. Isporuka je besplatna za porudžbine iznad određene vrednosti — uslove proverite direktno sa našim savetnicima.",
+    a: "Za tačne troškove dostave kontaktirajte nas na 061/426-4129 ili pošaljite upit putem sajta. Isporuka je besplatna za porudžbine iznad određene vrednosti — uslove proverite direktno sa našim savetnicima.",
   },
   {
     q: "Mogu li platiti pouzećem?",
@@ -90,7 +90,7 @@ const FAQ_ITEMS = [
   },
 ];
 
-const FAQ_CTA_PHONE_HREF = "tel:+381612698569";
+const FAQ_CTA_PHONE_HREF = "tel:+381614264129";
 
 function FaqContactCtaCard({
   href,

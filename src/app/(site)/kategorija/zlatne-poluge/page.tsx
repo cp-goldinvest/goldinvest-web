@@ -71,7 +71,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Koliko košta dostava?",
-    a: "Cena bezbedne i osigurane dostave zavisi od težine i vrednosti porudžbine. Kontaktirajte nas na 061 269 8569 ili putem kontakt forme za tačan iznos.",
+    a: "Cena bezbedne i osigurane dostave zavisi od težine i vrednosti porudžbine. Kontaktirajte nas na 061 426 4129 ili putem kontakt forme za tačan iznos.",
   },
   {
     q: "Mogu li platiti pouzećem?",
@@ -124,7 +124,7 @@ export default async function ZlatnePolugePage() {
         { label: "Zlatne poluge", href: "/kategorija/zlatne-poluge" },
       ]}
       heroTitle="Zlatne poluge"
-      heroIntro="Zlatne poluge su najsigurniji način da zaštitite veći kapital od inflacije i ekonomskih potresa. Naša ponuda obuhvata isključivo LBMA sertifikovane poluge finoće 999,9, poznatih svetskih kovnica. Obezbedili smo vam transparentne cene za trenutnu i avansnu kupovinu, uz garantovan i siguran otkup. Poruči putem kontakt forme ili na broj 0612698569 - BRZA dostava!"
+      heroIntro="Zlatne poluge su najsigurniji način da zaštitite veći kapital od inflacije i ekonomskih potresa. Naša ponuda obuhvata isključivo LBMA sertifikovane poluge finoće 999,9, poznatih svetskih kovnica. Obezbedili smo vam transparentne cene za trenutnu i avansnu kupovinu, uz garantovan i siguran otkup. Poruči putem kontakt forme ili na broj 0614264129 - BRZA dostava!"
       heroPills={[
         { label: "1 unca zlata (zlatna poluga 1 unca)", href: "/kategorija/zlatne-poluge/zlatna-poluga-1-unca" },
         { label: "Zlatna poluga 50 g", href: "/kategorija/zlatne-poluge/zlatna-poluga-50g" },
@@ -250,7 +250,7 @@ export default async function ZlatnePolugePage() {
       delivery={{
         heading: "Prodaja zlatnih poluga Beograd — Gold Invest",
         description: "Kupovina investicionih poluga zahteva maksimalnu diskreciju, sigurnost i profesionalizam. Zato nudimo više opcija preuzimanja i isporuke — uvek osigurano i neprimetno.",
-        pickupCardBody: "Posetite nas na adresi Bulevar oslobođenja 123. Obezbedili smo diskretno okruženje za preuzimanje poluga i potpisivanje dokumentacije.",
+        pickupCardBody: "Posetite nas u Beogradu — lokacija dostupna telefonom. Obezbedili smo diskretno okruženje za preuzimanje poluga i potpisivanje dokumentacije.",
       }}
       priceStructure={{
         title: "Cena zlatnih poluga — Trenutna / Avansna / Otkupna",
