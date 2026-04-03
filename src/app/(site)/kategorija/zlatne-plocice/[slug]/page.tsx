@@ -13,7 +13,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
 import { BrandCardsSection, mapBrandsToLogos } from "@/components/catalog/BrandCardsSection";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildBreadcrumbSchema, buildFaqSchema, buildProductSchema } from "@/lib/schema";
+import { buildBreadcrumbSchema, buildFaqSchema } from "@/lib/schema";
 
 export const revalidate = 60;
 
@@ -621,17 +621,6 @@ export default async function PlocicaWeightPage({
     <main className="bg-white">
       {/* Schema.org */}
       <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
-      <SchemaScript
-        schema={buildProductSchema({
-          name: config.label,
-          description: config.metaDescription,
-          brand: "Argor-Heraeus / C. Hafner",
-          slug: `/kategorija/zlatne-plocice/${slug}`,
-          image: heroImg,
-          purity: "999.9/1000",
-          weightGrams: config.grams,
-        })}
-      />
       {config.seo && (
         <SchemaScript schema={buildFaqSchema(config.seo.faq.items)} />
       )}

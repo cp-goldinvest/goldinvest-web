@@ -13,7 +13,7 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildBreadcrumbSchema, buildFaqSchema, buildProductSchema } from "@/lib/schema";
+import { buildBreadcrumbSchema, buildFaqSchema } from "@/lib/schema";
 
 export const revalidate = 60;
 
@@ -578,17 +578,6 @@ export default async function PolugaWeightPage({
     <main className="bg-white">
       {/* Schema.org */}
       <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
-      <SchemaScript
-        schema={buildProductSchema({
-          name: config.label,
-          description: config.metaDescription,
-          brand: "Argor-Heraeus / C. Hafner / The Royal Mint",
-          slug: `/kategorija/zlatne-poluge/${slug}`,
-          image: heroImg,
-          purity: "999.9/1000",
-          weightGrams: config.grams,
-        })}
-      />
       {config.seo && <SchemaScript schema={buildFaqSchema(config.seo.faq.items)} />}
 
       {/* ── Breadcrumb ─────────────────────────────────────────────────────── */}

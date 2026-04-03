@@ -12,7 +12,7 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildBreadcrumbSchema, buildFaqSchema, buildProductSchema } from "@/lib/schema";
+import { buildBreadcrumbSchema, buildFaqSchema } from "@/lib/schema";
 
 export const revalidate = 60;
 
@@ -381,16 +381,6 @@ export default async function DukatSlugPage({
     <main className="bg-white">
       {/* Schema.org */}
       <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
-      <SchemaScript
-        schema={buildProductSchema({
-          name: config.heroTitle,
-          description: config.metaDescription,
-          brand: "Münze Österreich",
-          slug: `/kategorija/zlatni-dukati/${slug}`,
-          image: config.heroImage,
-          purity: config.purity ?? "986/1000",
-        })}
-      />
       <SchemaScript schema={buildFaqSchema(config.faq.items)} />
 
       {/* ── Breadcrumb ─────────────────────────────────────────────────────── */}
