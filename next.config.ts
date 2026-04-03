@@ -18,14 +18,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // www → non-www (301 za sve URL-ove)
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.goldinvest.rs" }],
-        destination: "https://goldinvest.rs/:path*",
-        permanent: true,
-      },
-      { source: "/kategorija/zlatne-poluge/", destination: "/kategorija/zlatne-poluge", permanent: true },
+{ source: "/kategorija/zlatne-poluge/", destination: "/kategorija/zlatne-poluge", permanent: true },
       { source: "/pokloni/poklon-za-krstenje", destination: "/poklon-za-krstenje", permanent: true },
       { source: "/pokloni/poklon-za-rodjenje-deteta", destination: "/poklon-za-rodjenje-deteta", permanent: true },
       { source: "/proizvodi/zlatna-poluga-100g-argor", destination: "/proizvodi/argor-heraeus-100g-zlatna-poluga", permanent: true },
