@@ -124,7 +124,7 @@ export default async function PoklonaZaRodjenjePage() {
       <SchemaScript schema={buildFaqSchema(FAQ_ITEMS)} />
       <SchemaScript
         schema={buildWebPageSchema({
-          name: "Poklon za rođenje deteta — zlatna pločica ili dukat | Gold Invest Beograd",
+          name: "Poklon za rođenje deteta - Šta kupiti za rođenje? | Gold Invest",
           description:
             "Investiciono zlato kao poklon za novorođenče — zlatne pločice i dukati oslobođeni od PDV-a, sa sertifikatom, brza dostava Beograd.",
           slug: "/poklon-za-rodjenje-deteta",

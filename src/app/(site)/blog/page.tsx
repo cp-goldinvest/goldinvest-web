@@ -41,7 +41,7 @@ export default function BlogPage() {
       <SchemaScript schema={buildBreadcrumbSchema(BREADCRUMBS)} />
       <SchemaScript
         schema={buildWebPageSchema({
-          name: "Blog | Gold Invest — Saveti i analize o investicionom zlatu",
+          name: "Blog | Saveti i analize o investicionom zlatu | Gold Invest",
           description:
             "Stručni tekstovi o investicionom zlatu — tržište, saveti, vodiči i analize za srpske investitore.",
           slug: "/blog",
