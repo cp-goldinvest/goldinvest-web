@@ -9,7 +9,7 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { GoldTypesSection } from "@/components/home/GoldTypesSection";
 import { PriceBreakdownSection } from "@/components/home/PriceBreakdownSection";
-import { GoldPriceChart } from "@/components/home/GoldPriceChart";
+import { GoldPriceChartLazy } from "@/components/home/GoldPriceChartLazy";
 import { HomeBlogBentoSection } from "@/components/home/HomeBlogBentoSection";
 import { BLOG_POSTS, getLatestBlogPosts } from "@/data/blog-posts";
 import { FaqSection } from "@/components/home/FaqSection";
@@ -139,7 +139,7 @@ export default async function HomePage() {
       <PriceBreakdownSection />
 
       {/* 6. Gold price chart */}
-      <GoldPriceChart />
+      <GoldPriceChartLazy />
 
       {/* 7. Blog — bento (GoldTypes-style), 5 najnovijih članaka */}
       <HomeBlogBentoSection posts={latestBlogPosts} />

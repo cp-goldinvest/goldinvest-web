@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 type HeroButton = { label: string; href: string };
@@ -52,19 +53,16 @@ export function HeroSection({
 }: Props) {
   return (
     <>
-      <link rel="preload" href={HERO_IMAGE} as="image" type="image/webp" />
-
       <section className="relative overflow-hidden bg-[#0D0D0D] pt-6 pb-6">
 
-        <img
+        <Image
           src={HERO_IMAGE}
           alt=""
           aria-hidden="true"
-          fetchPriority="high"
-          decoding="sync"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
           style={{ pointerEvents: "none", userSelect: "none" }}
         />
 
