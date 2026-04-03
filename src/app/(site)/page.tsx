@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { createServiceClient } from "@/lib/supabase/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildOrganizationSchema, buildLocalBusinessSchema, buildWebSiteSchema } from "@/lib/schema";
+import { buildLocalBusinessSchema, buildWebSiteSchema } from "@/lib/schema";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { GoldTypesSection } from "@/components/home/GoldTypesSection";
@@ -87,7 +87,6 @@ export default async function HomePage() {
 
   return (
     <main className="bg-white">
-      <SchemaScript schema={buildOrganizationSchema()} />
       <SchemaScript schema={buildLocalBusinessSchema()} />
       <SchemaScript schema={buildWebSiteSchema()} />
 
