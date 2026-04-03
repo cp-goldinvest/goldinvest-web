@@ -13,7 +13,7 @@ import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { ProductTabs } from "@/components/catalog/ProductTabs";
 import { ProductHeroImage } from "@/components/catalog/ProductHeroImage";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildProductSchema } from "@/lib/schema";
+import { buildProductSchema, buildBreadcrumbSchema } from "@/lib/schema";
 
 export const revalidate = 60;
 
@@ -227,6 +227,7 @@ export default async function ProizvodPage({
 
   return (
     <main className="bg-white">
+      <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
       <SchemaScript schema={productSchema} />
 
       {/* ── Breadcrumb ──────────────────────────────────────────────────────── */}

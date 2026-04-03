@@ -18,22 +18,6 @@ export function Breadcrumb({ items, variant = "dark" }: Props) {
 
   return (
     <nav aria-label="Breadcrumb">
-      {/* JSON-LD BreadcrumbList */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: items.map((item, i) => ({
-              "@type": "ListItem",
-              position: i + 1,
-              name: item.label,
-              item: `https://goldinvest.rs${item.href}`,
-            })),
-          }),
-        }}
-      />
 
       <ol className={`flex items-center flex-wrap gap-1.5 text-xs ${linkColor}`}>
         {items.map((item, i) => {
