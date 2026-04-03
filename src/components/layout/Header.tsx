@@ -64,7 +64,7 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "Kako kupiti",  href: "/kako-kupiti",  description: "Proces kupovine i plaćanje" },
       { label: "Otkup zlata",  href: "/otkup-zlata",  description: "Garantovani otkup istog dana" },
-      { label: "FAQ",          href: "/faq",           description: "Česta pitanja" },
+      { label: "FAQ",          href: "/cesta-pitanja",  description: "Česta pitanja" },
     ],
   },
   { label: "Cena zlata", href: "/cena-zlata" },

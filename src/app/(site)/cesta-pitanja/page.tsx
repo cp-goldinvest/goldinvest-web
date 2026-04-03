@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   title: "Česta pitanja o investicionom zlatu | Gold Invest",
   description:
     "Odgovori na najčešća pitanja o kupovini investicionog zlata: LBMA standard, sertifikati, načini plaćanja, dostava, otkup i formiranje cene. Jasno i bez žargona.",
-  alternates: { canonical: "https://goldinvest.rs/faq" },
+  alternates: { canonical: "https://goldinvest.rs/cesta-pitanja" },
   openGraph: {
     title: "Česta pitanja | Gold Invest — Investiciono zlato",
     description:
       "Sve što trebate znati pre prve kupovine investicionog zlata — 13 jasnih odgovora na ključna pitanja.",
-    url: "https://goldinvest.rs/faq",
+    url: "https://goldinvest.rs/cesta-pitanja",
     siteName: "Gold Invest",
     locale: "sr_RS",
     type: "website",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 const BREADCRUMBS = [
   { label: "Investiciono zlato", href: "/" },
-  { label: "Česta pitanja", href: "/faq" },
+  { label: "Česta pitanja", href: "/cesta-pitanja" },
 ];
 
 const FAQ_ITEMS = [
@@ -182,7 +182,7 @@ export default function FaqPage() {
           name: "Česta pitanja o investicionom zlatu | Gold Invest",
           description:
             "Odgovori na najčešća pitanja o kupovini investicionog zlata: LBMA standard, sertifikati, plaćanje, dostava i otkup.",
-          slug: "/faq",
+          slug: "/cesta-pitanja",
         })}
       />
 

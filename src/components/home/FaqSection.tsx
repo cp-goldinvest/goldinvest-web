@@ -53,7 +53,7 @@ export function FaqSection() {
 
         <div className="flex justify-start md:justify-center mt-8">
           <Link
-            href="/faq"
+            href="/cesta-pitanja"
             className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90"
             style={{ backgroundColor: "#BEAD87", fontSize: "12.1px", boxShadow: "0px 2.7px 4px rgba(0,0,0,0.1), 0px 6.7px 10px rgba(0,0,0,0.1)" }}
           >

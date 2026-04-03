@@ -543,7 +543,7 @@ export default function ONamaPage() {
       <CategoryFaq
         title="Česta pitanja o nama"
         items={FAQ_ITEMS}
-        ctaHref="/faq"
+        ctaHref="/cesta-pitanja"
         ctaLabel="SVA PITANJA I ODGOVORI"
       />
 

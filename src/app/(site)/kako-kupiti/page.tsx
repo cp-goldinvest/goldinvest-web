@@ -582,7 +582,7 @@ export default function KakoKupitiPage() {
       <CategoryFaq
         title="Česta pitanja o kupovini"
         items={FAQ_ITEMS}
-        ctaHref="/faq"
+        ctaHref="/cesta-pitanja"
         ctaLabel="SVA PITANJA I ODGOVORI"
       />
 

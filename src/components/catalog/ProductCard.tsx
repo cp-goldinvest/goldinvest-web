@@ -30,7 +30,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
     <div className="group relative flex flex-col bg-white border border-[#F3F4F6] rounded-2xl overflow-hidden hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300">
 
       {/* Invisible overlay link */}
-      <Link href={href} className="absolute inset-0 z-0" aria-label={`Pogledaj ${name}`} />
+      <Link href={href} className="absolute inset-0 z-[1]" aria-label={`Pogledaj ${name}`} />
 
       {/* ── Image area ── */}
       <div className="relative bg-[#F9F9F9] overflow-hidden" style={{ height: 305 }}>

@@ -18,7 +18,7 @@ import { InfoCard } from "@/components/ui/InfoCard";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Poklon za krštenje — zlatna pločica ili dukat | Gold Invest Beograd",
+  title: "Poklon za krštenje - Šta kupiti za krštenje? | Gold Invest",
   description:
     "Poklonite investiciono zlato za krštenje — dukate i zlatne pločice oslobođene PDV-a. Trajni poklon koji čuva vrednost, za devojčice i dečake. Beograd, brza dostava.",
   alternates: { canonical: "https://goldinvest.rs/poklon-za-krstenje" },

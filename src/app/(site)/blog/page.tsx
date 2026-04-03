@@ -11,12 +11,12 @@ import { NewsletterSection } from "@/components/blog/NewsletterSection";
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Blog | Gold Invest — Saveti i analize o investicionom zlatu",
+  title: "Blog | Saveti i analize o investicionom zlatu | Gold Invest",
   description:
     "Čitajte stručne tekstove o investicionom zlatu — kako kupiti, zašto je zlato sigurna investicija, analiza tržišta, saveti za početnike i iskusne investitore.",
   alternates: { canonical: "https://goldinvest.rs/blog" },
   openGraph: {
-    title: "Blog | Gold Invest — Saveti i analize o investicionom zlatu",
+    title: "Blog | Saveti i analize o investicionom zlatu | Gold Invest",
     description:
       "Stručni tekstovi o zlatu kao investiciji — tržište, saveti, vodiči i analize.",
     url: "https://goldinvest.rs/blog",

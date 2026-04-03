@@ -54,7 +54,12 @@ export async function generateMetadata({
       },
     };
   } catch {
-    return { title: "Investicioni zlatni proizvod | Gold Invest" };
+    return {
+      title: "Investicioni zlatni proizvod | Gold Invest",
+      description:
+        "Kupite investiciono zlato čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/426-4129.",
+      alternates: { canonical: `https://goldinvest.rs/proizvodi/${slug}` },
+    };
   }
 }
 

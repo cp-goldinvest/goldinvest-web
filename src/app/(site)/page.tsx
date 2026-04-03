@@ -18,7 +18,7 @@ import { ProductGrid } from "@/components/catalog/ProductGrid";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Investiciono zlato — Prodaja zlatnih poluga, pločica i dukata | Gold Invest Beograd",
+  title: "Investiciono zlato | Prodaja Investicionog Zlata Beograd i Srbija",
   description:
     "Gold Invest — specijalizovani diler investicionog zlata u Beogradu. LBMA sertifikovane zlatne poluge, pločice i dukati. Bez PDV-a, transparentne cene, brza dostava po Srbiji.",
   alternates: { canonical: "https://goldinvest.rs" },

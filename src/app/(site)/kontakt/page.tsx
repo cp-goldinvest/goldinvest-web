@@ -226,7 +226,7 @@ export default function KontaktPage() {
                   {[
                     { label: "Kako kupiti zlato", href: "/kako-kupiti" },
                     { label: "Otkup zlata", href: "/otkup-zlata" },
-                    { label: "Česta pitanja", href: "/faq" },
+                    { label: "Česta pitanja", href: "/cesta-pitanja" },
                   ].map(({ label, href }) => (
                     <Link
                       key={href}

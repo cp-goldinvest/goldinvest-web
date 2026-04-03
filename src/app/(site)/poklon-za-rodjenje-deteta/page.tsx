@@ -20,7 +20,7 @@ export const revalidate = 60;
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Poklon za rođenje deteta — zlatna pločica ili dukat | Gold Invest Beograd",
+  title: "Poklon za rođenje deteta - Šta kupiti za rođenje? | Gold Invest",
   description:
     "Poklonite investiciono zlato za rođenje deteta — zlatne pločice (1g–10g) i dukate oslobođene od PDV-a. Trajni poklon koji čuva vrednost dok dete odraste. Beograd, brza dostava.",
   alternates: { canonical: "https://goldinvest.rs/poklon-za-rodjenje-deteta" },

@@ -15,7 +15,7 @@ const INFO = [
   { label: "Kako kupiti zlato", href: "/kako-kupiti" },
   { label: "Otkup zlata",       href: "/otkup-zlata" },
   { label: "Cena zlata",        href: "/cena-zlata" },
-  { label: "Česta pitanja",     href: "/faq" },
+  { label: "Česta pitanja",     href: "/cesta-pitanja" },
   { label: "Blog",              href: "/blog" },
 ];
 

@@ -699,7 +699,7 @@ export default function OtkupZlataPage() {
       <CategoryFaq
         title="Česta pitanja o otkupu"
         items={FAQ_ITEMS}
-        ctaHref="/faq"
+        ctaHref="/cesta-pitanja"
         ctaLabel="SVA PITANJA I ODGOVORI"
       />
 
