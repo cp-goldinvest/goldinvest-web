@@ -34,6 +34,7 @@ const nextConfig: NextConfig = {
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
   images: {
+    contentDispositionType: "inline",
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "ucngtcsmkxuxuubrobsc.supabase.co" },
