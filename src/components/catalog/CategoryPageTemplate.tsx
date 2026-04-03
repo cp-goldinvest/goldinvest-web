@@ -15,7 +15,8 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildBreadcrumbSchema, buildFaqSchema } from "@/lib/schema";
+import { buildBreadcrumbSchema, buildFaqSchema, buildItemListSchema } from "@/lib/schema";
+import { computePrices, formatWeight } from "@/lib/pricing";
 
 // ─── Sub-types ────────────────────────────────────────────────────────────────
 
@@ -126,9 +127,28 @@ export function CategoryPageTemplate({
 
   return (
     <main className="bg-white">
-      {/* Schema.org — BreadcrumbList + FAQPage */}
+      {/* Schema.org — BreadcrumbList + FAQPage + ItemList */}
       <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
       <SchemaScript schema={buildFaqSchema(faq.items)} />
+      {variants?.length > 0 && (
+        <SchemaScript schema={buildItemListSchema(
+          variants.map((v: any) => {
+            const productName = v.name ?? v.products?.name ?? "Investicioni zlatni proizvod";
+            const weight = formatWeight(v.weight_g);
+            const normalized = (s: string) => s.toLowerCase().replace(/\s+/g, "");
+            const displayName = normalized(productName).includes(normalized(weight))
+              ? productName
+              : `${productName} ${weight}`.trim();
+            const prices = computePrices(v.weight_g, v.products?.category, snapshot, v.pricing_rules ?? null, tiers, v.products?.brand);
+            return {
+              name: displayName,
+              url: `https://goldinvest.rs/proizvodi/${v.slug}`,
+              ...(v.images?.[0] ? { image: v.images[0] } : {}),
+              ...(!prices.onRequest ? { description: `Prodajna cena: ${prices.stock.toLocaleString("sr-RS")} RSD` } : {}),
+            };
+          })
+        )} />
+      )}
 
       {/* Breadcrumb */}
       <section className="bg-white py-4 border-b border-[#F0EDE6]">
