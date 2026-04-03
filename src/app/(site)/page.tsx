@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { createServiceClient } from "@/lib/supabase/server";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildOrganizationSchema, buildLocalBusinessSchema, buildWebSiteSchema, buildItemListSchema } from "@/lib/schema";
+import { buildOrganizationSchema, buildLocalBusinessSchema, buildWebSiteSchema } from "@/lib/schema";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { GoldTypesSection } from "@/components/home/GoldTypesSection";
@@ -90,11 +90,6 @@ export default async function HomePage() {
       <SchemaScript schema={buildOrganizationSchema()} />
       <SchemaScript schema={buildLocalBusinessSchema()} />
       <SchemaScript schema={buildWebSiteSchema()} />
-      <SchemaScript schema={buildItemListSchema([
-        { name: "Zlatne poluge", url: "https://goldinvest.rs/kategorija/zlatne-poluge", description: "LBMA sertifikovane zlatne poluge čistoće 999,9 — od 1g do 1kg. Argor-Heraeus, C. Hafner.", image: "https://goldinvest.rs/images/product-poluga.webp" },
-        { name: "Zlatne pločice", url: "https://goldinvest.rs/kategorija/zlatne-plocice", description: "Zlatne pločice 1g–20g čistoće 999,9. Idealan poklon i sigurna investicija." },
-        { name: "Zlatni dukati", url: "https://goldinvest.rs/kategorija/zlatni-dukati", description: "Zlatni dukati — Franc Jozef, Bečka filharmonija i Maple Leaf. Čistoća 986–999,9." },
-      ])} />
 
       {/* 1. Hero — renderuje se odmah, bez čekanja na DB */}
       <HeroSection />
