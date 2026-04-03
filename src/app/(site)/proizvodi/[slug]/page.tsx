@@ -12,6 +12,8 @@ import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { ProductTabs } from "@/components/catalog/ProductTabs";
 import { ProductHeroImage } from "@/components/catalog/ProductHeroImage";
+import { SchemaScript } from "@/components/ui/SchemaScript";
+import { buildProductSchema } from "@/lib/schema";
 
 export const revalidate = 60;
 
@@ -200,8 +202,27 @@ export default async function ProizvodPage({
     (v) => v.slug !== slug && v.products?.category === product.category
   ).slice(0, 4);
 
+  const availabilityMap = {
+    in_stock: "InStock",
+    preorder: "PreOrder",
+    out_of_stock: "OutOfStock",
+  } as const;
+
+  const productSchema = buildProductSchema({
+    name: productNameWithWeight,
+    description: `${productNameWithWeight} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju.`,
+    brand: product.brand,
+    slug: `/proizvodi/${slug}`,
+    image: heroImages[0],
+    purity: variant.purity ? String(variant.purity) : "999.9",
+    weightGrams: variant.weight_g,
+    price: prices.onRequest ? undefined : prices.stock,
+    availability: availabilityMap[variant.availability as keyof typeof availabilityMap] ?? "InStock",
+  });
+
   return (
     <main className="bg-white">
+      <SchemaScript schema={productSchema} />
 
       {/* ── Breadcrumb ──────────────────────────────────────────────────────── */}
       <section className="bg-white py-4 border-b border-[#F0EDE6]">

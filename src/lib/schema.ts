@@ -42,6 +42,8 @@ export function buildProductSchema(data: {
   image?: string;
   purity?: string;
   weightGrams?: number;
+  price?: number;
+  availability?: "InStock" | "PreOrder" | "OutOfStock";
 }) {
   return {
     "@context": "https://schema.org",
@@ -57,7 +59,8 @@ export function buildProductSchema(data: {
     offers: {
       "@type": "Offer",
       priceCurrency: "RSD",
-      availability: "https://schema.org/InStock",
+      ...(data.price ? { price: data.price } : {}),
+      availability: `https://schema.org/${data.availability ?? "InStock"}`,
       seller: {
         "@type": "Organization",
         name: "Gold Invest",
