@@ -154,6 +154,38 @@ export function buildLocalBusinessSchema() {
   };
 }
 
+// ── WebSite ────────────────────────────────────────────────────────────────
+export function buildWebSiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${BASE_URL}/#website`,
+    name: "Gold Invest",
+    url: BASE_URL,
+    description: "Specijalizovani diler investicionog zlata u Beogradu. LBMA sertifikovane zlatne poluge, pločice i dukati. Bez PDV-a, transparentne cene, brza dostava po Srbiji.",
+    publisher: {
+      "@id": `${BASE_URL}/#organization`,
+    },
+    inLanguage: "sr-RS",
+  };
+}
+
+// ── ItemList ───────────────────────────────────────────────────────────────
+export function buildItemListSchema(items: { name: string; url: string; description?: string; image?: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      url: item.url,
+      ...(item.description ? { description: item.description } : {}),
+      ...(item.image ? { image: item.image } : {}),
+    })),
+  };
+}
+
 // ── WebPage (for non-product pages like /cena-zlata) ──────────────────────
 export function buildWebPageSchema(data: { name: string; description: string; slug: string }) {
   return {
