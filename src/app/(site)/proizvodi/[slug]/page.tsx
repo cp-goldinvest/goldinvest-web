@@ -35,12 +35,14 @@ export async function generateMetadata({
     const name = row?.name ?? row?.products?.name ?? "Investicioni zlatni proizvod";
     const weight = row ? formatWeight(row.weight_g) : "";
     const image = row?.images?.[0] ?? "/images/product-poluga.webp";
+    const normalized = (s: string) => s.toLowerCase().replace(/\s+/g, "");
+    const titleName = weight && normalized(name).includes(normalized(weight)) ? name : `${name} ${weight}`.trim();
     return {
-      title: `${name} ${weight} | Cena i Prodaja — Gold Invest Beograd`,
+      title: `${titleName} | Cena i Prodaja — Gold Invest Beograd`,
       description: `Kupite ${name} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/426-4129.`,
       alternates: { canonical: `https://goldinvest.rs/proizvodi/${slug}` },
       openGraph: {
-        title: `${name} ${weight} | Gold Invest`,
+        title: `${titleName} | Gold Invest`,
         description: `${name} — LBMA Good Delivery, čistoća 999,9, bez PDV-a. Brza dostava.`,
         url: `https://goldinvest.rs/proizvodi/${slug}`,
         siteName: "Gold Invest",
