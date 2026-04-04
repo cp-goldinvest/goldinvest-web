@@ -315,7 +315,7 @@ export default function ONamaPage() {
                 letterSpacing: "-1px",
               }}
             >
-              Tri principa kojih se nikada ne odricemo
+              Tri principa kojih se nikada ne odričemo
             </h2>
           </div>
 
