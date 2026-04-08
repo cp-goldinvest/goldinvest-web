@@ -8,11 +8,11 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Dukati | Najpovoljnija Cena i Prodaja Zlatnih Dukata - Beograd",
   description:
-    "Kupite zlatne dukate — Franc Jozef i Bečka Filharmonija. LBMA sertifikovani, oslobođeni PDV-a, transparentne prodajne i otkupne cene. Dostava za celu Srbiju.",
+    "Kupite zlatne dukate - Franc Jozef i Bečka Filharmonija. LBMA sertifikovani, oslobođeni PDV-a, transparentne prodajne i otkupne cene. Dostava za celu Srbiju.",
   alternates: { canonical: "https://goldinvest.rs/kategorija/zlatni-dukati" },
   openGraph: {
-    title: "Zlatni dukati — Franc Jozef i Bečka filharmonija | Gold Invest",
-    description: "Kupite zlatne dukate — Franc Jozef i Bečka filharmonija. LBMA sertifikovani, oslobođeni PDV-a, transparentne otkupne cene. Dostava po Srbiji.",
+    title: "Zlatni dukati - Franc Jozef i Bečka filharmonija | Gold Invest",
+    description: "Kupite zlatne dukate - Franc Jozef i Bečka filharmonija. LBMA sertifikovani, oslobođeni PDV-a, transparentne otkupne cene. Dostava po Srbiji.",
     url: "https://goldinvest.rs/kategorija/zlatni-dukati",
     siteName: "Gold Invest",
     locale: "sr_RS",
@@ -27,14 +27,14 @@ const FAQ_ITEMS = [
   },
   {
     q: "Kako su pakovani dukati i da li imaju sertifikat?",
-    a: "Za razliku od modernih zlatnih poluga koje se nalaze u plastičnom blister pakovanju, zlatni dukati i kovanice se najčešće pakuju u okrugle zaštitne kapsule (od tvrdog akrila) ili specijalne folije. S obzirom na to da su u pitanju globalno prepoznatljive kovanice iz državnih kovnica, one ne poseduju štampani papirni sertifikat — sam dizajn kovanice, njene precizne dimenzije, težina i zvuk prilikom kuckanja predstavljaju garanciju autentičnosti koju naši stručnjaci lako proveravaju.",
+    a: "Za razliku od modernih zlatnih poluga koje se nalaze u plastičnom blister pakovanju, zlatni dukati i kovanice se najčešće pakuju u okrugle zaštitne kapsule (od tvrdog akrila) ili specijalne folije. S obzirom na to da su u pitanju globalno prepoznatljive kovanice iz državnih kovnica, one ne poseduju štampani papirni sertifikat - sam dizajn kovanice, njene precizne dimenzije, težina i zvuk prilikom kuckanja predstavljaju garanciju autentičnosti koju naši stručnjaci lako proveravaju.",
   },
   {
     q: "Šta predstavlja oznaka 999,9?",
     a: "To znači da je vaša moderna investiciona kovanica (poput Bečke Filharmonije) napravljena od 99,99% čistog zlata, što u potpunosti odgovara vrednosti od 24 karata. Napomena: istorijski dukati poput Franca Jozefa imaju nešto manju oznaku 986, jer sadrže minimalan procenat bakra radi čvrstine.",
   },
   {
-    q: "Zlatno pravilo — kako čuvati dukate?",
+    q: "Zlatno pravilo - kako čuvati dukate?",
     a: "Nikada nemojte čistiti, polirati, niti brisati dukate abrazivnim sredstvima. Takođe, izbegavajte dodirivanje površine kovanice golim prstima, jer kiseline sa kože mogu ostaviti trajne mrlje. Svaka fizička intervencija, grebanje ili bušenje dukata (kako bi se napravio nakit) trajno mu uništava investicionu vrednost, i takav dukat se prilikom prodaje tretira isključivo kao lomljeno zlato (po osetno nižoj ceni). Čuvajte ih uvek u njihovim originalnim kapsulama.",
   },
   {
@@ -43,7 +43,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Koliko traje isporuka?",
-    a: "Za klijente u Beogradu nudimo isporuku dan za dan — ukoliko je porudžbina evidentirana radnim danima do 12h, zlato stiže na vašu adresu istog dana do 18h. Za porudžbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana (ovo ne važi za avansne kupovine, za koje se rok isporuke precizno definiše pri samoj kupovini).",
+    a: "Za klijente u Beogradu nudimo isporuku dan za dan - ukoliko je porudžbina evidentirana radnim danima do 12h, zlato stiže na vašu adresu istog dana do 18h. Za porudžbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana (ovo ne važi za avansne kupovine, za koje se rok isporuke precizno definiše pri samoj kupovini).",
   },
   {
     q: "Koliko košta dostava?",
@@ -51,7 +51,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Da li otkupljujete dukate koji su kupljeni na drugom mestu?",
-    a: "Da, Gold Invest vrši brz i diskretan otkup zlatnih dukata bez obzira gde ste ih i kada kupili. Naši stručnjaci na licu mesta proveravaju težinu i autentičnost kovanice, nakon čega vam novac isplaćujemo istog dana — na bankovni račun ili u gotovini.",
+    a: "Da, Gold Invest vrši brz i diskretan otkup zlatnih dukata bez obzira gde ste ih i kada kupili. Naši stručnjaci na licu mesta proveravaju težinu i autentičnost kovanice, nakon čega vam novac isplaćujemo istog dana - na bankovni račun ili u gotovini.",
   },
   {
     q: "Koji je limit za plaćanje u gotovini?",
@@ -62,7 +62,7 @@ const FAQ_ITEMS = [
     a: "Zlatne poluge se kuju u različitim gramažama (od 1g do 1kg) isključivo od čistog zlata (24 karata) i fabrički su zapečaćene u blister sertifikate. One su matematički najisplativije za velike investicije. Sa druge strane, dukati (poput Franca Jozefa) imaju istorijski i estetski značaj, ne dolaze u vakuumiranim blisterima, a često su legirani (23.6 karata) kako bi bili čvršći. Dukati su fleksibilniji za unovčavanje manjih iznosa i neuporedivo su popularniji kao poklon.",
   },
   {
-    q: "Šta je bolje kupiti — Malog ili Velikog Franca Jozefa?",
+    q: "Šta je bolje kupiti - Malog ili Velikog Franca Jozefa?",
     a: "Izbor isključivo zavisi od vašeg budžeta i namene. Mali dukat (3.49g) je najpopularniji izbor za poklone povodom rođenja i krštenja, i nudi odličnu fleksibilnost ako želite da sitnim koracima gradite ušteđevinu. Veliki dukat (13.96g) je impresivnijeg izgleda, vizuelno je mnogo upečatljiviji kao poklon za svadbe i nudi nešto povoljniju cenu po gramu čistog zlata.",
   },
 ];
@@ -106,7 +106,7 @@ export default async function ZlatniDukatiPage() {
         { label: "Zlatni dukati", href: "/kategorija/zlatni-dukati" },
       ]}
       heroTitle="Dukati"
-      heroIntro="Zlatni dukati su najtraženije svetske investicione kovanice, pogotovo čuveni Dukat Franc Jozef i prestižna Bečka Filharmonija. Obezbedili smo vam transparentne cene, oslobođenje od poreza i povoljne otkupne cene. Poruči putem kontakt forme ili na broj 0614264129 — BRZA dostava!"
+      heroIntro="Zlatni dukati su najtraženije svetske investicione kovanice, pogotovo čuveni Dukat Franc Jozef i prestižna Bečka Filharmonija. Obezbedili smo vam transparentne cene, oslobođenje od poreza i povoljne otkupne cene. Poruči putem kontakt forme ili na broj 0614264129 - BRZA dostava!"
       heroPills={[
         { label: "Franc Jozef dukat", href: "/kategorija/zlatni-dukati/franc-jozef-dukat" },
         { label: "Bečka filharmonija dukat", href: "/kategorija/zlatni-dukati/becka-filharmonija-dukat" },
@@ -134,25 +134,25 @@ export default async function ZlatniDukatiPage() {
         ],
       }}
       infoSectionA={{
-        heading: "Naša ponuda — Franc Jozef i Bečka Filharmonija",
+        heading: "Naša ponuda - Franc Jozef i Bečka Filharmonija",
         description: "Gold Invest podrazumeva i najlikvidnije evropske kovanice, koje kuje čuvena austrijska državna kovnica Münze Österreich. Njihova prepoznatljivost garantuje da ih možete prodati po fer ceni bilo gde u svetu.",
         cards: [
           {
-            title: "Dukat Franc Jozef — srpski favorit",
-            body: "Ubedljivo najpoznatiji i najtraženiji dukat u Srbiji i regionu. Dostupan u dva formata: mali dukat (3.49g, od čega 3.44g čistog zlata) — izuzetan izbor za poklone i postepenu štednju; i veliki dukat (13.96g, 13.77g čistog zlata) — idealan za ozbiljnija ulaganja. Finoća 986/1000 (23.6 karata) daje mu karakterističnu crvenkasto-zlatnu nijansu i veću otpornost na habanje.",
+            title: "Dukat Franc Jozef - srpski favorit",
+            body: "Ubedljivo najpoznatiji i najtraženiji dukat u Srbiji i regionu. Dostupan u dva formata: mali dukat (3.49g, od čega 3.44g čistog zlata) - izuzetan izbor za poklone i postepenu štednju; i veliki dukat (13.96g, 13.77g čistog zlata) - idealan za ozbiljnija ulaganja. Finoća 986/1000 (23.6 karata) daje mu karakterističnu crvenkasto-zlatnu nijansu i veću otpornost na habanje.",
           },
           {
-            title: "Bečka Filharmonija — evropski investicioni standard",
-            body: "Wiener Philharmoniker je najprodavanija evropska moderna investiciona kovanica. Kuje se od najčistijeg zlata finoće 999,9 (24 karata). Osnovni format je 1 Troj unca (31.1g) — svetski standard u trgovini zlatom. Za manje budžete postoje frakcije od 1/2, 1/4 i 1/10 unce, što daje odličnu fleksibilnost pri investiranju.",
+            title: "Bečka Filharmonija - evropski investicioni standard",
+            body: "Wiener Philharmoniker je najprodavanija evropska moderna investiciona kovanica. Kuje se od najčistijeg zlata finoće 999,9 (24 karata). Osnovni format je 1 Troj unca (31.1g) - svetski standard u trgovini zlatom. Za manje budžete postoje frakcije od 1/2, 1/4 i 1/10 unce, što daje odličnu fleksibilnost pri investiranju.",
           },
           {
-            title: "Maple Leaf i Britannia — globalni favoriti",
+            title: "Maple Leaf i Britannia - globalni favoriti",
             body: "Kanadski Maple Leaf i britanska Britannia su zlatne kovanice čistoće 999,9/1000, prihvaćene na svim finansijskim tržištima sveta. Odlikuju se naprednim sigurnosnim elementima i statusom koji ih čini lako unovčivim u bilo kojoj zemlji.",
           },
         ],
         infoBoxContent: (
           <>
-            Zlatne kovanice (dukati) nose ogromnu tradicionalnu težinu na našim prostorima — apsolutni su standard za darivanje na venčanjima, krštenjima i godišnjicama. Ukoliko tražite veće iznose sa nižom premijom po gramu, pogledajte i{" "}
+            Zlatne kovanice (dukati) nose ogromnu tradicionalnu težinu na našim prostorima - apsolutni su standard za darivanje na venčanjima, krštenjima i godišnjicama. Ukoliko tražite veće iznose sa nižom premijom po gramu, pogledajte i{" "}
             <Link
               href="/kategorija/zlatne-plocice"
               className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors"
@@ -184,14 +184,14 @@ export default async function ZlatniDukatiPage() {
             body: "Težina se meri do u stoti deo grama na kalibriranoj analitičkoj vagi. Franc Jozef 1 dukat tačno iznosi 3.49g, a 4 dukati 13.96g. Svako odstupanje je odmah vidljivo i diskvalifikuje kovanicu.",
           },
           {
-            title: "Specifična rezonanca — zvuk čistog zlata",
+            title: "Specifična rezonanca - zvuk čistog zlata",
             body: "Čisto zlato prilikom laganog kuckanja proizvodi karakteristični zvuk koji se jasno razlikuje od legura i falsifikata. Vaš dukat dobijate bezbedno upakovan u zaštitnu akrilnu kapsulu koja čuva njegovu investicionu vrednost.",
           },
         ],
       }}
       darkQuote={{
         eyebrow: "Poklon i investicija",
-        normalText: "Zlatni dukat nije samo poklon —",
+        normalText: "Zlatni dukat nije samo poklon -",
         italicText: "to je trajna finansijska sigurnost koju prenosite na sledeću generaciju, a koja odoleva inflaciji.",
         ctaHref: "/kontakt",
         ctaLabel: "Kontaktirajte nas",
@@ -204,7 +204,7 @@ export default async function ZlatniDukatiPage() {
             img: "/images/gold-coins.webp",
             title: "Münze Österreich (Bečka kovnica)",
             origin: "Austrija",
-            text: "Austrija je dom dve najvoljenije zlatne kovanice — Franc Jozef dukati, neodvojivi deo srpske tradicije, i Bečka Filharmonija, najprodavanija zlatna kovanica u Evropi. Münze Österreich kuje zlatne kovanice od 1194. godine.",
+            text: "Austrija je dom dve najvoljenije zlatne kovanice - Franc Jozef dukati, neodvojivi deo srpske tradicije, i Bečka Filharmonija, najprodavanija zlatna kovanica u Evropi. Münze Österreich kuje zlatne kovanice od 1194. godine.",
             imageMode: "photo",
           },
           {
@@ -223,16 +223,16 @@ export default async function ZlatniDukatiPage() {
         ],
       }}
       delivery={{
-        heading: "Prodaja dukata Beograd — Gold Invest",
-        description: "Kupovina dukata se može obaviti lično u Beogradu, uz isporuku za isti dan ili dostavu za celu Srbiju — uvek diskretno i osigurano.",
+        heading: "Prodaja dukata Beograd - Gold Invest",
+        description: "Kupovina dukata se može obaviti lično u Beogradu, uz isporuku za isti dan ili dostavu za celu Srbiju - uvek diskretno i osigurano.",
         pickupCardBody: "Posetite nas lično u Beogradu. Obezbedili smo potpuno sigurno i diskretno okruženje za preuzimanje vaših dukata bez čekanja.",
       }}
       priceStructure={{
-        title: "Zlatni dukati cena — Trenutna / Avansna / Otkupna",
+        title: "Zlatni dukati cena - Trenutna / Avansna / Otkupna",
         description: "Kao ozbiljna trgovačka kuća, Gold Invest vam jasno komunicira sve cene i opcije kupovine:",
         card1Body: "Cena dukata koje imamo fizički na stanju. Plaćate i preuzimate odmah, bez ikakvog čekanja.",
         card2Body: "Želite da kupite veću količinu dukata? Avansna uplata vam omogućava da zaključate trenutnu berzansku cenu, a mi robu povlačimo direktno iz bečke kovnice uz značajnu uštedu.",
-        card3Body: "Zahvaljujući ogromnoj popularnosti Franca Jozefa i Filharmonije, spread između kupovne i prodajne cene je minimalan — brz povrat investicije po javno istaknutim cenama, uz isplatu istog dana.",
+        card3Body: "Zahvaljujući ogromnoj popularnosti Franca Jozefa i Filharmonije, spread između kupovne i prodajne cene je minimalan - brz povrat investicije po javno istaknutim cenama, uz isplatu istog dana.",
       }}
       faq={{
         title: "Česta pitanja o zlatnim dukatima",

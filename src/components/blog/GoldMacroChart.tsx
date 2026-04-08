@@ -46,7 +46,7 @@ export function GoldMacroChart() {
           lineHeight: "1.2",
         }}
       >
-        Zlato, dolar i kamatne stope — međusobni odnos
+        Zlato, dolar i kamatne stope - međusobni odnos
       </p>
 
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">

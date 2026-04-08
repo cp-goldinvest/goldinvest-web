@@ -39,7 +39,7 @@ export function ProductHeroImage({ images, productName }: Props) {
         src={current}
         alt={
           hasMultiple
-            ? `${productName} — ${
+            ? `${productName} - ${
                 safeIdx === 0 ? "prednja strana" : safeIdx === 1 ? "zadnja strana" : `slika ${safeIdx + 1}`
               }`
             : productName

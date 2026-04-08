@@ -13,12 +13,12 @@ const DEFAULT_IMAGE_ALT = "Zlatna poluga kao investicija";
 
 export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
   "zasto-ulagati-u-zlato": {
-    metaTitle: "Zašto ulagati u zlato — 7 razloga | Gold Invest",
+    metaTitle: "Zašto ulagati u zlato - 7 razloga | Gold Invest",
     metaDescription:
       "Zlato čuva vrednost kroz decenije, štiti od inflacije i valutnih kriza. Evo 7 konkretnih razloga zašto finansijski stručnjaci preporučuju 5–15% zlata u svakom portfelju.",
     post: {
       slug: "zasto-ulagati-u-zlato",
-      title: "Zašto ulagati u zlato — 7 razloga koje svaki investitor treba da zna",
+      title: "Zašto ulagati u zlato - 7 razloga koje svaki investitor treba da zna",
       excerpt:
         "Zlato čuva vrednost kroz decenije, štiti od inflacije i valutnih kriza. Evo 7 konkretnih razloga zašto finansijski stručnjaci preporučuju 5–15% zlata u svakom portfelju.",
       category: "Investiciono zlato",
@@ -40,16 +40,16 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
           "Zlato nije novi trend. To je sredstvo čuvanja vrednosti staro više hiljada godina, koje je preživelo pad svake imperije, svaku hiperinflaciju i svaku globalnu krizu. U ovom tekstu ćemo razložiti sedam konkretnih razloga zašto finansijski stručnjaci preporučuju da između 5% i 15% svakog portfelja bude u fizičkom zlatu.",
       },
 
-      { type: "heading", text: "1. Zlato štiti od inflacije — i to dokazano" },
+      { type: "heading", text: "1. Zlato štiti od inflacije - i to dokazano" },
       {
         type: "paragraph",
         text:
-          "Inflacija je tihi porez koji jede vašu ušteđevinu. Novac koji ste danas stavili u ladicu biće vredan manje za godinu dana — to je matematička činjenica u svakoj ekonomiji sveta.",
+          "Inflacija je tihi porez koji jede vašu ušteđevinu. Novac koji ste danas stavili u ladicu biće vredan manje za godinu dana - to je matematička činjenica u svakoj ekonomiji sveta.",
       },
       {
         type: "paragraph",
         text:
-          "Zlato funkcioniše obrnuto. U periodu između 1971. i 2024. godine, cena zlata u dolarima porasla je za više od 8.000%. U istom periodu, dolar je izgubio više od 85% kupovne moći. Ko je čuvao ušteđevinu u zlatu, nije samo sačuvao vrednost — povećao ju je.",
+          "Zlato funkcioniše obrnuto. U periodu između 1971. i 2024. godine, cena zlata u dolarima porasla je za više od 8.000%. U istom periodu, dolar je izgubio više od 85% kupovne moći. Ko je čuvao ušteđevinu u zlatu, nije samo sačuvao vrednost - povećao ju je.",
       },
       {
         type: "chart",
@@ -69,7 +69,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
           "Srpski dinar je u poslednjih 30 godina doživeo višestruke devalvacije. Fizičko zlato, denominirano u globalnoj rezervnoj valuti, nije podložno odlukama Narodne banke Srbije.",
       },
 
-      { type: "heading", text: "2. Zlato je globalno likvidno — svuda u svetu" },
+      { type: "heading", text: "2. Zlato je globalno likvidno - svuda u svetu" },
       {
         type: "paragraph",
         text:
@@ -78,7 +78,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Ovo je posebno važno u kriznim situacijama. Kad vam zatreba gotovina — bilo u Beogradu, Beču ili Tokiju — zlatna poluga je odmah unovčiva bez popusta.",
+          "Ovo je posebno važno u kriznim situacijama. Kad vam zatreba gotovina - bilo u Beogradu, Beču ili Tokiju - zlatna poluga je odmah unovčiva bez popusta.",
       },
 
       { type: "heading", text: "3. Nema rizika druge strane (counterparty risk)" },
@@ -90,14 +90,14 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Fizičko zlato u vašem sefu nema ovu ranjivost. Ne postoji banka koja mora biti solventna da bi vaše zlato zadržalo vrednost. Zlato je vaše — bez posrednika, bez uslova, bez sitnih slova ugovora.",
+          "Fizičko zlato u vašem sefu nema ovu ranjivost. Ne postoji banka koja mora biti solventna da bi vaše zlato zadržalo vrednost. Zlato je vaše - bez posrednika, bez uslova, bez sitnih slova ugovora.",
       },
 
       { type: "heading", text: "4. Centralne banke sveta kupuju zlato rekordno" },
       {
         type: "paragraph",
         text:
-          "Kad najmoćnije finansijske institucije na svetu — Narodna banka Kine, Rusije, Indije, Turske, Poljske — godišnje kupuju stotine tona zlata i smanjuju udeo dolara u rezervama, to nije slučajno.",
+          "Kad najmoćnije finansijske institucije na svetu - Narodna banka Kine, Rusije, Indije, Turske, Poljske - godišnje kupuju stotine tona zlata i smanjuju udeo dolara u rezervama, to nije slučajno.",
       },
       {
         type: "paragraph",
@@ -114,26 +114,26 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Jednostavno: kad akcije padaju, zlato obično raste — ili barem ne pada. Portfelj s 10% zlata u proseku ima manji pad u krizama uz skoro isti dugoročni prinos kao portfelj bez zlata.",
+          "Jednostavno: kad akcije padaju, zlato obično raste - ili barem ne pada. Portfelj s 10% zlata u proseku ima manji pad u krizama uz skoro isti dugoročni prinos kao portfelj bez zlata.",
       },
 
       { type: "heading", text: "6. Ponuda zlata je fizički ograničena" },
       {
         type: "paragraph",
         text:
-          'Zlato se ne može "štampati". Na svetu postoji fiksan broj tona zlata koje je moguće iskopati — procenjuje se da je oko 80% ukupnih rezervi već izvađeno. Godišnja rudarska produkcija raste manje od 2% godišnje.',
+          'Zlato se ne može "štampati". Na svetu postoji fiksan broj tona zlata koje je moguće iskopati - procenjuje se da je oko 80% ukupnih rezervi već izvađeno. Godišnja rudarska produkcija raste manje od 2% godišnje.',
       },
       {
         type: "paragraph",
         text:
-          "S druge strane, potražnja raste — od privatnih investitora, industrije (elektronika, stomatologija) i centralnih banaka. Ograničena ponuda plus rastuća potražnja znači dugoročni pritisak na cenu.",
+          "S druge strane, potražnja raste - od privatnih investitora, industrije (elektronika, stomatologija) i centralnih banaka. Ograničena ponuda plus rastuća potražnja znači dugoročni pritisak na cenu.",
       },
 
       { type: "heading", text: "7. Zlato je van domašaja digitalne ranjivosti" },
       {
         type: "paragraph",
         text:
-          "U svetu u kome se sve više vrednosti čuva u digitalnom obliku — kriptovalute, bankarski depoziti, akcije u digitalnom zapisu — fizičko zlato nudi nešto što ne može da se hakuje, obriše ili zamrzne regulatornom odlukom.",
+          "U svetu u kome se sve više vrednosti čuva u digitalnom obliku - kriptovalute, bankarski depoziti, akcije u digitalnom zapisu - fizičko zlato nudi nešto što ne može da se hakuje, obriše ili zamrzne regulatornom odlukom.",
       },
       {
         type: "paragraph",
@@ -150,7 +150,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Ako nikad niste kupili zlato, dobar početak je zlatna poluga od 50g ili 100g — dovoljno fleksibilna za postepenu kupovinu, dovoljno značajne vrednosti da napravi razliku u portfelju.",
+          "Ako nikad niste kupili zlato, dobar početak je zlatna poluga od 50g ili 100g - dovoljno fleksibilna za postepenu kupovinu, dovoljno značajne vrednosti da napravi razliku u portfelju.",
       },
       {
         type: "paragraph",
@@ -160,14 +160,14 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
     ],
   },
   "centralne-banke-kupuju-zlato": {
-    metaTitle: "Centralne banke rekordno kupuju zlato — šta znači za investitore | Gold Invest",
+    metaTitle: "Centralne banke rekordno kupuju zlato - šta znači za investitore | Gold Invest",
     metaDescription:
       "U 2022. i 2023. centralne banke sveta kupile su više zlata nego ikad. Otkrijte zašto ovo povećava dugoročni pritisak na cenu i kako to utiče na privatne investitore.",
     post: {
       slug: "centralne-banke-kupuju-zlato",
-      title: "Centralne banke rekordno kupuju zlato — šta to znači za vas",
+      title: "Centralne banke rekordno kupuju zlato - šta to znači za vas",
       excerpt:
-        "Centralne banke sveta kupuju zlato u rekordnim količinama — šta to znači za cenu i vašu investiciju?",
+        "Centralne banke sveta kupuju zlato u rekordnim količinama - šta to znači za cenu i vašu investiciju?",
       category: "Tržište",
       date: "5. februar 2025.",
       readMin: 6,
@@ -178,13 +178,13 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Postoji jedna vest koja prolazi gotovo nezapaženo u svakodnevnom informativnom haosu, a ima direktan uticaj na svakoga ko drži ili razmišlja o fizičkom zlatu: centralne banke sveta kupuju zlato u rekordnim količinama — i to ne usporavaju.",
+          "Postoji jedna vest koja prolazi gotovo nezapaženo u svakodnevnom informativnom haosu, a ima direktan uticaj na svakoga ko drži ili razmišlja o fizičkom zlatu: centralne banke sveta kupuju zlato u rekordnim količinama - i to ne usporavaju.",
       },
       { type: "heading", text: "Brojke koje govore same za sebe" },
       {
         type: "paragraph",
         text:
-          "Prema podacima World Gold Council (WGC), centralne banke sveta su u 2022. godini kupile 1.136 tona zlata — više nego ikada od kada postoje pouzdani podaci, od 1950. godine.",
+          "Prema podacima World Gold Council (WGC), centralne banke sveta su u 2022. godini kupile 1.136 tona zlata - više nego ikada od kada postoje pouzdani podaci, od 1950. godine.",
       },
       {
         type: "paragraph",
@@ -201,7 +201,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
         type: "stepItem",
         number: 1,
         title: "Kina",
-        body: "Narodna banka Kine objavila je kupovinu zlata u svakom mesecu tokom 2023. godine. Kina strateški smanjuje zavisnost od dolara kao rezervne valute — proces poznat kao de-dolarizacija.",
+        body: "Narodna banka Kine objavila je kupovinu zlata u svakom mesecu tokom 2023. godine. Kina strateški smanjuje zavisnost od dolara kao rezervne valute - proces poznat kao de-dolarizacija.",
       },
       {
         type: "stepItem",
@@ -227,7 +227,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
         number: 1,
         title: "Strukturna potražnja koja podiže cenu",
         body: [
-          "Centralne banke nisu špekulanti — ne kupuju i prodaju na osnovu kratkoročnih kretanja. Kada kupuju, drže na godinama i decenijama. Ovo znači da se godišnje iz slobodnog tržišta povlači preko 1.000 tona zlata.",
+          "Centralne banke nisu špekulanti - ne kupuju i prodaju na osnovu kratkoročnih kretanja. Kada kupuju, drže na godinama i decenijama. Ovo znači da se godišnje iz slobodnog tržišta povlači preko 1.000 tona zlata.",
           "Rudarska produkcija iznosi oko 3.500 tona godišnje, što znači da banke apsorbuju gotovo trećinu ponude.",
         ],
       },
@@ -278,14 +278,14 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
     ],
   },
   "inflacija-i-zlato": {
-    metaTitle: "Inflacija i zlato — kako zlato štiti ušteđevinu | Gold Invest",
+    metaTitle: "Inflacija i zlato - kako zlato štiti ušteđevinu | Gold Invest",
     metaDescription:
       "U periodima visoke inflacije, zlato je istorijski čuvalo kupovnu moć. Pogledajte podatke iz poslednjih 50 godina i šta to znači za vaš novac danas.",
     post: {
       slug: "inflacija-i-zlato",
-      title: "Inflacija i zlato — istorijska veza koja štiti vašu ušteđevinu",
+      title: "Inflacija i zlato - istorijska veza koja štiti vašu ušteđevinu",
       excerpt:
-        "Zlato kroz istoriju štiti kupovnu moć u inflatornim periodima — evo šta to znači za vašu ušteđevinu.",
+        "Zlato kroz istoriju štiti kupovnu moć u inflatornim periodima - evo šta to znači za vašu ušteđevinu.",
       category: "Saveti",
       date: "22. februar 2025.",
       readMin: 8,
@@ -296,12 +296,12 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Krajem 2021. godine, inflacija u Srbiji je počela da ubrzava. Do 2022. dostigla je dvocifrene vrednosti — nešto što prethodna generacija nije videla od devedesetih. Cene hrane, struje, goriva i iznajmljivanja stanova rasle su brže nego plate. Ušteđevina na bankovnom računu je gubila kupovnu moć mesec za mesec.",
+          "Krajem 2021. godine, inflacija u Srbiji je počela da ubrzava. Do 2022. dostigla je dvocifrene vrednosti - nešto što prethodna generacija nije videla od devedesetih. Cene hrane, struje, goriva i iznajmljivanja stanova rasle su brže nego plate. Ušteđevina na bankovnom računu je gubila kupovnu moć mesec za mesec.",
       },
       {
         type: "paragraph",
         text:
-          "Oni koji su u tom periodu držali deo sredstava u fizičkom zlatu gledali su drugačiji prizor: cena zlata u dinarima je rasla. Njihova ušteđevina nije samo odolela inflaciji — povećala je nominalnu vrednost.",
+          "Oni koji su u tom periodu držali deo sredstava u fizičkom zlatu gledali su drugačiji prizor: cena zlata u dinarima je rasla. Njihova ušteđevina nije samo odolela inflaciji - povećala je nominalnu vrednost.",
       },
       {
         type: "paragraph",
@@ -317,14 +317,14 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Ako je vaša ušteđevina na štednom računu i donosi 3% kamate, a inflacija je 10%, gubite 7% kupovne moći godišnje. U realnom smislu, osiromašujete — čak i dok vam raste broj na bankovnom izvodu.",
+          "Ako je vaša ušteđevina na štednom računu i donosi 3% kamate, a inflacija je 10%, gubite 7% kupovne moći godišnje. U realnom smislu, osiromašujete - čak i dok vam raste broj na bankovnom izvodu.",
       },
       {
         type: "paragraph",
         text:
           "Dinarski depoziti posebno su ranjivi jer dinar nema globalnu referentnu vrednost i podložan je lokalnoj monetarnoj politici.",
       },
-      { type: "heading", text: "Zlato kao \"store of value\" — šta podaci kažu" },
+      { type: "heading", text: "Zlato kao \"store of value\" - šta podaci kažu" },
       {
         type: "paragraph",
         text:
@@ -333,7 +333,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "U januaru 2025, cena zlata iznosi oko 2.700 dolara po troy unci — povećanje od blizu 7.600% u 54 godine.",
+          "U januaru 2025, cena zlata iznosi oko 2.700 dolara po troy unci - povećanje od blizu 7.600% u 54 godine.",
       },
       {
         type: "paragraph",
@@ -343,7 +343,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Zaključak: ko je u ovom periodu čuvao ušteđevinu u zlatu umesto u dolarima, nije samo sačuvao vrednost — osetno je uvećao realno bogatstvo.",
+          "Zaključak: ko je u ovom periodu čuvao ušteđevinu u zlatu umesto u dolarima, nije samo sačuvao vrednost - osetno je uvećao realno bogatstvo.",
       },
       { type: "heading", text: "Periodi visoke inflacije" },
       {
@@ -352,30 +352,30 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
           {
             period: "1973–1979",
             inflation: "Inflacija (SAD): +90% ukupno",
-            goldChange: "Cena zlata — promena: +750%",
+            goldChange: "Cena zlata - promena: +750%",
           },
           {
             period: "2008–2012 (posle krize)",
             inflation: "Inflacija (SAD): umerna",
-            goldChange: "Cena zlata — promena: +170%",
+            goldChange: "Cena zlata - promena: +170%",
           },
           {
             period: "2020–2022 (Covid + rat)",
             inflation: "Inflacija (SAD): +20%+ ukupno",
-            goldChange: "Cena zlata — promena: +40%",
+            goldChange: "Cena zlata - promena: +40%",
           },
         ],
       },
       {
         type: "paragraph",
         text:
-          "U svakom periodu visoke inflacije poslednjih pola veka, zlato nije samo pratilo inflaciju — nadmašilo ju je.",
+          "U svakom periodu visoke inflacije poslednjih pola veka, zlato nije samo pratilo inflaciju - nadmašilo ju je.",
       },
       { type: "heading", text: "Šta se dešavalo sa srpskim dinarom?" },
       {
         type: "paragraph",
         text:
-          "Srbija ima posebno bolan odnos s inflacijom. Hiperinflacija devedesetih bila je jedna od najgorih u istoriji — za kratko vreme, štampana novčanica od \"jedne milijarde dinara\" nije mogla da kupi hleb.",
+          "Srbija ima posebno bolan odnos s inflacijom. Hiperinflacija devedesetih bila je jedna od najgorih u istoriji - za kratko vreme, štampana novčanica od \"jedne milijarde dinara\" nije mogla da kupi hleb.",
       },
       {
         type: "paragraph",
@@ -385,7 +385,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Ko je tada kupio zlatnu polugu u ekvivalentnoj vrednosti — danas ima imovinu vrednu višestruko više.",
+          "Ko je tada kupio zlatnu polugu u ekvivalentnoj vrednosti - danas ima imovinu vrednu višestruko više.",
       },
       { type: "heading", text: "Zašto zlato \"prati\" inflaciju?" },
       {
@@ -397,19 +397,19 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Centralne banke mogu štampati novac bez ograničenja. Kada to rade u velikim količinama (kvantitativno popuštanje, finansiranje budžetskog deficita), vrednost novca pada. Zlato ne može da se \"štampa\" — godišnja rudarska produkcija iznosi oko 1–2% ukupnih svetskih zaliha. Ova asimetrija osigurava da zlato dugoročno ne gubi vrednost u odnosu na fiat novac.",
+          "Centralne banke mogu štampati novac bez ograničenja. Kada to rade u velikim količinama (kvantitativno popuštanje, finansiranje budžetskog deficita), vrednost novca pada. Zlato ne može da se \"štampa\" - godišnja rudarska produkcija iznosi oko 1–2% ukupnih svetskih zaliha. Ova asimetrija osigurava da zlato dugoročno ne gubi vrednost u odnosu na fiat novac.",
       },
       { type: "heading", text: "2. Alternativna imovina bez kreditnog rizika" },
       {
         type: "paragraph",
         text:
-          "U inflatornim periodima, investitori beže iz gotovine i obveznica čiji realni prinos postaje negativan. Deo tog kapitala stiže u zlato — povećana potražnja diže cenu.",
+          "U inflatornim periodima, investitori beže iz gotovine i obveznica čiji realni prinos postaje negativan. Deo tog kapitala stiže u zlato - povećana potražnja diže cenu.",
       },
       { type: "heading", text: "3. Globalna denominacija" },
       {
         type: "paragraph",
         text:
-          "Zlato se kotira u dolarima, ali njegova vrednost nije vezana za jednu državu ili ekonomiju. Ako Srbija ima 15% inflaciju, a ostatak sveta 3%, cena zlatne poluge u dinarima raste jer raste kurs evra prema dinaru — a cena zlata u evrima ostaje stabilna ili raste.",
+          "Zlato se kotira u dolarima, ali njegova vrednost nije vezana za jednu državu ili ekonomiju. Ako Srbija ima 15% inflaciju, a ostatak sveta 3%, cena zlatne poluge u dinarima raste jer raste kurs evra prema dinaru - a cena zlata u evrima ostaje stabilna ili raste.",
       },
       { type: "heading", text: "Zlato vs. nekretnine kao zaštita od inflacije" },
       {
@@ -420,10 +420,10 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "list",
         items: [
-          "Nelikvidnost — nekretninu ne možete prodati za jedan dan, a u krizama cene padaju i likvidnost nestaje",
-          "Troškovi — porez na imovinu, komunalije, renoviranje, agencijske provizije",
-          "Nedeljivi — ne možete prodati \"20% stana\" kad vam zatreba deo gotovine",
-          "Lokalni rizik — vrednost stana zavisi od lokalne tražnje, infrastrukture, urbanog razvoja",
+          "Nelikvidnost - nekretninu ne možete prodati za jedan dan, a u krizama cene padaju i likvidnost nestaje",
+          "Troškovi - porez na imovinu, komunalije, renoviranje, agencijske provizije",
+          "Nedeljivi - ne možete prodati \"20% stana\" kad vam zatreba deo gotovine",
+          "Lokalni rizik - vrednost stana zavisi od lokalne tražnje, infrastrukture, urbanog razvoja",
         ],
       },
       {
@@ -435,7 +435,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Finansijski planeri obično preporučuju 10–15% ukupne imovine u fizičkom zlatu kao inflacioni hedge. Ovo nije spekulativna investicija — to je osiguranje kupovne moći.",
+          "Finansijski planeri obično preporučuju 10–15% ukupne imovine u fizičkom zlatu kao inflacioni hedge. Ovo nije spekulativna investicija - to je osiguranje kupovne moći.",
       },
       { type: "paragraph", text: "Praktičan primer:" },
       {
@@ -454,12 +454,12 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
     ],
   },
   "zlatne-poluge-vs-novcanice": {
-    metaTitle: "Zlatne poluge ili zlatnici — šta je bolje za početnike | Gold Invest",
+    metaTitle: "Zlatne poluge ili zlatnici - šta je bolje za početnike | Gold Invest",
     metaDescription:
       "Poluge nude nižu premiju za veće iznose, zlatnici omogućavaju fleksibilnu prodaju u manjim količinama. Uporedite prednosti i mane oba formata i izaberite pravo za vas.",
     post: {
       slug: "zlatne-poluge-vs-novcanice",
-      title: "Zlatne poluge ili zlatnici — šta je bolje za početnike",
+      title: "Zlatne poluge ili zlatnici - šta je bolje za početnike",
       excerpt:
         "Poluge ili zlatnici? Razumite ključne razlike i izaberite format koji odgovara vašoj strategiji ulaganja.",
       category: "Vodič",
@@ -478,7 +478,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Zlatne poluge su pravougaone ili trapezoidne šipke od čistog zlata čistoće 999,9/1000 (24 karata). Proizvode ih LBMA akreditovane rafinerije — Argor-Heraeus (Švajcarska), C. Hafner (Nemačka), Umicore (Belgija) i druge.",
+          "Zlatne poluge su pravougaone ili trapezoidne šipke od čistog zlata čistoće 999,9/1000 (24 karata). Proizvode ih LBMA akreditovane rafinerije - Argor-Heraeus (Švajcarska), C. Hafner (Nemačka), Umicore (Belgija) i druge.",
       },
       {
         type: "paragraph",
@@ -488,7 +488,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Ključna karakteristika poluga: minimalna premija po gramu — posebno u većim formatima.",
+          "Ključna karakteristika poluga: minimalna premija po gramu - posebno u većim formatima.",
       },
       { type: "image", src: "/images/bento-gold-bar.webp", alt: "Zlatna poluga" },
       { type: "heading", text: "Šta su investicioni zlatnici?" },
@@ -565,7 +565,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Ne postoji univerzalno bolji format — izbor zavisi od vaših ciljeva.",
+          "Ne postoji univerzalno bolji format - izbor zavisi od vaših ciljeva.",
       },
       {
         type: "paragraph",
@@ -580,12 +580,12 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
     ],
   },
   "lbma-sertifikacija-sta-znaci": {
-    metaTitle: "LBMA sertifikacija — šta znači i zašto je važna | Gold Invest",
+    metaTitle: "LBMA sertifikacija - šta znači i zašto je važna | Gold Invest",
     metaDescription:
       "Samo zlato od LBMA akreditovanih kovnica garantuje međunarodnu prihvatljivost i lakšu preprodaju. Naučite kako da proverite poreklo pre kupovine.",
     post: {
       slug: "lbma-sertifikacija-sta-znaci",
-      title: "LBMA sertifikacija — zašto je važna i kako je prepoznati",
+      title: "LBMA sertifikacija - zašto je važna i kako je prepoznati",
       excerpt:
         "LBMA akreditacija je ključ likvidnosti i fer preprodaje investicionog zlata. Saznajte kako da je prepoznate pre kupovine.",
       category: "Vodič",
@@ -598,7 +598,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Kada kupujete zlatnu polugu, jedan od najvažnijih detalja nije ni cena ni izgled — to je status rafinerije koja je polugu proizvela. Poluge bez LBMA akreditacije mogu biti od potpuno čistog zlata, ali ih mnogi dileri i banke neće prihvatiti bez posebne i skupe provere.",
+          "Kada kupujete zlatnu polugu, jedan od najvažnijih detalja nije ni cena ni izgled - to je status rafinerije koja je polugu proizvela. Poluge bez LBMA akreditacije mogu biti od potpuno čistog zlata, ali ih mnogi dileri i banke neće prihvatiti bez posebne i skupe provere.",
       },
       { type: "heading", text: "Šta je LBMA?" },
       {
@@ -610,12 +610,12 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "list",
         items: [
-          "Good Delivery List — rafinerije koje ispunjavaju najstrožije standarde",
-          "Responsible Sourcing — program praćenja etičnog porekla metala",
+          "Good Delivery List - rafinerije koje ispunjavaju najstrožije standarde",
+          "Responsible Sourcing - program praćenja etičnog porekla metala",
         ],
       },
       { type: "heading", text: "Šta znači \"Good Delivery\" standard?" },
-      { type: "paragraph", text: "Good Delivery nije marketing termin — to je tačna i stroga specifikacija." },
+      { type: "paragraph", text: "Good Delivery nije marketing termin - to je tačna i stroga specifikacija." },
       {
         type: "paragraph",
         text:
@@ -670,11 +670,11 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "orderedList",
         items: [
-          "Argor-Heraeus — Švajcarska — jedna od 3 najveće na svetu",
-          "C. Hafner — Nemačka — 170+ godina tradicije",
-          "Umicore — Belgija — lider u recikliranju",
-          "Valcambi — Švajcarska — poznata po CombiBar formatima",
-          "PAMP Suisse — Švajcarska — premium segment",
+          "Argor-Heraeus - Švajcarska - jedna od 3 najveće na svetu",
+          "C. Hafner - Nemačka - 170+ godina tradicije",
+          "Umicore - Belgija - lider u recikliranju",
+          "Valcambi - Švajcarska - poznata po CombiBar formatima",
+          "PAMP Suisse - Švajcarska - premium segment",
         ],
       },
       {
@@ -716,7 +716,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Ako odgovor nije potvrdan — razmislite dva puta. Investiciono zlato vredi onoliko koliko ga možete prodati. A za maksimalnu prodajnu vrednost, LBMA status je neophodan.",
+          "Ako odgovor nije potvrdan - razmislite dva puta. Investiciono zlato vredi onoliko koliko ga možete prodati. A za maksimalnu prodajnu vrednost, LBMA status je neophodan.",
       },
       {
         type: "paragraph",
@@ -730,7 +730,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       "LBMA dva puta dnevno fiksira referentnu cenu zlata koja se koristi širom sveta. Saznajte koji faktori pokreću kurs, zašto cena varira i kako pratiti pravi trenutak za kupovinu.",
     post: {
       slug: "kako-odrediti-cenu-zlata",
-      title: "Kako se formira cena zlata na tržištu — sve što treba da znate",
+      title: "Kako se formira cena zlata na tržištu - sve što treba da znate",
       excerpt:
         "Kako nastaje cena zlata i koji faktori je pomeraju? Razumite tržište pre nego što kupite.",
       category: "Tržište",
@@ -748,14 +748,14 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
         type: "paragraph",
         text: "U ovom tekstu objašnjavamo kako funkcioniše formiranje cene zlata i šta to znači za vas kao kupca.",
       },
-      { type: "heading", text: "LBMA — gde počinje svaka cena zlata" },
+      { type: "heading", text: "LBMA - gde počinje svaka cena zlata" },
       {
         type: "paragraph",
         text: "London Bullion Market Association (LBMA) objavljuje globalnu referentnu cenu zlata, poznatu kao LBMA Gold Price.",
       },
       {
         type: "paragraph",
-        text: "Cena se objavljuje dva puta dnevno — u 10:30 i 15:00 po londonskom vremenu.",
+        text: "Cena se objavljuje dva puta dnevno - u 10:30 i 15:00 po londonskom vremenu.",
       },
       {
         type: "paragraph",
@@ -813,7 +813,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       },
       {
         type: "paragraph",
-        text: "Najbolja strategija je DCA — kupovina u redovnim intervalima.",
+        text: "Najbolja strategija je DCA - kupovina u redovnim intervalima.",
       },
       {
         type: "paragraph",
@@ -826,12 +826,12 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
     ],
   },
   "kako-cuvati-fizicko-zlato": {
-    metaTitle: "Kako čuvati fizičko zlato — sef, banka ili kuća | Gold Invest",
+    metaTitle: "Kako čuvati fizičko zlato - sef, banka ili kuća | Gold Invest",
     metaDescription:
-      "Čuvanje zlata kod kuće, u bankarskom sefu ili kod dilera — svaka opcija ima svoje prednosti i rizike. Ovaj vodič pomaže da donesete pravu odluku.",
+      "Čuvanje zlata kod kuće, u bankarskom sefu ili kod dilera - svaka opcija ima svoje prednosti i rizike. Ovaj vodič pomaže da donesete pravu odluku.",
     post: {
       slug: "kako-cuvati-fizicko-zlato",
-      title: "Kako čuvati fizičko zlato — sef, banka ili kuća",
+      title: "Kako čuvati fizičko zlato - sef, banka ili kuća",
       excerpt:
         "Gde čuvati fizičko zlato? Uporedite kućni sef, banku i profesionalne trezore.",
       category: "Saveti",
@@ -856,7 +856,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
         rows: [
           {
             label: "Kućni sef",
-            subtitle: "Najpopularnija opcija za početnike — maksimalna kontrola i trenutni pristup.",
+            subtitle: "Najpopularnija opcija za početnike - maksimalna kontrola i trenutni pristup.",
             prednosti: [
               { text: "Zlato je uvek dostupno" },
               { text: "Nema godišnjih troškova" },
@@ -930,12 +930,12 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
     ],
   },
   "kamatne-stope-i-cena-zlata": {
-    metaTitle: "Kamatne stope i cena zlata — inverzna veza | Gold Invest",
+    metaTitle: "Kamatne stope i cena zlata - inverzna veza | Gold Invest",
     metaDescription:
-      "Kada kamatne stope rastu, cena zlata obično pada — i obrnuto. Razumevanje ove veze pomaže vam da bolje planirate trenutak ulaska u investiciju.",
+      "Kada kamatne stope rastu, cena zlata obično pada - i obrnuto. Razumevanje ove veze pomaže vam da bolje planirate trenutak ulaska u investiciju.",
     post: {
       slug: "kamatne-stope-i-cena-zlata",
-      title: "Kamatne stope i cena zlata — inverzna veza koju morate razumeti",
+      title: "Kamatne stope i cena zlata - inverzna veza koju morate razumeti",
       excerpt:
         "Razumevanje veze između kamatnih stopa i cene zlata može vam pomoći da bolje procenite trenutak kupovine.",
       category: "Tržište",
@@ -948,7 +948,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "paragraph",
         text:
-          "Postoji jedna veza na finansijskim tržištima koja je toliko konzistentna da ju je skoro nemoguće ignorisati: kada centralne banke podižu kamatne stope, cena zlata obično pada. Kada stope padaju — ili kada se tržište sprema za pad — zlato raste.",
+          "Postoji jedna veza na finansijskim tržištima koja je toliko konzistentna da ju je skoro nemoguće ignorisati: kada centralne banke podižu kamatne stope, cena zlata obično pada. Kada stope padaju - ili kada se tržište sprema za pad - zlato raste.",
       },
       {
         type: "paragraph",
@@ -1007,7 +1007,7 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
       {
         type: "stepItem",
         number: 1,
-        title: "Kada su stope na vrhuncu — dobar momenat za kupovinu",
+        title: "Kada su stope na vrhuncu - dobar momenat za kupovinu",
         body:
           "Kada su kamatne stope visoke, cena zlata je često pod pritiskom. Kada centralne banke počnu da ih snižavaju, kapital prelazi iz obveznica u zlato.",
       },
@@ -1017,14 +1017,14 @@ export const BLOG_SINGLE_POSTS: Record<string, SingleBlogPostEntry> = {
         title: "Dugoročno: tajming je manje važan nego vreme u tržištu",
         body: [
           "Za dugoročnog investitora kratkoročna veza između stopa i cene zlata manje je bitna od dugoročnog trenda.",
-          "Ko je kupio zlato 2010, 2015. ili 2018. — svi su danas u plusu.",
+          "Ko je kupio zlato 2010, 2015. ili 2018. - svi su danas u plusu.",
         ],
       },
       { type: "heading", text: "Praktičan zaključak" },
       {
         type: "paragraph",
         text:
-          "Kamatne stope su jedan od najvažnijih faktora kratkoročnog kretanja cene zlata — ali nisu jedini.",
+          "Kamatne stope su jedan od najvažnijih faktora kratkoročnog kretanja cene zlata - ali nisu jedini.",
       },
       {
         type: "paragraph",

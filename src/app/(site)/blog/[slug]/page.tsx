@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: "Blog | Gold Invest",
       description:
-        "Čitajte stručne tekstove o investicionom zlatu — kako kupiti, zašto je zlato sigurna investicija.",
+        "Čitajte stručne tekstove o investicionom zlatu - kako kupiti, zašto je zlato sigurna investicija.",
     };
   }
 

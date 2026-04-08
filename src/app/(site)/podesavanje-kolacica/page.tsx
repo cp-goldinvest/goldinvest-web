@@ -6,11 +6,11 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 export const metadata: Metadata = {
   title: "Podešavanje kolačića | Gold Invest",
   description:
-    "Informacije o kolačićima koje koristi Gold Invest sajt — koje vrste kolačića koristimo i kako možete upravljati vašim podešavanjima.",
+    "Informacije o kolačićima koje koristi Gold Invest sajt - koje vrste kolačića koristimo i kako možete upravljati vašim podešavanjima.",
   alternates: { canonical: "https://goldinvest.rs/podesavanje-kolacica" },
   openGraph: {
     title: "Podešavanje kolačića | Gold Invest",
-    description: "Informacije o kolačićima koje koristi Gold Invest sajt — koje vrste kolačića koristimo i kako možete upravljati vašim podešavanjima.",
+    description: "Informacije o kolačićima koje koristi Gold Invest sajt - koje vrste kolačića koristimo i kako možete upravljati vašim podešavanjima.",
     url: "https://goldinvest.rs/podesavanje-kolacica",
     siteName: "Gold Invest",
     locale: "sr_RS",
@@ -35,7 +35,7 @@ const COOKIE_TYPES = [
     name: "Analitički kolačići",
     required: false,
     description:
-      "Pomažu nam da razumemo kako posetioci koriste sajt — koje stranice su najpopularnije, odakle dolaze korisnici i kako se kreću kroz sajt. Sve informacije su anonimne i koriste se isključivo za poboljšanje korisničkog iskustva.",
+      "Pomažu nam da razumemo kako posetioci koriste sajt - koje stranice su najpopularnije, odakle dolaze korisnici i kako se kreću kroz sajt. Sve informacije su anonimne i koriste se isključivo za poboljšanje korisničkog iskustva.",
     examples: "Google Analytics (anonimizovano)",
   },
   {
@@ -60,10 +60,10 @@ Kolačići ne mogu pokrenuti programe niti preneti viruse. Jedina informacija ko
 
 Uputstva za upravljanje kolačićima u popularnim pretraživačima:
 
-— Google Chrome: Podešavanja → Privatnost i bezbednost → Kolačići
-— Mozilla Firefox: Podešavanja → Privatnost i bezbednost → Kolačići
-— Safari: Podešavanja → Privatnost → Upravljanje podacima veb sajta
-— Microsoft Edge: Podešavanja → Kolačići i dozvole sajta`,
+- Google Chrome: Podešavanja → Privatnost i bezbednost → Kolačići
+- Mozilla Firefox: Podešavanja → Privatnost i bezbednost → Kolačići
+- Safari: Podešavanja → Privatnost → Upravljanje podacima veb sajta
+- Microsoft Edge: Podešavanja → Kolačići i dozvole sajta`,
   },
   {
     title: "Kolačići trećih strana",

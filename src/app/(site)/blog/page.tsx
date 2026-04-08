@@ -13,12 +13,12 @@ import { NewsletterSection } from "@/components/blog/NewsletterSection";
 export const metadata: Metadata = {
   title: "Blog | Saveti i analize o investicionom zlatu | Gold Invest",
   description:
-    "Čitajte stručne tekstove o investicionom zlatu — kako kupiti, zašto je zlato sigurna investicija, analiza tržišta, saveti za početnike i iskusne investitore.",
+    "Čitajte stručne tekstove o investicionom zlatu - kako kupiti, zašto je zlato sigurna investicija, analiza tržišta, saveti za početnike i iskusne investitore.",
   alternates: { canonical: "https://goldinvest.rs/blog" },
   openGraph: {
     title: "Blog | Saveti i analize o investicionom zlatu | Gold Invest",
     description:
-      "Stručni tekstovi o zlatu kao investiciji — tržište, saveti, vodiči i analize.",
+      "Stručni tekstovi o zlatu kao investiciji - tržište, saveti, vodiči i analize.",
     url: "https://goldinvest.rs/blog",
     siteName: "Gold Invest",
     locale: "sr_RS",
@@ -43,7 +43,7 @@ export default function BlogPage() {
         schema={buildWebPageSchema({
           name: "Blog | Saveti i analize o investicionom zlatu | Gold Invest",
           description:
-            "Stručni tekstovi o investicionom zlatu — tržište, saveti, vodiči i analize za srpske investitore.",
+            "Stručni tekstovi o investicionom zlatu - tržište, saveti, vodiči i analize za srpske investitore.",
           slug: "/blog",
         })}
       />
@@ -85,7 +85,7 @@ export default function BlogPage() {
                 maxWidth: 520,
               }}
             >
-              Stručni tekstovi o investicionom zlatu — kako funkcioniše tržište, šta
+              Stručni tekstovi o investicionom zlatu - kako funkcioniše tržište, šta
               utiče na cenu, kako odabrati pravi format i kako zaštititi ušteđevinu
               na dugi rok.
             </p>

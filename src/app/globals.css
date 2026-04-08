@@ -3,29 +3,29 @@
 @theme {
   /* ── Brand Colors (paleta v1) ─────────────────── */
 
-  /* Onyx — primarna pozadina */
+  /* Onyx - primarna pozadina */
   --color-onyx:             #1B1B1C;
   --color-onyx-light:       #242425;
   --color-onyx-lighter:     #2E2E2F;
 
-  /* Gold Yellow — glavni akcenat */
+  /* Gold Yellow - glavni akcenat */
   --color-gold-yellow:      #BF8E41;
   --color-gold-light:       #D4A84F;
   --color-gold-pale:        #E8C97A;
 
-  /* Champagne / Sand — svetli tekst i površine */
+  /* Champagne / Sand - svetli tekst i površine */
   --color-champagne:        #E9E6D9;
   --color-champagne-dark:   #D4D0C0;
   --color-sand:             #E9E6D9;
 
-  /* Gold Champagne — čisto bela */
+  /* Gold Champagne - čisto bela */
   --color-gold-champagne:   #FFFFFF;
 
-  /* Invest Blue — tamno navy, sekundarni akcenat */
+  /* Invest Blue - tamno navy, sekundarni akcenat */
   --color-invest-blue:      #071E30;
   --color-invest-blue-mid:  #0D2E48;
 
-  /* Brown — topli zemlja-ton za detalje */
+  /* Brown - topli zemlja-ton za detalje */
   --color-brown:            #4D2F13;
   --color-brown-light:      #6B4120;
 

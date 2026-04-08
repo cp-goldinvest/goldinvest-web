@@ -85,7 +85,7 @@ function StorageComparisonCheckList({
   defaultCheck: boolean;
 }) {
   if (lines.length === 0) {
-    return <span className="text-[#9D9072]">—</span>;
+    return <span className="text-[#9D9072]">-</span>;
   }
   return (
     <ul className="m-0 flex flex-col gap-2.5 list-none p-0">
@@ -117,7 +117,7 @@ function StorageComparisonCheckList({
 
 function StorageComparisonPlainList({ lines }: { lines: string[] }) {
   if (lines.length === 0) {
-    return <span className="text-[#9D9072]">—</span>;
+    return <span className="text-[#9D9072]">-</span>;
   }
   return (
     <ul className="m-0 flex flex-col gap-2 list-none p-0">
@@ -169,7 +169,7 @@ export function SingleBlogPostTemplate({ post, blocks }: Props) {
       >
         <SectionContainer>
           <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] gap-10 items-center">
-            {/* Left — meta + title */}
+            {/* Left - meta + title */}
             <div className="text-left">
               <div className="flex flex-col gap-4 mb-6 items-start">
                 <CategoryPill category={post.category} />
@@ -197,7 +197,7 @@ export function SingleBlogPostTemplate({ post, blocks }: Props) {
               </h1>
             </div>
 
-            {/* Right — image */}
+            {/* Right - image */}
             <div
               className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
               style={{ height: 360 }}

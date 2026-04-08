@@ -11,7 +11,7 @@ export function NewsletterSection() {
     e.preventDefault();
     if (!email) return;
     setStatus("sending");
-    // Placeholder — wire to your email service
+    // Placeholder - wire to your email service
     await new Promise((r) => setTimeout(r, 800));
     setStatus("sent");
   }
@@ -42,7 +42,7 @@ export function NewsletterSection() {
             fontSize: "clamp(26px, 3vw, 40px)",
           }}
         >
-          <span style={{ fontStyle: "normal" }}>Novi članci —</span>{" "}
+          <span style={{ fontStyle: "normal" }}>Novi članci -</span>{" "}
           <span style={{ fontStyle: "italic" }}>direktno u inbox.</span>
         </h2>
 
@@ -56,7 +56,7 @@ export function NewsletterSection() {
           }}
         >
           Jednom mesečno šaljemo pregled novih tekstova, kretanje cene zlata i
-          praktične savete. Bez spama — samo sadržaj koji vredi pročitati.
+          praktične savete. Bez spama - samo sadržaj koji vredi pročitati.
         </p>
 
         {/* Form / Success */}

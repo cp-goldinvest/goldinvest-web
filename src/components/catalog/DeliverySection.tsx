@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 type Props = {
   heading: string;
   description: string;
-  /** Body text for the first card ("Lično preuzimanje") — only part that varies per category */
+  /** Body text for the first card ("Lično preuzimanje") - only part that varies per category */
   pickupCardBody: string;
 };
 
@@ -91,7 +91,7 @@ export function DeliverySection({ heading, description, pickupCardBody }: Props)
               </span>
               <div>
                 <p className="text-[#1B1B1C] text-sm font-semibold mb-1 leading-snug">
-                  Beograd — dan za dan
+                  Beograd - dan za dan
                 </p>
                 <p className="text-[#6B6B6B] text-[13px] leading-relaxed">
                   Porudžbine evidentirane radnim danima do 12h isporučujemo na adresu istog dana do 18h.
@@ -108,7 +108,7 @@ export function DeliverySection({ heading, description, pickupCardBody }: Props)
                   Isporuka za celu Srbiju
                 </p>
                 <p className="text-[#6B6B6B] text-[13px] leading-relaxed">
-                  Maksimalno osigurana, diskretna pošiljka — rok isporuke 1 do 3 radna dana (avansne kupovine po dogovoru).
+                  Maksimalno osigurana, diskretna pošiljka - rok isporuke 1 do 3 radna dana (avansne kupovine po dogovoru).
                 </p>
               </div>
             </div>

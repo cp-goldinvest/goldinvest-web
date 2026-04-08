@@ -155,7 +155,7 @@ function AddItemModal({
           <div>
             <p className="text-xs text-[#555] mb-0.5">{variant.brand}</p>
             <h3 className="text-[#E9E6D9] font-semibold">
-              Dodaj na lager — {formatWeight(variant.weightG)}
+              Dodaj na lager - {formatWeight(variant.weightG)}
             </h3>
           </div>
           <button onClick={onClose} className="text-[#555] hover:text-[#E9E6D9] transition-colors">
@@ -263,10 +263,10 @@ function VariantCard({
   const avgPurchase = count > 0 ? totalPurchase / count : 0;
   const spotPerGram = livePrice?.rsd_per_gram ?? 0;
 
-  // Stock margin from pricing tiers — same logic used to calculate site price
+  // Stock margin from pricing tiers - same logic used to calculate site price
   const stockMarginPct = findStockMarginPct(group.weightG, group.category, tiers);
 
-  // Metal value: spot price × weight (no selling markup — intrinsic gold value)
+  // Metal value: spot price × weight (no selling markup - intrinsic gold value)
   const metalPricePerUnit = spotPerGram * group.weightG;
   // Selling value: what we'd actually sell this for on the site
   const sellingPricePerUnit = spotPerGram * group.weightG * (1 + stockMarginPct / 100);
@@ -433,14 +433,14 @@ function VariantCard({
                 <div className="bg-[#1B1B1C] px-4 py-3">
                   {sellingPnL !== null && metalPnL !== null ? (
                     <div className="space-y-1">
-                      {/* Selling P&L — primary */}
+                      {/* Selling P&L - primary */}
                       <div className={`flex items-center gap-1 ${sellingPnL >= 0 ? "text-green-400" : "text-red-400"}`}>
                         <span className="text-[10px] text-[#555] w-14 shrink-0">Prodajni:</span>
                         <span className="text-sm font-semibold tabular-nums">
                           {sellingPnL >= 0 ? "+" : ""}{formatRsd(sellingPnL)}
                         </span>
                       </div>
-                      {/* Metal P&L — secondary */}
+                      {/* Metal P&L - secondary */}
                       <div className={`flex items-center gap-1 ${metalPnL >= 0 ? "text-green-500/50" : "text-red-500/50"}`}>
                         <span className="text-[10px] text-[#333] w-14 shrink-0">Metal:</span>
                         <span className="text-xs tabular-nums">
@@ -449,7 +449,7 @@ function VariantCard({
                       </div>
                     </div>
                   ) : (
-                    <span className="text-xs text-[#444]">—</span>
+                    <span className="text-xs text-[#444]">-</span>
                   )}
                 </div>
 
@@ -497,10 +497,10 @@ function VariantCard({
           {/* Legend footer */}
           <div className="bg-[#111112] border-t border-[#2E2E2F] px-4 py-2.5 flex items-center gap-4">
             <span className="text-[10px] text-[#333]">
-              <span className="text-[#555]">Prodajni P&amp;L</span> — prihod od prodaje po sajt ceni (spot +{stockMarginPct}%)
+              <span className="text-[#555]">Prodajni P&amp;L</span> - prihod od prodaje po sajt ceni (spot +{stockMarginPct}%)
             </span>
             <span className="text-[10px] text-[#333]">
-              <span className="text-[#555]">Metal P&amp;L</span> — čista spot vrednost zlata
+              <span className="text-[#555]">Metal P&amp;L</span> - čista spot vrednost zlata
             </span>
           </div>
         </div>
@@ -723,7 +723,7 @@ export default function AdminZalikePage() {
           ) : (
             <div className="col-span-2 bg-[#111112] border border-[#2E2E2F] rounded-xl p-4 flex items-center gap-3">
               <span className="w-1.5 h-1.5 rounded-full bg-yellow-400/50" />
-              <p className="text-xs text-[#444]">Spot cena nije dostupna — P&amp;L nije moguće izračunati</p>
+              <p className="text-xs text-[#444]">Spot cena nije dostupna - P&amp;L nije moguće izračunati</p>
             </div>
           )}
         </div>

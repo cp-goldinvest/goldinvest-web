@@ -41,7 +41,7 @@ export async function GET() {
       return NextResponse.json({ error: "Prices unavailable" }, { status: 503 });
     }
 
-    // Compute rsd_per_gram from EUR data when available (preferred — matches admin rate).
+    // Compute rsd_per_gram from EUR data when available (preferred - matches admin rate).
     // Fall back to stored price_per_g_rsd (computed from USD) if EUR fields are missing.
     const rsdPerGram =
       snap.xau_eur != null && snap.eur_rsd != null
@@ -65,7 +65,7 @@ export async function GET() {
       },
       {
         headers: {
-          // 55s browser cache — PriceTicker polls every 60s
+          // 55s browser cache - PriceTicker polls every 60s
           "Cache-Control": "public, s-maxage=55, stale-while-revalidate=10",
         },
       }

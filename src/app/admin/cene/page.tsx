@@ -401,7 +401,7 @@ export default function AdminCenePage() {
 
   const spotRsdG = livePrice
     ? formatRsd(livePrice.rsd_per_gram)
-    : "—";
+    : "-";
 
   return (
     <div className="p-6 lg:p-8 max-w-6xl">
@@ -448,7 +448,7 @@ export default function AdminCenePage() {
               <span className="text-xs text-[#555]">XAU/EUR automatski</span>
             </div>
             <span className="text-sm font-semibold text-[#E9E6D9] tabular-nums">
-              €{livePrice ? livePrice.xau_eur.toLocaleString("de-DE", { minimumFractionDigits: 2 }) : "—"}
+              €{livePrice ? livePrice.xau_eur.toLocaleString("de-DE", { minimumFractionDigits: 2 }) : "-"}
             </span>
             <span className="text-[11px] text-[#555] ml-auto">ažurirano pre {getAgeLabel(liveFetchedAt)}</span>
           </div>
@@ -477,7 +477,7 @@ export default function AdminCenePage() {
                 </p>
               </div>
               <div className="text-right text-[11px] text-[#555] leading-relaxed">
-                <p className="font-mono">€{livePrice?.xau_eur ?? "—"} ÷ {GRAMS_PER_OZ}</p>
+                <p className="font-mono">€{livePrice?.xau_eur ?? "-"} ÷ {GRAMS_PER_OZ}</p>
                 <p className="font-mono">× {eurRsd} RSD</p>
               </div>
             </div>
@@ -588,7 +588,7 @@ export default function AdminCenePage() {
                             onChange={e => setBrandDrafts(p => ({ ...p, [tier.id]: { ...(p[tier.id] ?? { stock: "", advance: "", purchase: "" }), brand: e.target.value } }))}
                             className="bg-[#1B1B1C] border border-[#2E2E2F] rounded px-2 py-1 text-[11px] text-[#8A8A8A] focus:outline-none focus:border-[#BF8E41]/60 min-w-0 flex-1"
                           >
-                            <option value="">— odaberi brend —</option>
+                            <option value="">- odaberi brend -</option>
                             {knownBrands
                               .filter(b => !brandSubs.some(bt => bt.brand === b))
                               .map(b => <option key={b} value={b}>{b}</option>)

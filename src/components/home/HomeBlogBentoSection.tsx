@@ -58,7 +58,7 @@ export function HomeBlogBentoSection({ posts }: Props) {
           </h2>
         </div>
 
-        {/* Desktop — same grid areas as GoldTypesSection */}
+        {/* Desktop - same grid areas as GoldTypesSection */}
         <div
           className="hidden md:grid gap-6"
           style={{
@@ -71,7 +71,7 @@ export function HomeBlogBentoSection({ posts }: Props) {
             `,
           }}
         >
-          {/* text-forms — post b */}
+          {/* text-forms - post b */}
           <Link
             href={`/blog/${b.slug}`}
             className="group bg-[#F9F9F9] rounded-2xl overflow-hidden flex flex-col hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300"
@@ -110,7 +110,7 @@ export function HomeBlogBentoSection({ posts }: Props) {
             </div>
           </Link>
 
-          {/* center-gold — post a (newest) */}
+          {/* center-gold - post a (newest) */}
           <Link
             href={`/blog/${a.slug}`}
             className="group rounded-2xl overflow-hidden flex flex-col border border-[#F0EDE6] bg-white hover:shadow-[0_8px_40px_rgba(0,0,0,0.07)] transition-shadow duration-300"
@@ -158,7 +158,7 @@ export function HomeBlogBentoSection({ posts }: Props) {
             </div>
           </Link>
 
-          {/* kovanice — post c dark */}
+          {/* kovanice - post c dark */}
           <Link
             href={`/blog/${c.slug}`}
             className="group bg-[#0D0D0D] rounded-2xl p-7 flex flex-col gap-5 border border-[#232324] hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition-shadow duration-300"
@@ -211,7 +211,7 @@ export function HomeBlogBentoSection({ posts }: Props) {
             </div>
           </Link>
 
-          {/* pdv — post d gold */}
+          {/* pdv - post d gold */}
           <Link
             href={`/blog/${d.slug}`}
             className="group bg-[#E9E6D9] rounded-2xl p-7 flex flex-col justify-end hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300"
@@ -235,7 +235,7 @@ export function HomeBlogBentoSection({ posts }: Props) {
             <MetaRow post={d} compact />
           </Link>
 
-          {/* dollars — post e wide */}
+          {/* dollars - post e wide */}
           <Link
             href={`/blog/${e.slug}`}
             className="group bg-[#F9F9F9] rounded-2xl flex overflow-hidden border border-[#F0EDE6] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300"
@@ -283,7 +283,7 @@ export function HomeBlogBentoSection({ posts }: Props) {
           </Link>
         </div>
 
-        {/* Mobile — stacked, same order a→e */}
+        {/* Mobile - stacked, same order a→e */}
         <div className="flex md:hidden flex-col gap-4">
           {[a, b, c, d, e].map((post) => (
             <Link

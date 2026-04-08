@@ -29,7 +29,7 @@ export function PriceBreakdownSection() {
     <section className="bg-white py-20">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
 
-        {/* Heading — centered */}
+        {/* Heading - centered */}
         <div className="text-left md:text-center mb-12 py-4">
           <h2
             className="text-[#1B1B1C] mb-4"
@@ -161,7 +161,7 @@ export function PriceBreakdownSection() {
             <p className="text-[#6B6B6B] text-[14px] leading-relaxed mt-auto">
               Na spot cenu se uvek dodaje premija. Ona pokriva troškove kovanja,
               sertifikacije, sigurnosnog pakovanja, transporta i marže trgovca.
-              Zlatno pravilo — što je poluga teža (npr. 100g ili 1kg), premija po
+              Zlatno pravilo - što je poluga teža (npr. 100g ili 1kg), premija po
               gramu je znatno manja, pa je i vaša investicija isplatljivija.
             </p>
           </div>

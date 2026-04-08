@@ -125,7 +125,7 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
 
-      {/* Top bar — phone number (hides on scroll down) */}
+      {/* Top bar - phone number (hides on scroll down) */}
       <div
         className="w-full overflow-hidden transition-all duration-300 ease-in-out"
         style={{
@@ -155,7 +155,7 @@ export function Header() {
       </div>
       </div>
 
-      {/* Main nav — white background */}
+      {/* Main nav - white background */}
       <div
         className={[
           "relative z-10 transition-all duration-300 bg-white",
@@ -166,7 +166,7 @@ export function Header() {
           <div className="flex items-center justify-between h-16 lg:h-20">
 
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 focus:outline-none" aria-label="Gold Invest — početna">
+            <Link href="/" className="flex-shrink-0 focus:outline-none" aria-label="Gold Invest - početna">
               <GoldInvestLogo className="h-8 lg:h-9 w-auto" />
             </Link>
 
@@ -226,7 +226,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Price ticker — ispod glavnog menija (hides on scroll down) */}
+      {/* Price ticker - ispod glavnog menija (hides on scroll down) */}
       <div
         className="overflow-hidden transition-all duration-300 ease-in-out"
         style={{ maxHeight: barsVisible ? "40px" : "0px", opacity: barsVisible ? 1 : 0 }}

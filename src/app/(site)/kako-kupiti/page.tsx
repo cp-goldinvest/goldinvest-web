@@ -26,7 +26,7 @@ import { buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema } from "@/lib
 export const metadata: Metadata = {
   title: "Kako kupiti investiciono zlato | Gold Invest",
   description:
-    "Korak po korak vodič za kupovinu investicionog zlata u Srbiji — odabir formata, cena, način plaćanja, isporuka i sertifikati. Bez komplikacija, bez kase.",
+    "Korak po korak vodič za kupovinu investicionog zlata u Srbiji - odabir formata, cena, način plaćanja, isporuka i sertifikati. Bez komplikacija, bez kase.",
   alternates: { canonical: "https://goldinvest.rs/kako-kupiti" },
   openGraph: {
     title: "Kako kupiti investiciono zlato | Gold Invest",
@@ -49,27 +49,27 @@ const BREADCRUMBS = [
 const STEPS = [
   {
     title: "Izaberite format i težinu",
-    body: "Poluge, pločice ili dukati — svaki format ima razlog. Pločice od 1–10 g su idealne za početnike i poklone. Poluge od 50 g naviše nude niži premijum po gramu i pogodne su za dugoročno štedenje. Zlatni dukati su kolekcionarska i kulturna vrednost. Ako niste sigurni, pozovite nas — savetujemo bez obaveze.",
+    body: "Poluge, pločice ili dukati - svaki format ima razlog. Pločice od 1–10 g su idealne za početnike i poklone. Poluge od 50 g naviše nude niži premijum po gramu i pogodne su za dugoročno štedenje. Zlatni dukati su kolekcionarska i kulturna vrednost. Ako niste sigurni, pozovite nas - savetujemo bez obaveze.",
     note: "Zlatne poluge (999,9) imaju najniži premijum po gramu od svih formata.",
   },
   {
     title: "Kontaktirajte nas za aktuelnu cenu",
-    body: "Cena zlata se menja svakog dana prema London Bullion Market kotaciji. Iz tog razloga ne prikazujemo fiksirane cene na sajtu — svaki upit dobija aktuelnu cenu važeću na dan kupovine. Pozovite nas ili pošaljite upit putem kontakt forme. Odgovaramo u roku od nekoliko sati.",
+    body: "Cena zlata se menja svakog dana prema London Bullion Market kotaciji. Iz tog razloga ne prikazujemo fiksirane cene na sajtu - svaki upit dobija aktuelnu cenu važeću na dan kupovine. Pozovite nas ili pošaljite upit putem kontakt forme. Odgovaramo u roku od nekoliko sati.",
     note: "Svaka cena je transparentna: spot cena + premijum za izradu i distribuciju.",
   },
   {
     title: "Potvrdite porudžbinu i uplatite",
-    body: "Kada se dogovorimo o ceni, potvrđujete porudžbinu — telefonom ili pisanom porukom. Prihvatamo gotovinu (do zakonskog limita), platnu karticu i bankarski transfer. Moguća je i avansna rezervacija po današnjoj ceni, sa isporukom u dogovorenom roku.",
+    body: "Kada se dogovorimo o ceni, potvrđujete porudžbinu - telefonom ili pisanom porukom. Prihvatamo gotovinu (do zakonskog limita), platnu karticu i bankarski transfer. Moguća je i avansna rezervacija po današnjoj ceni, sa isporukom u dogovorenom roku.",
     note: "Gotovina do 10.000 EUR ekvivalenta po transakciji (AML propis).",
   },
   {
     title: "Preuzmite zlato sa originalnim sertifikatom",
     body: "Svaki proizvod dolazi u originalnom, zapečaćenom pakovanju sa sertifikatom proizvođača. Poluge dolaze u assay kartici koja fizički sprečava otvaranje bez oštećenja. Pločice imaju individualni serijski broj. Sertifikat je garantija autentičnosti prihvaćena na svim svetskim tržištima.",
-    note: "Pakovanje je diskretno — bez vidnog označavanja sadržaja.",
+    note: "Pakovanje je diskretno - bez vidnog označavanja sadržaja.",
   },
   {
     title: "Dostava na adresu ili lično preuzimanje",
-    body: "Biramo najsigurniji način za vas. Isporuka kurirskom službom je osigurana i diskretna — dolazi kao standardna pošiljka. Lično preuzimanje je dostupno u našoj poslovnici u Beogradu. Za poluge od 500 g i više, preporučujemo lični dolazak ili organizovani transport.",
+    body: "Biramo najsigurniji način za vas. Isporuka kurirskom službom je osigurana i diskretna - dolazi kao standardna pošiljka. Lično preuzimanje je dostupno u našoj poslovnici u Beogradu. Za poluge od 500 g i više, preporučujemo lični dolazak ili organizovani transport.",
     note: "Isporuka po celoj Srbiji, 1–3 radna dana.",
   },
 ];
@@ -84,7 +84,7 @@ const PAYMENT_METHODS = [
   {
     icon: CreditCard,
     title: "Platna kartica",
-    body: "Prihvatamo Visa, Mastercard i Dina kartice. Transakcija mora biti vidljiva na vašem izvodu — to je zakonski uslov. Obrada je trenutna, bez dodatnih naknada za kupca.",
+    body: "Prihvatamo Visa, Mastercard i Dina kartice. Transakcija mora biti vidljiva na vašem izvodu - to je zakonski uslov. Obrada je trenutna, bez dodatnih naknada za kupca.",
     highlight: false,
   },
   {
@@ -105,7 +105,7 @@ const TRUST_ITEMS = [
   {
     icon: BadgeCheck,
     title: "LBMA akreditovane livnice",
-    body: "Svi proizvodi potiču isključivo od međunarodno priznatih livnica: Argor-Heraeus, C. Hafner, Umicore i Heraeus. LBMA akreditacija garantuje tačnost težine i čistoću 999,9 — prihvaćeno na svim svetskim berzama.",
+    body: "Svi proizvodi potiču isključivo od međunarodno priznatih livnica: Argor-Heraeus, C. Hafner, Umicore i Heraeus. LBMA akreditacija garantuje tačnost težine i čistoću 999,9 - prihvaćeno na svim svetskim berzama.",
   },
   {
     icon: ShieldCheck,
@@ -115,7 +115,7 @@ const TRUST_ITEMS = [
   {
     icon: CheckCircle2,
     title: "PDV oslobođen po zakonu",
-    body: "Investiciono zlato čistoće 999,9 je oslobođeno PDV-a prema Zakonu o porezu na dodatu vrednost (čl. 25). To znači da plaćate samo cenu metala i premijum livnice — bez poreza na kupovinu.",
+    body: "Investiciono zlato čistoće 999,9 je oslobođeno PDV-a prema Zakonu o porezu na dodatu vrednost (čl. 25). To znači da plaćate samo cenu metala i premijum livnice - bez poreza na kupovinu.",
   },
   {
     icon: Landmark,
@@ -131,23 +131,23 @@ const FAQ_ITEMS = [
   },
   {
     q: "Kako znati koliko zlata da kupim?",
-    a: "To zavisi od vašeg cilja. Za kratkoročnu zaštitu štednje — pločice od 5–10 g su fleksibilne i lako se prodaju. Za dugoročno čuvanje vrednosti — poluge od 100 g i više imaju najniži premijum po gramu. Za poklone — pločice od 1–2 g su najpopularnije. Pozovite nas i dobićete personalizovani savet bez obaveze.",
+    a: "To zavisi od vašeg cilja. Za kratkoročnu zaštitu štednje - pločice od 5–10 g su fleksibilne i lako se prodaju. Za dugoročno čuvanje vrednosti - poluge od 100 g i više imaju najniži premijum po gramu. Za poklone - pločice od 1–2 g su najpopularnije. Pozovite nas i dobićete personalizovani savet bez obaveze.",
   },
   {
     q: "Da li mogu da platim pouzećem?",
-    a: "Da, pouzeće je moguće za standardne porudžbine. Kurir naplaćuje iznos pri isporuci gotovinom ili karticom. Pouzeće nije dostupno za poluge od 500 g i više — za te formate obavezno je avansno plaćanje zbog vrednosti pošiljke.",
+    a: "Da, pouzeće je moguće za standardne porudžbine. Kurir naplaćuje iznos pri isporuci gotovinom ili karticom. Pouzeće nije dostupno za poluge od 500 g i više - za te formate obavezno je avansno plaćanje zbog vrednosti pošiljke.",
   },
   {
     q: "Kako se formira cena koju ću platiti?",
-    a: "Cena se formira kao: spot cena zlata (London Fix, USD/troj unca) x težina u gramima x kurs USD/RSD, uvećana za premijum livnice i našu prodajnu maržu. Sve stavke su transparentne — na zahtev vam objašnjavamo svaki deo cene.",
+    a: "Cena se formira kao: spot cena zlata (London Fix, USD/troj unca) x težina u gramima x kurs USD/RSD, uvećana za premijum livnice i našu prodajnu maržu. Sve stavke su transparentne - na zahtev vam objašnjavamo svaki deo cene.",
   },
   {
     q: "Da li mogu da prodam zlato koje sam kupio kod vas?",
-    a: "Da. Otkupljujemo svo investiciono zlato od LBMA akreditovanih livnica — kupljeno kod nas ili kod drugog dilera — po tekućoj berzanskoj ceni. Otkupna cena se ažurira svakodnevno i uvek je transparentna.",
+    a: "Da. Otkupljujemo svo investiciono zlato od LBMA akreditovanih livnica - kupljeno kod nas ili kod drugog dilera - po tekućoj berzanskoj ceni. Otkupna cena se ažurira svakodnevno i uvek je transparentna.",
   },
   {
     q: "Koliko dugo traje ceo proces kupovine?",
-    a: "Ako imate robu na stanju i dolazite lično u Beograd — za 30 minuta ste završili. Upit putem forme ili telefona dobija odgovor u roku od nekoliko sati. Isporuka kurirskom službom traje 1–3 radna dana. Avansne porudžbine se isporučuju u roku dogovorenom pri kupovini (obično 7–30 dana).",
+    a: "Ako imate robu na stanju i dolazite lično u Beograd - za 30 minuta ste završili. Upit putem forme ili telefona dobija odgovor u roku od nekoliko sati. Isporuka kurirskom službom traje 1–3 radna dana. Avansne porudžbine se isporučuju u roku dogovorenom pri kupovini (obično 7–30 dana).",
   },
 ];
 
@@ -162,7 +162,7 @@ export default function KakoKupitiPage() {
         schema={buildWebPageSchema({
           name: "Kako kupiti investiciono zlato | Gold Invest",
           description:
-            "Korak po korak vodič za kupovinu investicionog zlata — odabir formata, cena, plaćanje i dostava.",
+            "Korak po korak vodič za kupovinu investicionog zlata - odabir formata, cena, plaćanje i dostava.",
           slug: "/kako-kupiti",
         })}
       />
@@ -177,7 +177,7 @@ export default function KakoKupitiPage() {
       {/* Hero */}
       <CategoryHero
         title="Kako kupiti investiciono zlato"
-        introFull="Bez kase i bez komplikacija. Kupovina investicionog zlata kod nas funkcioniše kao savetodavni razgovor — prilagođen vašim ciljevima i budžetu. Na ovoj stranici objašnjavamo svaki korak, od odabira formata do isporuke sa sertifikatom."
+        introFull="Bez kase i bez komplikacija. Kupovina investicionog zlata kod nas funkcioniše kao savetodavni razgovor - prilagođen vašim ciljevima i budžetu. Na ovoj stranici objašnjavamo svaki korak, od odabira formata do isporuke sa sertifikatom."
         pills={[
           { label: "Zlatne poluge", href: "/kategorija/zlatne-poluge" },
           { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
@@ -195,11 +195,11 @@ export default function KakoKupitiPage() {
           <SectionHeading
             eyebrow="Proces kupovine"
             title="Pet koraka do vašeg zlata"
-            description="Jednostavan, transparentan i personalizovan — svaka kupovina je prilagođena vašim potrebama."
+            description="Jednostavan, transparentan i personalizovan - svaka kupovina je prilagođena vašim potrebama."
           />
 
           <div className="relative max-w-[860px] md:mx-auto">
-            {/* Vertical connector line — višible only on md+ */}
+            {/* Vertical connector line - višible only on md+ */}
             <div
               className="hidden md:block absolute left-[19px] top-6 bottom-6 w-px"
               style={{ background: "linear-gradient(180deg, #BEAD87 0%, #E6DFC9 100%)" }}
@@ -304,7 +304,7 @@ export default function KakoKupitiPage() {
           <SectionHeading
             eyebrow="Plaćanje"
             title="Načini plaćanja i rezervacije"
-            description="Prilagođavamo se vašim mogućnostima — od gotovine do avansne kupovine po današnjoj ceni."
+            description="Prilagođavamo se vašim mogućnostima - od gotovine do avansne kupovine po današnjoj ceni."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -369,7 +369,7 @@ export default function KakoKupitiPage() {
         <SectionContainer>
           <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-10 items-start">
 
-            {/* Left — highlight card */}
+            {/* Left - highlight card */}
             <div
               className="rounded-2xl border border-[#F0EDE6] p-7 sm:p-10"
               style={{ boxShadow: "0 10px 40px rgba(0,0,0,0.06)" }}
@@ -389,7 +389,7 @@ export default function KakoKupitiPage() {
                   lineHeight: "1.2",
                 }}
               >
-                Zlato stiže do vas — sigurno i diskretno
+                Zlato stiže do vas - sigurno i diskretno
               </h2>
               <p
                 className="text-[#4C4C4C] text-sm leading-relaxed mb-5"
@@ -398,7 +398,7 @@ export default function KakoKupitiPage() {
                 Svaka pošiljka je maksimalno osigurana i pakuje se u neutralnu ambalažu bez ikakvih oznaka koje bi ukazivale na sadržaj. Dostava je organizovana putem proverenih kurirskih službi sa praćenjem pošiljke u realnom vremenu.
               </p>
               <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-8">
-                Za poluge od 500 g i više, preporučujemo lično preuzimanje ili individualno organizovani transport — kontaktirajte nas za detalje.
+                Za poluge od 500 g i više, preporučujemo lično preuzimanje ili individualno organizovani transport - kontaktirajte nas za detalje.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
@@ -429,28 +429,28 @@ export default function KakoKupitiPage() {
               </div>
             </div>
 
-            {/* Right — delivery options list */}
+            {/* Right - delivery options list */}
             <div className="flex flex-col gap-6">
               {[
                 {
                   Icon: MapPin,
-                  label: "Lično preuzimanje — Beograd",
+                  label: "Lično preuzimanje - Beograd",
                   body: "Dođete u našu poslovnicu, pregledate robu, potpisite dokumentaciju i odnesete zlato sa sobom. Bez čekanja, bez posrednika.",
                 },
                 {
                   Icon: Truck,
-                  label: "Beograd — isti dan",
+                  label: "Beograd - isti dan",
                   body: "Porudžbine evidentirane radnim danom do 12h isporučujemo na vašoj adresi u Beogradu istog dana do 18h. Uz praćenje pošiljke.",
                 },
                 {
                   Icon: ShieldCheck,
-                  label: "Cela Srbija — 1 do 3 radna dana",
-                  body: "Osigurana, diskretna kurirska pošiljka. Rok isporuke zavisi od vašeg mesta — obično sledeći radni dan za veće gradove.",
+                  label: "Cela Srbija - 1 do 3 radna dana",
+                  body: "Osigurana, diskretna kurirska pošiljka. Rok isporuke zavisi od vašeg mesta - obično sledeći radni dan za veće gradove.",
                 },
                 {
                   Icon: CalendarClock,
-                  label: "Avansne porudžbine — po dogovoru",
-                  body: "Ako kupujete unapred po današnjoj ceni, isporuka se usklađuje prema vašim potrebama — 7 do 30 dana.",
+                  label: "Avansne porudžbine - po dogovoru",
+                  body: "Ako kupujete unapred po današnjoj ceni, isporuka se usklađuje prema vašim potrebama - 7 do 30 dana.",
                 },
               ].map(({ Icon, label, body }) => (
                 <div key={label} className="flex items-start gap-4">
@@ -484,7 +484,7 @@ export default function KakoKupitiPage() {
           <SectionHeading
             eyebrow="Sigurnost i autentičnost"
             title="Zašto možete da nam verujete"
-            description="Svaki aspekt kupovine — od izvora zlata do načina isporuke — projektovan je oko vaših interesa."
+            description="Svaki aspekt kupovine - od izvora zlata do načina isporuke - projektovan je oko vaših interesa."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -542,7 +542,7 @@ export default function KakoKupitiPage() {
             }}
           >
             <span style={{ fontStyle: "normal" }}>
-              Zlato ne kupujete — vi ga sačuvate.{" "}
+              Zlato ne kupujete - vi ga sačuvate.{" "}
             </span>
             <span style={{ fontStyle: "italic" }}>
               Mi samo brinemo o tome da stigne do vas bezbedno, pravo i po pravoj ceni.

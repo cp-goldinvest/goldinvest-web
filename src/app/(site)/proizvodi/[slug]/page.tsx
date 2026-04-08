@@ -40,12 +40,12 @@ export async function generateMetadata({
     const normalized = (s: string) => s.toLowerCase().replace(/\s+/g, "");
     const titleName = weight && normalized(name).includes(normalized(weight)) ? name : `${name} ${weight}`.trim();
     return {
-      title: `${titleName} | Cena i Prodaja — Gold Invest Beograd`,
+      title: `${titleName} | Cena i Prodaja - Gold Invest Beograd`,
       description: `Kupite ${name} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/426-4129.`,
       alternates: { canonical: `https://goldinvest.rs/proizvodi/${slug}` },
       openGraph: {
         title: `${titleName} | Gold Invest`,
-        description: `${name} — LBMA Good Delivery, čistoća 999,9, bez PDV-a. Brza dostava.`,
+        description: `${name} - LBMA Good Delivery, čistoća 999,9, bez PDV-a. Brza dostava.`,
         url: `https://goldinvest.rs/proizvodi/${slug}`,
         siteName: "Gold Invest",
         locale: "sr_RS",
@@ -247,10 +247,10 @@ export default async function ProizvodPage({
         <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 xl:gap-16 items-center">
 
-            {/* Left — image(s): images[0] = prednja, images[1] = zadnja */}
+            {/* Left - image(s): images[0] = prednja, images[1] = zadnja */}
             <ProductHeroImage images={heroImages} productName={product.name} />
 
-            {/* Right — product info */}
+            {/* Right - product info */}
             <div className="flex flex-col">
 
               {/* Brand eyebrow */}
@@ -316,7 +316,7 @@ export default async function ProizvodPage({
                   }}
                 >
                   {inStock
-                    ? "Na stanju — dostupno odmah"
+                    ? "Na stanju - dostupno odmah"
                     : isPreorder
                     ? `Dostupno za ${variant.lead_time_weeks ?? "?"} nedelje`
                     : "Dostupno na upit"}
@@ -328,7 +328,7 @@ export default async function ProizvodPage({
                 className="rounded-2xl overflow-hidden mb-6"
                 style={{ border: "1px solid rgba(190,173,135,0.35)", background: "rgba(255,255,255,0.65)" }}
               >
-                {/* Prodajna — highlighted row */}
+                {/* Prodajna - highlighted row */}
                 <div
                   className="flex items-center justify-between px-5 py-4"
                   style={{ borderBottom: "1px solid rgba(190,173,135,0.3)", background: "rgba(255,255,255,0.8)" }}
@@ -423,7 +423,7 @@ export default async function ProizvodPage({
                   }}
                 >
                   <Phone size={16} strokeWidth={2.2} />
-                  Pozovite — 061/426-4129
+                  Pozovite - 061/426-4129
                 </a>
                 <Link
                   href="/kontakt"
@@ -445,7 +445,7 @@ export default async function ProizvodPage({
                 style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 12, lineHeight: "1.6em" }}
               >
                 Cene se osvežavaju svakih 60 sekundi prema aktuelnom berzanskom kursu.
-                PDV nije uračunat — investiciono zlato je oslobođeno PDV-a.
+                PDV nije uračunat - investiciono zlato je oslobođeno PDV-a.
               </p>
             </div>
           </div>
@@ -475,7 +475,7 @@ export default async function ProizvodPage({
           <SectionContainer>
             <SectionHeading
               title="Povezani proizvodi"
-              description="Investicione zlatne poluge LBMA rafinerija — različite gramže, ista garancija čistoće 999,9."
+              description="Investicione zlatne poluge LBMA rafinerija - različite gramže, ista garancija čistoće 999,9."
               eyebrow="Zlatne poluge"
             />
             <ProductGrid

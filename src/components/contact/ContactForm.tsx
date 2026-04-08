@@ -12,8 +12,8 @@ type Field = {
 };
 
 const SUBJECTS = [
-  "Kupovina zlata — upit za cenu",
-  "Otkup zlata — procena",
+  "Kupovina zlata - upit za cenu",
+  "Otkup zlata - procena",
   "Avansna kupovina / rezervacija",
   "Poklon pakovanje",
   "Opšte pitanje",
@@ -171,7 +171,7 @@ export function ContactForm() {
           id="cf-message"
           required
           rows={5}
-          placeholder="Opišite šta vas zanima — format, količina, način preuzimanja..."
+          placeholder="Opišite šta vas zanima - format, količina, način preuzimanja..."
           value={fields.message}
           onChange={(e) => set("message", e.target.value)}
           className={inputClass}

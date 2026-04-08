@@ -20,10 +20,10 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Investiciono zlato | Prodaja Investicionog Zlata Beograd i Srbija",
   description:
-    "Gold Invest — specijalizovani diler investicionog zlata u Beogradu. LBMA sertifikovane zlatne poluge, pločice i dukati. Bez PDV-a, transparentne cene, brza dostava po Srbiji.",
+    "Gold Invest - specijalizovani diler investicionog zlata u Beogradu. LBMA sertifikovane zlatne poluge, pločice i dukati. Bez PDV-a, transparentne cene, brza dostava po Srbiji.",
   alternates: { canonical: "https://goldinvest.rs" },
   openGraph: {
-    title: "Gold Invest — Investiciono zlato Beograd",
+    title: "Gold Invest - Investiciono zlato Beograd",
     description:
       "Kupite LBMA sertifikovane zlatne poluge, pločice i dukate. Transparentne cene, bez PDV-a, dostava po celoj Srbiji.",
     url: "https://goldinvest.rs",
@@ -90,10 +90,10 @@ export default async function HomePage() {
       <SchemaScript schema={buildLocalBusinessSchema()} />
       <SchemaScript schema={buildWebSiteSchema()} />
 
-      {/* 1. Hero — renderuje se odmah, bez čekanja na DB */}
+      {/* 1. Hero - renderuje se odmah, bez čekanja na DB */}
       <HeroSection />
 
-      {/* 2. Products — streama se kada DB odgovori */}
+      {/* 2. Products - streama se kada DB odgovori */}
       <Suspense fallback={<section className="bg-white py-12" style={{ minHeight: 400 }} />}>
         <ProductsSection />
       </Suspense>
@@ -142,13 +142,13 @@ export default async function HomePage() {
       {/* 6. Gold price chart */}
       <GoldPriceChartLazy />
 
-      {/* 7. Blog — bento (GoldTypes-style), 5 najnovijih članaka */}
+      {/* 7. Blog - bento (GoldTypes-style), 5 najnovijih članaka */}
       <HomeBlogBentoSection posts={latestBlogPosts} />
 
       {/* 8. FAQ */}
       <FaqSection />
 
-      {/* 7. CTA — iznad footera */}
+      {/* 7. CTA - iznad footera */}
       <WhatIsGoldSection />
 
     </main>

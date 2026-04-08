@@ -59,15 +59,15 @@ type Props = {
   };
 
   // Two middle info sections
-  infoSectionA: InfoSectionData; // e.g. "Koje težine postoje?" — no border-t
-  infoSectionB: InfoSectionData; // e.g. "Sertifikati" — has border-t, no info box
+  infoSectionA: InfoSectionData; // e.g. "Koje težine postoje?" - no border-t
+  infoSectionB: InfoSectionData; // e.g. "Sertifikati" - has border-t, no info box
   infoSectionBLayout?: "default" | "premium-bento";
   infoSectionBImageSrc?: string;
   infoSectionBImageAlt?: string;
   /** Gold plates only: black card image flush at top, text below (premium-bento). */
   infoSectionBBentoBlackCardImageOnTop?: boolean;
 
-  // Remaining sections — props forwarded directly to existing components
+  // Remaining sections - props forwarded directly to existing components
   darkQuote: {
     eyebrow: string;
     normalText: string;
@@ -127,7 +127,7 @@ export function CategoryPageTemplate({
 
   return (
     <main className="bg-white">
-      {/* Schema.org — BreadcrumbList + FAQPage + ItemList */}
+      {/* Schema.org - BreadcrumbList + FAQPage + ItemList */}
       <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
       <SchemaScript schema={buildFaqSchema(faq.items)} />
       {variants?.length > 0 && (
@@ -178,7 +178,7 @@ export function CategoryPageTemplate({
         </SectionContainer>
       </section>
 
-      {/* Info section A — no border-t, has optional info box */}
+      {/* Info section A - no border-t, has optional info box */}
       <section className="bg-white py-16 sm:py-20">
         <SectionContainer>
           <SectionHeading
@@ -213,7 +213,7 @@ export function CategoryPageTemplate({
         </SectionContainer>
       </section>
 
-      {/* Info section B — border-t, no info box */}
+      {/* Info section B - border-t, no info box */}
       <section className="bg-white py-16 sm:py-20 border-t border-[#F0EDE6]">
         <SectionContainer>
           <SectionHeading

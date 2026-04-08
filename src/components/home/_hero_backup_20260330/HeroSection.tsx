@@ -55,11 +55,11 @@ export function HeroSection({
       className="relative overflow-hidden"
       style={{ background: "#E0DCCC" }}
     >
-      {/* Hero illustration (SVG) — samo desna „kolona“, centrirano u tom prostoru (ne uz ivicu) */}
+      {/* Hero illustration (SVG) - samo desna „kolona“, centrirano u tom prostoru (ne uz ivicu) */}
       <div className="pointer-events-none absolute left-0 right-0 bottom-0 top-[52%] sm:inset-y-0 sm:left-[30%] lg:left-[32%] flex items-center sm:items-center justify-center px-6 sm:px-10 lg:px-14">
         <img
           src={`/images/${encodeURIComponent("image 62.svg")}`}
-          alt="Zlatna poluga — investiciono zlato Gold Invest"
+          alt="Zlatna poluga - investiciono zlato Gold Invest"
           className="h-full w-full max-h-full max-w-[62%] sm:max-w-none object-contain object-center"
         />
       </div>

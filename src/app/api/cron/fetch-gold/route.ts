@@ -4,13 +4,13 @@ import { createServiceClient } from "@/lib/supabase/server";
 /**
  * GET /api/cron/fetch-gold
  *
- * Vercel Cron Job — runs every 5 minutes (see vercel.json).
+ * Vercel Cron Job - runs every 5 minutes (see vercel.json).
  * Fetches live XAU/EUR from market sources, resolves EUR/RSD via
  * priority chain, and inserts a new gold_price_snapshots row.
  *
  * EUR/RSD priority:
  *   1. Manual rate set by admin today (source='manual_rates', last 24h)
- *   2. Live rate from frankfurter.app (ECB — free, no API key)
+ *   2. Live rate from frankfurter.app (ECB - free, no API key)
  *   3. Latest stored eur_rsd from DB (any snapshot)
  *   4. If none available → skip snapshot, log error
  *
@@ -21,8 +21,8 @@ import { createServiceClient } from "@/lib/supabase/server";
  *   4. Yahoo Finance GC=F + EURUSD conversion
  *
  * Env vars:
- *   GOLD_API_KEY   — optional; enables GoldAPI.io as fallback source
- *   CRON_SECRET    — optional; protects this endpoint from public access
+ *   GOLD_API_KEY   - optional; enables GoldAPI.io as fallback source
+ *   CRON_SECRET    - optional; protects this endpoint from public access
  */
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,20 +46,20 @@ export async function GET(request: Request) {
   try {
     const supabase = createServiceClient();
 
-    // Fetch gold price and resolve EUR/RSD in parallel — they're independent
+    // Fetch gold price and resolve EUR/RSD in parallel - they're independent
     const [xauEur, eurRsdResult] = await Promise.all([
       fetchGoldPrice(),
       resolveEurRsd(supabase),
     ]);
 
     if (!xauEur) {
-      return NextResponse.json({ error: "Gold price fetch failed — all sources unavailable" }, { status: 502 });
+      return NextResponse.json({ error: "Gold price fetch failed - all sources unavailable" }, { status: 502 });
     }
 
     if (!eurRsdResult) {
-      // No EUR/RSD available from any source — do not insert a useless snapshot
+      // No EUR/RSD available from any source - do not insert a useless snapshot
       console.error("[cron/fetch-gold] EUR/RSD unavailable from all sources");
-      return NextResponse.json({ error: "EUR/RSD unavailable — snapshot skipped" }, { status: 503 });
+      return NextResponse.json({ error: "EUR/RSD unavailable - snapshot skipped" }, { status: 503 });
     }
 
     const { eur_rsd: eurRsd, eur_rsd_source: eurRsdSource } = eurRsdResult;
@@ -98,7 +98,7 @@ export async function GET(request: Request) {
   }
 }
 
-// ── EUR/RSD resolution — priority chain ──────────────────────────────────────
+// ── EUR/RSD resolution - priority chain ──────────────────────────────────────
 
 /**
  * Resolves the active EUR/RSD rate using this priority:
@@ -113,7 +113,7 @@ export async function GET(request: Request) {
 async function resolveEurRsd(
   supabase: ReturnType<typeof createServiceClient>
 ): Promise<EurRsdResult | null> {
-  // 1. Manual rate — admin override has highest priority
+  // 1. Manual rate - admin override has highest priority
   const since24h = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const { data: manualSnap } = await supabase
     .from("gold_price_snapshots")
@@ -175,12 +175,12 @@ async function fetchEurRsdFromApi(): Promise<number | null> {
   return null;
 }
 
-// ── XAU/EUR fetcher — cascading fallbacks ────────────────────────────────────
+// ── XAU/EUR fetcher - cascading fallbacks ────────────────────────────────────
 
 async function fetchGoldPrice(): Promise<number | null> {
   const apiKey = process.env.GOLD_API_KEY;
 
-  // 1. goldprice.org — free, no key (primary)
+  // 1. goldprice.org - free, no key (primary)
   try {
     const res = await fetch("https://data-asg.goldprice.org/dbXRates/EUR", {
       headers: {
@@ -199,7 +199,7 @@ async function fetchGoldPrice(): Promise<number | null> {
     console.warn("[fetch-gold] goldprice.org failed");
   }
 
-  // 2. Swissquote — free, no key
+  // 2. Swissquote - free, no key
   try {
     const res = await fetch(
       "https://forex-data-feed.swissquote.com/public-quotes/bboquotes/instrument/XAU/EUR",
@@ -214,7 +214,7 @@ async function fetchGoldPrice(): Promise<number | null> {
     console.warn("[fetch-gold] Swissquote failed");
   }
 
-  // 3. GoldAPI.io — requires GOLD_API_KEY
+  // 3. GoldAPI.io - requires GOLD_API_KEY
   if (apiKey) {
     try {
       const res = await fetch("https://www.goldapi.io/api/XAU/EUR", {
@@ -253,7 +253,7 @@ async function fetchGoldPrice(): Promise<number | null> {
   return null;
 }
 
-// ── EUR/USD helper — for computing optional USD snapshot fields ───────────────
+// ── EUR/USD helper - for computing optional USD snapshot fields ───────────────
 
 async function fetchEurUsd(): Promise<number> {
   try {

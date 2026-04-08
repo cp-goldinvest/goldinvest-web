@@ -40,7 +40,7 @@ const TABS: { id: TabId; label: string }[] = [
 export function ProductTabs({ weightG, purity, brand, origin, category, sku, variantName, description, lengthMm, widthMm, thicknessMm }: Props) {
   const [active, setActive] = useState<TabId>("opis");
 
-  // Baza čuva purity kao integer (9999) ili decimal (0.9999) — normalizujemo
+  // Baza čuva purity kao integer (9999) ili decimal (0.9999) - normalizujemo
   const purityNorm = purity > 1 ? purity / 10000 : purity;
   const purityDisplay = (purityNorm * 1000).toFixed(1).replace(".0", "");
   const weightDisplay = weightG >= 1000 ? `${weightG / 1000} kg` : `${weightG} g`;
@@ -56,7 +56,7 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
 
   return (
     <div>
-      {/* Tab bar — full width, horizontally scrollable on small screens */}
+      {/* Tab bar - full width, horizontally scrollable on small screens */}
       <div className="border-b border-[#F0EDE6] overflow-x-auto scrollbar-hide">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex min-w-max sm:min-w-0 sm:w-full">
           {TABS.map((tab) => {
@@ -111,14 +111,14 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
                   logo proizvođača, nominalna masa, čistoća i jedinstveni serijski broj.
                 </p>
                 <p>
-                  Proizvod nosi <strong className="text-[#1B1B1C]">LBMA &ldquo;Good Delivery&rdquo; status</strong> — najvišu
+                  Proizvod nosi <strong className="text-[#1B1B1C]">LBMA &ldquo;Good Delivery&rdquo; status</strong> - najvišu
                   međunarodnu sertifikaciju za investiciono zlato, koju izdaje London Bullion Market Association.
                   Ovaj status garantuje prihvatanje bez ikakve provere autentičnosti kod svakog profesionalnog
                   dilera, u svakoj banci i na svakom tržištu plemenitih metala na svetu.
                 </p>
                 <p>
                   <span className="text-[#BF8E41] font-semibold">Zlatno pravilo:</span> Nikad ne otvarajte
-                  fabrički blister — otvoren proizvod gubi &ldquo;Good Delivery&rdquo; status i otkupljuje se po
+                  fabrički blister - otvoren proizvod gubi &ldquo;Good Delivery&rdquo; status i otkupljuje se po
                   nižoj ceni. Pakovanje je garancija, ne samo ambalaža.
                 </p>
               </div>
@@ -138,7 +138,7 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
                 ...(dimensionsDisplay ? [{ label: "Dimenzije", value: dimensionsDisplay }] : []),
                 { label: "Pakovanje",        value: "Fabrički zapečaćen sigurnosni blister (optifit)" },
                 { label: "Sertifikacija",    value: "LBMA Good Delivery" },
-                { label: "Serijski broj",    value: "Da — laserski graviran na proizvodu i blisteru" },
+                { label: "Serijski broj",    value: "Da - laserski graviran na proizvodu i blisteru" },
                 { label: "PDV",              value: "Oslobođeno PDV-a (investiciono zlato)" },
                 ...(sku ? [{ label: "Šifra proizvoda", value: sku }] : []),
               ].map(({ label, value }, i) => (
@@ -209,7 +209,7 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
                 <ul className="text-[#4A4A4A] space-y-1.5" style={{ fontSize: 14, lineHeight: "1.6em" }}>
                   <li>
                     <span className="font-semibold text-[#1B1B1C]">Lager (roba na stanju):</span>{" "}
-                    Beograd — isti dan (porudžbine do 12h), Srbija — 1–3 radna dana
+                    Beograd - isti dan (porudžbine do 12h), Srbija - 1–3 radna dana
                   </li>
                   <li>
                     <span className="font-semibold text-[#1B1B1C]">Avansna kupovina:</span>{" "}
@@ -235,10 +235,10 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
                 { label: "Naziv proizvoda",      value: variantName ?? `${brand} zlatni proizvod ${weightDisplay}` },
                 { label: "Zemlja porekla",        value: origin },
                 { label: "Proizvođač",            value: brand },
-                { label: "Sastav",                value: `Zlato (Au) ${purityDisplay}/1000 — čistoće 99,99%` },
+                { label: "Sastav",                value: `Zlato (Au) ${purityDisplay}/1000 - čistoće 99,99%` },
                 { label: "Nominalna masa",         value: weightDisplay },
                 ...(dimensionsDisplay ? [{ label: "Dimenzije", value: dimensionsDisplay }] : []),
-                { label: "Pakovanje",             value: "Originalni sigurnosni blister (optifit) — fabrički zapečaćen" },
+                { label: "Pakovanje",             value: "Originalni sigurnosni blister (optifit) - fabrički zapečaćen" },
                 { label: "Uvoznik / Distributer", value: "Gold Invest d.o.o., Beograd, Srbija" },
                 { label: "Garancija porekla",     value: "LBMA Good Delivery sertifikat" },
                 { label: "Uslovi čuvanja",        value: "Na sobnoj temperaturi, zaštićeno od vlage i direktnog sunca" },
@@ -289,7 +289,7 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
                   </p>
                   <p className="text-[#6B6B6B] text-[14px] leading-relaxed mb-0">
                     U skladu sa Zakonom o porezu na dodatu vrednost Republike Srbije (čl. 25, st. 1, tač. 4), promet investicionog
-                    zlata — uključujući zlatne poluge čistoće iznad 995/1000 — u potpunosti je oslobođen PDV-a od 20%. Svaki dinar koji
+                    zlata - uključujući zlatne poluge čistoće iznad 995/1000 - u potpunosti je oslobođen PDV-a od 20%. Svaki dinar koji
                     date ide direktno u vrednost čistog zlata, bez dodatnog poreza.
                   </p>
                 </div>

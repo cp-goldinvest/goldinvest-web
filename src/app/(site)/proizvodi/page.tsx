@@ -8,7 +8,7 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Svi proizvodi — zlatne poluge, pločice i dukati | Gold Invest",
+  title: "Svi proizvodi - zlatne poluge, pločice i dukati | Gold Invest",
   description:
     "Pregledajte kompletan asortiman investicionog zlata: LBMA poluge, pločice i dukati. Transparentne cene, bez PDV-a.",
   alternates: { canonical: "https://goldinvest.rs/proizvodi" },
@@ -67,7 +67,7 @@ export default async function SviProizvodiPage() {
             className="text-[#6B6B6B] max-w-[640px] mb-10"
             style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 15.5, lineHeight: 1.65 }}
           >
-            Zlatne poluge, pločice, dukati i zlatnici — sortirano po brendu. Koristite filtere za užu selekciju.
+            Zlatne poluge, pločice, dukati i zlatnici - sortirano po brendu. Koristite filtere za užu selekciju.
           </p>
 
           <ProductGrid

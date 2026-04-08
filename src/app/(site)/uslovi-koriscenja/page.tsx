@@ -32,13 +32,13 @@ Sajt je vlasništvo i u upravljanju kompanije Gold Invest, registrovane u Republ
   },
   {
     title: "2. Svrha Sajta",
-    content: `Sajt pruža informacije o investicionom zlatu — zlatnim polugama, pločicama i dukatima — koje Gold Invest nudi u prodaji. Sadržaj Sajta ima isključivo informativni karakter i ne predstavlja finansijski savet, investicionu preporuku niti poziv na ulaganje.
+    content: `Sajt pruža informacije o investicionom zlatu - zlatnim polugama, pločicama i dukatima - koje Gold Invest nudi u prodaji. Sadržaj Sajta ima isključivo informativni karakter i ne predstavlja finansijski savet, investicionu preporuku niti poziv na ulaganje.
 
 Cene prikazane na Sajtu su orijentacione i ažuriraju se prema kretanju cene zlata na svetskim berzama. Konačna cena se dogovara u trenutku realizacije kupovine.`,
   },
   {
     title: "3. Kupovina i plaćanje",
-    content: `Kupovina zlatnih proizvoda vrši se putem direktnog kontakta sa Gold Invest timom — telefonom, e-mailom ili posredstvom kontakt forme na Sajtu. Sajt ne vrši automatsku obradu porudžbina niti naplaćivanje putem interneta.
+    content: `Kupovina zlatnih proizvoda vrši se putem direktnog kontakta sa Gold Invest timom - telefonom, e-mailom ili posredstvom kontakt forme na Sajtu. Sajt ne vrši automatsku obradu porudžbina niti naplaćivanje putem interneta.
 
 Prihvatamo sledeće načine plaćanja: gotovina, bankarski transfer i pouzećem. Plaćanje platnim karticama trenutno nije dostupno. Za transakcije iznad zakonskog limita za gotovinsko plaćanje (10.000 EUR), kupovina se realizuje isključivo bankovnim transferom u skladu sa Zakonom o sprečavanju pranja novca.`,
   },
@@ -50,13 +50,13 @@ Gold Invest ne snosi odgovornost za eventualne greške u prikazanim cenama, gram
   },
   {
     title: "5. Intelektualna svojina",
-    content: `Sav sadržaj Sajta — tekstovi, fotografije, grafički elementi, logotipi i dizajn — zaštićeni su autorskim pravima i vlasništvo su Gold Invest. Zabranjena je reprodukcija, distribucija ili komercijalna upotreba sadržaja bez pisane saglasnosti.
+    content: `Sav sadržaj Sajta - tekstovi, fotografije, grafički elementi, logotipi i dizajn - zaštićeni su autorskim pravima i vlasništvo su Gold Invest. Zabranjena je reprodukcija, distribucija ili komercijalna upotreba sadržaja bez pisane saglasnosti.
 
 Dozvoljeno je deljenje linkova ka Sajtu uz navođenje izvora.`,
   },
   {
     title: "6. Ograničenje odgovornosti",
-    content: `Gold Invest ne snosi odgovornost za bilo kakvu direktnu, indirektnu ili posledičnu štetu nastalu korišćenjem Sajta ili informacija sa njega. Ulaganje u fizičko zlato nosi tržišni rizik — vrednost zlata može rasti i padati.
+    content: `Gold Invest ne snosi odgovornost za bilo kakvu direktnu, indirektnu ili posledičnu štetu nastalu korišćenjem Sajta ili informacija sa njega. Ulaganje u fizičko zlato nosi tržišni rizik - vrednost zlata može rasti i padati.
 
 Veze ka spoljnim sajtovima ne podrazumevaju našu preporuku ili odgovornost za njihov sadržaj.`,
   },

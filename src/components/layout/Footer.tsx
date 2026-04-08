@@ -58,7 +58,7 @@ export function Footer() {
 
             {/* Description */}
             <p className="mb-8 max-w-[221px]" style={linkStyle}>
-              Vaš pouzdan partner za investiranje u plemenite metale. Diskretno, sigurno i strateški — jer prava vrednost traje zauvek.
+              Vaš pouzdan partner za investiranje u plemenite metale. Diskretno, sigurno i strateški - jer prava vrednost traje zauvek.
             </p>
 
             {/* Social icons */}

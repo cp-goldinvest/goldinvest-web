@@ -12,7 +12,7 @@ import { buildBreadcrumbSchema, buildWebPageSchema, buildOrganizationSchema } fr
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "O nama | Gold Invest — Investiciono zlato Beograd",
+  title: "O nama | Gold Invest - Investiciono zlato Beograd",
   description:
     "Gold Invest je specijalizovani diler investicionog zlata u Beogradu. LBMA proizvodi, transparentna cena prema London Fix, lični savetodavni pristup i otkup isti dan.",
   alternates: { canonical: "https://goldinvest.rs/o-nama" },
@@ -36,27 +36,27 @@ const BREADCRUMBS = [
 
 const VALUES = [
   {
-    eyebrow: "01 — Transparentnost",
+    eyebrow: "01 - Transparentnost",
     title: "Našu cenu možete proveriti sami.",
-    body: "Polazimo od London Fix kotacije — javne, svetske berzanske cene zlata koja se objavljuje dvaput dnevno. Sve što radimo je da primenimo kurs i fiksni spread. Otvorite Kitco.com ili LBMA.org i proverite nas. To je jedini način na koji želimo da radimo.",
+    body: "Polazimo od London Fix kotacije - javne, svetske berzanske cene zlata koja se objavljuje dvaput dnevno. Sve što radimo je da primenimo kurs i fiksni spread. Otvorite Kitco.com ili LBMA.org i proverite nas. To je jedini način na koji želimo da radimo.",
   },
   {
-    eyebrow: "02 — Lični pristup",
+    eyebrow: "02 - Lični pristup",
     title: "Uvek razgovarate sa savetnicima, ne sa botom.",
-    body: "Nema call centra, nema automatskog odgovaranja, nema standardnih paketa. Kada nas pozovete, razgovarate direktno sa osobom koja razume vaše potrebe — bez obzira da li kupujete 1 gram ili 1 kilogram. Svaki klijent dobija isti nivo pažnje.",
+    body: "Nema call centra, nema automatskog odgovaranja, nema standardnih paketa. Kada nas pozovete, razgovarate direktno sa osobom koja razume vaše potrebe - bez obzira da li kupujete 1 gram ili 1 kilogram. Svaki klijent dobija isti nivo pažnje.",
   },
   {
-    eyebrow: "03 — Samo provereno",
+    eyebrow: "03 - Samo provereno",
     title: "Nema kompromisa po pitanju autentičnosti.",
     body: "Radimo isključivo sa LBMA akreditovanim livarnicama: Argor-Heraeus, C. Hafner, Umicore i Heraeus. Svaki proizvod dolazi u originalnom pakovanju sa serijskim brojem i sertifikatom. Ne postoji niža klasa proizvoda u našoj ponudi.",
   },
 ];
 
 const COMPARE_US = [
-  "Cena prema London Fix — proverite je sami",
+  "Cena prema London Fix - proverite je sami",
   "Puna ponuda 1g do 1kg u jednom mestu",
   "Personalizovani savet bez obaveze",
-  "Otkup po berzanskoj ceni — isti dan isplata",
+  "Otkup po berzanskoj ceni - isti dan isplata",
   "Originalna LBMA pakovanja sa serijskim brojem",
   "PDV oslobođen za investiciono zlato (Zakon o PDV, čl. 25)",
   "Fiskalni račun i dokumentacija za svaku transakciju",
@@ -65,9 +65,9 @@ const COMPARE_US = [
 const COMPARE_BANK = [
   "Premijum 5–15% iznad tržišne cene",
   "Ograničena ponuda (obično 1g–50g, jedan brand)",
-  "Bez savetnika — standardni bankarski prozor",
+  "Bez savetnika - standardni bankarski prozor",
   "Otkup po netransparentnoj internoj ceni banke",
-  "Originalna pakovanja — ali bez mogućnosti pregovora",
+  "Originalna pakovanja - ali bez mogućnosti pregovora",
   "PDV isti status, ali bankarske naknade se dodaju",
   "Račun da, ali fleksibilnost ne",
 ];
@@ -79,19 +79,19 @@ const FAQ_ITEMS = [
   },
   {
     q: "Odakle potiče zlato koje prodajete?",
-    a: "Isključivo od LBMA akreditovanih livarnica — Argor-Heraeus (Švajcarska), C. Hafner (Nemačka), Umicore (Belgija) i Heraeus (Nemačka). LBMA akreditacija podrazumeva godišnje nezavisne revizije koje garantuju tačnost težine i čistoću 999,9. Nema uvoza iz neakreditovanih izvora, nema kompromisa.",
+    a: "Isključivo od LBMA akreditovanih livarnica - Argor-Heraeus (Švajcarska), C. Hafner (Nemačka), Umicore (Belgija) i Heraeus (Nemačka). LBMA akreditacija podrazumeva godišnje nezavisne revizije koje garantuju tačnost težine i čistoću 999,9. Nema uvoza iz neakreditovanih izvora, nema kompromisa.",
   },
   {
     q: "Zašto da kupim kod vas umesto u banci?",
-    a: "Banke prodaju zlato sa premijumom od 5 do 15% iznad berzanske cene, bez transparentne kalkulacije i bez mogućnosti pregovora. Mi primenjujemo fiksni spread koji možete proveriti prema aktuelnoj London Fix kotaciji — i uvek ga prikazujemo unapred. Uz to, nudimo lični savetodavni razgovor, širu ponudu formata i otkup po istoj principijelnoj ceni.",
+    a: "Banke prodaju zlato sa premijumom od 5 do 15% iznad berzanske cene, bez transparentne kalkulacije i bez mogućnosti pregovora. Mi primenjujemo fiksni spread koji možete proveriti prema aktuelnoj London Fix kotaciji - i uvek ga prikazujemo unapred. Uz to, nudimo lični savetodavni razgovor, širu ponudu formata i otkup po istoj principijelnoj ceni.",
   },
   {
     q: "Da li možete da garantujete autentičnost?",
-    a: "Da — garancija je u sistemu, ne samo našoj reci. LBMA akreditovane livarnice na svakom proizvodu utiskuju serijski broj koji se može pratiti. Assay kartica (zapečaćena plastična ambalaža poluge) fizički sprečava zamenu sadržaja bez vidljivog oštećenja. Sertifikat je međunarodno priznat i prihvaćen na svim berzama plemenitih metala.",
+    a: "Da - garancija je u sistemu, ne samo našoj reci. LBMA akreditovane livarnice na svakom proizvodu utiskuju serijski broj koji se može pratiti. Assay kartica (zapečaćena plastična ambalaža poluge) fizički sprečava zamenu sadržaja bez vidljivog oštećenja. Sertifikat je međunarodno priznat i prihvaćen na svim berzama plemenitih metala.",
   },
   {
     q: "Gde se nalazite i da li je potrebno zakazivanje?",
-    a: "Nalazimo se u Beogradu. Za manje količine (pločice i poluge koje imamo na stanju) možete doći bez zakazivanja tokom radnog vremena. Za veće količine i poluge od 500g naviše, kao i za otkup, preporučujemo da nas unapred kontaktirate — da bismo pripremili robu i optimizovali vašu posetu.",
+    a: "Nalazimo se u Beogradu. Za manje količine (pločice i poluge koje imamo na stanju) možete doći bez zakazivanja tokom radnog vremena. Za veće količine i poluge od 500g naviše, kao i za otkup, preporučujemo da nas unapred kontaktirate - da bismo pripremili robu i optimizovali vašu posetu.",
   },
 ];
 
@@ -104,7 +104,7 @@ export default function ONamaPage() {
       <SchemaScript schema={buildOrganizationSchema()} />
       <SchemaScript
         schema={buildWebPageSchema({
-          name: "O nama | Gold Invest — Investiciono zlato Beograd",
+          name: "O nama | Gold Invest - Investiciono zlato Beograd",
           description:
             "Specijalizovani diler investicionog zlata u Srbiji. Transparentno, direktno, bez posrednika.",
           slug: "/o-nama",
@@ -147,7 +147,7 @@ export default function ONamaPage() {
               }}
             >
               Specijalizovani smo diler investicionog zlata iz Beograda. Prodajemo isključivo LBMA sertifikovane
-              poluge, pločice i dukate — direktno, transparentno i bez posrednika.
+              poluge, pločice i dukate - direktno, transparentno i bez posrednika.
             </p>
             <div className="flex flex-wrap gap-3 md:justify-center">
               <a
@@ -215,7 +215,7 @@ export default function ONamaPage() {
         <SectionContainer>
           <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-12 md:gap-20 items-center">
 
-            {/* Left — large pull quote */}
+            {/* Left - large pull quote */}
             <div>
               <blockquote>
                 <p
@@ -247,7 +247,7 @@ export default function ONamaPage() {
               </blockquote>
             </div>
 
-            {/* Right — story body */}
+            {/* Right - story body */}
             <div className="flex flex-col gap-5">
               <p
                 className="text-[#3A3A3A] leading-relaxed"
@@ -257,7 +257,7 @@ export default function ONamaPage() {
                   lineHeight: "1.7em",
                 }}
               >
-                Gold Invest je nastao iz jednog jednostavnog zapažanja: ljudi u Srbiji žele da kupe investiciono zlato, ali im nedostaje pouzdan, domaći partner koji će im objasniti kako to funkcioniše — bez prebukiranog marketinga i bez skrivenih troškova.
+                Gold Invest je nastao iz jednog jednostavnog zapažanja: ljudi u Srbiji žele da kupe investiciono zlato, ali im nedostaje pouzdan, domaći partner koji će im objasniti kako to funkcioniše - bez prebukiranog marketinga i bez skrivenih troškova.
               </p>
               <p
                 className="text-[#3A3A3A] leading-relaxed"
@@ -277,7 +277,7 @@ export default function ONamaPage() {
                   lineHeight: "1.7em",
                 }}
               >
-                Mi smo popunili tu prazninu. Direktni uvoz od LBMA livarnica. Cena transparentno izvedena iz London Fix-a. Savetodavni razgovor bez obaveze. Otkup isti dan. I uvek — ista osoba kada nas pozovete.
+                Mi smo popunili tu prazninu. Direktni uvoz od LBMA livarnica. Cena transparentno izvedena iz London Fix-a. Savetodavni razgovor bez obaveze. Otkup isti dan. I uvek - ista osoba kada nas pozovete.
               </p>
               <Link
                 href="/kako-kupiti"
@@ -459,21 +459,21 @@ export default function ONamaPage() {
         <SectionContainer>
           <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-12 md:gap-20 items-center">
 
-            {/* Left — image */}
+            {/* Left - image */}
             <div
               className="relative rounded-3xl overflow-hidden"
               style={{ height: 460, background: "#F9F9F9" }}
             >
               <Image
                 src="/images/onamapage.webp"
-                alt="Poslovne zgrade — Gold Invest"
+                alt="Poslovne zgrade - Gold Invest"
                 fill
                 className="object-cover"
                 style={{ objectPosition: "50% 40%" }}
               />
             </div>
 
-            {/* Right — copy */}
+            {/* Right - copy */}
             <div>
               <span
                 className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-5 block"
@@ -500,7 +500,7 @@ export default function ONamaPage() {
                   lineHeight: "1.7em",
                 }}
               >
-                Svaki proizvod u našoj ponudi potiče od jedne od četiri LBMA akreditovane livarnice — Argor-Heraeus (Švajcarska), C. Hafner (Nemačka), Umicore (Belgija) i Heraeus (Nemačka). Ove livarnice svake godine prolaze nezavisne revizije koje verifikuju tačnost težine, čistoću 999,9 i ispravnost serijskih brojeva.
+                Svaki proizvod u našoj ponudi potiče od jedne od četiri LBMA akreditovane livarnice - Argor-Heraeus (Švajcarska), C. Hafner (Nemačka), Umicore (Belgija) i Heraeus (Nemačka). Ove livarnice svake godine prolaze nezavisne revizije koje verifikuju tačnost težine, čistoću 999,9 i ispravnost serijskih brojeva.
               </p>
               <p
                 className="text-[#4C4C4C] leading-relaxed mb-8"
@@ -510,16 +510,16 @@ export default function ONamaPage() {
                   lineHeight: "1.7em",
                 }}
               >
-                LBMA akreditacija nije marketing oznaka — to je međunarodna garancija da vaš proizvod može biti prodat na bilo kojoj berzi plemenitih metala u svetu bez ikakve dodatne verifikacije. Zlato koje kupite kod nas sutra možete prodati u Londonu, Cirihu ili Njujorku.
+                LBMA akreditacija nije marketing oznaka - to je međunarodna garancija da vaš proizvod može biti prodat na bilo kojoj berzi plemenitih metala u svetu bez ikakve dodatne verifikacije. Zlato koje kupite kod nas sutra možete prodati u Londonu, Cirihu ili Njujorku.
               </p>
 
               {/* Brand name strip */}
               <div className="flex flex-wrap gap-3">
                 {[
-                  "Argor-Heraeus — CH",
-                  "C. Hafner — DE",
-                  "Umicore — BE",
-                  "Heraeus — DE",
+                  "Argor-Heraeus - CH",
+                  "C. Hafner - DE",
+                  "Umicore - BE",
+                  "Heraeus - DE",
                 ].map((brand) => (
                   <span
                     key={brand}

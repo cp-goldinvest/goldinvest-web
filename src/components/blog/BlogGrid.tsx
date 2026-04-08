@@ -255,7 +255,7 @@ export function BlogGrid({ posts }: Props) {
             className="text-[#9D9072]"
             style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 16 }}
           >
-            Uskoro — članci iz ove kategorije su u pripremi.
+            Uskoro - članci iz ove kategorije su u pripremi.
           </p>
         </div>
       )}

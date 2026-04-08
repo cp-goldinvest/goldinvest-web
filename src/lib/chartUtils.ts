@@ -1,6 +1,6 @@
 /**
  * Deterministic pseudo-random number generator (LCG).
- * Produces identical output on server and client for the same seed —
+ * Produces identical output on server and client for the same seed -
  * avoids React hydration mismatches in chart mock data.
  */
 export function seededRandom(seed: number) {

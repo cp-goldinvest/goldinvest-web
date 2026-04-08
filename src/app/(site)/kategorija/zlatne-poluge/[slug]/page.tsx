@@ -62,25 +62,25 @@ type WeightConfig = {
 // ── Shared brand cards ─────────────────────────────────────────────────────
 
 const BRAND_ARGOR = (weight: string) => ({
-  title: `Argor-Heraeus ${weight} — Švajcarska`,
-  body: "Argor-Heraeus je jedna od najvećih i najcenjenijih rafinerija plemenitih metala na svetu. Njihove poluge se odlikuju besprekornom izradom, laserski upisanim serijskim brojem i LBMA 'Good Delivery' statusom — garantovana prepoznatljivost i likvidnost na svim kontinentima.",
+  title: `Argor-Heraeus ${weight} - Švajcarska`,
+  body: "Argor-Heraeus je jedna od najvećih i najcenjenijih rafinerija plemenitih metala na svetu. Njihove poluge se odlikuju besprekornom izradom, laserski upisanim serijskim brojem i LBMA 'Good Delivery' statusom - garantovana prepoznatljivost i likvidnost na svim kontinentima.",
 });
 
 const BRAND_HAFNER = (weight: string) => ({
-  title: `C. Hafner ${weight} — Nemačka`,
-  body: "Nemačka rafinerija C. Hafner sa tradicijom od preko 170 godina kuje poluge isključivo od recikliranog zlata — bez negativnog uticaja na životnu sredinu. Besprekoran nemački kvalitet (999,9), elegantno blister pakovanje sa hologramom i etički lanac nabavke metala.",
+  title: `C. Hafner ${weight} - Nemačka`,
+  body: "Nemačka rafinerija C. Hafner sa tradicijom od preko 170 godina kuje poluge isključivo od recikliranog zlata - bez negativnog uticaja na životnu sredinu. Besprekoran nemački kvalitet (999,9), elegantno blister pakovanje sa hologramom i etički lanac nabavke metala.",
 });
 
 const BRAND_ROYALMINT = (weight: string) => ({
-  title: `The Royal Mint ${weight} — Britanija`,
-  body: "The Royal Mint je britanska kraljevska kovnica s više od 1.100 godina tradicije — jedna od najstarijih i najcenjenijih institucija u svetu plemenitih metala. Njihove poluge nose LBMA 'Good Delivery' status, izrađene su od recikliranog zlata i dolaze u elegantnom sigurnosnom pakovanju prepoznatljivom na svim tržištima.",
+  title: `The Royal Mint ${weight} - Britanija`,
+  body: "The Royal Mint je britanska kraljevska kovnica s više od 1.100 godina tradicije - jedna od najstarijih i najcenjenijih institucija u svetu plemenitih metala. Njihove poluge nose LBMA 'Good Delivery' status, izrađene su od recikliranog zlata i dolaze u elegantnom sigurnosnom pakovanju prepoznatljivom na svim tržištima.",
 });
 
 // ── Shared FAQ items ───────────────────────────────────────────────────────
 
 const FAQ_SERTIFIKAT: FaqItem = {
   q: "Da li uz polugu dobijam sertifikat?",
-  a: "Da. Svaka poluga dolazi fabrički zapečaćena u čvrstom sigurnosnom blisteru veličine bankovne kartice. Na pakovanju se nalaze logo rafinerije, čistoća, tačna gramaža i jedinstveni serijski broj koji je laserski ugraviran i na samu polugu. To pakovanje je vaš neosporivi sertifikat. Zlatno pravilo: nikada ne otvarajte blister — otvorena poluga gubi 'Good Delivery' status i otkupljuje se po nižoj ceni.",
+  a: "Da. Svaka poluga dolazi fabrički zapečaćena u čvrstom sigurnosnom blisteru veličine bankovne kartice. Na pakovanju se nalaze logo rafinerije, čistoća, tačna gramaža i jedinstveni serijski broj koji je laserski ugraviran i na samu polugu. To pakovanje je vaš neosporivi sertifikat. Zlatno pravilo: nikada ne otvarajte blister - otvorena poluga gubi 'Good Delivery' status i otkupljuje se po nižoj ceni.",
 };
 
 const FAQ_PDV: FaqItem = {
@@ -90,12 +90,12 @@ const FAQ_PDV: FaqItem = {
 
 const FAQ_KARTICA: FaqItem = {
   q: "Mogu li da platim platnom karticom?",
-  a: "Ne, plaćanje platnim karticama trenutno nije moguće. Visoke provizije banaka (2–3%) bi se neizbežno ugradile u cenu zlata. Naš cilj je najpovoljnija cena na tržištu — prihvatamo gotovinu, bankovni transfer i pouzećem.",
+  a: "Ne, plaćanje platnim karticama trenutno nije moguće. Visoke provizije banaka (2–3%) bi se neizbežno ugradile u cenu zlata. Naš cilj je najpovoljnija cena na tržištu - prihvatamo gotovinu, bankovni transfer i pouzećem.",
 };
 
 const FAQ_DOSTAVA: FaqItem = {
   q: "Koliko traje isporuka?",
-  a: "Za klijente u Beogradu nudimo isporuku dan za dan — porudžbine evidentirane radnim danima do 12h stižu na adresu istog dana do 18h. Za ostatak Srbije, diskretna i maksimalno osigurana dostava traje 1 do 3 radna dana.",
+  a: "Za klijente u Beogradu nudimo isporuku dan za dan - porudžbine evidentirane radnim danima do 12h stižu na adresu istog dana do 18h. Za ostatak Srbije, diskretna i maksimalno osigurana dostava traje 1 do 3 radna dana.",
 };
 
 const FAQ_GOTOVINA = (weight: string): FaqItem => ({
@@ -105,12 +105,12 @@ const FAQ_GOTOVINA = (weight: string): FaqItem => ({
 
 const FAQ_LBMA: FaqItem = {
   q: "Šta je LBMA 'Good Delivery' standard?",
-  a: "LBMA (London Bullion Market Association) je najuticajnija svetska organizacija za standardizaciju plemenitih metala. 'Good Delivery' status je njena najstrožija sertifikacija — garantuje da poluga ima tačno deklarisanu gramažu, čistotu od najmanje 999,9/1000 i legalno, sledljivo poreklo metala. Poluge sa ovim statusom prihvataju se bez provere svuda u svetu.",
+  a: "LBMA (London Bullion Market Association) je najuticajnija svetska organizacija za standardizaciju plemenitih metala. 'Good Delivery' status je njena najstrožija sertifikacija - garantuje da poluga ima tačno deklarisanu gramažu, čistotu od najmanje 999,9/1000 i legalno, sledljivo poreklo metala. Poluge sa ovim statusom prihvataju se bez provere svuda u svetu.",
 };
 
 const FAQ_RAZLIKA_PLOCICA: FaqItem = {
   q: "Koja je razlika između zlatne poluge i zlatne pločice?",
-  a: "Tehnički, i poluge i pločice su investiciono zlato čistoće 999,9 i oba formata su oslobođena PDV-a. Razlika je u gramazi i premiji. Pločice (1g–20g) nude višu premiju po gramu ali maksimalnu fleksibilnost. Poluge (od 31g naviše) imaju nižu premiju — više čistog zlata za isti novac — ali ih morate prodati odjednom. Pločice su za fleksibilnost, poluge za efikasnost kapitala.",
+  a: "Tehnički, i poluge i pločice su investiciono zlato čistoće 999,9 i oba formata su oslobođena PDV-a. Razlika je u gramazi i premiji. Pločice (1g–20g) nude višu premiju po gramu ali maksimalnu fleksibilnost. Poluge (od 31g naviše) imaju nižu premiju - više čistog zlata za isti novac - ali ih morate prodati odjednom. Pločice su za fleksibilnost, poluge za efikasnost kapitala.",
 };
 
 // ── Weight configs ─────────────────────────────────────────────────────────
@@ -121,14 +121,14 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     label: "Zlatna poluga 1 unca (31,1g)",
     metaTitle: "Zlatna poluga 1 unca | Cena i Prodaja - Gold Invest Beograd",
     metaDescription:
-      "Kupite zlatnu polugu 1 troy uncu (31,1g) čistoće 999,9 — Argor-Heraeus, C. Hafner. Globalno najlikvidniji format. Oslobođena PDV-a. Brza dostava Beograd i Srbija.",
+      "Kupite zlatnu polugu 1 troy uncu (31,1g) čistoće 999,9 - Argor-Heraeus, C. Hafner. Globalno najlikvidniji format. Oslobođena PDV-a. Brza dostava Beograd i Srbija.",
     intro:
-      "Zlatna poluga od 1 troy unce (31,1034g) je globalno najlikvidniji i najprepoznatljiviji format investicionog zlata. Sva berza i svi dileri na svetu kotiraju cenu u trojskim uncama — što znači da je ova poluga prihvaćena i odmah naplativa apsolutno svuda. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
+      "Zlatna poluga od 1 troy unce (31,1034g) je globalno najlikvidniji i najprepoznatljiviji format investicionog zlata. Sva berza i svi dileri na svetu kotiraju cenu u trojskim uncama - što znači da je ova poluga prihvaćena i odmah naplativa apsolutno svuda. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0614264129 - BRZA dostava!",
     seo: {
       brands: {
-        heading: "Naša ponuda — poluge od 1 unce (LBMA Good Delivery)",
+        heading: "Naša ponuda - poluge od 1 unce (LBMA Good Delivery)",
         description:
-          "Sve poluge od 1 troy unce u našoj ponudi kuju se u rafinerijama sa LBMA 'Good Delivery' liste — svetskog standarda koji garantuje čistoću od 999,9, tačnu gramažu i legalno poreklo metala.",
+          "Sve poluge od 1 troy unce u našoj ponudi kuju se u rafinerijama sa LBMA 'Good Delivery' liste - svetskog standarda koji garantuje čistoću od 999,9, tačnu gramažu i legalno poreklo metala.",
         cards: [
           BRAND_ARGOR("1 unca"),
           BRAND_HAFNER("1 unca"),
@@ -138,19 +138,19 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
       whyBuy: {
         heading: "Zašto je poluga od 1 unce globalni investicioni standard?",
         description:
-          "Poluga od 1 troy unce nije samo format — to je svetski jezik investicionog zlata. Evo konkretnih razloga zašto je ovo jedan od naših najprodavanijih artikala:",
+          "Poluga od 1 troy unce nije samo format - to je svetski jezik investicionog zlata. Evo konkretnih razloga zašto je ovo jedan od naših najprodavanijih artikala:",
         cards: [
           {
-            title: "Berza kotira cenu u uncama — ovo je direktna veza",
-            body: "Sva svetska berza zlata (London, New York, Zurich) kotira spot cenu u trojskim uncama. Kupovinom poluge od 1 unce kupujete tačno ono što berza kotira — bez konverzija, bez gubitaka u prevodu. Cena je potpuno transparentna i proverljiva u realnom vremenu.",
+            title: "Berza kotira cenu u uncama - ovo je direktna veza",
+            body: "Sva svetska berza zlata (London, New York, Zurich) kotira spot cenu u trojskim uncama. Kupovinom poluge od 1 unce kupujete tačno ono što berza kotira - bez konverzija, bez gubitaka u prevodu. Cena je potpuno transparentna i proverljiva u realnom vremenu.",
           },
           {
             title: "Prihvaćena svuda u svetu bez provere",
-            body: "Poluge od 1 unce svetskih LBMA rafinerija (Argor-Heraeus, C. Hafner, The Royal Mint) prihvataju se bez ikakve provere u svakoj menjačnici zlata, kod svakog dilera i u svakoj banci koja trguje plemenitim metalima. To je maksimalna likvidnost — možete je unovčiti u roku od minuta, bilo gde na planeti.",
+            body: "Poluge od 1 unce svetskih LBMA rafinerija (Argor-Heraeus, C. Hafner, The Royal Mint) prihvataju se bez ikakve provere u svakoj menjačnici zlata, kod svakog dilera i u svakoj banci koja trguje plemenitim metalima. To je maksimalna likvidnost - možete je unovčiti u roku od minuta, bilo gde na planeti.",
           },
           {
             title: "Povoljnija premija od pločica, fleksibilnija od većih poluga",
-            body: "Poluga od 1 unce (31,1g) nudi osetno povoljniju premiju po gramu nego zlatne pločice (1g–20g), a istovremeno je dovoljno mala da možete prodati jednu po jednu — bez prinudne prodaje celokupne rezerve. Idealan kompromis između efikasnosti i fleksibilnosti.",
+            body: "Poluga od 1 unce (31,1g) nudi osetno povoljniju premiju po gramu nego zlatne pločice (1g–20g), a istovremeno je dovoljno mala da možete prodati jednu po jednu - bez prinudne prodaje celokupne rezerve. Idealan kompromis između efikasnosti i fleksibilnosti.",
           },
         ],
       },
@@ -159,18 +159,18 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         description:
           "Gold Invest vam pruža apsolutnu transparentnost cena. Svaka poluga od 1 unce ima jasno istaknute sve tri cene:",
         card1Body:
-          "Cena za poluge koje su fizički u našem beogradskom trezoru. Uplatite i preuzmite zlato istog dana — bez čekanja.",
+          "Cena za poluge koje su fizički u našem beogradskom trezoru. Uplatite i preuzmite zlato istog dana - bez čekanja.",
         card2Body:
           "Kupujete više poluga od 1 unce? Avansnom uplatom zaključavate trenutnu berzansku cenu i mi robu direktno poručujemo iz rafinerije uz značajnu uštedu.",
         card3Body:
-          "Garantovani iznos po kom Gold Invest otkupljuje vaše poluge od 1 unce — uvek javno istaknut. Format od 1 unce je jedan od najlikvidnijih na tržištu, što znači minimalan spread.",
+          "Garantovani iznos po kom Gold Invest otkupljuje vaše poluge od 1 unce - uvek javno istaknut. Format od 1 unce je jedan od najlikvidnijih na tržištu, što znači minimalan spread.",
       },
       delivery: {
-        heading: "Prodaja zlatnih poluga 1 unca Beograd — Gold Invest",
+        heading: "Prodaja zlatnih poluga 1 unca Beograd - Gold Invest",
         description:
-          "Kupovina poluge od 1 unce je brza i potpuno bezbedna. Nudimo više načina preuzimanja — uvek diskretno i maksimalno osigurano.",
+          "Kupovina poluge od 1 unce je brza i potpuno bezbedna. Nudimo više načina preuzimanja - uvek diskretno i maksimalno osigurano.",
         pickupCardBody:
-          "Posetite nas lično u Beogradu. Stručna provera autentičnosti i preuzimanje na licu mesta — bez čekanja, u potpuno diskretnom okruženju.",
+          "Posetite nas lično u Beogradu. Stručna provera autentičnosti i preuzimanje na licu mesta - bez čekanja, u potpuno diskretnom okruženju.",
       },
       faq: {
         title: "Česta pitanja o zlatnoj poluzi od 1 unce",
@@ -180,7 +180,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           FAQ_PDV,
           {
             q: "Šta je troy unca i koliko grama iznosi?",
-            a: "Troy unca (oznaka 'oz t' ili samo 'oz') je merna jedinica koja se isključivo koristi za plemenite metale. Jedna troy unca iznosi tačno 31,1034768 grama. Nije ista kao obična unca (28,35g) koja se koristi u SAD za svakodnevne namirnice. Sve cene zlata na svetskim berzama — uključujući i grafikon na našem sajtu — izražavaju se po troy unci.",
+            a: "Troy unca (oznaka 'oz t' ili samo 'oz') je merna jedinica koja se isključivo koristi za plemenite metale. Jedna troy unca iznosi tačno 31,1034768 grama. Nije ista kao obična unca (28,35g) koja se koristi u SAD za svakodnevne namirnice. Sve cene zlata na svetskim berzama - uključujući i grafikon na našem sajtu - izražavaju se po troy unci.",
           },
           FAQ_RAZLIKA_PLOCICA,
           FAQ_DOSTAVA,
@@ -194,12 +194,12 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     label: "Zlatna poluga 50g",
     metaTitle: "Zlatna poluga 50g | Cena i Prodaja - Gold Invest Beograd",
     metaDescription:
-      "Kupite zlatnu polugu 50g čistoće 999,9 — Argor-Heraeus, C. Hafner. Ulaz u svet pravih poluga sa povoljnom premijom. Oslobođena PDV-a. Brza dostava Beograd i Srbija.",
+      "Kupite zlatnu polugu 50g čistoće 999,9 - Argor-Heraeus, C. Hafner. Ulaz u svet pravih poluga sa povoljnom premijom. Oslobođena PDV-a. Brza dostava Beograd i Srbija.",
     intro:
-      "Zlatna poluga od 50 grama je idealan prvi korak u svetu pravih investicionih poluga. Nudi osetno povoljniju premiju po gramu od svih zlatnih pločica, a još uvek je dovoljno pristupačna da je mogu priuštiti investitori sa srednjim budžetom. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
+      "Zlatna poluga od 50 grama je idealan prvi korak u svetu pravih investicionih poluga. Nudi osetno povoljniju premiju po gramu od svih zlatnih pločica, a još uvek je dovoljno pristupačna da je mogu priuštiti investitori sa srednjim budžetom. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0614264129 - BRZA dostava!",
     seo: {
       brands: {
-        heading: "Naša ponuda — poluge od 50g (LBMA Good Delivery)",
+        heading: "Naša ponuda - poluge od 50g (LBMA Good Delivery)",
         description:
           "Sve poluge od 50g u našoj ponudi kuju se u rafinerijama sa LBMA 'Good Delivery' liste. Svaka dolazi fabrički zapečaćena u sigurnosnom blisteru koji je ujedno i vaš sertifikat čistoće 999,9.",
         cards: [
@@ -215,15 +215,15 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         cards: [
           {
             title: "Značajno niža premija od zlatnih pločica",
-            body: "Na poluzi od 50g isti fiksni troškovi LBMA sertifikacije i pakovanja dele se na 50 grama zlata. Rezultat: premija po gramu je osetno niža nego kod pločica (1g–20g) — za isti novac dobijate više čistog zlata. Ovo je granica na kojoj postaje finansijski isplativije prelaziti na poluge.",
+            body: "Na poluzi od 50g isti fiksni troškovi LBMA sertifikacije i pakovanja dele se na 50 grama zlata. Rezultat: premija po gramu je osetno niža nego kod pločica (1g–20g) - za isti novac dobijate više čistog zlata. Ovo je granica na kojoj postaje finansijski isplativije prelaziti na poluge.",
           },
           {
-            title: "Ulaz u svet pravih poluga — uz zadržanu fleksibilnost",
+            title: "Ulaz u svet pravih poluga - uz zadržanu fleksibilnost",
             body: "Poluga od 50g je dovoljno mala da je možete prodati odjednom kad vam zatreba tačno ta vrednost, a dovoljno velika da je svaki ozbiljan diler i menjačnica prihvati bez rezervi. Bridž između sveta pločica i većih poluga.",
           },
           {
             title: "Realna finansijska rezerva koja staje u džep",
-            body: "Poluga od 50g fizički je mala kao par kreditnih kartica, ali nosi ozbiljnu vrednost. Lako se skladi u kući (sef, kaseta), ne zahteva posebne uslove čuvanja i u svakom trenutku je dostupna — za razliku od novca na bankovnom računu koji može biti blokiran.",
+            body: "Poluga od 50g fizički je mala kao par kreditnih kartica, ali nosi ozbiljnu vrednost. Lako se skladi u kući (sef, kaseta), ne zahteva posebne uslove čuvanja i u svakom trenutku je dostupna - za razliku od novca na bankovnom računu koji može biti blokiran.",
           },
         ],
       },
@@ -232,18 +232,18 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         description:
           "Transparentnost je osnova našeg poslovanja. Svaka poluga od 50g ima jasno istaknute sve tri cene:",
         card1Body:
-          "Cena za poluge koje su fizički u našem trezoru. Uplatite i preuzmite zlato istog dana — bez čekanja i skrivenih troškova.",
+          "Cena za poluge koje su fizički u našem trezoru. Uplatite i preuzmite zlato istog dana - bez čekanja i skrivenih troškova.",
         card2Body:
           "Kupujete više poluga od 50g? Avansnom uplatom zaključavate trenutnu berzansku cenu i mi robu direktno poručujemo iz rafinerije uz značajnu uštedu po gramu.",
         card3Body:
-          "Garantovani iznos po kom Gold Invest otkupljuje vaše poluge od 50g — uvek javno istaknut, bez iznenađenja.",
+          "Garantovani iznos po kom Gold Invest otkupljuje vaše poluge od 50g - uvek javno istaknut, bez iznenađenja.",
       },
       delivery: {
-        heading: "Prodaja zlatnih poluga 50g Beograd — Gold Invest",
+        heading: "Prodaja zlatnih poluga 50g Beograd - Gold Invest",
         description:
-          "Kupovina poluge od 50g je brza i potpuno bezbedna. Nudimo više načina preuzimanja — uvek diskretno i maksimalno osigurano.",
+          "Kupovina poluge od 50g je brza i potpuno bezbedna. Nudimo više načina preuzimanja - uvek diskretno i maksimalno osigurano.",
         pickupCardBody:
-          "Posetite nas lično u Beogradu. Stručna provera autentičnosti i preuzimanje na licu mesta — bez čekanja, u potpuno diskretnom okruženju.",
+          "Posetite nas lično u Beogradu. Stručna provera autentičnosti i preuzimanje na licu mesta - bez čekanja, u potpuno diskretnom okruženju.",
       },
       faq: {
         title: "Česta pitanja o zlatnoj poluzi od 50g",
@@ -264,14 +264,14 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     label: "Zlatna poluga 100g",
     metaTitle: "Zlatna poluga 100g | Cena i Prodaja - Gold Invest Beograd",
     metaDescription:
-      "Kupite zlatnu polugu 100g čistoće 999,9 — Argor-Heraeus, C. Hafner. Najprodavaniji format na srpskom i evropskom tržištu. Oslobođena PDV-a. Brza dostava.",
+      "Kupite zlatnu polugu 100g čistoće 999,9 - Argor-Heraeus, C. Hafner. Najprodavaniji format na srpskom i evropskom tržištu. Oslobođena PDV-a. Brza dostava.",
     intro:
-      "Zlatna poluga od 100 grama je apsolutno najprodavaniji format na domaćem i evropskom tržištu investicionog zlata — i to nije slučajnost. Nudi optimalan balans između povoljne premije po gramu, lakoće čuvanja i maksimalne likvidnosti pri prodaji. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0614264129 — BRZA dostava!",
+      "Zlatna poluga od 100 grama je apsolutno najprodavaniji format na domaćem i evropskom tržištu investicionog zlata - i to nije slučajnost. Nudi optimalan balans između povoljne premije po gramu, lakoće čuvanja i maksimalne likvidnosti pri prodaji. Sadrži 99,99% čistog zlata (24 karata), dolazi u LBMA sertifikovanom blisteru i u potpunosti je oslobođena PDV-a. Poručite putem kontakt forme ili na broj 0614264129 - BRZA dostava!",
     seo: {
       brands: {
-        heading: "Naša ponuda — poluge od 100g (LBMA Good Delivery)",
+        heading: "Naša ponuda - poluge od 100g (LBMA Good Delivery)",
         description:
-          "Sve poluge od 100g u našoj ponudi dolaze isključivo iz rafinerija sa LBMA 'Good Delivery' liste. Svaka je fabrički zapečaćena u sigurnosnom blisteru — vašem zvaničnom sertifikatu čistoće 999,9.",
+          "Sve poluge od 100g u našoj ponudi dolaze isključivo iz rafinerija sa LBMA 'Good Delivery' liste. Svaka je fabrički zapečaćena u sigurnosnom blisteru - vašem zvaničnom sertifikatu čistoće 999,9.",
         cards: [
           BRAND_ARGOR("100g"),
           BRAND_HAFNER("100g"),
@@ -284,7 +284,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           "Ne postoji slučajnost u tome što je poluga od 100g najprodavaniji format na celom evropskom tržištu. Evo zašto ju je odabralo toliko iskusnih investitora:",
         cards: [
           {
-            title: "Optimalna premija — ni previše, ni premalo",
+            title: "Optimalna premija - ni previše, ni premalo",
             body: "Poluga od 100g nudi premiju po gramu koja je osetno niža od pločica i poluge od 50g, ali i dalje dovoljno malu da kupite više komada bez gubitka likvidnosti. To je tačka na kojoj svaki evro koji date maksimalno prelazi u vrednost zlata.",
           },
           {
@@ -293,7 +293,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           },
           {
             title: "Fleksibilnost kroz kupovinu više komada",
-            body: "Investitori koji imaju 500g ili 1kg zlata u portfoliju često ga drže u obliku pet ili deset poluga od 100g — a ne u jednom komadu od 500g ili 1kg. Razlog je prost: ako vam zatreba deo gotovine, prodate samo jednu polugu od 100g i ostatak investicije ostaje netaknut.",
+            body: "Investitori koji imaju 500g ili 1kg zlata u portfoliju često ga drže u obliku pet ili deset poluga od 100g - a ne u jednom komadu od 500g ili 1kg. Razlog je prost: ako vam zatreba deo gotovine, prodate samo jednu polugu od 100g i ostatak investicije ostaje netaknut.",
           },
         ],
       },
@@ -302,18 +302,18 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         description:
           "Gold Invest vam pruža apsolutnu transparentnost cena. Svaka poluga od 100g ima jasno istaknute sve tri cene:",
         card1Body:
-          "Cena za poluge koje su fizički u našem beogradskom trezoru. Uplatite i preuzmite zlato istog dana — bez čekanja.",
+          "Cena za poluge koje su fizički u našem beogradskom trezoru. Uplatite i preuzmite zlato istog dana - bez čekanja.",
         card2Body:
           "Kupujete više poluga od 100g? Avansnom uplatom zaključavate trenutnu berzansku cenu i mi robu direktno poručujemo iz rafinerije (Švajcarska, Nemačka, Belgija). Značajna ušteda na većim količinama.",
         card3Body:
-          "Garantovani iznos po kom Gold Invest otkupljuje vaše poluge od 100g — uvek javno istaknut. Zbog ogromne likvidnosti ovog formata, spread je među najnižima u celoj ponudi.",
+          "Garantovani iznos po kom Gold Invest otkupljuje vaše poluge od 100g - uvek javno istaknut. Zbog ogromne likvidnosti ovog formata, spread je među najnižima u celoj ponudi.",
       },
       delivery: {
-        heading: "Prodaja zlatnih poluga 100g Beograd — Gold Invest",
+        heading: "Prodaja zlatnih poluga 100g Beograd - Gold Invest",
         description:
-          "Kupovina poluge od 100g je brza i potpuno bezbedna. Nudimo više načina preuzimanja — uvek diskretno i maksimalno osigurano.",
+          "Kupovina poluge od 100g je brza i potpuno bezbedna. Nudimo više načina preuzimanja - uvek diskretno i maksimalno osigurano.",
         pickupCardBody:
-          "Posetite nas lično u Beogradu. Stručna provera autentičnosti i preuzimanje na licu mesta — bez čekanja, u potpuno diskretnom okruženju.",
+          "Posetite nas lično u Beogradu. Stručna provera autentičnosti i preuzimanje na licu mesta - bez čekanja, u potpuno diskretnom okruženju.",
       },
       faq: {
         title: "Česta pitanja o zlatnoj poluzi od 100g",
@@ -348,14 +348,14 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     label: "Zlatna poluga 500g",
     metaTitle: "Zlatna poluga 500g | Cena i Prodaja - Gold Invest Beograd",
     metaDescription:
-      "Kupite zlatnu polugu 500g čistoće 999,9 — Argor-Heraeus, C. Hafner. Minimalna premija, maksimalna efikasnost kapitala. Oslobođena PDV-a. Individualna ponuda.",
+      "Kupite zlatnu polugu 500g čistoće 999,9 - Argor-Heraeus, C. Hafner. Minimalna premija, maksimalna efikasnost kapitala. Oslobođena PDV-a. Individualna ponuda.",
     intro:
       "Zlatna poluga od 500 grama je izbor ozbiljnih investitora koji žele da maksimizuju količinu čistog zlata za svaki uloženi dinar. Nudi jednu od najnižih premija u kategoriji, a vrednost poluge je dovoljno značajna da se tretira kao ozbiljna finansijska rezerva. Sadrži 99,99% čistog zlata (24 karata), u LBMA sertifikovanom blisteru, oslobođena PDV-a. Kontaktirajte nas za aktuelnu cenu: 0614264129.",
     seo: {
       brands: {
-        heading: "Naša ponuda — poluge od 500g (LBMA Good Delivery)",
+        heading: "Naša ponuda - poluge od 500g (LBMA Good Delivery)",
         description:
-          "Poluge od 500g u našoj ponudi dolaze isključivo od LBMA rafinerija — svetski priznatih institucija koje garantuju čistoću od 999,9, tačnu gramažu i legalno sledljivo poreklo metala.",
+          "Poluge od 500g u našoj ponudi dolaze isključivo od LBMA rafinerija - svetski priznatih institucija koje garantuju čistoću od 999,9, tačnu gramažu i legalno sledljivo poreklo metala.",
         cards: [
           BRAND_ARGOR("500g"),
           BRAND_HAFNER("500g"),
@@ -365,19 +365,19 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
       whyBuy: {
         heading: "Zašto kupiti zlatnu polugu od 500g?",
         description:
-          "Poluga od 500g nije za početnike — to je format za investitore koji već razumeju zlato i žele da kapital prenesu u najefikasnijem obliku. Evo konkretnih razloga:",
+          "Poluga od 500g nije za početnike - to je format za investitore koji već razumeju zlato i žele da kapital prenesu u najefikasnijem obliku. Evo konkretnih razloga:",
         cards: [
           {
-            title: "Minimalna premija — maksimalno zlato za isti novac",
-            body: "Fiksni troškovi LBMA sertifikacije i pakovanja se na poluzi od 500g dele na 500 grama zlata. Premija po gramu je jedna od najnižih u celoj našoj ponudi — daleko ispod pločica i manjih poluga. Za istu sumu novca dobijate osetno više čistog zlata nego u bilo kom manjem formatu.",
+            title: "Minimalna premija - maksimalno zlato za isti novac",
+            body: "Fiksni troškovi LBMA sertifikacije i pakovanja se na poluzi od 500g dele na 500 grama zlata. Premija po gramu je jedna od najnižih u celoj našoj ponudi - daleko ispod pločica i manjih poluga. Za istu sumu novca dobijate osetno više čistog zlata nego u bilo kom manjem formatu.",
           },
           {
             title: "Efikasno uskladištenje velikog kapitala",
-            body: "Poluga od 500g je kompaktnija nego što mnogi misle — dimenzijama je slična debeloj knjizi. U standardnom kućanskom sefu može da stane više poluga od 500g, što je čini izuzetno efikasnom za uskladištenje velikog kapitala bez skupih bankovnih trezora.",
+            body: "Poluga od 500g je kompaktnija nego što mnogi misle - dimenzijama je slična debeloj knjizi. U standardnom kućanskom sefu može da stane više poluga od 500g, što je čini izuzetno efikasnom za uskladištenje velikog kapitala bez skupih bankovnih trezora.",
           },
           {
-            title: "Institucijalni standard — prihvaćena svuda bez provere",
-            body: "Poluge od 500g svetskih LBMA rafinerija prihvataju se odmah i po fer ceni od strane svakog profesionalnog dilera zlata u Srbiji, Evropi i svetu. Nema potrebe za posebnom proverom — LBMA status je globalna garancija.",
+            title: "Institucijalni standard - prihvaćena svuda bez provere",
+            body: "Poluge od 500g svetskih LBMA rafinerija prihvataju se odmah i po fer ceni od strane svakog profesionalnog dilera zlata u Srbiji, Evropi i svetu. Nema potrebe za posebnom proverom - LBMA status je globalna garancija.",
           },
         ],
       },
@@ -393,7 +393,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           "Garantovani otkupni iznos koji Gold Invest isplaćuje za vaše poluge od 500g. Zbog visoke vrednosti ovog formata, spread je među najnižima u celoj našoj ponudi.",
       },
       delivery: {
-        heading: "Prodaja zlatnih poluga 500g Beograd — Gold Invest",
+        heading: "Prodaja zlatnih poluga 500g Beograd - Gold Invest",
         description:
           "Kupovina poluge od 500g zahteva kratku koordinaciju radi pripreme i bezbednog prenosa. Uvek diskretno i maksimalno osigurano.",
         pickupCardBody:
@@ -407,7 +407,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           FAQ_PDV,
           {
             q: "Da li je bolje kupiti jednu polugu od 500g ili pet poluga od 100g?",
-            a: "Ovo je ključno pitanje za svakog ozbiljnog investitora. Jedna poluga od 500g nudi nižu premiju po gramu — dobijate više zlata za isti novac. Međutim, pet poluga od 100g vam daju višu fleksibilnost — možete prodati jednu po jednu kada vam zatreba deo gotovine. Naša preporuka: ako niste sigurni da li ćete ikad trebati da delimično unovčite investiciju, uzmite polugu od 500g. Ako želite mogućnost postepene prodaje, uzmite pet po 100g.",
+            a: "Ovo je ključno pitanje za svakog ozbiljnog investitora. Jedna poluga od 500g nudi nižu premiju po gramu - dobijate više zlata za isti novac. Međutim, pet poluga od 100g vam daju višu fleksibilnost - možete prodati jednu po jednu kada vam zatreba deo gotovine. Naša preporuka: ako niste sigurni da li ćete ikad trebati da delimično unovčite investiciju, uzmite polugu od 500g. Ako želite mogućnost postepene prodaje, uzmite pet po 100g.",
           },
           FAQ_GOTOVINA("500g"),
           FAQ_KARTICA,
@@ -422,14 +422,14 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
     label: "Zlatna poluga 1kg",
     metaTitle: "Zlatna poluga 1kg | Cena i Prodaja - Gold Invest Beograd",
     metaDescription:
-      "Kupite zlatnu polugu 1kg čistoće 999,9 — matematički najefikasniji format investicionog zlata. LBMA Good Delivery. Oslobođena PDV-a. Individualna ponuda — pozovite nas.",
+      "Kupite zlatnu polugu 1kg čistoće 999,9 - matematički najefikasniji format investicionog zlata. LBMA Good Delivery. Oslobođena PDV-a. Individualna ponuda - pozovite nas.",
     intro:
-      "Zlatna poluga od 1 kilograma je matematički najefikasniji format investicionog zlata i standard kojim trguju centralne banke celog sveta. Minimalan spread, maksimalna vrednost po gramu — i ni gram više premije nego što je neophodno. Sadrži 99,99% čistog zlata (24 karata), u LBMA 'Good Delivery' sertifikovanom pakovanju, u potpunosti oslobođena PDV-a. Za aktuelnu cenu i uslove, pozovite nas na 0614264129.",
+      "Zlatna poluga od 1 kilograma je matematički najefikasniji format investicionog zlata i standard kojim trguju centralne banke celog sveta. Minimalan spread, maksimalna vrednost po gramu - i ni gram više premije nego što je neophodno. Sadrži 99,99% čistog zlata (24 karata), u LBMA 'Good Delivery' sertifikovanom pakovanju, u potpunosti oslobođena PDV-a. Za aktuelnu cenu i uslove, pozovite nas na 0614264129.",
     seo: {
       brands: {
-        heading: "Naša ponuda — poluge od 1kg (LBMA Good Delivery)",
+        heading: "Naša ponuda - poluge od 1kg (LBMA Good Delivery)",
         description:
-          "Poluge od 1kg dolaze isključivo od rafinerija sa LBMA 'Good Delivery' liste — standarda koji koriste centralne banke celog sveta. Čistoća 999,9 garantovana, poreklo sledljivo, vrednost neupitna.",
+          "Poluge od 1kg dolaze isključivo od rafinerija sa LBMA 'Good Delivery' liste - standarda koji koriste centralne banke celog sveta. Čistoća 999,9 garantovana, poreklo sledljivo, vrednost neupitna.",
         cards: [
           BRAND_ARGOR("1kg"),
           BRAND_HAFNER("1kg"),
@@ -439,19 +439,19 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
       whyBuy: {
         heading: "Zašto je poluga od 1kg ultimativna investicija u zlato?",
         description:
-          "Poluga od 1kg nije impulsivna kupovina — to je strateška odluka. Evo zašto je ovo format koji biraju institucije, fondovi i najiskusniji privatni investitori:",
+          "Poluga od 1kg nije impulsivna kupovina - to je strateška odluka. Evo zašto je ovo format koji biraju institucije, fondovi i najiskusniji privatni investitori:",
         cards: [
           {
             title: "Apsolutno najniža premija u celoj ponudi",
-            body: "Na poluzi od 1kg fiksni troškovi sertifikacije i pakovanja su zanemarljivi u odnosu na vrednost zlata koje sadrži. Premija po gramu je niža nego kod bilo kog drugog formata — svaki dinar koji uložite gotovo u potpunosti prelazi u čisto zlato. Nema efikasnijeg načina da prenesete kapital u fizički metal.",
+            body: "Na poluzi od 1kg fiksni troškovi sertifikacije i pakovanja su zanemarljivi u odnosu na vrednost zlata koje sadrži. Premija po gramu je niža nego kod bilo kog drugog formata - svaki dinar koji uložite gotovo u potpunosti prelazi u čisto zlato. Nema efikasnijeg načina da prenesete kapital u fizički metal.",
           },
           {
-            title: "Standard centralnih banaka — maksimalan prestiž i likvidnost",
-            body: "Poluga od 1kg (poznatija kao 'Good Delivery bar') je format kojim trguju i kojim se procenjuju zlatne rezerve centralnih banaka. Kad imate polugu ovog standarda, imate apsolutnu garanciju likvidnosti — prihvaćena je odmah i po berzi, bez ikakve provere, od strane bilo kog profesionalnog učesnika na globalnom tržištu zlata.",
+            title: "Standard centralnih banaka - maksimalan prestiž i likvidnost",
+            body: "Poluga od 1kg (poznatija kao 'Good Delivery bar') je format kojim trguju i kojim se procenjuju zlatne rezerve centralnih banaka. Kad imate polugu ovog standarda, imate apsolutnu garanciju likvidnosti - prihvaćena je odmah i po berzi, bez ikakve provere, od strane bilo kog profesionalnog učesnika na globalnom tržištu zlata.",
           },
           {
-            title: "Efikasno uskladištenje — 1kg stane u jednoj ruci",
-            body: "Poluga od 1kg fizički je manja nego što većina ljudi zamišlja — veličine je otprilike kao deblji mobilni telefon. U standardnom sefu može stajati više kilogramskih poluga, što je čini izuzetno efikasnom za uskladištenje ogromnog kapitala na minimalnom prostoru.",
+            title: "Efikasno uskladištenje - 1kg stane u jednoj ruci",
+            body: "Poluga od 1kg fizički je manja nego što većina ljudi zamišlja - veličine je otprilike kao deblji mobilni telefon. U standardnom sefu može stajati više kilogramskih poluga, što je čini izuzetno efikasnom za uskladištenje ogromnog kapitala na minimalnom prostoru.",
           },
         ],
       },
@@ -462,12 +462,12 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
         card1Body:
           "Poluge od 1kg najčešće se nabavljaju avansno direktno iz rafinerije. Kontaktirajte nas i mi ćemo vam rezervisati aktuelnu berzansku cenu dok organizujemo isporuku.",
         card2Body:
-          "Avansna kupovina je standardni model za poluge ove gramaže — zaključujete berzansku cenu u trenutku uplate, a isporuku organizujemo direktno iz LBMA rafinerije.",
+          "Avansna kupovina je standardni model za poluge ove gramaže - zaključujete berzansku cenu u trenutku uplate, a isporuku organizujemo direktno iz LBMA rafinerije.",
         card3Body:
-          "Otkupna cena poluge od 1kg je najbliža spot berzi od svih naših formata — minimalan spread koji smo u stanju da ponudimo. Kontaktirajte nas za aktuelni otkupni kurs.",
+          "Otkupna cena poluge od 1kg je najbliža spot berzi od svih naših formata - minimalan spread koji smo u stanju da ponudimo. Kontaktirajte nas za aktuelni otkupni kurs.",
       },
       delivery: {
-        heading: "Prodaja zlatnih poluga 1kg Beograd — Gold Invest",
+        heading: "Prodaja zlatnih poluga 1kg Beograd - Gold Invest",
         description:
           "Kupovina i isporuka poluge od 1kg zahteva individualnu koordinaciju. Svaka transakcija se organizuje diskretno, sa svom potrebnom dokumentacijom i maksimalnim osiguranjem.",
         pickupCardBody:
@@ -480,7 +480,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           FAQ_PDV,
           {
             q: "Da li je bolje kupiti jednu polugu od 1kg ili deset poluga od 100g?",
-            a: "Jedna poluga od 1kg nudi apsolutno najnižu premiju po gramu — za isti novac dobijate više čistog zlata nego u bilo kom drugom formatu. Međutim, deset poluga od 100g daju vam mogućnost postepene prodaje — prodate jednu po jednu kad vam zatreba deo gotovine. Naša preporuka: ako ste sigurni da nećete trebati delić rezerve u kratkom roku — 1kg je finansijski najoptimalniji izbor. Ako želite fleksibilnost, idite na 100g komade.",
+            a: "Jedna poluga od 1kg nudi apsolutno najnižu premiju po gramu - za isti novac dobijate više čistog zlata nego u bilo kom drugom formatu. Međutim, deset poluga od 100g daju vam mogućnost postepene prodaje - prodate jednu po jednu kad vam zatreba deo gotovine. Naša preporuka: ako ste sigurni da nećete trebati delić rezerve u kratkom roku - 1kg je finansijski najoptimalniji izbor. Ako želite fleksibilnost, idite na 100g komade.",
           },
           {
             q: "Kako se organizuje kupovina poluge od 1kg?",
@@ -488,7 +488,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           },
           {
             q: "Šta je 'Good Delivery bar' standard?",
-            a: "Good Delivery bar je naziv za polugu koja ispunjava najstrožije LBMA standarde — čistoću od 995/1000 ili više, tačnu gramažu, sledljivo poreklo i specifične fizičke dimenzije. Naše kilogramske poluge su čistoće 999,9 — iznad minimalnog standarda. To je format koji koriste centralne banke i koji se prihvata bez provere na svim institucionalnim tržištima.",
+            a: "Good Delivery bar je naziv za polugu koja ispunjava najstrožije LBMA standarde - čistoću od 995/1000 ili više, tačnu gramažu, sledljivo poreklo i specifične fizičke dimenzije. Naše kilogramske poluge su čistoće 999,9 - iznad minimalnog standarda. To je format koji koriste centralne banke i koji se prihvata bez provere na svim institucionalnim tržištima.",
           },
           FAQ_SERTIFIKAT,
           FAQ_KARTICA,

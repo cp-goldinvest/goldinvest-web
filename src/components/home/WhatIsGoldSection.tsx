@@ -5,7 +5,7 @@ export function WhatIsGoldSection() {
   return (
     <section className="relative overflow-hidden" style={{ minHeight: 578, background: "#1B1B1C" }}>
 
-      {/* Background image — 20% opacity */}
+      {/* Background image - 20% opacity */}
       <div className="absolute inset-0" style={{ opacity: 0.2 }}>
         <Image
           src="/images/cta-background.webp"

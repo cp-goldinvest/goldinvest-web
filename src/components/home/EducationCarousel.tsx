@@ -16,7 +16,7 @@ const SLIDES = [
   },
   {
     img: "/images/bento-coins.webp",
-    title: "Zlatnici vs poluge — šta je isplativije?",
+    title: "Zlatnici vs poluge - šta je isplativije?",
     text: "Zlatnici imaju nešto višu premiju zbog troškova kovanja i numizmatičke vrednosti, ali su lakši za preprodaju u manjim iznosima. Poluge su isplativije za veće investicije jer premija po gramu opada sa povećanjem težine.",
   },
   {
@@ -27,12 +27,12 @@ const SLIDES = [
   {
     img: "/images/faktori-2.webp",
     title: "Kako bezbedno čuvati investiciono zlato?",
-    text: "Zlato možete čuvati u kućnom sefu, bankarskom sefu ili kod ovlašćenog čuvara vrednosti. Preporučujemo osiguran sef sa certifikatom — fizička posedovost zlata je jedna od ključnih prednosti ove investicije.",
+    text: "Zlato možete čuvati u kućnom sefu, bankarskom sefu ili kod ovlašćenog čuvara vrednosti. Preporučujemo osiguran sef sa certifikatom - fizička posedovost zlata je jedna od ključnih prednosti ove investicije.",
   },
   {
     img: "/images/bento-center-gold.webp",
     title: "Kada je pravo vreme za kupovinu zlata?",
-    text: "Za dugoročne investitore, vreme kupovine je manje važno od redovnosti ulaganja. Strategija prosečenja troška (DCA) — kupovati redovno manje količine — pokazala se efikasnom u volatilnim tržišnim uslovima.",
+    text: "Za dugoročne investitore, vreme kupovine je manje važno od redovnosti ulaganja. Strategija prosečenja troška (DCA) - kupovati redovno manje količine - pokazala se efikasnom u volatilnim tržišnim uslovima.",
   },
   {
     img: "/images/bento-dollars.webp",

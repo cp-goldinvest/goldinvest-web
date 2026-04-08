@@ -21,7 +21,7 @@ export function GoldTypesSection() {
         </h2>
 
         {/*
-          Desktop bento grid — 3 cols × 4 rows:
+          Desktop bento grid - 3 cols × 4 rows:
           ┌──────────────┬──────────────────┬────────────────────┐
           │  text-forms  │  center-gold     │  kovanice-text     │
           ├──────────────┤  (spans 3 rows)  ├────────────────────┤
@@ -72,12 +72,12 @@ export function GoldTypesSection() {
             </div>
           </div>
 
-          {/* ── center-gold (spans 3 rows) — slika + tekst ── */}
+          {/* ── center-gold (spans 3 rows) - slika + tekst ── */}
           <div
             className="rounded-2xl overflow-hidden flex flex-col"
             style={{ gridArea: "center-gold" }}
           >
-            {/* Slika — gornja polovina */}
+            {/* Slika - gornja polovina */}
             <div className="relative bg-[#F9F9F9]" style={{ minHeight: 340, flex: "1 1 auto" }}>
               <Image
                 src="/images/bento-gold-bar.webp"
@@ -87,10 +87,10 @@ export function GoldTypesSection() {
               />
             </div>
 
-            {/* Tekst — donja polovina */}
+            {/* Tekst - donja polovina */}
             <div className="bg-[#F9F9F9] p-7">
               <p className="text-[#3A3A3A] text-[14px] leading-relaxed">
-                <span className="font-bold text-[#1B1B1C]">Pravilo za poluge i pločice</span> — moraju imati ekstremnu čistoću od minimum{" "}
+                <span className="font-bold text-[#1B1B1C]">Pravilo za poluge i pločice</span> - moraju imati ekstremnu čistoću od minimum{" "}
                 <span className="font-semibold text-[#1B1B1C]">995/1000 (23,88 karata)</span>. Na svakoj mora biti jasno utisnut naziv proizvođača, tačna težina i jedinstveni serijski broj.
               </p>
             </div>
@@ -102,7 +102,7 @@ export function GoldTypesSection() {
             style={{ gridArea: "kovanice" }}
           >
             <p className="text-[#E8E4D9] text-[15px] leading-relaxed">
-              <span className="font-bold">Pravilo za kovanice (dukate)</span> — minimalna čistoća mora biti
+              <span className="font-bold">Pravilo za kovanice (dukate)</span> - minimalna čistoća mora biti
               900/1000 (21,6 karata). Uz to, moraju biti iskovani nakon
               1800. godine, a njihova prodajna cena ne sme da prelazi
               vrednost samog zlata za više od 80%.
@@ -111,7 +111,7 @@ export function GoldTypesSection() {
             <div className="flex-1 flex items-end justify-center -mb-7">
               <Image
                 src="/images/bento-coins.webp"
-                alt="Zlatni dukat — Franc Jozef"
+                alt="Zlatni dukat - Franc Jozef"
                 width={280}
                 height={280}
                 className="object-contain w-full max-w-[85%]"
@@ -142,7 +142,7 @@ export function GoldTypesSection() {
             className="bg-[#F9F9F9] rounded-2xl flex overflow-hidden"
             style={{ gridArea: "dollars", minHeight: 260 }}
           >
-            {/* Levo — slika sa marginama */}
+            {/* Levo - slika sa marginama */}
             <div className="relative w-1/2 shrink-0 p-5">
               <div className="relative w-full h-full rounded-xl overflow-hidden min-h-[220px]">
                 <Image
@@ -154,7 +154,7 @@ export function GoldTypesSection() {
               </div>
             </div>
 
-            {/* Desno — tekst */}
+            {/* Desno - tekst */}
             <div className="flex-1 flex items-end p-7 pl-4">
               <p className="text-[#3A3A3A] text-[15px] leading-relaxed">
                 Osnovna svrha investicionog zlata je{" "}
@@ -201,27 +201,27 @@ export function GoldTypesSection() {
             <p className="text-[#1B1B1C] text-[17px] font-semibold leading-snug">U potpunosti je oslobođen plaćanja PDV-a.</p>
           </div>
 
-          {/* Poluge — samo tekst na mobilnom (slika sakrivena) */}
+          {/* Poluge - samo tekst na mobilnom (slika sakrivena) */}
           <div className="bg-[#F9F9F9] rounded-2xl overflow-hidden flex flex-col">
             <div className="bg-[#F9F9F9] p-6">
               <p className="text-[#3A3A3A] text-[14px] leading-relaxed">
-                <span className="font-bold text-[#1B1B1C]">Pravilo za poluge i pločice</span> — moraju imati ekstremnu čistoću od minimum{" "}
+                <span className="font-bold text-[#1B1B1C]">Pravilo za poluge i pločice</span> - moraju imati ekstremnu čistoću od minimum{" "}
                 <span className="font-semibold text-[#1B1B1C]">995/1000 (23,88 karata)</span>. Na svakoj mora biti jasno utisnut naziv proizvođača, tačna težina i jedinstveni serijski broj.
               </p>
             </div>
           </div>
 
-          {/* Kovanice — tekst + slika */}
+          {/* Kovanice - tekst + slika */}
           <div className="bg-[#0D0D0D] rounded-2xl overflow-hidden flex flex-col" style={{ paddingTop: 24, paddingLeft: 24, paddingRight: 24 }}>
             <p className="text-[#E8E4D9] text-[15px] leading-relaxed mb-4">
-              <span className="font-bold">Pravilo za kovanice (dukate)</span> — minimalna čistoća mora biti 900/1000 (21,6 karata). Uz to, moraju biti iskovani nakon 1800. godine, a njihova prodajna cena ne sme da prelazi vrednost samog zlata za više od 80%.
+              <span className="font-bold">Pravilo za kovanice (dukate)</span> - minimalna čistoća mora biti 900/1000 (21,6 karata). Uz to, moraju biti iskovani nakon 1800. godine, a njihova prodajna cena ne sme da prelazi vrednost samog zlata za više od 80%.
             </p>
             <div className="flex justify-center items-end -mx-6">
               <Image src="/images/bento-coins.webp" alt="Zlatni dukat" width={260} height={180} className="object-contain object-bottom" />
             </div>
           </div>
 
-          {/* Svrha — slika + tekst */}
+          {/* Svrha - slika + tekst */}
           <div className="bg-[#F9F9F9] rounded-2xl overflow-hidden flex flex-col">
             <div className="relative w-full h-[200px]">
               <Image src="/images/bento-dollars.webp" alt="Papirni novac vs zlato" fill className="object-cover" />

@@ -8,7 +8,7 @@ const FAQS = [
   },
   {
     q: "Koji su uslovi za čuvanje investicionog zlata?",
-    a: "Preporučujemo čuvanje u sertifikovanom sefu — kućnom ili bankarskom. Zlato ne zahteva posebne uslove temperature ili vlažnosti, ali ga treba zaštititi od fizičkih oštećenja i neovlašćenog pristupa. Originalnu ambalažu i certifikat uvek čuvajte uz polugu.",
+    a: "Preporučujemo čuvanje u sertifikovanom sefu - kućnom ili bankarskom. Zlato ne zahteva posebne uslove temperature ili vlažnosti, ali ga treba zaštititi od fizičkih oštećenja i neovlašćenog pristupa. Originalnu ambalažu i certifikat uvek čuvajte uz polugu.",
   },
   {
     q: "Da li mogu prodati zlato koje nije kupljeno kod vas?",
@@ -24,7 +24,7 @@ const FAQS = [
   },
   {
     q: "Kako funkcioniše avansna kupovina i koja je prednost?",
-    a: "Avansnom kupovinom rezervišete zlato po današnjoj ceni uz uplatu dogovorenog procenta, dok ostatak plaćate pri isporuci. Glavna prednost je zaštita od rasta cene — ako cena poraste do isporuke, vi plaćate ugovorenu nižu cenu.",
+    a: "Avansnom kupovinom rezervišete zlato po današnjoj ceni uz uplatu dogovorenog procenta, dok ostatak plaćate pri isporuci. Glavna prednost je zaštita od rasta cene - ako cena poraste do isporuke, vi plaćate ugovorenu nižu cenu.",
   },
 ];
 

@@ -10,8 +10,8 @@ import { createServiceClient } from "@/lib/supabase/server";
  *   1. Validate input
  *   2. Fetch latest XAU/EUR from the most recent snapshot
  *   3. Insert a new snapshot with source='manual_rates'
- *      — xau_usd / usd_rsd are omitted (nullable after migration)
- *      — price_per_g_rsd is auto-computed by Postgres: xau_eur / 31.1035 * eur_rsd
+ *      - xau_usd / usd_rsd are omitted (nullable after migration)
+ *      - price_per_g_rsd is auto-computed by Postgres: xau_eur / 31.1035 * eur_rsd
  *   4. Return computed rsd_per_gram so admin UI can show preview
  *
  * The cron job (/api/cron/fetch-gold) will carry this eur_rsd forward

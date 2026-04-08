@@ -11,14 +11,14 @@ import { ContactForm } from "@/components/contact/ContactForm";
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Kontakt | Gold Invest — Investiciono zlato Beograd",
+  title: "Kontakt | Gold Invest - Investiciono zlato Beograd",
   description:
     "Kontaktirajte Gold Invest za upit o kupovini ili otkupu investicionog zlata. Beograd, radno vreme pon–pet 09–17h, sub 09–13h. Telefon: 061/426-4129.",
   alternates: { canonical: "https://goldinvest.rs/kontakt" },
   openGraph: {
     title: "Kontakt | Gold Invest",
     description:
-      "Pozovite nas ili pošaljite upit — odgovaramo u toku istog radnog dana.",
+      "Pozovite nas ili pošaljite upit - odgovaramo u toku istog radnog dana.",
     url: "https://goldinvest.rs/kontakt",
     siteName: "Gold Invest",
     locale: "sr_RS",
@@ -42,7 +42,7 @@ export default function KontaktPage() {
       <SchemaScript schema={buildLocalBusinessSchema()} />
       <SchemaScript
         schema={buildWebPageSchema({
-          name: "Kontakt | Gold Invest — Investiciono zlato Beograd",
+          name: "Kontakt | Gold Invest - Investiciono zlato Beograd",
           description:
             "Kontaktirajte Gold Invest za upit o kupovini ili otkupu investicionog zlata u Beogradu.",
           slug: "/kontakt",
@@ -86,20 +86,20 @@ export default function KontaktPage() {
                 marginRight: "auto",
               }}
             >
-              Najbrže do odgovora — telefonom. Javimo se u roku od nekoliko sekundi tokom radnog vremena. Za pisane upite, odgovaramo u toku istog dana.
+              Najbrže do odgovora - telefonom. Javimo se u roku od nekoliko sekundi tokom radnog vremena. Za pisane upite, odgovaramo u toku istog dana.
             </p>
           </div>
         </SectionContainer>
       </section>
 
-      {/* ── Main section — info + form ────────────────────────────────────────── */}
+      {/* ── Main section - info + form ────────────────────────────────────────── */}
       <section className="bg-white py-16 sm:py-24">
         <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-20 items-start lg:items-center">
 
-            {/* ── Left — contact info ─────────────────────────────────────── */}
+            {/* ── Left - contact info ─────────────────────────────────────── */}
             <div>
-              {/* Phone — primary CTA */}
+              {/* Phone - primary CTA */}
               <a
                 href="tel:+381614264129"
                 className="group flex items-center gap-4 mb-10"
@@ -245,7 +245,7 @@ export default function KontaktPage() {
               </div>
             </div>
 
-            {/* ── Right — form ────────────────────────────────────────────── */}
+            {/* ── Right - form ────────────────────────────────────────────── */}
             <div
               className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-3xl p-7 sm:p-10"
               style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.05)" }}
@@ -265,7 +265,7 @@ export default function KontaktPage() {
                 className="text-[#9D9072] text-sm mb-7 leading-relaxed"
                 style={{ fontFamily: "var(--font-rethink), sans-serif" }}
               >
-                Popunite formu — javićemo se u toku istog radnog dana.
+                Popunite formu - javićemo se u toku istog radnog dana.
               </p>
               <ContactForm />
             </div>
@@ -325,7 +325,7 @@ export default function KontaktPage() {
               </a>
             </div>
 
-            {/* Map embed placeholder — replace iframe src with your Google Maps embed URL */}
+            {/* Map embed placeholder - replace iframe src with your Google Maps embed URL */}
             <div
               className="rounded-2xl overflow-hidden bg-[#F0EDE6] relative"
               style={{ minHeight: 320 }}

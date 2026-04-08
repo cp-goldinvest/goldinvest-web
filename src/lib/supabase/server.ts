@@ -19,7 +19,7 @@ export async function createClient() {
               cookieStore.set(name, value, options)
             );
           } catch {
-            // Server component — cookies can't be set, safe to ignore
+            // Server component - cookies can't be set, safe to ignore
           }
         },
       },
@@ -27,7 +27,7 @@ export async function createClient() {
   );
 }
 
-/** Service role client — only for server-side admin operations and cron jobs */
+/** Service role client - only for server-side admin operations and cron jobs */
 export function createServiceClient() {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { createClient } = require("@supabase/supabase-js") as typeof import("@supabase/supabase-js");

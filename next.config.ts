@@ -25,6 +25,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Strip ?NA query param from homepage (duplicate in GSC)
+      { source: "/", has: [{ type: "query", key: "NA" }], destination: "/", permanent: true },
 { source: "/kategorija/zlatne-poluge/", destination: "/kategorija/zlatne-poluge", permanent: true },
       { source: "/pokloni/poklon-za-krstenje", destination: "/poklon-za-krstenje", permanent: true },
       { source: "/pokloni/poklon-za-rodjenje-deteta", destination: "/poklon-za-rodjenje-deteta", permanent: true },

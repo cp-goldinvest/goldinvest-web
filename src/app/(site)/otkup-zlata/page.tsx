@@ -28,7 +28,7 @@ import { buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema } from "@/lib
 export const metadata: Metadata = {
   title: "Otkup investicionog zlata | Gold Invest",
   description:
-    "Prodajte investiciono zlato po transparentnoj berzanskoj ceni. Otkupljujemo poluge, pločice i dukate — kupljene kod nas ili drugde. Isplata isti dan, bez skrivenih naknada.",
+    "Prodajte investiciono zlato po transparentnoj berzanskoj ceni. Otkupljujemo poluge, pločice i dukate - kupljene kod nas ili drugde. Isplata isti dan, bez skrivenih naknada.",
   alternates: { canonical: "https://goldinvest.rs/otkup-zlata" },
   openGraph: {
     title: "Otkup investicionog zlata | Gold Invest",
@@ -51,26 +51,26 @@ const BREADCRUMBS = [
 const STEPS = [
   {
     title: "Kontaktirajte nas sa opisom proizvoda",
-    body: "Pozovite nas ili pošaljite fotografiju vaše poluge, pločice ili dukata zajedno sa serijskim brojem. Nije potrebno da nas odmah posetite — prvu procenu radimo na osnovu fotografije i opisa. Odgovaramo u toku istog radnog dana.",
+    body: "Pozovite nas ili pošaljite fotografiju vaše poluge, pločice ili dukata zajedno sa serijskim brojem. Nije potrebno da nas odmah posetite - prvu procenu radimo na osnovu fotografije i opisa. Odgovaramo u toku istog radnog dana.",
     note: "Serijski broj se nalazi na sertifikatu i na assay kartici poluge.",
   },
   {
     title: "Dobijete aktuelnu otkupnu cenu",
     body: "Na osnovu vašeg opisa, šaljemo vam konkretnu otkupnu cenu u dinarima. Cena se formira prema današnjoj London Bullion Market kotaciji (London Fix, popodnevni fiksing), umanjena za standardni spread. Nema skrivenih odbitaka niti naknada.",
-    note: "Otkupna cena važi na dan transakcije — ažurira se svaki radni dan.",
+    note: "Otkupna cena važi na dan transakcije - ažurira se svaki radni dan.",
   },
   {
     title: "Dogovorite način predaje",
-    body: "Ako ste u Beogradu ili blizini, dođete lično u našu poslovnicu. Ako ste u drugom gradu, zlato možete poslati preporučenom poštom ili kurirskom službom — organizujemo preuzimanje i snosimo rizik od gubitka u tranzitu.",
+    body: "Ako ste u Beogradu ili blizini, dođete lično u našu poslovnicu. Ako ste u drugom gradu, zlato možete poslati preporučenom poštom ili kurirskom službom - organizujemo preuzimanje i snosimo rizik od gubitka u tranzitu.",
     note: "Lična predaja je uvek brza i najpouzdanija opcija.",
   },
   {
     title: "Provera autentičnosti na licu mesta",
-    body: "Pri preuzimanju proveravamo originalnost pakovanja, vizuelno stanje i serijski broj. Ceo postupak traje nekoliko minuta. Koristimo profesionalne uređaje za proveru — ista oprema kao i kod kupovine. Nema subjektivnih procena.",
+    body: "Pri preuzimanju proveravamo originalnost pakovanja, vizuelno stanje i serijski broj. Ceo postupak traje nekoliko minuta. Koristimo profesionalne uređaje za proveru - ista oprema kao i kod kupovine. Nema subjektivnih procena.",
     note: "Proverena roba se ne može naknadno osporiti ni s jedne strane.",
   },
   {
-    title: "Isplata odmah — gotovinom ili na račun",
+    title: "Isplata odmah - gotovinom ili na račun",
     body: "Čim prođemo proveru, isplaćujemo vam odmah. Gotovinom do zakonskog limita (10.000 EUR ekvivalent), a veće iznose šaljemo bankarskim transferom na vaš račun isti radni dan. Dobijate fiskalni isečak i potvrdu transakcije.",
     note: "Nema čekanja na odobrenje, nema kašnjenja.",
   },
@@ -95,15 +95,15 @@ const WHAT_WE_BUY = [
   {
     Icon: BadgeCheck,
     title: "Kupljeno kod nas ili drugde",
-    body: "Nije uslov da ste zlato kupili kod nas. Otkupljujemo sve što je od LBMA akreditovanog proizvođača u originalnom pakovanju — bez obzira na to gde i kada je kupljeno, uključujući i inostranstvo.",
+    body: "Nije uslov da ste zlato kupili kod nas. Otkupljujemo sve što je od LBMA akreditovanog proizvođača u originalnom pakovanju - bez obzira na to gde i kada je kupljeno, uključujući i inostranstvo.",
   },
 ];
 
 const TRUST_ITEMS = [
   {
     Icon: TrendingUp,
-    title: "Cena prema berzi — bez pogađanja",
-    body: "Otkupna cena nije stvar pregovaranja — ona je izvedena direktno iz London Fix kotacije na dan otkupa, umanjena za fiksni industrijski spread. Isti princip primenjuju sve akreditovane zlatare u Evropi.",
+    title: "Cena prema berzi - bez pogađanja",
+    body: "Otkupna cena nije stvar pregovaranja - ona je izvedena direktno iz London Fix kotacije na dan otkupa, umanjena za fiksni industrijski spread. Isti princip primenjuju sve akreditovane zlatare u Evropi.",
   },
   {
     Icon: Eye,
@@ -125,11 +125,11 @@ const TRUST_ITEMS = [
 const FAQ_ITEMS = [
   {
     q: "Da li moram da kupim zlato kod vas da biste ga otkupili?",
-    a: "Ne. Otkupljujemo investiciono zlato bez obzira gde je kupljeno — kod nas, kod drugog dilera, u banci, u inostranstvu. Jedini uslov je da je roba od LBMA akreditovanog proizvođača i da je u originalnom, neoštećenom pakovanju sa serijskim brojem.",
+    a: "Ne. Otkupljujemo investiciono zlato bez obzira gde je kupljeno - kod nas, kod drugog dilera, u banci, u inostranstvu. Jedini uslov je da je roba od LBMA akreditovanog proizvođača i da je u originalnom, neoštećenom pakovanju sa serijskim brojem.",
   },
   {
     q: "Kako se formira otkupna cena i koliki je spread?",
-    a: "Otkupna cena = spot cena zlata (London Fix popodnevni fiksing) × težina × kurs USD/RSD, umanjena za spread. Spread je između 1% i 3% zavisno od formata i količine — manji za veće poluge, veći za pločice i kovanice. Tačnu cifru dobijate pri kontaktu.",
+    a: "Otkupna cena = spot cena zlata (London Fix popodnevni fiksing) × težina × kurs USD/RSD, umanjena za spread. Spread je između 1% i 3% zavisno od formata i količine - manji za veće poluge, veći za pločice i kovanice. Tačnu cifru dobijate pri kontaktu.",
   },
   {
     q: "Koliko traje ceo proces od kontakta do isplate?",
@@ -141,11 +141,11 @@ const FAQ_ITEMS = [
   },
   {
     q: "Da li mogu da prodam deo svojih poluga a deo zadržim?",
-    a: "Naravno. Nema minimalne količine za otkup. Možete prodati jednu polugu od 1 g ili celu zbirku — odluka je potpuno vaša. Čak i ako imate samo jedan gram zlata, prihvatamo ga pod istim uslovima.",
+    a: "Naravno. Nema minimalne količine za otkup. Možete prodati jednu polugu od 1 g ili celu zbirku - odluka je potpuno vaša. Čak i ako imate samo jedan gram zlata, prihvatamo ga pod istim uslovima.",
   },
   {
     q: "Da li se otkupna cena menja između kontakta i isplate?",
-    a: "Cena je fiksirana u trenutku kada potvrdite ponudu telefonom ili pisanom porukom. Ako do predaje prođe više dana, cenu ažuriramo na dan fizičkog preuzimanja — što je standardna praksa. Preporučujemo da isporuku organizujete što brže nakon dogovora o ceni.",
+    a: "Cena je fiksirana u trenutku kada potvrdite ponudu telefonom ili pisanom porukom. Ako do predaje prođe više dana, cenu ažuriramo na dan fizičkog preuzimanja - što je standardna praksa. Preporučujemo da isporuku organizujete što brže nakon dogovora o ceni.",
   },
 ];
 
@@ -175,7 +175,7 @@ export default function OtkupZlataPage() {
       {/* Hero */}
       <CategoryHero
         title="Otkup investicionog zlata"
-        introFull="Prodajte svoje investiciono zlato po transparentnoj berzanskoj ceni — bez posrednika, bez čekanja. Otkupljujemo poluge, pločice i dukate od svih LBMA akreditovanih livarnica, bez obzira gde ste ih kupili. Isplata gotovinom ili na račun istog dana."
+        introFull="Prodajte svoje investiciono zlato po transparentnoj berzanskoj ceni - bez posrednika, bez čekanja. Otkupljujemo poluge, pločice i dukate od svih LBMA akreditovanih livarnica, bez obzira gde ste ih kupili. Isplata gotovinom ili na račun istog dana."
         pills={[
           { label: "Zlatne poluge", href: "/kategorija/zlatne-poluge" },
           { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
@@ -195,7 +195,7 @@ export default function OtkupZlataPage() {
               { label: "Isplata isti dan" },
               { label: "Cena prema London Fix" },
               { label: "Bez skrivenih naknada" },
-              { label: "Kupljeno bilo gde — prihvatamo" },
+              { label: "Kupljeno bilo gde - prihvatamo" },
               { label: "Fiskalni račun za svaku transakciju" },
             ].map(({ label }) => (
               <span
@@ -215,13 +215,13 @@ export default function OtkupZlataPage() {
         </SectionContainer>
       </section>
 
-      {/* ── How it works — 5 steps ───────────────────────────────────────────── */}
+      {/* ── How it works - 5 steps ───────────────────────────────────────────── */}
       <section className="bg-white py-20 sm:py-28">
         <SectionContainer>
           <SectionHeading
             eyebrow="Proces otkupa"
             title="Kako funkcioniše prodaja zlata"
-            description="Pet koraka od prvog kontakta do isplate — jednostavno, brzo i bez iznenađenja."
+            description="Pet koraka od prvog kontakta do isplate - jednostavno, brzo i bez iznenađenja."
           />
 
           <div className="relative max-w-[860px] md:mx-auto">
@@ -322,7 +322,7 @@ export default function OtkupZlataPage() {
         <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-12 items-center">
 
-            {/* Left — copy */}
+            {/* Left - copy */}
             <div>
               <span
                 className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-5 block"
@@ -350,7 +350,7 @@ export default function OtkupZlataPage() {
                   lineHeight: "1.65em",
                 }}
               >
-                Otkupna cena nije arbitrarna — ona je matematička. Polazište je uvek{" "}
+                Otkupna cena nije arbitrarna - ona je matematička. Polazište je uvek{" "}
                 <strong className="text-[#E9E6D9] font-semibold">
                   London Fix (LBMA)
                 </strong>
@@ -364,7 +364,7 @@ export default function OtkupZlataPage() {
                   lineHeight: "1.65em",
                 }}
               >
-                Isto možete proveriti u realnom vremenu na portalima kao što su Kitco, Gold Price ili LBMA.org — cena zlata je javna informacija. Naša jedina uloga je da vas povežemo sa tom cenom direktno, bez posrednika koji uzima deo vrednosti.
+                Isto možete proveriti u realnom vremenu na portalima kao što su Kitco, Gold Price ili LBMA.org - cena zlata je javna informacija. Naša jedina uloga je da vas povežemo sa tom cenom direktno, bez posrednika koji uzima deo vrednosti.
               </p>
               <div
                 className="bg-[#E9E6D9] border border-[#C9B896] rounded-2xl px-6 py-5 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.02] motion-reduce:transform-none motion-reduce:hover:scale-100"
@@ -388,7 +388,7 @@ export default function OtkupZlataPage() {
               </div>
             </div>
 
-            {/* Right — breakdown cards */}
+            {/* Right - breakdown cards */}
             <div className="flex flex-col gap-4">
               {[
                 {
@@ -443,7 +443,7 @@ export default function OtkupZlataPage() {
           <SectionHeading
             eyebrow="Šta otkupljujemo"
             title="Prihvatamo sve formate investicionog zlata"
-            description="Nije bitno gde ste ga kupili — bitno je da je autentično i od poznate livarnice."
+            description="Nije bitno gde ste ga kupili - bitno je da je autentično i od poznate livarnice."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -498,7 +498,7 @@ export default function OtkupZlataPage() {
           <SectionHeading
             eyebrow="Isplata"
             title="Brza i sigurna isplata"
-            description="Isplaćujemo odmah po verifikaciji — bez odlaganja, bez čekanja na odobrenje."
+            description="Isplaćujemo odmah po verifikaciji - bez odlaganja, bez čekanja na odobrenje."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[760px] md:mx-auto">
@@ -554,7 +554,7 @@ export default function OtkupZlataPage() {
                 className="text-[#6B6B6B] text-[13.5px] leading-relaxed"
                 style={{ fontFamily: "var(--font-rethink), sans-serif" }}
               >
-                Za iznose iznad limita za gotovinu — šaljemo nalog za prenos istog radnog dana. Uplata na vaš račun obično stiže u roku od nekoliko sati. Bez naknada za prenos sa naše strane.
+                Za iznose iznad limita za gotovinu - šaljemo nalog za prenos istog radnog dana. Uplata na vaš račun obično stiže u roku od nekoliko sati. Bez naknada za prenos sa naše strane.
               </p>
             </div>
           </div>
@@ -567,7 +567,7 @@ export default function OtkupZlataPage() {
           <SectionHeading
             eyebrow="Transparentnost"
             title="Zašto nam klijenti veruju"
-            description="Svaki aspekt otkupa projektovan je da zaštitimo vaš interes — ne samo naš."
+            description="Svaki aspekt otkupa projektovan je da zaštitimo vaš interes - ne samo naš."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:grid-cols-3 lg:grid-rows-2 lg:gap-6 lg:items-stretch">
@@ -652,7 +652,7 @@ export default function OtkupZlataPage() {
               Imate zlato koje želite da prodate?{" "}
             </span>
             <span style={{ fontStyle: "italic" }}>
-              Pozovite nas — cenu imate za pet minuta.
+              Pozovite nas - cenu imate za pet minuta.
             </span>
           </h2>
           <p

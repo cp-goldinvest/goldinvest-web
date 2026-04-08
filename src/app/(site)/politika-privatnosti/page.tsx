@@ -34,10 +34,10 @@ Za sva pitanja u vezi sa zaštitom ličnih podataka možete nas kontaktirati na:
     title: "2. Koji podaci se prikupljaju",
     content: `Prikupljamo isključivo podatke koje nam dobrovoljno dostavite:
 
-— Ime i prezime
-— Broj telefona
-— E-mail adresa
-— Sadržaj poruke (putem kontakt forme)
+- Ime i prezime
+- Broj telefona
+- E-mail adresa
+- Sadržaj poruke (putem kontakt forme)
 
 Ne prikupljamo podatke o platnim karticama niti druge finansijske informacije putem sajta.`,
   },
@@ -45,9 +45,9 @@ Ne prikupljamo podatke o platnim karticama niti druge finansijske informacije pu
     title: "3. Svrha obrade podataka",
     content: `Vaše podatke koristimo isključivo za:
 
-— Odgovaranje na vaše upite i realizaciju kupovine
-— Dostavu informacija o ceni zlata koje ste zatražili
-— Ispunjavanje zakonskih obaveza u skladu sa propisima Republike Srbije (npr. Zakon o sprečavanju pranja novca)
+- Odgovaranje na vaše upite i realizaciju kupovine
+- Dostavu informacija o ceni zlata koje ste zatražili
+- Ispunjavanje zakonskih obaveza u skladu sa propisima Republike Srbije (npr. Zakon o sprečavanju pranja novca)
 
 Ne koristimo vaše podatke u marketinške svrhe bez vaše izričite saglasnosti.`,
   },
@@ -55,9 +55,9 @@ Ne koristimo vaše podatke u marketinške svrhe bez vaše izričite saglasnosti.
     title: "4. Pravni osnov obrade",
     content: `Obrada vaših podataka zasniva se na:
 
-— Vašem pristanku (slanje upita putem kontakt forme)
-— Izvršenju ugovora (realizacija kupovine)
-— Zakonskoj obavezi (anti-pranje novca propisi za transakcije iznad propisanog limita)`,
+- Vašem pristanku (slanje upita putem kontakt forme)
+- Izvršenju ugovora (realizacija kupovine)
+- Zakonskoj obavezi (anti-pranje novca propisi za transakcije iznad propisanog limita)`,
   },
   {
     title: "5. Čuvanje podataka",
@@ -69,11 +69,11 @@ Podatke ne prodajemo, ne iznajmljujemo niti delimo sa trećim stranama, osim u s
     title: "6. Vaša prava",
     content: `U skladu sa Zakonom o zaštiti podataka o ličnosti (ZZPL), imate pravo da:
 
-— Zatražite uvid u podatke koje čuvamo o vama
-— Zatražite ispravku netačnih podataka
-— Zatražite brisanje podataka ("pravo na zaborav")
-— Povučete pristanak u bilo kom trenutku
-— Podnesete pritužbu Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti
+- Zatražite uvid u podatke koje čuvamo o vama
+- Zatražite ispravku netačnih podataka
+- Zatražite brisanje podataka ("pravo na zaborav")
+- Povučete pristanak u bilo kom trenutku
+- Podnesete pritužbu Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti
 
 Za ostvarivanje ovih prava pišite nam na: info@goldinvest.rs`,
   },

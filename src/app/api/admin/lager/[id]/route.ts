@@ -3,7 +3,7 @@ import { createServiceClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
-// DELETE — prodato, skini sa lagera
+// DELETE - prodato, skini sa lagera
 export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const supabase = createServiceClient();

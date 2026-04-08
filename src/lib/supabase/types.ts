@@ -78,16 +78,16 @@ export type Database = {
       gold_price_snapshots: {
         Row: {
           id: string;
-          xau_usd: number | null;         // nullable — EUR-only snapshots (manual_rates) omit USD
+          xau_usd: number | null;         // nullable - EUR-only snapshots (manual_rates) omit USD
           xau_eur: number | null;
-          usd_rsd: number | null;         // nullable — EUR-only snapshots omit USD/RSD
+          usd_rsd: number | null;         // nullable - EUR-only snapshots omit USD/RSD
           eur_rsd: number | null;
           price_per_g_rsd: number | null; // computed: prefers xau_eur×eur_rsd, falls back to xau_usd×usd_rsd
           source: string;                 // 'auto' | 'manual_rates'
           eur_rsd_source: "manual" | "api" | "fallback" | null; // how EUR/RSD was resolved
           fetched_at: string;
         };
-        // Explicit Insert — price_per_g_rsd is generated (never inserted).
+        // Explicit Insert - price_per_g_rsd is generated (never inserted).
         // xau_usd/usd_rsd are optional to support EUR-only admin rate snapshots.
         Insert: {
           id?: string;

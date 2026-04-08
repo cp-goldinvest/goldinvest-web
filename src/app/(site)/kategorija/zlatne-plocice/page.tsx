@@ -8,11 +8,11 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Zlatne pločice | Najpovoljnija Cena i Prodaja Zlatnih Pločica",
   description:
-    "Kupite LBMA sertifikovane zlatne pločice od 1g do 20g — Argor-Heraeus, C. Hafner, The Royal Mint. Idealan poklon za krštenje i rođenje. Transparentne cene i brza dostava.",
+    "Kupite LBMA sertifikovane zlatne pločice od 1g do 20g - Argor-Heraeus, C. Hafner, The Royal Mint. Idealan poklon za krštenje i rođenje. Transparentne cene i brza dostava.",
   alternates: { canonical: "https://goldinvest.rs/kategorija/zlatne-plocice" },
   openGraph: {
-    title: "Zlatne pločice 1g–20g — LBMA sertifikovane | Gold Invest",
-    description: "Zlatne pločice čistoće 999,9 od 1g do 20g — Argor-Heraeus i C. Hafner. Idealan poklon i investicija. Bez PDV-a, brza dostava.",
+    title: "Zlatne pločice 1g–20g - LBMA sertifikovane | Gold Invest",
+    description: "Zlatne pločice čistoće 999,9 od 1g do 20g - Argor-Heraeus i C. Hafner. Idealan poklon i investicija. Bez PDV-a, brza dostava.",
     url: "https://goldinvest.rs/kategorija/zlatne-plocice",
     siteName: "Gold Invest",
     locale: "sr_RS",
@@ -27,7 +27,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Da li se na zlatne pločice plaća PDV?",
-    a: "Ne. U Republici Srbiji promet investicionim zlatom — u koje spadaju i zlatne pločice finoće preko 995/1000 — je po zakonu u potpunosti oslobođen plaćanja PDV-a i poreza na kapitalnu dobit.",
+    a: "Ne. U Republici Srbiji promet investicionim zlatom - u koje spadaju i zlatne pločice finoće preko 995/1000 - je po zakonu u potpunosti oslobođen plaćanja PDV-a i poreza na kapitalnu dobit.",
   },
   {
     q: "Kako se pakuju zlatne pločice za poklon?",
@@ -51,14 +51,14 @@ const FAQ_ITEMS = [
   },
   {
     q: "Koliko traje isporuka?",
-    a: "Za klijente u Beogradu nudimo isporuku dan za dan — ukoliko je porudžbina evidentirana radnim danima do 12h, zlato stiže na vašu adresu istog dana do 18h. Za porudžbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana (ovo ne važi za avansne kupovine, za koje se rok isporuke precizno definiše pri samoj kupovini).",
+    a: "Za klijente u Beogradu nudimo isporuku dan za dan - ukoliko je porudžbina evidentirana radnim danima do 12h, zlato stiže na vašu adresu istog dana do 18h. Za porudžbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana (ovo ne važi za avansne kupovine, za koje se rok isporuke precizno definiše pri samoj kupovini).",
   },
   {
     q: "Koliko košta dostava?",
     a: "Cena bezbedne i osigurane dostave zavisi od težine i vrednosti porudžbine. Kontaktirajte nas na 061 426 4129 ili putem kontakt forme za tačan iznos.",
   },
   {
-    q: "Šta je bolji poklon — zlatna pločica ili zlatni dukat?",
+    q: "Šta je bolji poklon - zlatna pločica ili zlatni dukat?",
     a: "Oba formata su izuzetan izbor jer predstavljaju investiciono zlato koje trajno čuva vrednost. Zlatne pločice dolaze u modernim sigurnosnim blisterima i predstavljaju savremen, elegantan poklon. Sa druge strane, zlatni dukati (poput čuvenog Franca Jozefa) nose duboku istorijsku simboliku i predstavljaju najpopularniji tradicionalni dar na našim prostorima. Izbor zavisi isključivo od vašeg ukusa.",
   },
 ];
@@ -101,7 +101,7 @@ export default async function ZlatnePlocicePage() {
         { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
       ]}
       heroTitle="Zlatne pločice"
-      heroIntro="Zlatne pločice su najpametniji način da započnete izgradnju svog investicionog portfolija, ali i najvredniji poklon za vama drage osobe. Nudimo isključivo LBMA sertifikovane pločice čistoće 999,9, prestižnih evropskih kovnica. Obezbedili smo transparentne cene i brzu isporuku. Poruči putem kontakt forme ili na broj 0614264129 — BRZA dostava!"
+      heroIntro="Zlatne pločice su najpametniji način da započnete izgradnju svog investicionog portfolija, ali i najvredniji poklon za vama drage osobe. Nudimo isključivo LBMA sertifikovane pločice čistoće 999,9, prestižnih evropskih kovnica. Obezbedili smo transparentne cene i brzu isporuku. Poruči putem kontakt forme ili na broj 0614264129 - BRZA dostava!"
       heroPills={[
         { label: "Zlatna pločica 1 gram", href: "/kategorija/zlatne-plocice/zlatna-plocica-1g" },
         { label: "Zlatna pločica 2 grama", href: "/kategorija/zlatne-plocice/zlatna-plocica-2g" },
@@ -132,18 +132,18 @@ export default async function ZlatnePlocicePage() {
       infoSectionA={{
         heading: "Koje gramaže zlatnih pločica nudimo?",
         description:
-          "Gold Invest vam nudi pločice maksimalne čistoće od 99.99% (24 karata), skrojene za svaki budžet — od savršenog poklona do sistematske izgradnje portfolija.",
+          "Gold Invest vam nudi pločice maksimalne čistoće od 99.99% (24 karata), skrojene za svaki budžet - od savršenog poklona do sistematske izgradnje portfolija.",
         cards: [
           {
-            title: "Pločice od 1g i 2g — savršen poklon za krštenje ili rođenje",
+            title: "Pločice od 1g i 2g - savršen poklon za krštenje ili rođenje",
             body: "Najpristupačniji ulazak u svet investicionog zlata. Umesto novca u koverti koji će inflacija obezvrediti, poklanjanjem zlatne pločice od 1g ili 2g za krštenje ili rođenje deteta darujete trajnu vrednost.",
           },
           {
-            title: "Pločice od 5g i 10g — pametna štednja",
+            title: "Pločice od 5g i 10g - pametna štednja",
             body: "Idealan format za ljude koji žele da mesečno ili kvartalno odvajaju deo zarade i sistematski grade svoj zlatni portfolio. Niža premija po gramu od najmanjih pločica, uz istu fleksibilnost.",
           },
           {
-            title: "Pločica od 20g — maksimalna vrednost u malom formatu",
+            title: "Pločica od 20g - maksimalna vrednost u malom formatu",
             body: "Najveća u kategoriji pločica. Nudi najbolji odnos cene po gramu i fleksibilnosti za investitore sa srednjim budžetom koji ne žele da se vežu za poluge od 50g ili više.",
           },
         ],
@@ -157,7 +157,7 @@ export default async function ZlatnePlocicePage() {
               zlatne poluge
             </Link>{" "}
             rezervisane za osiguranje ogromnog kapitala, pločice nude ono što veliki formati nemaju
-            — fleksibilnost. Ako vam iznenada zatreba manji iznos gotovine, prodate samo jednu
+            - fleksibilnost. Ako vam iznenada zatreba manji iznos gotovine, prodate samo jednu
             pločicu i ostatak investicije ostaje netaknut. Pogledate i{" "}
             <Link
               href="/kategorija/zlatni-dukati"
@@ -165,23 +165,23 @@ export default async function ZlatnePlocicePage() {
             >
               zlatne dukate
             </Link>{" "}
-            — popularan izbor za tradicionalni poklon.
+            - popularan izbor za tradicionalni poklon.
           </>
         ),
       }}
       infoSectionB={{
         heading: "Sertifikati i LBMA standard zlatnih pločica",
         description:
-          "Baš kao i najveće poluge, svaka zlatna pločica iz naše ponude iskovana je u rafinerijama sa prestižne LBMA (London Bullion Market Association) liste — globalna garancija tačne gramaže, čistoće od 99.99% i legalnog porekla.",
+          "Baš kao i najveće poluge, svaka zlatna pločica iz naše ponude iskovana je u rafinerijama sa prestižne LBMA (London Bullion Market Association) liste - globalna garancija tačne gramaže, čistoće od 99.99% i legalnog porekla.",
         headingClassName: "py-1",
         cards: [
           {
             title: "Gde je sertifikat vaše pločice?",
-            body: "Pločica vam se isporučuje fabrički zapečaćena u čvrsto sigurnosno blister pakovanje veličine platne kartice. To pakovanje je vaš sertifikat — na njemu se nalaze logo proizvođača, čistoća i jedinstveni serijski broj koji je laserski urezan i na samoj pločici.",
+            body: "Pločica vam se isporučuje fabrički zapečaćena u čvrsto sigurnosno blister pakovanje veličine platne kartice. To pakovanje je vaš sertifikat - na njemu se nalaze logo proizvođača, čistoća i jedinstveni serijski broj koji je laserski urezan i na samoj pločici.",
           },
           {
             title: "Šta vam donosi LBMA Good Delivery status?",
-            body: "Nije samo prestižna oznaka. To je najrigoroznija globalna garancija kvaliteta — potvrda čistoće, tačne gramaže i strogo kontrolisanog, etičkog porekla metala. Vaša pločica je prepoznata i lako naplativa svuda u svetu.",
+            body: "Nije samo prestižna oznaka. To je najrigoroznija globalna garancija kvaliteta - potvrda čistoće, tačne gramaže i strogo kontrolisanog, etičkog porekla metala. Vaša pločica je prepoznata i lako naplativa svuda u svetu.",
           },
           {
             title: "Zlatno pravilo: nikada ne otvarajte blister",
@@ -191,14 +191,14 @@ export default async function ZlatnePlocicePage() {
       }}
       darkQuote={{
         eyebrow: "Garancija kvaliteta",
-        normalText: "Blister pakovanje nije samo ambalaža —",
+        normalText: "Blister pakovanje nije samo ambalaža -",
         italicText:
           "to je vaš sertifikat, garancija autentičnosti i ključ za maksimalnu otkupnu cenu.",
         ctaHref: "/#faq",
         ctaLabel: "Saznaj više",
       }}
       brandsSection={{
-        title: "Brendovi zlatnih pločica — evropski premium kvalitet",
+        title: "Brendovi zlatnih pločica - evropski premium kvalitet",
         description:
           "Naš asortiman se oslanja na apsolutne lidere u preradi plemenitih metala, čime vam garantujemo sigurnost i laku utrživost svuda u svetu.",
         brands: [
@@ -206,13 +206,13 @@ export default async function ZlatnePlocicePage() {
             img: "/images/brands/argor-heraeus.webp",
             title: "Argor-Heraeus",
             origin: "Švajcarska",
-            text: "Industrijski standard i jedna od najpouzdanijih svetskih rafinerija. Švajcarska preciznost u svakom detalju — pločice Argor-Heraeusa su sinonim za sigurnost i izuzetno su tražene na celom evropskom tržištu.",
+            text: "Industrijski standard i jedna od najpouzdanijih svetskih rafinerija. Švajcarska preciznost u svakom detalju - pločice Argor-Heraeusa su sinonim za sigurnost i izuzetno su tražene na celom evropskom tržištu.",
           },
           {
             img: "/images/brands/c-hafner.webp",
             title: "C. Hafner",
             origin: "Nemačka",
-            text: "Rafinerija sa tradicijom od preko 170 godina, poznata po besprekornoj izradi i etičkom poreklu zlata — koriste isključivo reciklirano zlato. Nemački premium kvalitet bez kompromisa.",
+            text: "Rafinerija sa tradicijom od preko 170 godina, poznata po besprekornoj izradi i etičkom poreklu zlata - koriste isključivo reciklirano zlato. Nemački premium kvalitet bez kompromisa.",
             imageScale: 0.9,
           },
           {
@@ -224,22 +224,22 @@ export default async function ZlatnePlocicePage() {
         ],
       }}
       delivery={{
-        heading: "Prodaja zlatnih pločica Beograd — Gold Invest",
+        heading: "Prodaja zlatnih pločica Beograd - Gold Invest",
         description:
           "Kupovina pločica za poklon ili investiciju kod nas je brza i potpuno bezbedna. Biramo opciju koja vama najviše odgovara.",
         pickupCardBody:
-          "Posetite nas lično u Beogradu. Diskretno okruženje, stručna provera i preuzimanje na licu mesta — bez čekanja.",
+          "Posetite nas lično u Beogradu. Diskretno okruženje, stručna provera i preuzimanje na licu mesta - bez čekanja.",
       }}
       priceStructure={{
-        title: "Zlatne pločice cena — Prodajna / Avansna / Otkupna",
+        title: "Zlatne pločice cena - Prodajna / Avansna / Otkupna",
         description:
           "Transparentnost je osnova našeg poslovanja. Uz svaku zlatnu pločicu na sajtu jasno su istaknute tri cene zlata:",
         card1Body:
-          "Cena za pločice koje imamo u trezoru. Plaćate i preuzimate ih istog dana — bez čekanja i bez skrivenih troškova.",
+          "Cena za pločice koje imamo u trezoru. Plaćate i preuzimate ih istog dana - bez čekanja i bez skrivenih troškova.",
         card2Body:
           "Želite više pločica po nižoj ceni? Uplatite iznos unapred, zaključajte trenutnu berzansku cenu i sačekajte isporuku direktno iz kovnice uz značajnu uštedu.",
         card3Body:
-          "Iznos po kom Gold Invest otkupljuje vaše pločice. Naše otkupne cene prate svetsku berzu i uvek su javno prikazane — garantovana likvidnost bez iznenađenja.",
+          "Iznos po kom Gold Invest otkupljuje vaše pločice. Naše otkupne cene prate svetsku berzu i uvek su javno prikazane - garantovana likvidnost bez iznenađenja.",
       }}
       faq={{
         title: "Česta pitanja o zlatnim pločicama",

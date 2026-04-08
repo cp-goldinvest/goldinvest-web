@@ -14,14 +14,14 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
-// Dnevne operacije — koriste se svaki dan
+// Dnevne operacije - koriste se svaki dan
 const NAV_DAILY = [
   { href: "/admin/cene",   label: "Cene i marže", icon: TrendingUp, desc: "Kursevi, marže, override" },
   { href: "/admin/zalihe", label: "Zalihe",        icon: Package,    desc: "Stanje na stanju" },
   { href: "/admin/upiti",  label: "Upiti",         icon: Inbox,      desc: "Zahtevi klijenata" },
 ];
 
-// Admin alati — koriste se retko
+// Admin alati - koriste se retko
 const NAV_ADMIN = [
   { href: "/admin/proizvodi", label: "Katalog proizvoda", icon: LayoutList, desc: "Dodaj / ukloni proizvode" },
 ];
@@ -142,7 +142,7 @@ function SpotPriceBadge() {
     <div className="px-3 py-2 rounded-lg bg-[#111112] border border-[#2E2E2F]">
       <p className="text-[10px] text-[#555] uppercase tracking-wider">Spot cena</p>
       <p className="text-sm font-semibold text-[#BF8E41] tabular-nums mt-0.5">
-        {data ? `${data.rsd_per_gram.toLocaleString("sr-RS")} RSD/g` : "—"}
+        {data ? `${data.rsd_per_gram.toLocaleString("sr-RS")} RSD/g` : "-"}
       </p>
       <p className="text-[10px] text-[#555]">
         {data ? `€${data.xau_eur.toLocaleString("sr-RS")} / oz` : "učitavanje..."}

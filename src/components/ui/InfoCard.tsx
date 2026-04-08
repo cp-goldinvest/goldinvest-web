@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 type Props = {
-  /** Card title — accepts ReactNode to support inline links/spans */
+  /** Card title - accepts ReactNode to support inline links/spans */
   title: ReactNode;
   children: ReactNode;
   className?: string;

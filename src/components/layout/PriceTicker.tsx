@@ -83,7 +83,7 @@ export function PriceTicker() {
               </span>
             </>
           ) : (
-            <span className="opacity-40">Zlato (1g): —</span>
+            <span className="opacity-40">Zlato (1g): -</span>
           )}
         </div>
 

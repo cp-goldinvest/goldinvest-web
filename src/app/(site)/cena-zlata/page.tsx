@@ -17,11 +17,11 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Cena Zlata | Grafikon kretanja Cene na Berzi | Gold Invest",
   description:
-    "Pratite aktuelnu cenu zlata na svetskim berzama u realnom vremenu. Grafikon kretanja cene zlata u EUR, USD i RSD — po gramu, unci i kilogramu. Edukacija o Spot ceni, premiji i Spreadu.",
+    "Pratite aktuelnu cenu zlata na svetskim berzama u realnom vremenu. Grafikon kretanja cene zlata u EUR, USD i RSD - po gramu, unci i kilogramu. Edukacija o Spot ceni, premiji i Spreadu.",
   alternates: { canonical: "https://goldinvest.rs/cena-zlata" },
   openGraph: {
-    title: "Cena zlata danas — grafikon u EUR, USD i RSD | Gold Invest",
-    description: "Pratite aktuelnu cenu zlata na svetskim berzama. Grafikon kretanja po gramu, unci i kilogramu u realnom vremenu — Gold Invest Beograd.",
+    title: "Cena zlata danas - grafikon u EUR, USD i RSD | Gold Invest",
+    description: "Pratite aktuelnu cenu zlata na svetskim berzama. Grafikon kretanja po gramu, unci i kilogramu u realnom vremenu - Gold Invest Beograd.",
     url: "https://goldinvest.rs/cena-zlata",
     siteName: "Gold Invest",
     locale: "sr_RS",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     q: "Šta je Troj unca (Troy Ounce)?",
-    a: "Troj unca (oznaka 'oz') je zvanična merna jedinica za plemenite metale na svetskoj berzi, sa korenima u srednjovekovnom francuskom gradu Troa. Jedna Troj unca iznosi tačno 31,1034768 grama. Sve referentne cene zlata na globalnom nivou — uključujući i grafikon na našem sajtu — primarno se izražavaju po jednoj Troj unci.",
+    a: "Troj unca (oznaka 'oz') je zvanična merna jedinica za plemenite metale na svetskoj berzi, sa korenima u srednjovekovnom francuskom gradu Troa. Jedna Troj unca iznosi tačno 31,1034768 grama. Sve referentne cene zlata na globalnom nivou - uključujući i grafikon na našem sajtu - primarno se izražavaju po jednoj Troj unci.",
   },
   {
     q: "Da li se cene na Gold Invest sajtu ažuriraju automatski?",
@@ -44,7 +44,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Kada je najbolje vreme za kupovinu investicionog zlata?",
-    a: "Stara investiciona izreka kaže: 'Ne čekajte pravo vreme da kupite zlato — kupite zlato i čekajte.' S obzirom na to da je svrha investicionog zlata dugoročno očuvanje kapitala (štednja od 5, 10 ili 20 godina), praćenje svakodnevnih oscilacija i čekanje pada cene obično rezultira izgubljenim vremenom u kom novac gubi vrednost zbog inflacije. Najbolje vreme za kupovinu je onog trenutka kada imate višak papirnog novca koji želite trajno da zaštitite.",
+    a: "Stara investiciona izreka kaže: 'Ne čekajte pravo vreme da kupite zlato - kupite zlato i čekajte.' S obzirom na to da je svrha investicionog zlata dugoročno očuvanje kapitala (štednja od 5, 10 ili 20 godina), praćenje svakodnevnih oscilacija i čekanje pada cene obično rezultira izgubljenim vremenom u kom novac gubi vrednost zbog inflacije. Najbolje vreme za kupovinu je onog trenutka kada imate višak papirnog novca koji želite trajno da zaštitite.",
   },
   {
     q: "Da li otkupljujete zlato po ceni sa grafikona?",
@@ -52,11 +52,11 @@ const FAQ_ITEMS = [
   },
   {
     q: "Zašto zlato ima premiju kovanja u poređenju sa sirovim zlatom?",
-    a: "Sirovo zlato iz rudnika je u obliku prašine ili nepravilnih komada, legirano sa bakrom i srebrom. Da bi dobilo status investicionog zlata, mora se hemijski prečistiti do 999,9/1000, kovati u švajcarskim ili nemačkim rafinerijama, dobiti LBMA sertifikat i biti dopremljeno u Srbiju specijalnim blindiranim transportom. Svi ti procesi koštaju — i to je premija za apsolutnu sigurnost i pravni status vašeg kapitala.",
+    a: "Sirovo zlato iz rudnika je u obliku prašine ili nepravilnih komada, legirano sa bakrom i srebrom. Da bi dobilo status investicionog zlata, mora se hemijski prečistiti do 999,9/1000, kovati u švajcarskim ili nemačkim rafinerijama, dobiti LBMA sertifikat i biti dopremljeno u Srbiju specijalnim blindiranim transportom. Svi ti procesi koštaju - i to je premija za apsolutnu sigurnost i pravni status vašeg kapitala.",
   },
   {
     q: "Da li prodajete elektronsko (papirno) zlato?",
-    a: "Ne. Gold Invest se bavi isključivo trgovinom fizičkim investicionim zlatom. Kupovina 'papirnog zlata' (ETF fondovi, deonice rudarskih kompanija, fjučers ugovori) nosi visok rizik bankrota posrednika. Naša filozofija je jasna: ako ne možete fizički da ga dodirnete i stavite u sopstveni sef, ono zapravo nije vaše. Kod nas kupujete i dobijate pravu, opipljivu zlatnu polugu ili dukat — na ruke.",
+    a: "Ne. Gold Invest se bavi isključivo trgovinom fizičkim investicionim zlatom. Kupovina 'papirnog zlata' (ETF fondovi, deonice rudarskih kompanija, fjučers ugovori) nosi visok rizik bankrota posrednika. Naša filozofija je jasna: ako ne možete fizički da ga dodirnete i stavite u sopstveni sef, ono zapravo nije vaše. Kod nas kupujete i dobijate pravu, opipljivu zlatnu polugu ili dukat - na ruke.",
   },
 ];
 
@@ -106,7 +106,7 @@ export default function CenaZlataPage() {
         centerOnDesktop
       />
 
-      {/* Chart — currency + unit + period filters */}
+      {/* Chart - currency + unit + period filters */}
       <div className="bg-[#F9F9F9]">
         <SectionContainer className="pt-3 sm:pt-4 pb-0">
           <SectionHeading
@@ -122,17 +122,17 @@ export default function CenaZlataPage() {
         <SectionContainer>
           <SectionHeading
             title="Šta je 'Spot cena' zlata i kako se formira na berzi?"
-            description="Vrednost na grafikonu je takozvana Spot cena — trenutna berzanska cena sirovog zlata. Cenu ne određuje nijedna pojedinačna država niti lokalni trgovac, već neprekidna globalna trgovina 24 sata dnevno."
+            description="Vrednost na grafikonu je takozvana Spot cena - trenutna berzanska cena sirovog zlata. Cenu ne određuje nijedna pojedinačna država niti lokalni trgovac, već neprekidna globalna trgovina 24 sata dnevno."
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <InfoCard title="Spot cena — elektronsko zlato u realnom vremenu">
-              Spot cena je cena po kojoj se u ovom trenutku trguje &ldquo;papirnim&rdquo; zlatom na svetskim berzama. To je referentna tačka od koje polaze sve cene investicionih proizvoda — poluga, pločica i kovanica — uz dodatak premije za fizičku proizvodnju.
+            <InfoCard title="Spot cena - elektronsko zlato u realnom vremenu">
+              Spot cena je cena po kojoj se u ovom trenutku trguje &ldquo;papirnim&rdquo; zlatom na svetskim berzama. To je referentna tačka od koje polaze sve cene investicionih proizvoda - poluga, pločica i kovanica - uz dodatak premije za fizičku proizvodnju.
             </InfoCard>
-            <InfoCard title="LBMA u Londonu — globalni centar fizičke trgovine">
-              London Bullion Market Association (LBMA) je srce globalnog tržišta fizičkim zlatom. U Londonu se cena referentno &ldquo;fiksira&rdquo; dva puta dnevno (London AM Fix i PM Fix) — te vrednosti koriste sve centralne banke, rudarske kompanije i rafinerije sveta.
+            <InfoCard title="LBMA u Londonu - globalni centar fizičke trgovine">
+              London Bullion Market Association (LBMA) je srce globalnog tržišta fizičkim zlatom. U Londonu se cena referentno &ldquo;fiksira&rdquo; dva puta dnevno (London AM Fix i PM Fix) - te vrednosti koriste sve centralne banke, rudarske kompanije i rafinerije sveta.
             </InfoCard>
             <InfoCard title="COMEX u Njujorku i globalni USD standard">
-              COMEX (Commodity Exchange) u Njujorku dominira kratkoročnim oscilacijama kroz ugovore o budućoj isporuci zlata. Sve cene se globalno izražavaju u USD za Troj uncu (31,1034768 g) — naš grafikon automatski preračunava u EUR, RSD i merne jedinice po vašem izboru.
+              COMEX (Commodity Exchange) u Njujorku dominira kratkoročnim oscilacijama kroz ugovore o budućoj isporuci zlata. Sve cene se globalno izražavaju u USD za Troj uncu (31,1034768 g) - naš grafikon automatski preračunava u EUR, RSD i merne jedinice po vašem izboru.
             </InfoCard>
           </div>
         </SectionContainer>
@@ -144,7 +144,7 @@ export default function CenaZlataPage() {
           <SectionHeading
             eyebrow="Premija (Premium)"
             title="Koja je razlika između berzanske cene (Spot) i prodajne cene zlata?"
-            description="Spot je berzanska cena “sirovog” zlata na grafikonu. Prodajna cena uključuje premiju koja pretvara to zlato u standardizovanu, sertifikovanu polugu — sa bezbednim pakovanjem, transportom i garancijom otkupa."
+            description="Spot je berzanska cena “sirovog” zlata na grafikonu. Prodajna cena uključuje premiju koja pretvara to zlato u standardizovanu, sertifikovanu polugu - sa bezbednim pakovanjem, transportom i garancijom otkupa."
             className="py-1"
           />
           <div className="mt-6 grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr] gap-8 items-start">
@@ -180,7 +180,7 @@ export default function CenaZlataPage() {
                 </p>
                 <p className="text-[#4C4C4C] text-[13.5px] leading-relaxed mb-0">
                   Premija je zbir realnih troškova koji Spot cenu pretvaraju u proizvod koji može da se kupi
-                  danas i otkupi sutra — bez “nevidljivih” razlika.
+                  danas i otkupi sutra - bez “nevidljivih” razlika.
                 </p>
               </div>
             </div>
@@ -239,7 +239,7 @@ export default function CenaZlataPage() {
 
               <div className="px-5 sm:px-6 py-4 sm:py-5 border-t border-[#F0EDE6]">
                 <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                  Zato prodajna cena nije “skok” u odnosu na grafikon — ona je potpuna cena proizvoda koji fizički dobijate.
+                  Zato prodajna cena nije “skok” u odnosu na grafikon - ona je potpuna cena proizvoda koji fizički dobijate.
                 </p>
               </div>
             </div>
@@ -259,7 +259,7 @@ export default function CenaZlataPage() {
       {/* Otkupna cena i Spread */}
       <section className="bg-white py-16 sm:py-20">
         <SectionContainer>
-          <SectionHeading title="Otkupna cena i Spread — garancija likvidnosti" />
+          <SectionHeading title="Otkupna cena i Spread - garancija likvidnosti" />
 
           <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-5 lg:gap-8 lg:items-stretch">
             {/* 1) Top-left light card */}
@@ -268,7 +268,7 @@ export default function CenaZlataPage() {
                 Spread je razlika između onoga što plaćate i onoga što dobijate nazad.
               </h3>
               <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                Kada je spread mali, lakše prelazite iz “troška kupovine” u zonu čistog profita — jer rast Spot cene brže
+                Kada je spread mali, lakše prelazite iz “troška kupovine” u zonu čistog profita - jer rast Spot cene brže
                 stiže do vaše realne vrednosti.
               </p>
             </div>
@@ -291,7 +291,7 @@ export default function CenaZlataPage() {
               </div>
               <p className="text-[#1B1B1C] font-semibold text-[15px] leading-snug mb-1">Naša logika otkupa</p>
               <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                Otkupna cena se formira na osnovu Spot cene — uz jasno prikazan odbitak, tako da znate šta tačno dobijate.
+                Otkupna cena se formira na osnovu Spot cene - uz jasno prikazan odbitak, tako da znate šta tačno dobijate.
               </p>
             </div>
 
@@ -330,7 +330,7 @@ export default function CenaZlataPage() {
             {/* 5) Bottom-right light card */}
             <div className="bg-[#F9F9F9] border border-[#F0EDE6] rounded-2xl p-6 sm:p-8 lg:col-start-3 lg:row-start-2 flex flex-col items-start justify-center text-left">
               <h3 className="text-[#1B1B1C] text-[15px] font-semibold leading-snug mb-1">
-                Otkup po Spot osnovi — transparentno
+                Otkup po Spot osnovi - transparentno
               </h3>
               <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
                 Otkupna cena se formira na osnovu Spot cene sa grafikona, uz minimalan i javno istaknut odbitak.
@@ -345,7 +345,7 @@ export default function CenaZlataPage() {
         <SectionContainer>
           <SectionHeading
             title="Ključni faktori koji diktiraju cenu zlata na globalnom nivou"
-            description="Zlato je dokazani “Safe haven” — fizički postoji i ne može se veštački odštampati. Ali šta pomera liniju na grafikonu? Ovo je 5 makroekonomskih pokretača."
+            description="Zlato je dokazani “Safe haven” - fizički postoji i ne može se veštački odštampati. Ali šta pomera liniju na grafikonu? Ovo je 5 makroekonomskih pokretača."
           />
           <div className="mt-6 grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 items-start">
             {/* Left panel (concept) */}
@@ -366,7 +366,7 @@ export default function CenaZlataPage() {
                   Linija na grafikonu je posledica potražnje za “sigurnim” zlatom
                 </h3>
                 <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                  Zlato nije samo “trend” — ono se najčešće kreće kada svet menja odnos prema riziku:
+                  Zlato nije samo “trend” - ono se najčešće kreće kada svet menja odnos prema riziku:
                   kada fiat gubi kupovnu moć, kada kamate postanu manje atraktivne, kada centralne banke
                   povećavaju rezerve i kada izbije geopolitička nesigurnost.
                 </p>
@@ -377,7 +377,7 @@ export default function CenaZlataPage() {
                   Jedna stvar koju uvek proverite
                 </p>
                 <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                  Ne gledajte samo “koliko je danas” — posmatrajte i “zašto je danas”: inflacija, kamate,
+                  Ne gledajte samo “koliko je danas” - posmatrajte i “zašto je danas”: inflacija, kamate,
                   potražnja državnih institucija i ponuda.
                 </p>
               </div>
@@ -429,7 +429,7 @@ export default function CenaZlataPage() {
                       Masovna kupovina od strane državnih institucija
                     </p>
                     <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                      Kada centralne banke povećaju rezerve, dostupna ponuda se smanjuje — i cena raste.
+                      Kada centralne banke povećaju rezerve, dostupna ponuda se smanjuje - i cena raste.
                     </p>
                   </div>
                 </li>
@@ -443,7 +443,7 @@ export default function CenaZlataPage() {
                       Geopolitičke tenzije i krize
                     </p>
                     <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                      Nesigurnost podiže potražnju za “safe haven” imovinom — pa zlato često reaguje jače.
+                      Nesigurnost podiže potražnju za “safe haven” imovinom - pa zlato često reaguje jače.
                     </p>
                   </div>
                 </li>
@@ -457,7 +457,7 @@ export default function CenaZlataPage() {
                       Ponuda i potražnja (Peak Gold fenomen)
                     </p>
                     <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                      Kako rudarenje postaje skuplje, realni “trošak dna” raste — što podržava cenu.
+                      Kako rudarenje postaje skuplje, realni “trošak dna” raste - što podržava cenu.
                     </p>
                   </div>
                 </li>
@@ -472,17 +472,17 @@ export default function CenaZlataPage() {
         <SectionContainer>
           <SectionHeading
             title="Valute, istorijski rast i pravo vreme za kupovinu"
-            description="Tri koncepta koja zaokružuju razumevanje tržišta zlata — za svakog ko ozbiljno razmišlja o investiciji."
+            description="Tri koncepta koja zaokružuju razumevanje tržišta zlata - za svakog ko ozbiljno razmišlja o investiciji."
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <InfoCard title="Uticaj dolara — zašto pratiti EUR grafikon">
-              Pošto se zlatom trguje u USD, dolar i zlato su na &ldquo;klackalici&rdquo;. Jak dolar = niža cena zlata u USD; slab dolar = viša cena. Ponekad vidite vest da je &ldquo;zlato skočilo&rdquo;, ali u EUR cena ostaje ista — jer je skočio samo dolar. Preporuka: uvek pratite cenu u EUR.
+            <InfoCard title="Uticaj dolara - zašto pratiti EUR grafikon">
+              Pošto se zlatom trguje u USD, dolar i zlato su na &ldquo;klackalici&rdquo;. Jak dolar = niža cena zlata u USD; slab dolar = viša cena. Ponekad vidite vest da je &ldquo;zlato skočilo&rdquo;, ali u EUR cena ostaje ista - jer je skočio samo dolar. Preporuka: uvek pratite cenu u EUR.
             </InfoCard>
-            <InfoCard title="Istorijski rast — 'All-Time High' nije razlog za strah">
+            <InfoCard title="Istorijski rast - 'All-Time High' nije razlog za strah">
               Pre 20 godina unca je vredela ~$400. Pre 10 godina ~$1.300. Danas višestruko više. Grafikon zlata unazad 50 godina neprestano probija &ldquo;istorijske maksimume&rdquo;. Svrha zlata nije brza zarada, već dugoročna zaštita kapitala koji se inače topi od inflacije.
             </InfoCard>
-            <InfoCard title="Nikada nije kasno — kupite zlato i čekajte">
-              Stara izreka najbogatijih investitora: &ldquo;Ne čekajte pravo vreme da kupite zlato — kupite zlato i čekajte.&rdquo; Svakodnevno praćenje oscilacija i čekanje pada obično rezultira izgubljenim vremenom u kom papirni novac gubi vrednost. Pravo vreme je kada imate višak koji želite da zaštitite.
+            <InfoCard title="Nikada nije kasno - kupite zlato i čekajte">
+              Stara izreka najbogatijih investitora: &ldquo;Ne čekajte pravo vreme da kupite zlato - kupite zlato i čekajte.&rdquo; Svakodnevno praćenje oscilacija i čekanje pada obično rezultira izgubljenim vremenom u kom papirni novac gubi vrednost. Pravo vreme je kada imate višak koji želite da zaštitite.
             </InfoCard>
           </div>
         </SectionContainer>

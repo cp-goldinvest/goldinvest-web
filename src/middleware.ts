@@ -39,12 +39,12 @@ export async function middleware(request: NextRequest) {
 
   console.log("[middleware]", pathname, "user:", user?.email ?? "null");
 
-  // Protect API admin routes — return 401 instead of redirect
+  // Protect API admin routes - return 401 instead of redirect
   if (!user && pathname.startsWith("/api/admin")) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Protect admin pages — redirect to login
+  // Protect admin pages - redirect to login
   if (!user && pathname.startsWith("/admin") && pathname !== "/admin/login") {
     return NextResponse.redirect(new URL("/admin/login", request.url));
   }

@@ -1,6 +1,6 @@
 /**
  * Homepage product strip: Argor-Heraeus 1/2/5/10g, then C.Hafner 1/2/5/10g (zlatne pločice).
- * C.Hafner 10g: samo pojedinačna pločica u blisteru — set (10×1g / SmartPack) se ne prikazuje radi konzistentnosti sa 1/2/5g.
+ * C.Hafner 10g: samo pojedinačna pločica u blisteru - set (10×1g / SmartPack) se ne prikazuje radi konzistentnosti sa 1/2/5g.
  */
 const PLATE_WEIGHTS = [1, 2, 5, 10] as const;
 

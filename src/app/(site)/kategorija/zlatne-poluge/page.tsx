@@ -8,11 +8,11 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Zlatne poluge | Prodaja zlatnih poluga - Najpovoljnija Cena",
   description:
-    "Kupite LBMA sertifikovane zlatne poluge čistoće 999,9 — Argor-Heraeus, C. Hafner, The Royal Mint. Transparentne prodajne, avansne i otkupne cene. Dostava za celu Srbiju.",
+    "Kupite LBMA sertifikovane zlatne poluge čistoće 999,9 - Argor-Heraeus, C. Hafner, The Royal Mint. Transparentne prodajne, avansne i otkupne cene. Dostava za celu Srbiju.",
   alternates: { canonical: "https://goldinvest.rs/kategorija/zlatne-poluge" },
   openGraph: {
-    title: "Zlatne poluge — LBMA sertifikovane, čistoća 999,9 | Gold Invest",
-    description: "Kupite zlatne poluge od 1 unce do 1 kg — Argor-Heraeus, C. Hafner, The Royal Mint. Bez PDV-a, transparentne cene, dostava po Srbiji.",
+    title: "Zlatne poluge - LBMA sertifikovane, čistoća 999,9 | Gold Invest",
+    description: "Kupite zlatne poluge od 1 unce do 1 kg - Argor-Heraeus, C. Hafner, The Royal Mint. Bez PDV-a, transparentne cene, dostava po Srbiji.",
     url: "https://goldinvest.rs/kategorija/zlatne-poluge",
     siteName: "Gold Invest",
     locale: "sr_RS",
@@ -67,7 +67,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Koliko traje isporuka?",
-    a: "Za klijente u Beogradu nudimo isporuku dan za dan — ukoliko je porudžbina evidentirana radnim danima do 12h, zlato stiže na vašu adresu istog dana do 18h. Za porudžbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana (ovo ne važi za avansne kupovine, za koje se rok isporuke precizno definiše pri samoj kupovini).",
+    a: "Za klijente u Beogradu nudimo isporuku dan za dan - ukoliko je porudžbina evidentirana radnim danima do 12h, zlato stiže na vašu adresu istog dana do 18h. Za porudžbine iz ostalih gradova Srbije, diskretna i osigurana dostava traje od 1 do 3 radna dana (ovo ne važi za avansne kupovine, za koje se rok isporuke precizno definiše pri samoj kupovini).",
   },
   {
     q: "Koliko košta dostava?",
@@ -157,13 +157,13 @@ export default async function ZlatnePolugePage() {
       }}
       infoSectionA={{
         heading: "Koje težine zlatnih poluga postoje?",
-        description: "U Gold Invest asortimanu nalaze se isključivo investicione poluge maksimalne čistoće od 99.99% (24 karata). Evo jednostavnog pregleda formata — od fleksibilnih manjih težina do poluga za ozbiljne investitore.",
+        description: "U Gold Invest asortimanu nalaze se isključivo investicione poluge maksimalne čistoće od 99.99% (24 karata). Evo jednostavnog pregleda formata - od fleksibilnih manjih težina do poluga za ozbiljne investitore.",
         cards: [
           {
             title: (
               <>
                 Manje težine (1g, 2g, 5g, 10g i 20g){" "}
-                <span className="font-normal text-[#6B6B6B]">— </span>
+                <span className="font-normal text-[#6B6B6B]">- </span>
                 <Link
                   href="/kategorija/zlatne-plocice"
                   className="font-semibold text-[#1B1B1C] underline decoration-[#BEAD87] hover:text-[#BEAD87] transition-colors"
@@ -172,15 +172,15 @@ export default async function ZlatnePolugePage() {
                 </Link>
               </>
             ),
-            body: "Savršen način da započnete investicionu priču ili obezbedite najvredniji poklon. Premija po gramu je nešto viša, ali dobijate maksimalnu fleksibilnost — kada vam zatreba gotovina, prodajete samo manju polugu.",
+            body: "Savršen način da započnete investicionu priču ili obezbedite najvredniji poklon. Premija po gramu je nešto viša, ali dobijate maksimalnu fleksibilnost - kada vam zatreba gotovina, prodajete samo manju polugu.",
           },
           {
-            title: "Srednje poluge (50g i 100g) — zlatna sredina",
-            body: "Najtraženiji format na tržištu. Poluga od 100g je čest izbor kao odličan balans: niža premija po gramu i odlična likvidnost — kapital možete prodavati u delovima.",
+            title: "Srednje poluge (50g i 100g) - zlatna sredina",
+            body: "Najtraženiji format na tržištu. Poluga od 100g je čest izbor kao odličan balans: niža premija po gramu i odlična likvidnost - kapital možete prodavati u delovima.",
           },
           {
             title: "Velike poluge (250g, 500g i 1kg)",
-            body: "Za ozbiljne investitore. Kupovinom 500g ili 1kg dobijate najnižu cenu po gramu. Zbog specifične gustine zlata, čak i poluga od 1kg je manja od prosečnog mobilnog telefona — praktična za čuvanje u bankarskom sefu.",
+            body: "Za ozbiljne investitore. Kupovinom 500g ili 1kg dobijate najnižu cenu po gramu. Zbog specifične gustine zlata, čak i poluga od 1kg je manja od prosečnog mobilnog telefona - praktična za čuvanje u bankarskom sefu.",
           },
         ],
         infoBoxContent: (
@@ -198,16 +198,16 @@ export default async function ZlatnePolugePage() {
       }}
       infoSectionB={{
         heading: "Sertifikati i LBMA standard zlatnih poluga",
-        description: "Svaka zlatna poluga u Gold Invest ponudi dolazi isključivo iz najprestižnijih svetskih rafinerija i poseduje LBMA (London Bullion Market Association) sertifikat — garanciju da kupujete zlato najvišeg ranga, priznato i lako naplativo svuda u svetu.",
+        description: "Svaka zlatna poluga u Gold Invest ponudi dolazi isključivo iz najprestižnijih svetskih rafinerija i poseduje LBMA (London Bullion Market Association) sertifikat - garanciju da kupujete zlato najvišeg ranga, priznato i lako naplativo svuda u svetu.",
         headingClassName: "py-1",
         cards: [
           {
             title: "Šta vama donosi LBMA Good Delivery status?",
-            body: "To nije samo prestižna oznaka, već najrigoroznija globalna garancija kvaliteta — potvrda čistoće, tačne gramaže i strogo kontrolisanog, etičkog porekla metala.",
+            body: "To nije samo prestižna oznaka, već najrigoroznija globalna garancija kvaliteta - potvrda čistoće, tačne gramaže i strogo kontrolisanog, etičkog porekla metala.",
           },
           {
             title: "Gde se nalazi sertifikat moje poluge?",
-            body: "Kod modernih poluga, sertifikat je sigurnosno blister pakovanje. Na njemu su logo kovnice, težina, čistoća i serijski broj — koji mora da se poklapa sa brojem urezanim na samoj poluzi.",
+            body: "Kod modernih poluga, sertifikat je sigurnosno blister pakovanje. Na njemu su logo kovnice, težina, čistoća i serijski broj - koji mora da se poklapa sa brojem urezanim na samoj poluzi.",
           },
           {
             title: "Zlatno pravilo (Upozorenje): Ne otvarajte ambalažu",
@@ -248,16 +248,16 @@ export default async function ZlatnePolugePage() {
         ],
       }}
       delivery={{
-        heading: "Prodaja zlatnih poluga Beograd — Gold Invest",
-        description: "Kupovina investicionih poluga zahteva maksimalnu diskreciju, sigurnost i profesionalizam. Zato nudimo više opcija preuzimanja i isporuke — uvek osigurano i neprimetno.",
-        pickupCardBody: "Posetite nas u Beogradu — lokacija dostupna telefonom. Obezbedili smo diskretno okruženje za preuzimanje poluga i potpisivanje dokumentacije.",
+        heading: "Prodaja zlatnih poluga Beograd - Gold Invest",
+        description: "Kupovina investicionih poluga zahteva maksimalnu diskreciju, sigurnost i profesionalizam. Zato nudimo više opcija preuzimanja i isporuke - uvek osigurano i neprimetno.",
+        pickupCardBody: "Posetite nas u Beogradu - lokacija dostupna telefonom. Obezbedili smo diskretno okruženje za preuzimanje poluga i potpisivanje dokumentacije.",
       }}
       priceStructure={{
-        title: "Cena zlatnih poluga — Trenutna / Avansna / Otkupna",
+        title: "Cena zlatnih poluga - Trenutna / Avansna / Otkupna",
         description: "Kao i kod ostatka našeg asortimana, Gold Invest vam pruža opciju da optimizujete svoje troškove kada je u pitanju kupovina zlatnih poluga:",
         card1Body: "Plaćate i istog dana preuzimate polugu iz našeg trezora (ili vam je šaljemo na adresu).",
         card2Body: "Uplaćujete unapred, zaključavate trenutnu (nižu) cenu i čekate isporuku direktno iz inostrane kovnice. Za velike iznose, ušteda može biti izuzetno značajna.",
-        card3Body: "Ovo je javno istaknuta cena po kojoj Gold Invest garantovano otkupljuje vaše poluge, uz isplatu istog dana. Spread (razlika prodajne i otkupne) je kod poluga najniži — investicija brže prelazi u profit.",
+        card3Body: "Ovo je javno istaknuta cena po kojoj Gold Invest garantovano otkupljuje vaše poluge, uz isplatu istog dana. Spread (razlika prodajne i otkupne) je kod poluga najniži - investicija brže prelazi u profit.",
       }}
       faq={{
         title: "Česta pitanja o zlatnim polugama",

@@ -22,7 +22,7 @@ export function mapBrandsToLogos(brands: { title: string; body: string }[]): Bra
     const lower = rawTitle.toLowerCase();
 
     let img = "/images/brands/argor-heraeus.webp";
-    let origin = "—";
+    let origin = "-";
 
     if (lower.includes("argor")) {
       img = "/images/brands/argor-heraeus.webp";
@@ -35,7 +35,7 @@ export function mapBrandsToLogos(brands: { title: string; body: string }[]): Bra
       origin = "Britanija";
     }
 
-    const left = rawTitle.split("—")[0]?.trim() ?? rawTitle.trim();
+    const left = rawTitle.split("-")[0]?.trim() ?? rawTitle.trim();
     const cleanedTitle = left.replace(/\s*\d+\s*g\s*$/i, "").trim() || left;
 
     return { img, title: cleanedTitle, origin, text: b.body };

@@ -20,12 +20,12 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Poklon za krštenje - Šta kupiti za krštenje? | Gold Invest",
   description:
-    "Poklonite investiciono zlato za krštenje — dukate i zlatne pločice oslobođene PDV-a. Trajni poklon koji čuva vrednost, za devojčice i dečake. Beograd, brza dostava.",
+    "Poklonite investiciono zlato za krštenje - dukate i zlatne pločice oslobođene PDV-a. Trajni poklon koji čuva vrednost, za devojčice i dečake. Beograd, brza dostava.",
   alternates: { canonical: "https://goldinvest.rs/poklon-za-krstenje" },
   openGraph: {
-    title: "Poklon za krštenje — investiciono zlato | Gold Invest",
+    title: "Poklon za krštenje - investiciono zlato | Gold Invest",
     description:
-      "Zlatna pločica ili dukat za krštenje — jedini poklon čija vrednost raste zajedno s detetom. Bez PDV-a, sa sertifikatom, dostupno u Beogradu.",
+      "Zlatna pločica ili dukat za krštenje - jedini poklon čija vrednost raste zajedno s detetom. Bez PDV-a, sa sertifikatom, dostupno u Beogradu.",
     url: "https://goldinvest.rs/poklon-za-krstenje",
     siteName: "Gold Invest",
     locale: "sr_RS",
@@ -48,7 +48,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Šta roditelji mogu kasnije da urade sa tim zlatom?",
-    a: "Zlato nudi apsolutnu fleksibilnost. Roditelji ga mogu čuvati u sefu na ime deteta i sakupljati ga godinama (za fakultet, stan ili auto). Ukoliko im u međuvremenu zatreba novac za detetove neodložne potrebe, investiciono zlato je najlikvidnija imovina na svetu — u svakom trenutku ga mogu doneti u Gold Invest ili bilo koju menjačnicu zlata u svetu i unovčiti ga po aktuelnoj berzanskoj ceni u roku od nekoliko minuta.",
+    a: "Zlato nudi apsolutnu fleksibilnost. Roditelji ga mogu čuvati u sefu na ime deteta i sakupljati ga godinama (za fakultet, stan ili auto). Ukoliko im u međuvremenu zatreba novac za detetove neodložne potrebe, investiciono zlato je najlikvidnija imovina na svetu - u svakom trenutku ga mogu doneti u Gold Invest ili bilo koju menjačnicu zlata u svetu i unovčiti ga po aktuelnoj berzanskoj ceni u roku od nekoliko minuta.",
   },
   {
     q: "Da li smem da probušim dukat kako bi dete nosilo lančić?",
@@ -111,7 +111,7 @@ export default async function PoklonaZaKrstenjiePage() {
         schema={buildWebPageSchema({
           name: "Poklon za krštenje - Šta kupiti za krštenje? | Gold Invest",
           description:
-            "Investiciono zlato kao poklon za krštenje — zlatne pločice i dukati oslobođeni PDV-a, sa sertifikatom, brza dostava Beograd.",
+            "Investiciono zlato kao poklon za krštenje - zlatne pločice i dukati oslobođeni PDV-a, sa sertifikatom, brza dostava Beograd.",
           slug: "/poklon-za-krstenje",
         })}
       />
@@ -126,7 +126,7 @@ export default async function PoklonaZaKrstenjiePage() {
       {/* Hero */}
       <CategoryHero
         title="Poklon za krštenje"
-        introFull="Krštenje je jedan od najvažnijih događaja u životu deteta i porodice, a takav trenutak zaslužuje dar koji ne bledi. Umesto novca koji gubi vrednost ili igračaka koje se brzo prerastu, poklonite investiciono zlato — jedini poklon čija vrednost raste zajedno sa detetom. U našoj ponudi pronađite tradicionalne dukate i moderne zlatne pločice (od 1g do 10g), oslobođene poreza i spremne za darivanje."
+        introFull="Krštenje je jedan od najvažnijih događaja u životu deteta i porodice, a takav trenutak zaslužuje dar koji ne bledi. Umesto novca koji gubi vrednost ili igračaka koje se brzo prerastu, poklonite investiciono zlato - jedini poklon čija vrednost raste zajedno sa detetom. U našoj ponudi pronađite tradicionalne dukate i moderne zlatne pločice (od 1g do 10g), oslobođene poreza i spremne za darivanje."
         pills={[
           { label: "Zlatni dukati", href: "/kategorija/zlatni-dukati" },
           { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
@@ -187,7 +187,7 @@ export default async function PoklonaZaKrstenjiePage() {
           </InfoCard>
 
           <InfoCard title="Ne plaćate porez (za razliku od nakita)">
-            Kada u običnoj zlatari kupite dečiju narukvicu ili lančić, plaćate 20% PDV-a i visoku maržu za rad zlatara. Investiciono zlato je oslobođeno PDV-a — novac koji dajete ide isključivo u vrednost čistog metala.
+            Kada u običnoj zlatari kupite dečiju narukvicu ili lančić, plaćate 20% PDV-a i visoku maržu za rad zlatara. Investiciono zlato je oslobođeno PDV-a - novac koji dajete ide isključivo u vrednost čistog metala.
           </InfoCard>
 
           <InfoCard title="Trajna uspomena i finansijska sigurnost">
@@ -197,12 +197,12 @@ export default async function PoklonaZaKrstenjiePage() {
         </SectionContainer>
       </section>
 
-      {/* H2: Sta pokloniti — dukati ili plocice */}
+      {/* H2: Sta pokloniti - dukati ili plocice */}
       <section className="bg-white py-16 sm:py-20 border-t border-[#F0EDE6]">
         <SectionContainer>
         <SectionHeading
           title="Šta pokloniti iz našeg asortimana?"
-          description="U zavisnosti od vašeg budžeta i ukusa, Gold Invest vam nudi dva pravca za savršen dar — tradicionalni dukat ili moderni blister."
+          description="U zavisnosti od vašeg budžeta i ukusa, Gold Invest vam nudi dva pravca za savršen dar - tradicionalni dukat ili moderni blister."
         />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -210,14 +210,14 @@ export default async function PoklonaZaKrstenjiePage() {
               Dukati su glavni simbol darivanja na Balkanu. Dostupni su u dva formata:
               <ul className="mt-3 space-y-1 text-sm">
                 <li>
-                  <span className="font-semibold">Mali dukat Franc Jozef</span> — 3.49g, 986/1000 (23.6 karata)
+                  <span className="font-semibold">Mali dukat Franc Jozef</span> - 3.49g, 986/1000 (23.6 karata)
                 </li>
                 <li>
-                  <span className="font-semibold">Veliki dukat Franc Jozef</span> — 13.96g, 986/1000 (23.6 karata)
+                  <span className="font-semibold">Veliki dukat Franc Jozef</span> - 13.96g, 986/1000 (23.6 karata)
                 </li>
               </ul>
               <p className="mt-3 text-sm">
-              Ne dolazi u plastičnom pakovanju, već u elegantnoj okrugloj kapsuli — istorijski sam i poseban, ujedno i trajni podsetnik na vrednost poklona.
+              Ne dolazi u plastičnom pakovanju, već u elegantnoj okrugloj kapsuli - istorijski sam i poseban, ujedno i trajni podsetnik na vrednost poklona.
               </p>
               <Link
                 href="/kategorija/zlatni-dukati"
@@ -228,7 +228,7 @@ export default async function PoklonaZaKrstenjiePage() {
             </InfoCard>
 
             <InfoCard title="Zlatne pločice">
-            Zlatne pločice (od 1g, 2g ili 5g) su savršen izbor za one koji žele moderniji poklon od 24-karatnog zlata (čistoća 999,9). Svaka pločica iz rafinerija Argor-Heraeus ili C. Hafner dolazi fabrički zapečaćena u prelepom sigurnosnom blister pakovanju — veličine bankovne kartice — koje je ujedno i sertifikat i daje izuzetno luksuzan vizuelni utisak.
+            Zlatne pločice (od 1g, 2g ili 5g) su savršen izbor za one koji žele moderniji poklon od 24-karatnog zlata (čistoća 999,9). Svaka pločica iz rafinerija Argor-Heraeus ili C. Hafner dolazi fabrički zapečaćena u prelepom sigurnosnom blister pakovanju - veličine bankovne kartice - koje je ujedno i sertifikat i daje izuzetno luksuzan vizuelni utisak.
               <Link
                 href="/kategorija/zlatne-plocice"
                 className="inline-block mt-4 text-xs font-semibold tracking-widest uppercase text-[#BF8E41] hover:opacity-80 transition-opacity"
@@ -244,7 +244,7 @@ export default async function PoklonaZaKrstenjiePage() {
             </InfoCard>
 
             <InfoCard title="Poklon za krštenje dečaka">
-              Tradicionalni pokloni za dečake često uključuju zlatne krstiće ili lančiće, koji neretko završe zaboravljeni u fioci. Umesto nakita, poklonite mu <strong>zlatne pločice</strong> od 2g ili 5g (Argor-Heraeus), kao i masivniji <strong>Veliki dukat Franc Jozef</strong>. To nije samo simboličan poklon — to je prvi konkretan korak u izgradnji njegovog ličnog finansijskog temelja.
+              Tradicionalni pokloni za dečake često uključuju zlatne krstiće ili lančiće, koji neretko završe zaboravljeni u fioci. Umesto nakita, poklonite mu <strong>zlatne pločice</strong> od 2g ili 5g (Argor-Heraeus), kao i masivniji <strong>Veliki dukat Franc Jozef</strong>. To nije samo simboličan poklon - to je prvi konkretan korak u izgradnji njegovog ličnog finansijskog temelja.
             </InfoCard>
           </div>
         </SectionContainer>
@@ -253,7 +253,7 @@ export default async function PoklonaZaKrstenjiePage() {
       {/* Dark quote */}
       <DarkQuoteSection
         eyebrow="Poklon koji traje generacijama"
-        normalText="Investiciono zlato nije samo dar za dan krštenja —"
+        normalText="Investiciono zlato nije samo dar za dan krštenja -"
         italicText="to je finansijska osnova koju će dete pamtiti celog života."
         ctaHref="/kontakt"
         ctaLabel="Upit za poklon"
@@ -272,10 +272,10 @@ export default async function PoklonaZaKrstenjiePage() {
               Kumovi kao drugi roditelji se najčešće odlučuju za <strong>zlatnu pločicu od 5g</strong> ili <strong>Mali dukat Franc Jozef</strong>. Oba formata nose snažnu simboliku, lako se pakuju u luksuznu kutijicu i predstavljaju nezaboravan početak detetove zlatne štednje.
             </InfoCard>
             <InfoCard title="Za bake i deke">
-              Bake i deke često žele da osiguraju budućnost svog unuka ili unuke. Za njih, <strong>zlatna pločica od 10g</strong> ili <strong>Veliki dukat Franc Jozef</strong> su čest izbor — temelj za buduću štednju koji će dete razumeti i ceniti kada odraste.
+              Bake i deke često žele da osiguraju budućnost svog unuka ili unuke. Za njih, <strong>zlatna pločica od 10g</strong> ili <strong>Veliki dukat Franc Jozef</strong> su čest izbor - temelj za buduću štednju koji će dete razumeti i ceniti kada odraste.
             </InfoCard>
             <InfoCard title="Za rodbinu i prijatelje">
-              Ukoliko dolazite kao gost, <strong>zlatna pločica od 1g ili 2g</strong> je neuporedivo elegantniji i trajniji poklon od klasične koverte sa 100 ili 200 evra. Isti iznos — trajno značenje.
+              Ukoliko dolazite kao gost, <strong>zlatna pločica od 1g ili 2g</strong> je neuporedivo elegantniji i trajniji poklon od klasične koverte sa 100 ili 200 evra. Isti iznos - trajno značenje.
             </InfoCard>
           </div>
         </SectionContainer>
@@ -283,36 +283,36 @@ export default async function PoklonaZaKrstenjiePage() {
 
       {/* Brands */}
       <BrandCardsSection
-        title="Brendovi koje poklanjate — evropski premium kvalitet"
-        description="Svaka pločica i dukat iz naše ponude potiču od svetski priznatih kovnica i kovanica — garancija autenticiteta i trajne vrednosti."
+        title="Brendovi koje poklanjate - evropski premium kvalitet"
+        description="Svaka pločica i dukat iz naše ponude potiču od svetski priznatih kovnica i kovanica - garancija autenticiteta i trajne vrednosti."
         brands={[
           {
             img: "/images/brands/argor-heraeus.webp",
             title: "Argor-Heraeus",
             origin: "Svajcarska",
-            text: "Industrijski standard i jedna od najpouzdanijih svetskih rafinerija. Švajcarska preciznost u svakom detalju — pločice Argor-Heraeusa su sinonim za sigurnost.",
+            text: "Industrijski standard i jedna od najpouzdanijih svetskih rafinerija. Švajcarska preciznost u svakom detalju - pločice Argor-Heraeusa su sinonim za sigurnost.",
           },
           {
             img: "/images/brands/c-hafner.webp",
             title: "C. Hafner",
             origin: "Nemacka",
-            text: "Rafinerija sa tradicijom od preko 170 godina, poznata po besprekornoj izradi i etičkom poreklu zlata. Koriste isključivo reciklirano zlato — nemački premium bez kompromisa.",
+            text: "Rafinerija sa tradicijom od preko 170 godina, poznata po besprekornoj izradi i etičkom poreklu zlata. Koriste isključivo reciklirano zlato - nemački premium bez kompromisa.",
             imageScale: 0.9,
           },
           {
             img: "/images/brands/logo-royal-mint.webp",
             title: "Austrijska kovnica",
             origin: "Austrija",
-            text: "Zvanična austrijska državna kovnica — izdaje i Bečku Filharmoniju i legendarni Dukat Franc Jozef. Jedan od najpoznatijih brendova u istoriji evropskog kovanog novca.",
+            text: "Zvanična austrijska državna kovnica - izdaje i Bečku Filharmoniju i legendarni Dukat Franc Jozef. Jedan od najpoznatijih brendova u istoriji evropskog kovanog novca.",
           },
         ]}
       />
 
       {/* Delivery */}
       <DeliverySection
-        heading="Prodaja poklona za krštenje Beograd — Gold Invest"
+        heading="Prodaja poklona za krštenje Beograd - Gold Invest"
         description="Kupovina zlatnog poklona za krštenje kod nas je brza i bezbedna. Možete lično doći po poklon u Beograd ili naručbom pokrenuti diskretnu dostavu na kućnu adresu."
-        pickupCardBody="Posetite nas lično u Beogradu. Diskretno okruženje, stručna pomoć pri odabiru poklona i preuzimanje na licu mesta — bez čekanja."
+        pickupCardBody="Posetite nas lično u Beogradu. Diskretno okruženje, stručna pomoć pri odabiru poklona i preuzimanje na licu mesta - bez čekanja."
       />
 
       {/* FAQ */}

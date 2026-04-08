@@ -3,7 +3,7 @@ import { createServiceClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
-// GET — svi lager items sa variant info
+// GET - svi lager items sa variant info
 export async function GET() {
   const supabase = createServiceClient();
 
@@ -31,7 +31,7 @@ export async function GET() {
   return NextResponse.json(data);
 }
 
-// POST — dodaj novi item na lager
+// POST - dodaj novi item na lager
 export async function POST(request: Request) {
   const body = await request.json();
   const { variant_id, purchase_price_rsd, purchased_at, note } = body;

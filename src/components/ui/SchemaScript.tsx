@@ -1,6 +1,6 @@
 /**
  * Renders a JSON-LD schema.org script tag.
- * Works in Server Components — no "use client" needed.
+ * Works in Server Components - no "use client" needed.
  * Pass one schema object per component instance.
  *
  * Usage:

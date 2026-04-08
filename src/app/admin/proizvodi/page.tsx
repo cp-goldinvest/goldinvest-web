@@ -299,7 +299,7 @@ export default function AdminProizvodiPage() {
 
                 {product.variants.length === 0 ? (
                   <div className="px-4 py-6 text-center text-xs text-[#555] bg-[#111112]">
-                    Nema varijanti — klikni "+ Varijanta" da dodaš
+                    Nema varijanti - klikni "+ Varijanta" da dodaš
                   </div>
                 ) : (
                   product.variants.map((v) => (
@@ -319,7 +319,7 @@ export default function AdminProizvodiPage() {
                         <span className="text-xs text-[#8A8A8A] tabular-nums">{v.purity}</span>
                       </div>
                       <div className="px-3 py-2.5 flex items-center">
-                        <span className="text-xs font-mono text-[#555]">{v.sku || "—"}</span>
+                        <span className="text-xs font-mono text-[#555]">{v.sku || "-"}</span>
                       </div>
                       <div className="px-3 py-2.5 flex items-center">
                         <span className={[
@@ -448,7 +448,7 @@ export default function AdminProizvodiPage() {
       {/* ── Drawer: Dodaj varijantu ── */}
       {addVariantFor && (
         <Drawer
-          title={`Dodaj varijantu — ${products.find((p) => p.id === addVariantFor)?.brand}`}
+          title={`Dodaj varijantu - ${products.find((p) => p.id === addVariantFor)?.brand}`}
           onClose={() => setAddVariantFor(null)}
         >
           <div className="space-y-4">
@@ -561,7 +561,7 @@ export default function AdminProizvodiPage() {
                 ? "Brisanjem proizvoda brišu se i sve njegove varijante, cene i pravila."
                 : "Brisanjem varijante se briše i njena istorija cena i upiti vezani za nju."
               }
-              {" "}Alternativa je <strong className="text-[#E9E6D9]">deaktivacija</strong> — proizvod se sklanja sa sajta ali podaci ostaju.
+              {" "}Alternativa je <strong className="text-[#E9E6D9]">deaktivacija</strong> - proizvod se sklanja sa sajta ali podaci ostaju.
             </p>
             <div className="flex gap-2">
               <button

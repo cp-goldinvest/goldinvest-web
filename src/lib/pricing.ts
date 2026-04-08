@@ -14,9 +14,9 @@ const GRAMS_PER_OZ = 31.1034768;
  * Compute spot price per gram in RSD from a snapshot.
  *
  * Preference order:
- *  1. xau_eur × eur_rsd  — EUR is the authoritative source; matches the
+ *  1. xau_eur × eur_rsd  - EUR is the authoritative source; matches the
  *     rate set by admin each morning and used on the public price ticker.
- *  2. price_per_g_rsd    — Postgres-generated fallback (uses USD if EUR absent).
+ *  2. price_per_g_rsd    - Postgres-generated fallback (uses USD if EUR absent).
  */
 export function spotPerGramFromSnapshot(snapshot: GoldPriceSnapshot): number {
   if (snapshot.xau_eur != null && snapshot.eur_rsd != null) {

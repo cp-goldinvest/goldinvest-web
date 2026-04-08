@@ -35,7 +35,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
       {/* ── Image area ── */}
       <div className="relative bg-[#F9F9F9] overflow-hidden" style={{ height: 305 }}>
 
-        {/* Weight badge — top left */}
+        {/* Weight badge - top left */}
         <div
           className="absolute top-3 left-3 z-10 px-2 py-1 rounded-[4px] text-xs font-bold text-[#1B1B1C]"
           style={{ background: "rgba(255,255,255,0.9)" }}
@@ -71,7 +71,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
           {name}
         </h2>
 
-        {/* Na stanju — levo, mobile i desktop */}
+        {/* Na stanju - levo, mobile i desktop */}
         <div className="flex items-center gap-1.5 mb-2 sm:mb-3">
           <CheckCircle2 size={14} className={inStock ? "text-green-500" : "text-[#BEAD87]"} />
           <span className="text-xs text-[#464747]">
@@ -79,16 +79,16 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
           </span>
         </div>
 
-        {/* Price rows — jedan red (label levo, cena desno) na mobile i desktop */}
+        {/* Price rows - jedan red (label levo, cena desno) na mobile i desktop */}
         <div className="flex flex-col gap-1.5 mb-5">
           <PriceRow label="Prodajna" labelFull="Prodajna cena" value={onRequest ? "Na upit" : formatRsd(prices.stock)} bold onRequest={onRequest} />
           <PriceRow label="Avansna" labelFull="Avansna cena" value={onRequest ? "Na upit" : formatRsd(prices.advance)} onRequest={onRequest} />
           <PriceRow label="Otkupna" labelFull="Otkupna cena" value={formatRsd(prices.purchase)} muted />
         </div>
 
-        {/* Action buttons — relative z-10 so they intercept clicks over the overlay link */}
+        {/* Action buttons - relative z-10 so they intercept clicks over the overlay link */}
         <div className="relative z-10 mt-auto flex items-center gap-2">
-          {/* Detalji — muted gold bg */}
+          {/* Detalji - muted gold bg */}
           <Link
             href={href}
             onClick={(e) => e.stopPropagation()}
@@ -98,7 +98,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
             Detalji
           </Link>
 
-          {/* Pozovi — outline */}
+          {/* Pozovi - outline */}
           <a
             href="tel:+381614264129"
             onClick={(e) => e.stopPropagation()}
