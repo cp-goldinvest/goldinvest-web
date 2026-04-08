@@ -37,6 +37,11 @@ export async function middleware(request: NextRequest) {
     console.error("[middleware] crash:", err);
   }
 
+  // Strip query params from homepage (e.g. ?NA causes GSC duplicates)
+  if (pathname === "/" && request.nextUrl.search) {
+    return NextResponse.redirect(new URL("/", request.url), { status: 301 });
+  }
+
   console.log("[middleware]", pathname, "user:", user?.email ?? "null");
 
   // Protect API admin routes - return 401 instead of redirect
@@ -58,5 +63,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  matcher: ["/", "/admin/:path*", "/api/admin/:path*"],
 };
