@@ -37,9 +37,8 @@ async function fetchYahooRange(from, to) {
 
     const date = new Date(timestamps[i] * 1000).toISOString().split('T')[0];
     const xauEurPerOz = xauUsd / eurUsd;
-    const xauEurPerGram = xauEurPerOz / GRAMS_PER_OZ;
 
-    points.push({ date, xau_eur: Math.round(xauEurPerGram * 100) / 100 });
+    points.push({ date, xau_eur: Math.round(xauEurPerOz * 100) / 100 });
   }
 
   return points;
