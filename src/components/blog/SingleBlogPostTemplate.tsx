@@ -6,6 +6,7 @@ import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { BLOG_SINGLE_POSTS } from "@/data/blog-single-posts";
 import { BLOG_POSTS } from "@/data/blog-posts";
 import { ReadingProgressBar } from "@/components/blog/ReadingProgressBar";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { WorldGoldMap } from "@/components/blog/WorldGoldMap";
 import { GoldPriceChart } from "@/components/blog/GoldPriceChart";
 import { GoldMacroChart } from "@/components/blog/GoldMacroChart";
@@ -158,9 +159,21 @@ export function SingleBlogPostTemplate({ post, blocks }: Props) {
   const isQuoteParagraph = (text: string) =>
     text.startsWith("Konzervativna preporuka finansijskih planera:");
 
+  const breadcrumbs = [
+    { label: "Investiciono zlato", href: "/" },
+    { label: "Blog", href: "/blog" },
+    { label: post.title, href: `/blog/${post.slug}` },
+  ];
+
   return (
     <>
       <ReadingProgressBar />
+
+      <section className="bg-white py-4 border-b border-[#F0EDE6]">
+        <SectionContainer>
+          <Breadcrumb items={breadcrumbs} variant="light" />
+        </SectionContainer>
+      </section>
 
       {/* Hero */}
       <section

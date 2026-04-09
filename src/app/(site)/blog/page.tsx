@@ -7,6 +7,7 @@ import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 import { BLOG_POSTS } from "@/data/blog-posts";
 import { NewsletterSection } from "@/components/blog/NewsletterSection";
+import { getSanityPosts } from "@/sanity/queries";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
@@ -35,7 +36,10 @@ const BREADCRUMBS = [
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const sanityPosts = await getSanityPosts();
+  const allPosts = [...sanityPosts, ...BLOG_POSTS];
+
   return (
     <main className="bg-white">
       <SchemaScript schema={buildBreadcrumbSchema(BREADCRUMBS)} />
@@ -96,7 +100,7 @@ export default function BlogPage() {
       {/* ── Blog grid ─────────────────────────────────────────────────────────── */}
       <section className="bg-[#FAFAF8] py-14 sm:py-20">
         <SectionContainer>
-          <BlogGrid posts={BLOG_POSTS} />
+          <BlogGrid posts={allPosts} />
         </SectionContainer>
       </section>
 
