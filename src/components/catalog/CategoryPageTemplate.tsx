@@ -139,7 +139,7 @@ export function CategoryPageTemplate({
             const displayName = normalized(productName).includes(normalized(weight))
               ? productName
               : `${productName} ${weight}`.trim();
-            const prices = computePrices(v.weight_g, v.products?.category, snapshot, v.pricing_rules ?? null, tiers, v.products?.brand);
+            const prices = computePrices(v.weight_g, v.products?.category, snapshot, v.pricing_rules ?? null, tiers, v.products?.brand, v.name);
             return {
               name: displayName,
               url: `https://goldinvest.rs/proizvodi/${v.slug}`,

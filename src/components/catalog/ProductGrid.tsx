@@ -195,7 +195,8 @@ export function ProductGrid({
           snapshot,
           v.pricing_rules,
           tiers,
-          v.products.brand
+          v.products.brand,
+          v.name
         ),
       }))
       .filter(({ variant: v, prices }) => {

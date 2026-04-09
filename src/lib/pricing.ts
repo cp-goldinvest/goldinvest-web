@@ -28,10 +28,19 @@ export function spotPerGramFromSnapshot(snapshot: GoldPriceSnapshot): number {
   throw new Error("Snapshot contains no usable price data");
 }
 
-function findTier(tiers: PricingTier[], weightG: number, category: string, brand?: string | null): PricingTier | undefined {
+function findTier(tiers: PricingTier[], weightG: number, category: string, brand?: string | null, variantName?: string | null): PricingTier | undefined {
   const wb = (t: PricingTier) => t.weight_g !== null && Math.abs(t.weight_g - weightG) < 0.001;
   const ca = (t: PricingTier, c: string | null) => t.category === c;
   const br = (t: PricingTier, b: string | null) => t.brand === b;
+
+  // Dukati and multipack: match by variant name (stored in tier's brand field), ignore weight
+  if (category === "dukat" || category === "multipack") {
+    return (
+      tiers.find(t => br(t, variantName ?? null) && ca(t, category)) ??
+      tiers.find(t => br(t, null) && ca(t, category)) ??
+      tiers.find(t => br(t, null) && ca(t, null))
+    );
+  }
 
   if (brand) {
     return (
@@ -70,11 +79,12 @@ export function computePrices(
   snapshot: GoldPriceSnapshot,
   rule: PricingRule | null,
   tiers: PricingTier[],
-  brand?: string | null
+  brand?: string | null,
+  variantName?: string | null
 ): ComputedPrices {
   const spotPerGramRsd = spotPerGramFromSnapshot(snapshot);
 
-  const tier = findTier(tiers, weightG, category, brand);
+  const tier = findTier(tiers, weightG, category, brand, variantName);
 
   const marginStock    = tier?.margin_stock_pct    ?? 3.0;
   const marginAdvance  = tier?.margin_advance_pct  ?? 2.0;

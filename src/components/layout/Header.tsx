@@ -53,8 +53,8 @@ const NAV_ITEMS: NavItem[] = [
         items: [],
       },
       {
-        title: "Zlatnici",
-        viewAllHref: "/kategorija/zlatni-dukati",
+        title: "Multipack setovi",
+        viewAllHref: "/kategorija/multipack",
         items: [],
       },
     ],

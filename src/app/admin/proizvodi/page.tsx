@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Plus, ChevronDown, ChevronRight, Trash2, ToggleLeft, ToggleRight, X, Package } from "lucide-react";
 
 // ── Types ──────────────────────────────────────────────────────────────────
-type Category = "poluga" | "plocica" | "dukat" | "novac";
+type Category = "poluga" | "plocica" | "dukat" | "multipack";
 
 type Variant = {
   id: string;
@@ -66,7 +66,7 @@ const MOCK_PRODUCTS: Product[] = [
 ];
 
 const CATEGORY_LABELS: Record<Category, string> = {
-  poluga: "Poluge", plocica: "Pločice", dukat: "Dukati", novac: "Kovanice",
+  poluga: "Poluge", plocica: "Pločice", dukat: "Dukati", multipack: "Multipack",
 };
 
 const AVAILABILITY_LABELS = {
@@ -173,7 +173,7 @@ export default function AdminProizvodiPage() {
     setConfirmDelete(null);
   }
 
-  const categories: (Category | "sve")[] = ["sve", "poluga", "plocica", "dukat", "novac"];
+  const categories: (Category | "sve")[] = ["sve", "poluga", "plocica", "dukat", "multipack"];
   const filtered = categoryFilter === "sve" ? products : products.filter((p) => p.category === categoryFilter);
 
   return (
@@ -405,7 +405,7 @@ export default function AdminProizvodiPage() {
                 <option value="poluga">Poluge</option>
                 <option value="plocica">Pločice</option>
                 <option value="dukat">Dukati</option>
-                <option value="novac">Kovanice</option>
+                <option value="multipack">Multipack</option>
               </select>
             </Field>
 

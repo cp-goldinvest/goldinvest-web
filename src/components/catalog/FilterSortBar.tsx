@@ -47,10 +47,10 @@ type Props = {
 };
 
 const DEFAULT_CATEGORY_OPTIONS: Option<string>[] = [
-  { label: "Zlatne pločice", value: "plocica" },
-  { label: "Zlatne poluge",  value: "poluga"  },
-  { label: "Zlatni dukati",  value: "dukat"   },
-  { label: "Zlatnici",       value: "novac"   },
+  { label: "Zlatne pločice",   value: "plocica"    },
+  { label: "Zlatne poluge",    value: "poluga"     },
+  { label: "Zlatni dukati",    value: "dukat"      },
+  { label: "Multipack setovi", value: "multipack"  },
 ];
 
 const DEFAULT_PRICE_OPTIONS: Option<number>[] = [

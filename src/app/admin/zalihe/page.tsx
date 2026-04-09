@@ -61,10 +61,10 @@ const CATEGORY_LABELS: Record<string, string> = {
   poluga: "Zlatne poluge",
   plocica: "Zlatne pločice",
   dukat: "Zlatni dukati",
-  novac: "Zlatnici",
+  multipack: "Multipack",
 };
 
-const CATEGORY_ORDER = ["poluga", "plocica", "dukat", "novac"];
+const CATEGORY_ORDER = ["poluga", "plocica", "dukat", "multipack"];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 

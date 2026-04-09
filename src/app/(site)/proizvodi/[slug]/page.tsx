@@ -133,7 +133,8 @@ export default async function ProizvodPage({
     snapshotRow,
     variant.pricing_rules ?? null,
     tiers,
-    product.brand
+    product.brand,
+    variant.name
   );
 
   const heroImages = variant.images?.length
@@ -154,7 +155,7 @@ export default async function ProizvodPage({
     poluga:  { label: "Zlatne poluge",  href: "/kategorija/zlatne-poluge" },
     plocica: { label: "Zlatne pločice", href: "/kategorija/zlatne-plocice" },
     dukat:   { label: "Zlatni dukati",  href: "/kategorija/zlatni-dukati" },
-    novac:   { label: "Zlatni novac",   href: "/kategorija/zlatni-novac" },
+    multipack: { label: "Multipack setovi", href: "/kategorija/multipack" },
   };
   const cat = categoryMeta[product.category] ?? categoryMeta.poluga;
 
@@ -162,7 +163,7 @@ export default async function ProizvodPage({
     poluga: "Zlatna poluga",
     plocica: "Zlatna pločica",
     dukat: "Zlatni dukat",
-    novac: "Zlatni novac",
+    multipack: "Multipack set",
   };
   const categoryWeightLabel = `${categoryWeightLabelMap[product.category] ?? "Proizvod"} ${weightDisplay}`;
 
@@ -189,9 +190,9 @@ export default async function ProizvodPage({
         ? "1kg"
         : `${variant.weight_g}g`
     }`,
-    // Za dukate/novac nema pouzdanog weight slug šablona, ostajemo na listi kategorije
+    // Za dukate/multipack nema pouzdanog weight slug šablona, ostajemo na listi kategorije
     dukat: null,
-    novac: null,
+    multipack: null,
   };
   const categoryWeightHrefRaw = categoryWeightHrefMap[product.category] ?? null;
   const categoryWeightHref = categoryWeightHrefRaw?.endsWith("-") ? cat.href : categoryWeightHrefRaw ?? cat.href;

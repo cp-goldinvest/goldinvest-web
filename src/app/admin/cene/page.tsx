@@ -19,6 +19,7 @@ type BrandDraft = { brand: string; stock: string; advance: string; purchase: str
 
 type VariantRow = {
   id: string;
+  name: string;
   weight_g: number;
   purity: number;
   sku: string | null;
@@ -47,7 +48,7 @@ function EurRsdBadge({ source }: { source?: string | null }) {
 const GRAMS_PER_OZ = 31.1034;
 
 const CATEGORY_LABELS: Record<string, string> = {
-  poluga: "Poluge", plocica: "Pločice", dukat: "Dukati", novac: "Kovanice",
+  poluga: "Poluge", plocica: "Pločice", dukat: "Dukati", multipack: "Multipack",
 };
 
 function tierWeightLabel(t: Tier): string {
@@ -63,17 +64,26 @@ function tierWeightLabel(t: Tier): string {
   return `${w}g`;
 }
 
-function computeAutoPrice(weightG: number, category: string, brand: string, tiers: Tier[], spotPerGram: number): { stock: number; advance: number; purchase: number } {
+function computeAutoPrice(weightG: number, category: string, brand: string, tiers: Tier[], spotPerGram: number, productName?: string): { stock: number; advance: number; purchase: number } {
   const wb = (t: Tier) => t.weight_g !== null && Math.abs(t.weight_g - weightG) < 0.001;
-  const tier =
-    tiers.find(t => t.brand === brand && wb(t) && t.category === category) ??
-    tiers.find(t => t.brand === brand && wb(t) && t.category === null) ??
-    tiers.find(t => t.brand === brand && t.weight_g === null && t.category === category) ??
-    tiers.find(t => t.brand === brand && t.weight_g === null && t.category === null) ??
-    tiers.find(t => t.brand === null && wb(t) && t.category === category) ??
-    tiers.find(t => t.brand === null && wb(t) && t.category === null) ??
-    tiers.find(t => t.brand === null && t.weight_g === null && t.category === category) ??
-    tiers.find(t => t.brand === null && t.weight_g === null && t.category === null);
+
+  // For dukati: match by product name (stored in tier's brand field), ignore weight
+  const tier = (category === "dukat" || category === "multipack")
+    ? (
+        tiers.find(t => t.brand === productName && t.category === category) ??
+        tiers.find(t => t.brand === null && t.category === category) ??
+        tiers.find(t => t.brand === null && t.category === null)
+      )
+    : (
+        tiers.find(t => t.brand === brand && wb(t) && t.category === category) ??
+        tiers.find(t => t.brand === brand && wb(t) && t.category === null) ??
+        tiers.find(t => t.brand === brand && t.weight_g === null && t.category === category) ??
+        tiers.find(t => t.brand === brand && t.weight_g === null && t.category === null) ??
+        tiers.find(t => t.brand === null && wb(t) && t.category === category) ??
+        tiers.find(t => t.brand === null && wb(t) && t.category === null) ??
+        tiers.find(t => t.brand === null && t.weight_g === null && t.category === category) ??
+        tiers.find(t => t.brand === null && t.weight_g === null && t.category === null)
+      );
   const ms = tier?.margin_stock_pct    ?? 3.0;
   const ma = tier?.margin_advance_pct  ?? 2.0;
   const mp = tier?.margin_purchase_pct ?? -2.0;
@@ -188,6 +198,28 @@ export default function AdminCenePage() {
 
   const knownBrands = useMemo(
     () => [...new Set(variants.map(v => v.products.brand))].sort(),
+    [variants]
+  );
+
+  // For dukat tiers: returns product names. For others: returns brands filtered by category+weight.
+  const brandsForTier = useCallback(
+    (category: string | null, weight_g: number | null): string[] => {
+      if (category === "dukat" || category === "multipack") {
+        return [...new Set(
+          variants
+            .filter(v => v.products.category === category)
+            .map(v => v.name)
+        )].sort();
+      }
+      return [...new Set(
+        variants
+          .filter(v =>
+            (category === null || v.products.category === category) &&
+            (weight_g === null || Math.abs(Number(v.weight_g) - weight_g) < 0.001)
+          )
+          .map(v => v.products.brand)
+      )].sort();
+    },
     [variants]
   );
 
@@ -316,7 +348,8 @@ export default function AdminCenePage() {
     }
   }
 
-  async function handleDeleteBrandTier(tierId: string) {
+  async function handleDeleteBrandTier(tierId: string, name: string) {
+    if (!confirm(`Da li ste sigurni da želite da obrišete marže za "${name}"?`)) return;
     setBrandDeletingId(tierId);
     try {
       await fetch("/api/admin/tiers", {
@@ -548,7 +581,7 @@ export default function AdminCenePage() {
                             <span className="w-1 h-1 rounded-full bg-[#BF8E41]/40 shrink-0" />
                             <span className="text-xs font-medium text-[#BF8E41] truncate">{bt.brand}</span>
                             <button
-                              onClick={() => handleDeleteBrandTier(bt.id)}
+                              onClick={() => handleDeleteBrandTier(bt.id, bt.brand ?? "")}
                               disabled={brandDeletingId === bt.id}
                               className="ml-auto p-1 rounded text-[#555] hover:text-red-400 transition-colors disabled:opacity-40 shrink-0"
                               title="Obriši brend marže"
@@ -589,7 +622,7 @@ export default function AdminCenePage() {
                             className="bg-[#1B1B1C] border border-[#2E2E2F] rounded px-2 py-1 text-[11px] text-[#8A8A8A] focus:outline-none focus:border-[#BF8E41]/60 min-w-0 flex-1"
                           >
                             <option value="">- odaberi brend -</option>
-                            {knownBrands
+                            {brandsForTier(tier.category, tier.weight_g)
                               .filter(b => !brandSubs.some(bt => bt.brand === b))
                               .map(b => <option key={b} value={b}>{b}</option>)
                             }
@@ -683,7 +716,7 @@ export default function AdminCenePage() {
             {filtered.map(v => {
               const e = overrideEdits[v.id] ?? { stock: "", advance: "", purchase: "" };
               const hasOverride = !!(e.stock || e.advance || e.purchase);
-              const auto = computeAutoPrice(v.weight_g, v.products.category, v.products.brand, tiers, spotPerGram);
+              const auto = computeAutoPrice(v.weight_g, v.products.category, v.products.brand, tiers, spotPerGram, v.name);
 
               return (
                 <div key={v.id} className={["grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-px border-t border-[#2E2E2F] first:border-t-0",

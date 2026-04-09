@@ -8,7 +8,7 @@ export type Database = {
           id: string;
           slug: string;
           name: string;
-          category: "poluga" | "plocica" | "dukat" | "novac";
+          category: "poluga" | "plocica" | "dukat" | "multipack";
           brand: string;
           refinery: string | null;
           origin: string | null;

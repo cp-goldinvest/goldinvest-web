@@ -4,7 +4,8 @@ import { createServiceClient } from "@/lib/supabase/server";
 /**
  * POST /api/admin/rates
  *
- * Admin sets the daily EUR/RSD exchange rate (done every morning).
+ * Admin sets the EUR/RSD exchange rate manually.
+ * The rate stays active indefinitely until admin explicitly changes it.
  *
  * Logic:
  *   1. Validate input
@@ -14,8 +15,8 @@ import { createServiceClient } from "@/lib/supabase/server";
  *      - price_per_g_rsd is auto-computed by Postgres: xau_eur / 31.1035 * eur_rsd
  *   4. Return computed rsd_per_gram so admin UI can show preview
  *
- * The cron job (/api/cron/fetch-gold) will carry this eur_rsd forward
- * into all subsequent auto snapshots until admin updates it again.
+ * The cron job (/api/cron/fetch-gold) always uses the latest manual rate
+ * (no time limit) as the highest-priority EUR/RSD source.
  */
 
 const GRAMS_PER_OZ = 31.1034768;

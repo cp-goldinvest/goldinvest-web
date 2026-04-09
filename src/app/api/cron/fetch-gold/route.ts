@@ -9,10 +9,9 @@ import { createServiceClient } from "@/lib/supabase/server";
  * priority chain, and inserts a new gold_price_snapshots row.
  *
  * EUR/RSD priority:
- *   1. Manual rate set by admin today (source='manual_rates', last 24h)
- *   2. Live rate from frankfurter.app (ECB - free, no API key)
- *   3. Latest stored eur_rsd from DB (any snapshot)
- *   4. If none available → skip snapshot, log error
+ *   1. Latest manual rate set by admin (source='manual_rates', no time limit)
+ *   2. Latest stored eur_rsd from DB (any snapshot)
+ *   3. If none available → skip snapshot, log error
  *
  * XAU/EUR priority:
  *   1. goldprice.org  (free, no key)
@@ -102,24 +101,18 @@ export async function GET(request: Request) {
 
 /**
  * Resolves the active EUR/RSD rate using this priority:
- *  1. Admin manual rate (source='manual_rates', set within last 24h)
- *  2. ECB live rate via frankfurter.app (free, no key)
- *  3. Latest stored eur_rsd from any snapshot in DB
- *  4. null → caller must skip snapshot
- *
- * A 24h window is used for manual rates instead of a strict calendar day
- * to handle timezone edge cases and late-night rate changes.
+ *  1. Latest admin manual rate (source='manual_rates', no time limit — stays until changed)
+ *  2. Latest stored eur_rsd from any snapshot in DB
+ *  3. null → caller must skip snapshot
  */
 async function resolveEurRsd(
   supabase: ReturnType<typeof createServiceClient>
 ): Promise<EurRsdResult | null> {
-  // 1. Manual rate - admin override has highest priority
-  const since24h = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  // 1. Manual rate - admin override has highest priority, valid indefinitely
   const { data: manualSnap } = await supabase
     .from("gold_price_snapshots")
     .select("eur_rsd")
     .eq("source", "manual_rates")
-    .gte("fetched_at", since24h)
     .not("eur_rsd", "is", null)
     .order("fetched_at", { ascending: false })
     .limit(1)
@@ -129,13 +122,7 @@ async function resolveEurRsd(
     return { eur_rsd: manualSnap.eur_rsd, eur_rsd_source: "manual" };
   }
 
-  // 2. Live ECB rate from frankfurter.app
-  const apiRate = await fetchEurRsdFromApi();
-  if (apiRate != null) {
-    return { eur_rsd: apiRate, eur_rsd_source: "api" };
-  }
-
-  // 3. Latest known rate from DB (any snapshot)
+  // 2. Latest known rate from DB (any snapshot)
   const { data: lastSnap } = await supabase
     .from("gold_price_snapshots")
     .select("eur_rsd")
@@ -149,29 +136,7 @@ async function resolveEurRsd(
     return { eur_rsd: lastSnap.eur_rsd, eur_rsd_source: "fallback" };
   }
 
-  // 4. Nothing available
-  return null;
-}
-
-/**
- * Fetch EUR/RSD from ECB via frankfurter.app.
- * Free, no API key, data from the European Central Bank.
- * Note: ECB updates rates on business days around 16:00 CET.
- */
-async function fetchEurRsdFromApi(): Promise<number | null> {
-  try {
-    const res = await fetch(
-      "https://api.frankfurter.app/latest?from=EUR&to=RSD",
-      { next: { revalidate: 0 } }
-    );
-    if (res.ok) {
-      const data = await res.json();
-      const rate: unknown = data?.rates?.RSD;
-      if (typeof rate === "number" && rate > 50 && rate < 500) return rate;
-    }
-  } catch {
-    console.warn("[cron/fetch-gold] frankfurter.app EUR/RSD fetch failed");
-  }
+  // 3. Nothing available
   return null;
 }
 
