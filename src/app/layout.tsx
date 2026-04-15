@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Rethink_Sans } from "next/font/google";
 import "./globals.css";
+import MobilePhoneBar from "@/components/layout/MobilePhoneBar";
 
 const ppEditorial = localFont({
   src: [
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="sr">
       <body className={`${rethinkSans.variable} ${ppEditorial.variable} antialiased`}>
         {children}
+        <MobilePhoneBar />
       </body>
     </html>
   );

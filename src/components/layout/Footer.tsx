@@ -43,7 +43,7 @@ const headingStyle: React.CSSProperties = {
 
 export function Footer() {
   return (
-    <footer style={{ background: "#101010" }}>
+    <footer style={{ background: "#101010" }} className="pb-[60px] md:pb-0">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-16">
 
         {/* Main grid */}
