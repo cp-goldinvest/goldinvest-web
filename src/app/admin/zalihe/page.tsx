@@ -86,16 +86,24 @@ function formatWeight(g: number) {
   return g >= 1000 ? `${g / 1000} kg` : `${g} g`;
 }
 
-/**
- * Find the stock margin % for a variant from pricing tiers.
- * Matches on: exact weight+category > exact weight (any) > catch-all+category > global catch-all.
- */
-function findStockMarginPct(weightG: number, category: string, tiers: Tier[]): number {
-  const tier =
-    tiers.find((t) => t.weight_g !== null && Math.abs(t.weight_g - weightG) < 0.001 && t.category === category) ??
-    tiers.find((t) => t.weight_g !== null && Math.abs(t.weight_g - weightG) < 0.001 && t.category === null) ??
-    tiers.find((t) => t.weight_g === null && t.category === category) ??
-    tiers.find((t) => t.weight_g === null && t.category === null);
+function findStockMarginPct(weightG: number, category: string, tiers: Tier[], brand?: string | null): number {
+  const wb = (t: Tier) => t.weight_g !== null && Math.abs(t.weight_g - weightG) < 0.001;
+  const ca = (t: Tier, c: string | null) => t.category === c;
+  const br = (t: Tier, b: string | null) => (t as any).brand === b;
+
+  let tier: Tier | undefined;
+  if (brand) {
+    tier =
+      tiers.find((t) => br(t, brand) && wb(t) && ca(t, category)) ??
+      tiers.find((t) => br(t, brand) && wb(t) && ca(t, null)) ??
+      tiers.find((t) => br(t, brand) && !wb(t) && t.weight_g === null && ca(t, category)) ??
+      tiers.find((t) => br(t, brand) && !wb(t) && t.weight_g === null && ca(t, null));
+  }
+  tier ??=
+    tiers.find((t) => wb(t) && ca(t, category)) ??
+    tiers.find((t) => wb(t) && ca(t, null)) ??
+    tiers.find((t) => t.weight_g === null && ca(t, category)) ??
+    tiers.find((t) => t.weight_g === null && ca(t, null));
   return tier?.margin_stock_pct ?? 3.0;
 }
 
@@ -264,7 +272,7 @@ function VariantCard({
   const spotPerGram = livePrice?.rsd_per_gram ?? 0;
 
   // Stock margin from pricing tiers - same logic used to calculate site price
-  const stockMarginPct = findStockMarginPct(group.weightG, group.category, tiers);
+  const stockMarginPct = findStockMarginPct(group.weightG, group.category, tiers, group.brand);
 
   // Metal value: spot price × weight (no selling markup - intrinsic gold value)
   const metalPricePerUnit = spotPerGram * group.weightG;
@@ -650,7 +658,7 @@ export default function AdminZalikePage() {
   // Use actual tier margins for selling value (same as used on site)
   const totalSellingValue = livePrice && tiers.length > 0
     ? allGroups.reduce((s, g) => {
-        const margin = findStockMarginPct(g.weightG, g.category, tiers);
+        const margin = findStockMarginPct(g.weightG, g.category, tiers, g.brand);
         const price = livePrice.rsd_per_gram * g.weightG * (1 + margin / 100);
         return s + price * g.items.length;
       }, 0)
