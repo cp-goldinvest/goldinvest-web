@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type PriceData = {
   xau_eur: number;
@@ -10,20 +10,17 @@ type PriceData = {
   rates_updated_at: string;
 };
 
-function getTimeAgo(isoString: string): string {
-  const diff = Math.floor((Date.now() - new Date(isoString).getTime()) / 1000);
+function getTimeAgo(ms: number): string {
+  const diff = Math.floor((Date.now() - ms) / 1000);
   if (diff < 60) return `${diff}s`;
-  if (diff < 3600) {
-    const m = Math.floor(diff / 60);
-    return m === 1 ? "1 min" : `${m} min`;
-  }
-  const h = Math.floor(diff / 3600);
-  return h === 1 ? "1h" : `${h}h`;
+  const m = Math.floor(diff / 60);
+  return m === 1 ? "1 min" : `${m} min`;
 }
 
 export function PriceTicker() {
   const [data, setData] = useState<PriceData | null>(null);
   const [timeAgo, setTimeAgo] = useState("...");
+  const lastFetchedAt = useRef<number | null>(null);
 
   useEffect(() => {
     async function fetchPrices() {
@@ -32,6 +29,7 @@ export function PriceTicker() {
         if (!res.ok) return;
         const json: PriceData = await res.json();
         setData(json);
+        lastFetchedAt.current = Date.now();
       } catch {
         // silent
       }
@@ -43,8 +41,13 @@ export function PriceTicker() {
 
   useEffect(() => {
     if (!data) return;
-    setTimeAgo(getTimeAgo(data.fetched_at));
-    const interval = setInterval(() => setTimeAgo(getTimeAgo(data.fetched_at)), 30_000);
+    const update = () => {
+      if (lastFetchedAt.current !== null) {
+        setTimeAgo(getTimeAgo(lastFetchedAt.current));
+      }
+    };
+    update();
+    const interval = setInterval(update, 15_000);
     return () => clearInterval(interval);
   }, [data]);
 
