@@ -206,7 +206,7 @@ export function BlogGrid({ posts }: Props) {
   const [active, setActive] = useState<Category>("Svi tekstovi");
 
   const featured = posts.find((p) => p.featured);
-  const rest = posts.filter((p) => !p.featured);
+  const rest = posts.filter((p) => p.slug !== featured?.slug);
 
   const filtered =
     active === "Svi tekstovi"
