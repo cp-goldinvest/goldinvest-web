@@ -23,7 +23,7 @@ const rethinkSans = Rethink_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Investiciono zlato | Prodaja Investicionog Zlata Beograd i Srbija",
+  title: "Gold Invest - Investiciono zlato Beograd",
   description:
     "Gold Invest nudi vrhunske LBMA sertifikovane zlatne poluge, pločice i dukate. Trenutna kupovina, avansne ponude i otkup. Brza dostava u Srbiji.",
   metadataBase: new URL("https://goldinvest.rs"),
