@@ -34,6 +34,7 @@ export function ContactForm() {
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   function set(key: keyof Field, value: string) {
     setFields((f) => ({ ...f, [key]: value }));
@@ -42,9 +43,24 @@ export function ContactForm() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setStatus("sending");
-    // Placeholder: replace with your API route or email service
-    await new Promise((r) => setTimeout(r, 900));
-    setStatus("sent");
+    setErrorMsg(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setErrorMsg(data?.error || "Greška pri slanju. Pokušajte ponovo.");
+        setStatus("error");
+        return;
+      }
+      setStatus("sent");
+    } catch {
+      setErrorMsg("Greška u komunikaciji. Pokušajte ponovo.");
+      setStatus("error");
+    }
   }
 
   if (status === "sent") {
@@ -181,8 +197,8 @@ export function ContactForm() {
 
       <button
         type="submit"
-        disabled
-        className="inline-flex items-center justify-center gap-2 w-full py-4 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={status === "sending"}
+        className="inline-flex items-center justify-center gap-2 w-full py-4 rounded-full text-[#1B1B1C] font-semibold transition-all duration-200 hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
         style={{
           backgroundColor: "#BEAD87",
           fontFamily: "var(--font-rethink), sans-serif",
@@ -190,8 +206,24 @@ export function ContactForm() {
           boxShadow: "0px 4px 14px rgba(190,173,135,0.35)",
         }}
       >
-        Forma privremeno nedostupna
+        {status === "sending" ? (
+          <>
+            <Loader2 size={16} className="animate-spin" />
+            Šalje se…
+          </>
+        ) : (
+          "Pošalji upit"
+        )}
       </button>
+
+      {status === "error" && errorMsg && (
+        <p
+          className="text-center text-[13px] text-[#B85C5C] -mt-2"
+          style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+        >
+          {errorMsg}
+        </p>
+      )}
 
       <p
         className="text-center text-[12px] text-[#BDBDBD] leading-relaxed"

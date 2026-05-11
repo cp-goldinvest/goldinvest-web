@@ -138,6 +138,48 @@ export type Database = {
         Insert: Omit<Database["public"]["Tables"]["admin_users"]["Row"], "id" | "created_at">;
         Update: Partial<Database["public"]["Tables"]["admin_users"]["Insert"]>;
       };
+      newsletter_subscribers: {
+        Row: {
+          id: string;
+          email: string;
+          source: string | null;
+          is_active: boolean;
+          unsubscribed_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          email: string;
+          source?: string | null;
+          is_active?: boolean;
+          unsubscribed_at?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["newsletter_subscribers"]["Insert"]>;
+      };
+      contact_messages: {
+        Row: {
+          id: string;
+          name: string;
+          email: string;
+          phone: string | null;
+          subject: string | null;
+          message: string;
+          status: "new" | "read" | "replied" | "archived";
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          email: string;
+          phone?: string | null;
+          subject?: string | null;
+          message: string;
+          status?: "new" | "read" | "replied" | "archived";
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["contact_messages"]["Insert"]>;
+      };
     };
   };
 };
@@ -150,6 +192,8 @@ export type PricingRule = Database["public"]["Tables"]["pricing_rules"]["Row"];
 export type GoldPriceSnapshot = Database["public"]["Tables"]["gold_price_snapshots"]["Row"];
 export type PurchaseInquiry = Database["public"]["Tables"]["purchase_inquiries"]["Row"];
 export type AdminUser = Database["public"]["Tables"]["admin_users"]["Row"];
+export type NewsletterSubscriber = Database["public"]["Tables"]["newsletter_subscribers"]["Row"];
+export type ContactMessage = Database["public"]["Tables"]["contact_messages"]["Row"];
 
 // Composite type used across product pages
 export type VariantWithPricing = ProductVariant & {

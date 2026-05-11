@@ -23,6 +23,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "recharts": "^3.8.0",
+    "resend": "^6.12.3",
     "sanity": "^5.20.0",
     "styled-components": "^6.4.0"
   },

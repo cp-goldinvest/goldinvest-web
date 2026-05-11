@@ -5,15 +5,31 @@ import { Loader2, CheckCircle2, ArrowRight } from "lucide-react";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!email) return;
     setStatus("sending");
-    // Placeholder - wire to your email service
-    await new Promise((r) => setTimeout(r, 800));
-    setStatus("sent");
+    setErrorMsg(null);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "blog" }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setErrorMsg(data?.error || "Greška pri prijavi. Pokušajte ponovo.");
+        setStatus("error");
+        return;
+      }
+      setStatus("sent");
+    } catch {
+      setErrorMsg("Greška u komunikaciji. Pokušajte ponovo.");
+      setStatus("error");
+    }
   }
 
   return (
@@ -107,6 +123,16 @@ export function NewsletterSection() {
               )}
             </button>
           </form>
+        )}
+
+        {/* Error */}
+        {status === "error" && errorMsg && (
+          <p
+            className="mt-3 text-[12.5px] text-[#B85C5C]"
+            style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+          >
+            {errorMsg}
+          </p>
         )}
 
         {/* Fine print */}
