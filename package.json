@@ -18,10 +18,10 @@
     "dotenv": "^17.4.1",
     "lucide-react": "^0.577.0",
     "motion": "^12.38.0",
-    "next": "16.1.6",
+    "next": "16.2.6",
     "next-sanity": "^12.2.2",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
     "recharts": "^3.8.0",
     "resend": "^6.12.3",
     "sanity": "^5.20.0",
@@ -30,12 +30,16 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "16.2.6",
     "supabase": "^2.76.17",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3"
   }
 }

@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   let supabaseResponse = NextResponse.next({ request });
@@ -29,12 +29,12 @@ export async function middleware(request: NextRequest) {
 
     const { data, error } = await supabase.auth.getUser();
     if (error) {
-      console.warn("[middleware] getUser error:", error.message);
+      console.warn("[proxy] getUser error:", error.message);
     } else {
       user = data.user;
     }
   } catch (err) {
-    console.error("[middleware] crash:", err);
+    console.error("[proxy] crash:", err);
   }
 
   // Strip query params from homepage (e.g. ?NA causes GSC duplicates)
@@ -42,7 +42,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url), { status: 301 });
   }
 
-  console.log("[middleware]", pathname, "user:", user?.email ?? "null");
+  console.log("[proxy]", pathname, "user:", user?.email ?? "null");
 
   // Protect API admin routes - return 401 instead of redirect
   if (!user && pathname.startsWith("/api/admin")) {
