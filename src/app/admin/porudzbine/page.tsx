@@ -78,6 +78,13 @@ function timeAgo(iso: string) {
   return `pre ${Math.floor(diff / 1440)} dana`;
 }
 
+const STALE_PENDING_MS = 24 * 60 * 60 * 1000;
+
+function isStalePending(o: Order): boolean {
+  if (o.status !== "pending_payment") return false;
+  return Date.now() - new Date(o.created_at).getTime() > STALE_PENDING_MS;
+}
+
 function formatRsd(n: number): string {
   return new Intl.NumberFormat("sr-RS").format(Math.round(n));
 }
@@ -267,9 +274,15 @@ function OrderCard({
 }) {
   const cfg = STATUS_CONFIG[o.status];
   const StatusIcon = cfg.icon;
+  const stale = isStalePending(o);
 
   return (
-    <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-xl p-5">
+    <div
+      className={[
+        "bg-[#1B1B1C] border rounded-xl p-5",
+        stale ? "border-red-500/40 ring-1 ring-red-500/15" : "border-[#2E2E2F]",
+      ].join(" ")}
+    >
       <div className="flex items-start justify-between gap-4 mb-4">
         {/* Header */}
         <div className="flex-1 min-w-0">
@@ -320,12 +333,18 @@ function OrderCard({
           )}
         </div>
 
-        {/* Status pill */}
-        <div className="shrink-0">
+        {/* Status pill (+ stale badge) */}
+        <div className="shrink-0 flex flex-col items-end gap-1.5">
           <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${cfg.color}`}>
             <StatusIcon size={10} />
             {cfg.label}
           </span>
+          {stale && (
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold border text-red-400 bg-red-500/10 border-red-500/30">
+              <AlertTriangle size={9} />
+              Starije od 24h
+            </span>
+          )}
         </div>
       </div>
 
