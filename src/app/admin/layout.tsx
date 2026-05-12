@@ -11,14 +11,16 @@ import {
   LogOut,
   ChevronRight,
   LayoutList,
+  ShoppingBag,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 // Dnevne operacije - koriste se svaki dan
 const NAV_DAILY = [
-  { href: "/admin/cene",   label: "Cene i marže", icon: TrendingUp, desc: "Kursevi, marže, override" },
-  { href: "/admin/zalihe", label: "Zalihe",        icon: Package,    desc: "Stanje na stanju" },
-  { href: "/admin/upiti",  label: "Upiti",         icon: Inbox,      desc: "Zahtevi klijenata" },
+  { href: "/admin/cene",        label: "Cene i marže", icon: TrendingUp, desc: "Kursevi, marže, override" },
+  { href: "/admin/zalihe",      label: "Zalihe",        icon: Package,    desc: "Stanje na stanju" },
+  { href: "/admin/upiti",       label: "Upiti",         icon: Inbox,      desc: "Zahtevi klijenata" },
+  { href: "/admin/porudzbine",  label: "Porudžbine",    icon: ShoppingBag,desc: "Zlatne Pločice" },
 ];
 
 // Admin alati - koriste se retko
