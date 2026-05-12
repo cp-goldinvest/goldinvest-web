@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { createServiceClient } from "@/lib/supabase/server";
+import { GOLDINVEST_SITE_ID } from "@/lib/site";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SchemaScript } from "@/components/ui/SchemaScript";
 import { buildLocalBusinessSchema, buildWebSiteSchema } from "@/lib/schema";
@@ -42,8 +43,8 @@ async function ProductsSection() {
       Promise.race([p, new Promise<T>((_, reject) => setTimeout(() => reject(new Error("timeout")), 5000))]);
 
     const [r1, r2, r3] = await withTimeout(Promise.all([
-      supabase.from("product_variants").select("*, products!inner(name, brand, origin, category), pricing_rules(*)").eq("is_active", true).order("sort_order"),
-      supabase.from("pricing_tiers").select("*"),
+      supabase.from("product_variants").select("*, products!inner(name, brand, origin, category), pricing_rules(*)").eq("is_active", true).eq("pricing_rules.site_id", GOLDINVEST_SITE_ID).order("sort_order"),
+      supabase.from("pricing_tiers").select("*").eq("site_id", GOLDINVEST_SITE_ID),
       supabase.from("gold_price_snapshots").select("*").order("fetched_at", { ascending: false }).limit(1).single(),
     ]));
     variants = r1.data ?? [];

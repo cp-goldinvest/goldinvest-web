@@ -4,11 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { FilterSortBar, type SortOption, type Filters, type Option } from "./FilterSortBar";
 import { computePrices, formatWeight } from "@/lib/pricing";
+import { pickPricingRule } from "@/lib/site";
 import type { ProductVariant, PricingTier, PricingRule, GoldPriceSnapshot } from "@/lib/supabase/types";
 
 type VariantWithRelations = ProductVariant & {
   products: { name: string; brand: string; origin: string | null; category: string };
-  pricing_rules: PricingRule | null;
+  pricing_rules: PricingRule[] | PricingRule | null;
 };
 
 function getCardName(v: VariantWithRelations): string {
@@ -193,7 +194,7 @@ export function ProductGrid({
           Number(v.weight_g),
           v.products.category,
           snapshot,
-          v.pricing_rules,
+          pickPricingRule(v.pricing_rules),
           tiers,
           v.products.brand,
           v.name

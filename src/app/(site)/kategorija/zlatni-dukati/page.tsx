@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createServiceClient } from "@/lib/supabase/server";
+import { GOLDINVEST_SITE_ID } from "@/lib/site";
 import { CategoryPageTemplate } from "@/components/catalog/CategoryPageTemplate";
 
 export const revalidate = 60;
@@ -80,8 +81,9 @@ export default async function ZlatniDukatiPage() {
         .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
         .in("products.category", ["dukat", "kovanica"])
         .eq("is_active", true)
+        .eq("pricing_rules.site_id", GOLDINVEST_SITE_ID)
         .order("sort_order"),
-      supabase.from("pricing_tiers").select("*"),
+      supabase.from("pricing_tiers").select("*").eq("site_id", GOLDINVEST_SITE_ID),
       supabase
         .from("gold_price_snapshots")
         .select("*")

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createServiceClient } from "@/lib/supabase/server";
+import { GOLDINVEST_SITE_ID } from "@/lib/site";
 import { SchemaScript } from "@/components/ui/SchemaScript";
 import { buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema } from "@/lib/schema";
 import { CategoryHero } from "@/components/catalog/CategoryHero";
@@ -88,6 +89,7 @@ export default async function PoklonaZaRodjenjePage() {
         .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
         .in("products.category", ["dukat", "plocica"])
         .eq("is_active", true)
+        .eq("pricing_rules.site_id", GOLDINVEST_SITE_ID)
         .in("slug", [
           "zlatna-plocica-1g",
           "zlatna-plocica-2g",
@@ -98,7 +100,7 @@ export default async function PoklonaZaRodjenjePage() {
           "filharmonija-1-10-oz",
         ])
         .order("sort_order"),
-      supabase.from("pricing_tiers").select("*"),
+      supabase.from("pricing_tiers").select("*").eq("site_id", GOLDINVEST_SITE_ID),
       supabase
         .from("gold_price_snapshots")
         .select("*")

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { createServiceClient } from "@/lib/supabase/server";
+import { GOLDINVEST_SITE_ID } from "@/lib/site";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { PriceStructureSection } from "@/components/catalog/PriceStructureSection";
 import { DeliverySection } from "@/components/catalog/DeliverySection";
@@ -542,7 +543,8 @@ export default async function PolugaWeightPage({
       .from("product_variants")
       .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
       .eq("products.category", "poluga")
-      .eq("is_active", true);
+      .eq("is_active", true)
+      .eq("pricing_rules.site_id", GOLDINVEST_SITE_ID);
 
     const variantsByWeight = isOneOunce
       ? variantsQuery.gte("weight_g", 31).lte("weight_g", 31.2).order("sort_order")
@@ -550,7 +552,7 @@ export default async function PolugaWeightPage({
 
     const [r1, r2, r3] = await Promise.all([
       variantsByWeight,
-      supabase.from("pricing_tiers").select("*"),
+      supabase.from("pricing_tiers").select("*").eq("site_id", GOLDINVEST_SITE_ID),
       supabase
         .from("gold_price_snapshots")
         .select("*")

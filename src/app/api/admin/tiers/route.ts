@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase/server";
+import { GOLDINVEST_SITE_ID } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -8,6 +9,7 @@ export async function GET() {
   const { data, error } = await supabase
     .from("pricing_tiers")
     .select("*")
+    .eq("site_id", GOLDINVEST_SITE_ID)
     .order("category").order("weight_g", { nullsFirst: false });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(data);
@@ -26,6 +28,7 @@ export async function PATCH(request: Request) {
         margin_purchase_pct: t.margin_purchase_pct,
       })
       .eq("id", t.id)
+      .eq("site_id", GOLDINVEST_SITE_ID)
   );
 
   const results = await Promise.all(updates);
@@ -44,7 +47,7 @@ export async function POST(request: Request) {
   const supabase = createServiceClient();
   const { data, error } = await supabase
     .from("pricing_tiers")
-    .insert({ name, category, weight_g, brand, margin_stock_pct, margin_advance_pct, margin_purchase_pct })
+    .insert({ site_id: GOLDINVEST_SITE_ID, name, category, weight_g, brand, margin_stock_pct, margin_advance_pct, margin_purchase_pct })
     .select()
     .single();
 
@@ -62,13 +65,14 @@ export async function DELETE(request: Request) {
     .from("pricing_tiers")
     .select("brand")
     .eq("id", id)
+    .eq("site_id", GOLDINVEST_SITE_ID)
     .single();
 
   if (!tier?.brand) {
     return NextResponse.json({ error: "Ne možeš obrisati bazni tier" }, { status: 403 });
   }
 
-  const { error } = await supabase.from("pricing_tiers").delete().eq("id", id);
+  const { error } = await supabase.from("pricing_tiers").delete().eq("id", id).eq("site_id", GOLDINVEST_SITE_ID);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ ok: true });
 }

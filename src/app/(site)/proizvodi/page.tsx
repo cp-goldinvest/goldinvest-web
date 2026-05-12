@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createServiceClient } from "@/lib/supabase/server";
+import { GOLDINVEST_SITE_ID } from "@/lib/site";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -26,8 +27,9 @@ export default async function SviProizvodiPage() {
         .from("product_variants")
         .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
         .eq("is_active", true)
+        .eq("pricing_rules.site_id", GOLDINVEST_SITE_ID)
         .order("sort_order"),
-      supabase.from("pricing_tiers").select("*"),
+      supabase.from("pricing_tiers").select("*").eq("site_id", GOLDINVEST_SITE_ID),
       supabase.from("gold_price_snapshots").select("*").order("fetched_at", { ascending: false }).limit(1).single(),
     ]);
     variants = r1.data ?? [];

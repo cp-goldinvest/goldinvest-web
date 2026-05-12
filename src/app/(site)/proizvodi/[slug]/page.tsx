@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { CheckCircle2, Phone } from "lucide-react";
 import { createServiceClient } from "@/lib/supabase/server";
 import { computePrices, formatRsd, formatWeight } from "@/lib/pricing";
+import { GOLDINVEST_SITE_ID, pickPricingRule } from "@/lib/site";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -85,8 +86,9 @@ export default async function ProizvodPage({
         .select("*, products!inner(name, brand, origin, category), pricing_rules(*), length_mm, width_mm, thickness_mm")
         .eq("slug", slug)
         .eq("is_active", true)
+        .eq("pricing_rules.site_id", GOLDINVEST_SITE_ID)
         .single(),
-      supabase.from("pricing_tiers").select("*"),
+      supabase.from("pricing_tiers").select("*").eq("site_id", GOLDINVEST_SITE_ID),
       supabase
         .from("gold_price_snapshots")
         .select("*")
@@ -107,6 +109,7 @@ export default async function ProizvodPage({
         .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
         .eq("products.category", category)
         .eq("is_active", true)
+        .eq("pricing_rules.site_id", GOLDINVEST_SITE_ID)
         .neq("slug", slug)
         .order("sort_order")
         .limit(4);
@@ -131,7 +134,7 @@ export default async function ProizvodPage({
     variant.weight_g,
     product.category,
     snapshotRow,
-    variant.pricing_rules ?? null,
+    pickPricingRule(variant.pricing_rules),
     tiers,
     product.brand,
     variant.name

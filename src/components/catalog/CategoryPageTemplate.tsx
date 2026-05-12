@@ -17,6 +17,7 @@ import { InfoCard } from "@/components/ui/InfoCard";
 import { SchemaScript } from "@/components/ui/SchemaScript";
 import { buildBreadcrumbSchema, buildFaqSchema, buildItemListSchema } from "@/lib/schema";
 import { computePrices, formatWeight } from "@/lib/pricing";
+import { pickPricingRule } from "@/lib/site";
 
 // ─── Sub-types ────────────────────────────────────────────────────────────────
 
@@ -139,7 +140,7 @@ export function CategoryPageTemplate({
             const displayName = normalized(productName).includes(normalized(weight))
               ? productName
               : `${productName} ${weight}`.trim();
-            const prices = computePrices(v.weight_g, v.products?.category, snapshot, v.pricing_rules ?? null, tiers, v.products?.brand, v.name);
+            const prices = computePrices(v.weight_g, v.products?.category, snapshot, pickPricingRule(v.pricing_rules), tiers, v.products?.brand, v.name);
             return {
               name: displayName,
               url: `https://goldinvest.rs/proizvodi/${v.slug}`,

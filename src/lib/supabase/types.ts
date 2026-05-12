@@ -50,6 +50,7 @@ export type Database = {
       pricing_tiers: {
         Row: {
           id: string;
+          site_id: number;
           name: string;
           category: string | null;
           weight_g: number | null;
@@ -59,20 +60,25 @@ export type Database = {
           margin_purchase_pct: number;
           created_at: string;
         };
-        Insert: Omit<Database["public"]["Tables"]["pricing_tiers"]["Row"], "id" | "created_at">;
+        Insert: Omit<Database["public"]["Tables"]["pricing_tiers"]["Row"], "id" | "created_at" | "site_id"> & {
+          site_id?: number;
+        };
         Update: Partial<Database["public"]["Tables"]["pricing_tiers"]["Insert"]>;
       };
       pricing_rules: {
         Row: {
           id: string;
           variant_id: string;
+          site_id: number;
           override_stock_price: number | null;
           override_advance_price: number | null;
           override_purchase_price: number | null;
           updated_at: string;
           updated_by: string | null;
         };
-        Insert: Omit<Database["public"]["Tables"]["pricing_rules"]["Row"], "id" | "updated_at">;
+        Insert: Omit<Database["public"]["Tables"]["pricing_rules"]["Row"], "id" | "updated_at" | "site_id"> & {
+          site_id?: number;
+        };
         Update: Partial<Database["public"]["Tables"]["pricing_rules"]["Insert"]>;
       };
       gold_price_snapshots: {
@@ -113,6 +119,7 @@ export type Database = {
         Row: {
           id: string;
           variant_id: string | null;
+          site_id: number;
           product_name: string;
           weight_g: number | null;
           price_at_time: number | null;
@@ -124,8 +131,92 @@ export type Database = {
           status: "new" | "contacted" | "sold" | "cancelled";
           created_at: string;
         };
-        Insert: Omit<Database["public"]["Tables"]["purchase_inquiries"]["Row"], "id" | "created_at">;
+        Insert: Omit<Database["public"]["Tables"]["purchase_inquiries"]["Row"], "id" | "created_at" | "site_id"> & {
+          site_id?: number;
+        };
         Update: Partial<Database["public"]["Tables"]["purchase_inquiries"]["Insert"]>;
+      };
+      sites: {
+        Row: {
+          id: number;
+          key: string;
+          name: string;
+          domain: string;
+          base_url: string;
+          is_active: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id: number;
+          key: string;
+          name: string;
+          domain: string;
+          base_url: string;
+          is_active?: boolean;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["sites"]["Insert"]>;
+      };
+      orders: {
+        Row: {
+          id: string;
+          order_number: number;
+          site_id: number;
+          status: "pending_payment" | "paid" | "shipped" | "delivered" | "cancelled";
+          customer_name: string;
+          customer_email: string;
+          customer_phone: string;
+          shipping_address_line: string;
+          shipping_city: string;
+          shipping_postal_code: string | null;
+          shipping_country: string;
+          customer_note: string | null;
+          subtotal_rsd: number;
+          shipping_rsd: number;
+          total_rsd: number;
+          payment_method: "bank_transfer" | "cash_on_delivery" | "online_card";
+          payment_reference: string | null;
+          shipping_carrier: string | null;
+          shipping_tracking_number: string | null;
+          gold_snapshot_id: string | null;
+          created_at: string;
+          paid_at: string | null;
+          shipped_at: string | null;
+          delivered_at: string | null;
+          cancelled_at: string | null;
+          cancelled_reason: string | null;
+        };
+        Insert: Omit<
+          Database["public"]["Tables"]["orders"]["Row"],
+          "id" | "order_number" | "created_at"
+        > & {
+          id?: string;
+          order_number?: number;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["orders"]["Insert"]>;
+      };
+      order_items: {
+        Row: {
+          id: string;
+          order_id: string;
+          variant_id: string | null;
+          lager_item_id: string | null;
+          product_name_snapshot: string;
+          variant_name_snapshot: string | null;
+          weight_g_snapshot: number;
+          category_snapshot: string;
+          quantity: number;
+          unit_price_rsd: number;
+          line_total_rsd: number;
+          purchase_price_snapshot_rsd: number | null;
+          created_at: string;
+        };
+        Insert: Omit<Database["public"]["Tables"]["order_items"]["Row"], "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["order_items"]["Insert"]>;
       };
       admin_users: {
         Row: {
@@ -194,10 +285,16 @@ export type PurchaseInquiry = Database["public"]["Tables"]["purchase_inquiries"]
 export type AdminUser = Database["public"]["Tables"]["admin_users"]["Row"];
 export type NewsletterSubscriber = Database["public"]["Tables"]["newsletter_subscribers"]["Row"];
 export type ContactMessage = Database["public"]["Tables"]["contact_messages"]["Row"];
+export type Site = Database["public"]["Tables"]["sites"]["Row"];
+export type Order = Database["public"]["Tables"]["orders"]["Row"];
+export type OrderItem = Database["public"]["Tables"]["order_items"]["Row"];
 
-// Composite type used across product pages
+// Composite type used across product pages.
+// pricing_rules is an array because the (variant_id, site_id) UNIQUE constraint
+// makes the embed many-per-variant. Always filter to single site at query time
+// (.eq("pricing_rules.site_id", GOLDINVEST_SITE_ID)) and access via pickPricingRule().
 export type VariantWithPricing = ProductVariant & {
-  pricing_rules: PricingRule | null;
+  pricing_rules: PricingRule[] | PricingRule | null;
   computed_prices: {
     stock: number;
     advance: number;

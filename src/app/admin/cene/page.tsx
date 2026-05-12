@@ -17,6 +17,12 @@ type Tier = {
 
 type BrandDraft = { brand: string; stock: string; advance: string; purchase: string };
 
+type RuleRow = {
+  override_stock_price: number | null;
+  override_advance_price: number | null;
+  override_purchase_price: number | null;
+};
+
 type VariantRow = {
   id: string;
   name: string;
@@ -24,11 +30,7 @@ type VariantRow = {
   purity: number;
   sku: string | null;
   products: { name: string; brand: string; category: string };
-  pricing_rules: {
-    override_stock_price: number | null;
-    override_advance_price: number | null;
-    override_purchase_price: number | null;
-  } | null;
+  pricing_rules: RuleRow[] | RuleRow | null;
 };
 
 type LivePrice = { rsd_per_gram: number; xau_eur: number; eur_rsd: number; eur_rsd_source?: string | null };
@@ -260,7 +262,9 @@ export default function AdminCenePage() {
       setVariants(v);
       const edits: Record<string, { stock: string; advance: string; purchase: string }> = {};
       v.forEach(variant => {
-        const r = variant.pricing_rules;
+        const r = Array.isArray(variant.pricing_rules)
+          ? variant.pricing_rules[0] ?? null
+          : variant.pricing_rules;
         edits[variant.id] = {
           stock:    r?.override_stock_price    ? String(r.override_stock_price)    : "",
           advance:  r?.override_advance_price  ? String(r.override_advance_price)  : "",
