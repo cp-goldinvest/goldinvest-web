@@ -164,6 +164,8 @@ function PriceCell({ autoPrice, value, onChange, color = "default" }: {
 // ── Main ──────────────────────────────────────────────────────
 export default function AdminCenePage() {
   const [activeTab, setActiveTab] = useState<"marze" | "cene" | "jutro">("marze");
+  const [activeSite, setActiveSite] = useState<1 | 2>(1);
+  const isZP = activeSite === 2;
 
   // Live price
   const [livePrice, setLivePrice] = useState<LivePrice | null>(null);
@@ -238,8 +240,8 @@ export default function AdminCenePage() {
 
   const loadData = useCallback(async () => {
     const [tiersRes, varRes, priceRes] = await Promise.all([
-      fetch("/api/admin/tiers"),
-      fetch("/api/admin/variants-with-rules"),
+      fetch(`/api/admin/tiers?site_id=${activeSite}`),
+      fetch(`/api/admin/variants-with-rules?site_id=${activeSite}`),
       fetch("/api/prices"),
     ]);
 
@@ -279,7 +281,7 @@ export default function AdminCenePage() {
       if (p.rsd_per_gram) { setLivePrice(p); setLiveFetchedAt(new Date()); }
       if (p.eur_rsd) setEurRsd(String(p.eur_rsd));
     }
-  }, []);
+  }, [activeSite]);
 
   useEffect(() => { loadData(); }, [loadData]);
 
@@ -311,13 +313,13 @@ export default function AdminCenePage() {
       const payload = tiers.map(t => ({
         id: t.id,
         margin_stock_pct:    parseFloat(tierEdits[t.id]?.stock    ?? String(t.margin_stock_pct)),
-        margin_advance_pct:  parseFloat(tierEdits[t.id]?.advance  ?? String(t.margin_advance_pct)),
-        margin_purchase_pct: parseFloat(tierEdits[t.id]?.purchase ?? String(t.margin_purchase_pct)),
+        margin_advance_pct:  isZP ? 0 : parseFloat(tierEdits[t.id]?.advance  ?? String(t.margin_advance_pct)),
+        margin_purchase_pct: isZP ? 0 : parseFloat(tierEdits[t.id]?.purchase ?? String(t.margin_purchase_pct)),
       }));
       const res = await fetch("/api/admin/tiers", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ tiers: payload, site_id: activeSite }),
       });
       if (!res.ok) throw new Error((await res.json()).error ?? "Greška");
       setTierSaved(true);
@@ -338,12 +340,15 @@ export default function AdminCenePage() {
       const res = await fetch("/api/admin/tiers", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify([{
-          id: tierId,
-          margin_stock_pct:    parseFloat(e?.stock    ?? "0"),
-          margin_advance_pct:  parseFloat(e?.advance  ?? "0"),
-          margin_purchase_pct: parseFloat(e?.purchase ?? "0"),
-        }]),
+        body: JSON.stringify({
+          site_id: activeSite,
+          tiers: [{
+            id: tierId,
+            margin_stock_pct:    parseFloat(e?.stock    ?? "0"),
+            margin_advance_pct:  isZP ? 0 : parseFloat(e?.advance  ?? "0"),
+            margin_purchase_pct: isZP ? 0 : parseFloat(e?.purchase ?? "0"),
+          }],
+        }),
       });
       if (!res.ok) throw new Error((await res.json()).error ?? "Greška");
       loadData();
@@ -359,7 +364,7 @@ export default function AdminCenePage() {
       await fetch("/api/admin/tiers", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: tierId }),
+        body: JSON.stringify({ id: tierId, site_id: activeSite }),
       });
       loadData();
     } finally {
@@ -376,13 +381,14 @@ export default function AdminCenePage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          site_id: activeSite,
           name: `${draft.brand} (${baseTier.name})`,
           category: baseTier.category,
           weight_g: baseTier.weight_g,
           brand: draft.brand,
           margin_stock_pct:    parseFloat(draft.stock    || String(baseTier.margin_stock_pct)),
-          margin_advance_pct:  parseFloat(draft.advance  || String(baseTier.margin_advance_pct)),
-          margin_purchase_pct: parseFloat(draft.purchase || String(baseTier.margin_purchase_pct)),
+          margin_advance_pct:  isZP ? 0 : parseFloat(draft.advance  || String(baseTier.margin_advance_pct)),
+          margin_purchase_pct: isZP ? 0 : parseFloat(draft.purchase || String(baseTier.margin_purchase_pct)),
         }),
       });
       if (!res.ok) throw new Error((await res.json()).error ?? "Greška");
@@ -402,10 +408,11 @@ export default function AdminCenePage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          site_id: activeSite,
           variant_id: variantId,
           override_stock_price:    e?.stock    ? parseFloat(e.stock)    : null,
-          override_advance_price:  e?.advance  ? parseFloat(e.advance)  : null,
-          override_purchase_price: e?.purchase ? parseFloat(e.purchase) : null,
+          override_advance_price:  isZP ? null : (e?.advance  ? parseFloat(e.advance)  : null),
+          override_purchase_price: isZP ? null : (e?.purchase ? parseFloat(e.purchase) : null),
         }),
       });
       if (!res.ok) throw new Error((await res.json()).error);
@@ -422,7 +429,7 @@ export default function AdminCenePage() {
     await fetch("/api/admin/pricing-rules", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ variant_id: variantId }),
+      body: JSON.stringify({ variant_id: variantId, site_id: activeSite }),
     });
     setOverrideEdits(prev => ({ ...prev, [variantId]: { stock: "", advance: "", purchase: "" } }));
     loadData();
@@ -430,7 +437,8 @@ export default function AdminCenePage() {
 
   const overrideCount = variants.filter(v => {
     const e = overrideEdits[v.id];
-    return e && (e.stock || e.advance || e.purchase);
+    if (!e) return false;
+    return isZP ? !!e.stock : !!(e.stock || e.advance || e.purchase);
   }).length;
 
   const categories = ["sve", ...new Set(variants.map(v => v.products.category))];
@@ -449,6 +457,40 @@ export default function AdminCenePage() {
             <Zap size={13} className="text-amber-400" />
             <span className="text-xs font-medium text-amber-400">{overrideCount} aktivnih override-a</span>
           </div>
+        )}
+      </div>
+
+      {/* Site toggle */}
+      <div className="flex items-center gap-3 mb-5">
+        <span className="text-[11px] text-[#555] uppercase tracking-wider font-semibold">Sajt</span>
+        <div className="flex gap-1 p-1 bg-[#1B1B1C] border border-[#2E2E2F] rounded-lg">
+          <button
+            onClick={() => setActiveSite(1)}
+            className={[
+              "px-4 py-1.5 rounded-md text-xs font-semibold transition-all",
+              activeSite === 1
+                ? "bg-[#BF8E41]/15 text-[#BF8E41] border border-[#BF8E41]/40"
+                : "text-[#8A8A8A] hover:text-[#E9E6D9] border border-transparent"
+            ].join(" ")}
+          >
+            GoldInvest
+          </button>
+          <button
+            onClick={() => setActiveSite(2)}
+            className={[
+              "px-4 py-1.5 rounded-md text-xs font-semibold transition-all",
+              activeSite === 2
+                ? "bg-[#BF8E41]/15 text-[#BF8E41] border border-[#BF8E41]/40"
+                : "text-[#8A8A8A] hover:text-[#E9E6D9] border border-transparent"
+            ].join(" ")}
+          >
+            Zlatne Pločice
+          </button>
+        </div>
+        {isZP && (
+          <span className="text-[11px] text-[#555]">
+            Samo prodajna marža | bez avansne i otkupne
+          </span>
         )}
       </div>
 
@@ -538,11 +580,11 @@ export default function AdminCenePage() {
         <div>
           <p className="text-xs text-[#555] mb-4">Podesi procenat marže po kategoriji. Cene na sajtu se preračunavaju čim sačuvaš.</p>
           <div className="rounded-xl border border-[#2E2E2F] overflow-hidden">
-            <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-px bg-[#2E2E2F] text-[10px] font-semibold text-[#555] uppercase tracking-wider">
+            <div className={`grid ${isZP ? "grid-cols-[2fr_1fr]" : "grid-cols-[2fr_1fr_1fr_1fr]"} gap-px bg-[#2E2E2F] text-[10px] font-semibold text-[#555] uppercase tracking-wider`}>
               <div className="bg-[#242425] px-4 py-3">Kategorija / opseg</div>
               <div className="bg-[#242425] px-4 py-3 text-[#BF8E41]">Prodajna %</div>
-              <div className="bg-[#242425] px-4 py-3">Avansna %</div>
-              <div className="bg-[#242425] px-4 py-3">Otkupna %</div>
+              {!isZP && <div className="bg-[#242425] px-4 py-3">Avansna %</div>}
+              {!isZP && <div className="bg-[#242425] px-4 py-3">Otkupna %</div>}
             </div>
 
             {baseTiers.map(tier => {
@@ -554,7 +596,7 @@ export default function AdminCenePage() {
               return (
                 <Fragment key={tier.id}>
                   {/* ── Base tier row ── */}
-                  <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-px bg-[#2E2E2F] border-t border-[#2E2E2F] first:border-t-0">
+                  <div className={`grid ${isZP ? "grid-cols-[2fr_1fr]" : "grid-cols-[2fr_1fr_1fr_1fr]"} gap-px bg-[#2E2E2F] border-t border-[#2E2E2F] first:border-t-0`}>
                     <div className="bg-[#1B1B1C] px-4 py-4 flex items-center gap-2">
                       <button
                         onClick={() => setExpandedTiers(p => { const n = new Set(p); n.has(tier.id) ? n.delete(tier.id) : n.add(tier.id); return n; })}
@@ -572,15 +614,15 @@ export default function AdminCenePage() {
                       </div>
                     </div>
                     <TierCell value={tierEdits[tier.id]?.stock    ?? ""} onChange={v => setTierEdits(p => ({ ...p, [tier.id]: { ...p[tier.id], stock: v }    }))} color="gold" />
-                    <TierCell value={tierEdits[tier.id]?.advance  ?? ""} onChange={v => setTierEdits(p => ({ ...p, [tier.id]: { ...p[tier.id], advance: v }  }))} />
-                    <TierCell value={tierEdits[tier.id]?.purchase ?? ""} onChange={v => setTierEdits(p => ({ ...p, [tier.id]: { ...p[tier.id], purchase: v } }))} color="muted" />
+                    {!isZP && <TierCell value={tierEdits[tier.id]?.advance  ?? ""} onChange={v => setTierEdits(p => ({ ...p, [tier.id]: { ...p[tier.id], advance: v }  }))} />}
+                    {!isZP && <TierCell value={tierEdits[tier.id]?.purchase ?? ""} onChange={v => setTierEdits(p => ({ ...p, [tier.id]: { ...p[tier.id], purchase: v } }))} color="muted" />}
                   </div>
 
                   {/* ── Brand sub-rows (visible when expanded) ── */}
                   {isExpanded && (
                     <>
                       {brandSubs.map(bt => (
-                        <div key={bt.id} className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-px bg-[#2A2A2B] border-t border-[#2E2E2F]">
+                        <div key={bt.id} className={`grid ${isZP ? "grid-cols-[2fr_1fr]" : "grid-cols-[2fr_1fr_1fr_1fr]"} gap-px bg-[#2A2A2B] border-t border-[#2E2E2F]`}>
                           <div className="bg-[#161617] pl-10 pr-3 py-3 flex items-center gap-2">
                             <span className="w-1 h-1 rounded-full bg-[#BF8E41]/40 shrink-0" />
                             <span className="text-xs font-medium text-[#BF8E41] truncate">{bt.brand}</span>
@@ -593,31 +635,54 @@ export default function AdminCenePage() {
                               <Trash2 size={11} />
                             </button>
                           </div>
-                          <TierCell value={tierEdits[bt.id]?.stock    ?? ""} onChange={v => setTierEdits(p => ({ ...p, [bt.id]: { ...p[bt.id], stock: v }    }))} color="gold" />
-                          <TierCell value={tierEdits[bt.id]?.advance  ?? ""} onChange={v => setTierEdits(p => ({ ...p, [bt.id]: { ...p[bt.id], advance: v }  }))} />
-                          <div className="bg-[#161617] px-3 py-3 flex items-center gap-2">
-                            <div className="flex-1">
-                              <div className="relative flex items-center">
-                                <input type="number" step="0.5"
-                                  value={tierEdits[bt.id]?.purchase ?? ""}
-                                  onChange={e => setTierEdits(p => ({ ...p, [bt.id]: { ...p[bt.id], purchase: e.target.value } }))}
-                                  className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg pl-3 pr-7 py-2 text-sm text-[#8A8A8A] tabular-nums focus:outline-none focus:border-[#BF8E41]/60 transition-colors" />
-                                <span className="absolute right-2.5 text-xs text-[#555] pointer-events-none">%</span>
+                          {isZP ? (
+                            <div className="bg-[#161617] px-3 py-3 flex items-center gap-2">
+                              <div className="flex-1">
+                                <div className="relative flex items-center">
+                                  <input type="number" step="0.5"
+                                    value={tierEdits[bt.id]?.stock ?? ""}
+                                    onChange={e => setTierEdits(p => ({ ...p, [bt.id]: { ...p[bt.id], stock: e.target.value } }))}
+                                    className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg pl-3 pr-7 py-2 text-sm text-[#BF8E41] tabular-nums focus:outline-none focus:border-[#BF8E41]/60 transition-colors" />
+                                  <span className="absolute right-2.5 text-xs text-[#555] pointer-events-none">%</span>
+                                </div>
                               </div>
+                              <button
+                                onClick={() => handleSaveBrandTier(bt.id)}
+                                disabled={brandSavingId === bt.id}
+                                className="px-2.5 py-1.5 rounded-lg text-[10px] font-semibold gold-gradient-bg text-[#1B1B1C] hover:opacity-90 disabled:opacity-50 whitespace-nowrap"
+                              >
+                                {brandSavingId === bt.id ? "..." : "Sačuvaj"}
+                              </button>
                             </div>
-                            <button
-                              onClick={() => handleSaveBrandTier(bt.id)}
-                              disabled={brandSavingId === bt.id}
-                              className="px-2.5 py-1.5 rounded-lg text-[10px] font-semibold gold-gradient-bg text-[#1B1B1C] hover:opacity-90 disabled:opacity-50 whitespace-nowrap"
-                            >
-                              {brandSavingId === bt.id ? "..." : "Sačuvaj"}
-                            </button>
-                          </div>
+                          ) : (
+                            <>
+                              <TierCell value={tierEdits[bt.id]?.stock    ?? ""} onChange={v => setTierEdits(p => ({ ...p, [bt.id]: { ...p[bt.id], stock: v }    }))} color="gold" />
+                              <TierCell value={tierEdits[bt.id]?.advance  ?? ""} onChange={v => setTierEdits(p => ({ ...p, [bt.id]: { ...p[bt.id], advance: v }  }))} />
+                              <div className="bg-[#161617] px-3 py-3 flex items-center gap-2">
+                                <div className="flex-1">
+                                  <div className="relative flex items-center">
+                                    <input type="number" step="0.5"
+                                      value={tierEdits[bt.id]?.purchase ?? ""}
+                                      onChange={e => setTierEdits(p => ({ ...p, [bt.id]: { ...p[bt.id], purchase: e.target.value } }))}
+                                      className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg pl-3 pr-7 py-2 text-sm text-[#8A8A8A] tabular-nums focus:outline-none focus:border-[#BF8E41]/60 transition-colors" />
+                                    <span className="absolute right-2.5 text-xs text-[#555] pointer-events-none">%</span>
+                                  </div>
+                                </div>
+                                <button
+                                  onClick={() => handleSaveBrandTier(bt.id)}
+                                  disabled={brandSavingId === bt.id}
+                                  className="px-2.5 py-1.5 rounded-lg text-[10px] font-semibold gold-gradient-bg text-[#1B1B1C] hover:opacity-90 disabled:opacity-50 whitespace-nowrap"
+                                >
+                                  {brandSavingId === bt.id ? "..." : "Sačuvaj"}
+                                </button>
+                              </div>
+                            </>
+                          )}
                         </div>
                       ))}
 
                       {/* ── Add brand tier draft row ── */}
-                      <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-px bg-[#2A2A2B] border-t border-[#2E2E2F]">
+                      <div className={`grid ${isZP ? "grid-cols-[2fr_1fr]" : "grid-cols-[2fr_1fr_1fr_1fr]"} gap-px bg-[#2A2A2B] border-t border-[#2E2E2F]`}>
                         <div className="bg-[#141415] pl-10 pr-3 py-3 flex items-center gap-2">
                           <Plus size={11} className="text-[#555] shrink-0" />
                           <select
@@ -632,26 +697,49 @@ export default function AdminCenePage() {
                             }
                           </select>
                         </div>
-                        <TierCell value={draft?.stock ?? ""} onChange={v => setBrandDrafts(p => ({ ...p, [tier.id]: { ...(p[tier.id] ?? { brand: "", advance: "", purchase: "" }), stock: v } }))} color="gold" />
-                        <TierCell value={draft?.advance ?? ""} onChange={v => setBrandDrafts(p => ({ ...p, [tier.id]: { ...(p[tier.id] ?? { brand: "", stock: "", purchase: "" }), advance: v } }))} />
-                        <div className="bg-[#141415] px-3 py-3 flex items-center gap-2">
-                          <div className="flex-1">
-                            <div className="relative flex items-center">
-                              <input type="number" step="0.5"
-                                value={draft?.purchase ?? ""}
-                                onChange={e => setBrandDrafts(p => ({ ...p, [tier.id]: { ...(p[tier.id] ?? { brand: "", stock: "", advance: "" }), purchase: e.target.value } }))}
-                                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg pl-3 pr-7 py-2 text-sm text-[#8A8A8A] tabular-nums focus:outline-none focus:border-[#BF8E41]/60 transition-colors" />
-                              <span className="absolute right-2.5 text-xs text-[#555] pointer-events-none">%</span>
+                        {isZP ? (
+                          <div className="bg-[#141415] px-3 py-3 flex items-center gap-2">
+                            <div className="flex-1">
+                              <div className="relative flex items-center">
+                                <input type="number" step="0.5"
+                                  value={draft?.stock ?? ""}
+                                  onChange={e => setBrandDrafts(p => ({ ...p, [tier.id]: { ...(p[tier.id] ?? { brand: "", advance: "", purchase: "" }), stock: e.target.value } }))}
+                                  className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg pl-3 pr-7 py-2 text-sm text-[#BF8E41] tabular-nums focus:outline-none focus:border-[#BF8E41]/60 transition-colors" />
+                                <span className="absolute right-2.5 text-xs text-[#555] pointer-events-none">%</span>
+                              </div>
                             </div>
+                            <button
+                              onClick={() => handleCreateBrandTier(tier)}
+                              disabled={!draft?.brand || brandCreatingFor === tier.id}
+                              className="px-2.5 py-1.5 rounded-lg text-[10px] font-semibold gold-gradient-bg text-[#1B1B1C] hover:opacity-90 disabled:opacity-50 whitespace-nowrap"
+                            >
+                              {brandCreatingFor === tier.id ? "..." : "Dodaj"}
+                            </button>
                           </div>
-                          <button
-                            onClick={() => handleCreateBrandTier(tier)}
-                            disabled={!draft?.brand || brandCreatingFor === tier.id}
-                            className="px-2.5 py-1.5 rounded-lg text-[10px] font-semibold gold-gradient-bg text-[#1B1B1C] hover:opacity-90 disabled:opacity-50 whitespace-nowrap"
-                          >
-                            {brandCreatingFor === tier.id ? "..." : "Dodaj"}
-                          </button>
-                        </div>
+                        ) : (
+                          <>
+                            <TierCell value={draft?.stock ?? ""} onChange={v => setBrandDrafts(p => ({ ...p, [tier.id]: { ...(p[tier.id] ?? { brand: "", advance: "", purchase: "" }), stock: v } }))} color="gold" />
+                            <TierCell value={draft?.advance ?? ""} onChange={v => setBrandDrafts(p => ({ ...p, [tier.id]: { ...(p[tier.id] ?? { brand: "", stock: "", purchase: "" }), advance: v } }))} />
+                            <div className="bg-[#141415] px-3 py-3 flex items-center gap-2">
+                              <div className="flex-1">
+                                <div className="relative flex items-center">
+                                  <input type="number" step="0.5"
+                                    value={draft?.purchase ?? ""}
+                                    onChange={e => setBrandDrafts(p => ({ ...p, [tier.id]: { ...(p[tier.id] ?? { brand: "", stock: "", advance: "" }), purchase: e.target.value } }))}
+                                    className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg pl-3 pr-7 py-2 text-sm text-[#8A8A8A] tabular-nums focus:outline-none focus:border-[#BF8E41]/60 transition-colors" />
+                                  <span className="absolute right-2.5 text-xs text-[#555] pointer-events-none">%</span>
+                                </div>
+                              </div>
+                              <button
+                                onClick={() => handleCreateBrandTier(tier)}
+                                disabled={!draft?.brand || brandCreatingFor === tier.id}
+                                className="px-2.5 py-1.5 rounded-lg text-[10px] font-semibold gold-gradient-bg text-[#1B1B1C] hover:opacity-90 disabled:opacity-50 whitespace-nowrap"
+                              >
+                                {brandCreatingFor === tier.id ? "..." : "Dodaj"}
+                              </button>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </>
                   )}
@@ -661,7 +749,9 @@ export default function AdminCenePage() {
 
             <div className="bg-[#1B1B1C] border-t border-[#2E2E2F] px-5 py-4 flex items-center justify-between">
               <p className="text-[11px] text-[#555]">
-                Otkupna je negativna (npr. <span className="text-[#8A8A8A]">-2.00</span> = kupujemo za 2% ispod spot cene)
+                {isZP
+                  ? "ZP koristi samo prodajnu maržu. Cene na zlatneplocice.rs se osvežavaju čim sačuvaš."
+                  : <>Otkupna je negativna (npr. <span className="text-[#8A8A8A]">-2.00</span> = kupujemo za 2% ispod spot cene)</>}
               </p>
               <div className="flex items-center gap-3">
                 {tierError && <p className="text-xs text-red-400">{tierError}</p>}
@@ -709,21 +799,22 @@ export default function AdminCenePage() {
           </div>
 
           <div className="rounded-xl border border-[#2E2E2F] overflow-hidden">
-            <div className="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-px bg-[#2E2E2F] text-[10px] font-semibold text-[#555] uppercase tracking-wider">
+            <div className={`grid ${isZP ? "grid-cols-[2fr_1fr_auto]" : "grid-cols-[2fr_1fr_1fr_1fr_auto]"} gap-px bg-[#2E2E2F] text-[10px] font-semibold text-[#555] uppercase tracking-wider`}>
               <div className="bg-[#1B1B1C] px-4 py-3">Proizvod</div>
               <div className="bg-[#1B1B1C] px-4 py-3 text-[#BF8E41]">Prodajna RSD</div>
-              <div className="bg-[#1B1B1C] px-4 py-3">Avansna RSD</div>
-              <div className="bg-[#1B1B1C] px-4 py-3">Otkupna RSD</div>
+              {!isZP && <div className="bg-[#1B1B1C] px-4 py-3">Avansna RSD</div>}
+              {!isZP && <div className="bg-[#1B1B1C] px-4 py-3">Otkupna RSD</div>}
               <div className="bg-[#1B1B1C] px-4 py-3">Akcija</div>
             </div>
 
             {filtered.map(v => {
               const e = overrideEdits[v.id] ?? { stock: "", advance: "", purchase: "" };
-              const hasOverride = !!(e.stock || e.advance || e.purchase);
+              const hasOverride = isZP ? !!e.stock : !!(e.stock || e.advance || e.purchase);
               const auto = computeAutoPrice(v.weight_g, v.products.category, v.products.brand, tiers, spotPerGram, v.name);
 
               return (
-                <div key={v.id} className={["grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-px border-t border-[#2E2E2F] first:border-t-0",
+                <div key={v.id} className={[
+                  `grid ${isZP ? "grid-cols-[2fr_1fr_auto]" : "grid-cols-[2fr_1fr_1fr_1fr_auto]"} gap-px border-t border-[#2E2E2F] first:border-t-0`,
                   hasOverride ? "bg-amber-500/5" : "bg-[#2E2E2F]"].join(" ")}>
                   <div className="bg-[#1B1B1C] px-4 py-3 flex items-center gap-2.5">
                     {hasOverride && <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />}
@@ -736,8 +827,8 @@ export default function AdminCenePage() {
                   </div>
 
                   <PriceCell autoPrice={auto.stock}    value={e.stock}    onChange={val => setOverrideEdits(p => ({ ...p, [v.id]: { ...p[v.id], stock: val }    }))} color="gold" />
-                  <PriceCell autoPrice={auto.advance}  value={e.advance}  onChange={val => setOverrideEdits(p => ({ ...p, [v.id]: { ...p[v.id], advance: val }  }))} />
-                  <PriceCell autoPrice={auto.purchase} value={e.purchase} onChange={val => setOverrideEdits(p => ({ ...p, [v.id]: { ...p[v.id], purchase: val } }))} color="muted" />
+                  {!isZP && <PriceCell autoPrice={auto.advance}  value={e.advance}  onChange={val => setOverrideEdits(p => ({ ...p, [v.id]: { ...p[v.id], advance: val }  }))} />}
+                  {!isZP && <PriceCell autoPrice={auto.purchase} value={e.purchase} onChange={val => setOverrideEdits(p => ({ ...p, [v.id]: { ...p[v.id], purchase: val } }))} color="muted" />}
 
                   <div className="bg-[#1B1B1C] px-3 py-3 flex items-center gap-2">
                     <button onClick={() => handleSaveOverride(v.id)} disabled={savingId === v.id}
