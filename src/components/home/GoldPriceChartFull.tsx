@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import historicalData from "@/data/gold-historical.json";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -13,16 +12,17 @@ import {
 } from "recharts";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 
-type Period = "1W" | "1M" | "1Y" | "5Y" | "MAX";
+type Period = "1D" | "1W" | "1M" | "1Y" | "5Y" | "MAX";
 type Currency = "EUR" | "USD" | "RSD";
 type Unit = "g" | "oz" | "kg";
 
-const PERIODS: { label: string; value: Period; days: number }[] = [
-  { label: "1 Nedelja", value: "1W",  days: 7 },
-  { label: "1 Mesec",   value: "1M",  days: 30 },
-  { label: "1 Godina",  value: "1Y",  days: 365 },
-  { label: "5 Godina",  value: "5Y",  days: 365 * 5 },
-  { label: "Maksimalno", value: "MAX", days: 365 * 20 },
+const PERIODS: { label: string; value: Period }[] = [
+  { label: "1 Dan",      value: "1D"  },
+  { label: "1 Nedelja",  value: "1W"  },
+  { label: "1 Mesec",    value: "1M"  },
+  { label: "1 Godina",   value: "1Y"  },
+  { label: "5 Godina",   value: "5Y"  },
+  { label: "Maksimalno", value: "MAX" },
 ];
 
 const CURRENCIES: { label: string; value: Currency }[] = [
@@ -32,70 +32,53 @@ const CURRENCIES: { label: string; value: Currency }[] = [
 ];
 
 const UNITS: { label: string; value: Unit }[] = [
-  { label: "1 Gram",      value: "g" },
+  { label: "1 Gram",      value: "g"  },
   { label: "1 Troj unca", value: "oz" },
   { label: "1 Kilogram",  value: "kg" },
 ];
 
-const EUR_RSD_FALLBACK = 117.5;
 const EUR_USD = 1.09;
+const EUR_RSD_FALLBACK = 117.5;
 const GRAMS_PER_OZ = 31.1034768;
+const MAX_RENDER_POINTS = 250;
 
-type DataPoint = { date: string; xau_eur: number };
+type ApiPoint = { date: string; xau_eur: number };
+type HistoryResponse = { points: ApiPoint[]; eur_rsd: number };
 
-function formatLabel(dateStr: string, days: number): string {
-  const [y, m, d] = dateStr.split("-");
-  if (days <= 30)  return `${d}.${m}`;
-  if (days <= 365) return `${d}.${m}.${y.slice(2)}`;
-  return `${m}.${y.slice(2)}`;
+function formatLabel(isoDate: string, period: Period): string {
+  const d = new Date(isoDate);
+  if (period === "1D") {
+    const hh = String(d.getHours()).padStart(2, "0");
+    const mm = String(d.getMinutes()).padStart(2, "0");
+    return `${hh}:${mm}`;
+  }
+  const day   = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year  = d.getFullYear();
+  if (period === "1W" || period === "1M") return `${day}.${month}`;
+  if (period === "1Y") return `${day}.${month}.${String(year).slice(2)}`;
+  return `${month}.${String(year).slice(2)}`;
 }
 
-function buildData(
-  days: number,
-  currency: Currency,
-  unit: Unit,
-  eurRsd: number,
-  liveXauEur?: number
-) {
-  const cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - days);
-  const cutoffStr = cutoff.toISOString().slice(0, 10);
+function convert(xauEur: number, currency: Currency, unit: Unit, eurRsd: number): number {
+  let v: number;
+  if (unit === "g") v = xauEur / GRAMS_PER_OZ;
+  else if (unit === "oz") v = xauEur;
+  else v = (xauEur / GRAMS_PER_OZ) * 1000;
 
-  const filtered = (historicalData as DataPoint[]).filter(d => d.date >= cutoffStr);
+  if (currency === "USD") v *= EUR_USD;
+  else if (currency === "RSD") v *= eurRsd;
 
-  const maxPoints = 120;
-  const step = filtered.length > maxPoints ? Math.ceil(filtered.length / maxPoints) : 1;
+  return currency === "RSD" || unit === "kg" ? Math.round(v) : parseFloat(v.toFixed(2));
+}
 
-  const points = filtered
-    .filter((_, i) => i % step === 0 || i === filtered.length - 1)
-    .map(d => {
-      let v: number;
-      if (unit === "g")  v = d.xau_eur / GRAMS_PER_OZ;
-      else if (unit === "oz") v = d.xau_eur;
-      else v = (d.xau_eur / GRAMS_PER_OZ) * 1000;
-
-      if (currency === "USD") v *= EUR_USD;
-      else if (currency === "RSD") v *= eurRsd;
-
-      const value = currency === "RSD" || unit === "kg" ? Math.round(v) : parseFloat(v.toFixed(2));
-      return { date: formatLabel(d.date, days), value };
-    });
-
-  // Zameni poslednju tačku sa live cenom
-  if (liveXauEur && points.length > 0) {
-    let v: number;
-    if (unit === "g")  v = liveXauEur / GRAMS_PER_OZ;
-    else if (unit === "oz") v = liveXauEur;
-    else v = (liveXauEur / GRAMS_PER_OZ) * 1000;
-
-    if (currency === "USD") v *= EUR_USD;
-    else if (currency === "RSD") v *= eurRsd;
-
-    const value = currency === "RSD" || unit === "kg" ? Math.round(v) : parseFloat(v.toFixed(2));
-    points[points.length - 1] = { ...points[points.length - 1], value };
-  }
-
-  return points;
+function downsample<T>(arr: T[], maxPoints: number): T[] {
+  if (arr.length <= maxPoints) return arr;
+  const step = Math.ceil(arr.length / maxPoints);
+  const out: T[] = [];
+  for (let i = 0; i < arr.length; i += step) out.push(arr[i]);
+  if (out[out.length - 1] !== arr[arr.length - 1]) out.push(arr[arr.length - 1]);
+  return out;
 }
 
 function formatPrice(value: number, currency: Currency, unit: Unit): string {
@@ -145,12 +128,35 @@ export function GoldPriceChartFull() {
   const [period, setPeriod] = useState<Period>("1Y");
   const [currency, setCurrency] = useState<Currency>("EUR");
   const [unit, setUnit] = useState<Unit>("g");
+  const [history, setHistory] = useState<HistoryResponse | null>(null);
+  const [loading, setLoading] = useState(true);
   const [live, setLive] = useState<{ xauEur: number; eurRsd: number } | null>(null);
 
+  // History per period
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    fetch(`/api/prices/history?period=${period}`)
+      .then((r) => r.json())
+      .then((d: HistoryResponse) => {
+        if (!cancelled) {
+          setHistory(d);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [period]);
+
+  // Live current price (zaobilazi cache na duzim periodima)
   useEffect(() => {
     fetch("/api/prices")
-      .then(r => r.json())
-      .then(d => {
+      .then((r) => r.json())
+      .then((d) => {
         if (d.xau_eur && d.eur_rsd) {
           setLive({ xauEur: d.xau_eur, eurRsd: d.eur_rsd });
         }
@@ -158,16 +164,22 @@ export function GoldPriceChartFull() {
       .catch(() => {});
   }, []);
 
-  const data = useMemo(
-    () => buildData(
-      PERIODS.find(p => p.value === period)!.days,
-      currency,
-      unit,
-      live?.eurRsd ?? EUR_RSD_FALLBACK,
-      live?.xauEur
-    ),
-    [period, currency, unit, live]
-  );
+  const data = useMemo(() => {
+    if (!history?.points?.length) return [];
+    const eurRsd = live?.eurRsd ?? history.eur_rsd ?? EUR_RSD_FALLBACK;
+    const sampled = downsample(history.points, MAX_RENDER_POINTS);
+    const formatted = sampled.map((p) => ({
+      date: formatLabel(p.date, period),
+      value: convert(p.xau_eur, currency, unit, eurRsd),
+    }));
+    if (live && formatted.length > 0) {
+      formatted[formatted.length - 1] = {
+        date: formatted[formatted.length - 1].date,
+        value: convert(live.xauEur, currency, unit, eurRsd),
+      };
+    }
+    return formatted;
+  }, [history, period, currency, unit, live]);
 
   const current = data[data.length - 1]?.value ?? 0;
   const first   = data[0]?.value ?? 0;
@@ -241,42 +253,48 @@ export function GoldPriceChartFull() {
 
           {/* Chart */}
           <div className="h-[280px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
-                <defs>
-                  <linearGradient id="goldGradientFull" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#BF8E41" stopOpacity={0.18} />
-                    <stop offset="95%" stopColor="#BF8E41" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#F0EDE6" vertical={false} />
-                <XAxis
-                  dataKey="date"
-                  tick={{ fill: "#9D9072", fontSize: 11 }}
-                  tickLine={false}
-                  axisLine={false}
-                  interval="preserveStartEnd"
-                />
-                <YAxis
-                  tick={{ fill: "#9D9072", fontSize: 11 }}
-                  tickLine={false}
-                  axisLine={false}
-                  width={85}
-                  tickFormatter={yFormatter}
-                  domain={["auto", "auto"]}
-                />
-                <Tooltip content={<CustomTooltip currency={currency} unit={unit} />} />
-                <Area
-                  type="monotone"
-                  dataKey="value"
-                  stroke="#BF8E41"
-                  strokeWidth={2}
-                  fill="url(#goldGradientFull)"
-                  dot={false}
-                  activeDot={{ r: 4, fill: "#BF8E41", strokeWidth: 0 }}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
+            {loading && data.length === 0 ? (
+              <div className="h-full flex items-center justify-center text-[#9D9072] text-sm">
+                Učitavanje grafika...
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
+                  <defs>
+                    <linearGradient id="goldGradientFull" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#BF8E41" stopOpacity={0.18} />
+                      <stop offset="95%" stopColor="#BF8E41" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#F0EDE6" vertical={false} />
+                  <XAxis
+                    dataKey="date"
+                    tick={{ fill: "#9D9072", fontSize: 11 }}
+                    tickLine={false}
+                    axisLine={false}
+                    interval="preserveStartEnd"
+                  />
+                  <YAxis
+                    tick={{ fill: "#9D9072", fontSize: 11 }}
+                    tickLine={false}
+                    axisLine={false}
+                    width={85}
+                    tickFormatter={yFormatter}
+                    domain={["auto", "auto"]}
+                  />
+                  <Tooltip content={<CustomTooltip currency={currency} unit={unit} />} />
+                  <Area
+                    type="monotone"
+                    dataKey="value"
+                    stroke="#BF8E41"
+                    strokeWidth={2}
+                    fill="url(#goldGradientFull)"
+                    dot={false}
+                    activeDot={{ r: 4, fill: "#BF8E41", strokeWidth: 0 }}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            )}
           </div>
 
           {/* Period tabs */}
