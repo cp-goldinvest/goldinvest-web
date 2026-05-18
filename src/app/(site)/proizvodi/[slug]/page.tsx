@@ -404,12 +404,21 @@ export default async function ProizvodPage({
                   >
                     Otkupna cena
                   </p>
-                  <p
-                    className="text-[#6B6B6B] tabular-nums"
-                    style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 15 }}
-                  >
-                    {formatRsd(prices.purchase)}
-                  </p>
+                  {prices.onRequestPurchase ? (
+                    <span
+                      className="inline-flex items-center justify-center px-3 py-1.5 rounded-full bg-[#F5F1E5] border border-[#D4C6A4] text-[11px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-[#7A6945]"
+                      style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                    >
+                      Na upit
+                    </span>
+                  ) : (
+                    <p
+                      className="text-[#6B6B6B] tabular-nums"
+                      style={{ fontFamily: "var(--font-rethink), sans-serif", fontSize: 15 }}
+                    >
+                      {formatRsd(prices.purchase)}
+                    </p>
+                  )}
                 </div>
               </div>
 

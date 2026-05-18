@@ -17,6 +17,7 @@ type Props = {
     advance: number;
     purchase: number;
     onRequest?: boolean;
+    onRequestPurchase?: boolean;
   };
 };
 
@@ -25,6 +26,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
   const inStock = availability === "in_stock";
   const isPreorder = availability === "preorder";
   const onRequest = prices.onRequest ?? false;
+  const onRequestPurchase = prices.onRequestPurchase ?? false;
 
   return (
     <div className="group relative flex flex-col bg-white border border-[#F3F4F6] rounded-2xl overflow-hidden hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300">
@@ -83,7 +85,7 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
         <div className="flex flex-col gap-1.5 mb-5">
           <PriceRow label="Prodajna" labelFull="Prodajna cena" value={onRequest ? "Na upit" : formatRsd(prices.stock)} bold onRequest={onRequest} />
           <PriceRow label="Avansna" labelFull="Avansna cena" value={onRequest ? "Na upit" : formatRsd(prices.advance)} onRequest={onRequest} />
-          <PriceRow label="Otkupna" labelFull="Otkupna cena" value={formatRsd(prices.purchase)} muted />
+          <PriceRow label="Otkupna" labelFull="Otkupna cena" value={onRequestPurchase ? "Na upit" : formatRsd(prices.purchase)} muted onRequest={onRequestPurchase} />
         </div>
 
         {/* Action buttons - relative z-10 so they intercept clicks over the overlay link */}

@@ -6,6 +6,7 @@ export type ComputedPrices = {
   purchase: number;
   spotPerGramRsd: number;
   onRequest: boolean;
+  onRequestPurchase: boolean;
 };
 
 const GRAMS_PER_OZ = 31.1034768;
@@ -100,6 +101,7 @@ export function computePrices(
     advance:  rule?.override_advance_price  ?? formulaAdvance,
     purchase: rule?.override_purchase_price ?? formulaPurchase,
     onRequest: marginStock === 0 && rule?.override_stock_price == null,
+    onRequestPurchase: marginPurchase === 0 && rule?.override_purchase_price == null,
   };
 }
 
