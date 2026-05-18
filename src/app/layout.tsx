@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Rethink_Sans } from "next/font/google";
 import "./globals.css";
@@ -27,6 +27,13 @@ export const metadata: Metadata = {
   description:
     "Gold Invest nudi vrhunske LBMA sertifikovane zlatne poluge, pločice i dukate. Trenutna kupovina, avansne ponude i otkup. Brza dostava u Srbiji.",
   metadataBase: new URL("https://goldinvest.rs"),
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1B1B1C" },
+    { media: "(prefers-color-scheme: dark)", color: "#1B1B1C" },
+  ],
 };
 
 export default function RootLayout({
