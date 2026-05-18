@@ -23,7 +23,14 @@ type ProcessedRow = {
   prices: ReturnType<typeof computePrices>;
 };
 
+function onRequestCmp(a: ProcessedRow, b: ProcessedRow): number {
+  return Number(a.prices.onRequest) - Number(b.prices.onRequest);
+}
+
 function compareProcessed(a: ProcessedRow, b: ProcessedRow, sort: SortOption): number {
+  const orc = onRequestCmp(a, b);
+  if (orc !== 0) return orc;
+
   const weightRank = (w: number) => {
     if (Math.abs(w - 1) < 0.02) return 0;
     if (Math.abs(w - 2) < 0.02) return 1;
@@ -210,6 +217,9 @@ export function ProductGrid({
         return true;
       })
       .sort((a, b) => {
+        const orc = onRequestCmp(a, b);
+        if (orc !== 0) return orc;
+
         switch (sort) {
           case "featured_home": {
             const cmp = compareProcessed(a, b, "featured_home");
