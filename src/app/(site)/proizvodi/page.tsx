@@ -4,6 +4,7 @@ import { createServiceClient } from "@/lib/supabase/server";
 import { GOLDINVEST_SITE_ID } from "@/lib/site";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
+import { ALL_PRODUCTS_WEIGHT_BUCKETS } from "@/components/catalog/FilterSortBar";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export const revalidate = 60;
@@ -78,6 +79,7 @@ export default async function SviProizvodiPage() {
             snapshot={snapshotRow}
             defaultSort="brand_asc"
             groupByBrand
+            filterConfig={{ weightBucketOptions: ALL_PRODUCTS_WEIGHT_BUCKETS }}
           />
 
           <div className="mt-12 flex flex-wrap gap-4 justify-center sm:justify-start">

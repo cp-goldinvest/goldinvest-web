@@ -14,6 +14,7 @@ export type SortOption =
 export type Filters = {
   categories: string[];
   weights: number[];
+  weightBuckets: string[];
   maxPrice: number | null;
   brands: string[];
   origins: string[];
@@ -21,6 +22,19 @@ export type Filters = {
 };
 
 export type Option<T> = { label: string; value: T };
+
+export type WeightBucket = {
+  id: string;
+  label: string;
+  min: number;
+  max: number | null;
+};
+
+export function bucketMatches(bucket: WeightBucket, weight: number): boolean {
+  if (weight < bucket.min) return false;
+  if (bucket.max !== null && weight > bucket.max) return false;
+  return true;
+}
 
 type Props = {
   availableWeights: number[];
@@ -38,6 +52,9 @@ type Props = {
   weightOptions?: Option<number>[];
   priceOptions?: Option<number>[];
 
+  /** When provided, weight filter renders as range buckets instead of discrete chips. */
+  weightBucketOptions?: WeightBucket[];
+
   /** UI text overrides + page-specific filter visibility */
   filterLabelText?: string;
   sortLabelText?: string;
@@ -51,6 +68,13 @@ const DEFAULT_CATEGORY_OPTIONS: Option<string>[] = [
   { label: "Zlatne poluge",    value: "poluga"     },
   { label: "Zlatni dukati",    value: "dukat"      },
   { label: "Multipack setovi", value: "multipack"  },
+];
+
+export const ALL_PRODUCTS_WEIGHT_BUCKETS: WeightBucket[] = [
+  { id: "do-5g",      label: "do 5g",         min: 0,    max: 5    },
+  { id: "10-20g",     label: "10 do 20g",     min: 10,   max: 20   },
+  { id: "50-100g",    label: "50 do 100g",    min: 50,   max: 100  },
+  { id: "250g-plus",  label: "250g i više",   min: 250,  max: null },
 ];
 
 const DEFAULT_PRICE_OPTIONS: Option<number>[] = [
@@ -74,7 +98,7 @@ const SORT_LABELS: Record<SortOption, string> = {
 
 type OpenDropdown = "category" | "weight" | "price" | "brand" | "origin" | "sort" | null;
 
-const EMPTY_FILTERS: Filters = { categories: [], weights: [], maxPrice: null, brands: [], origins: [], availability: [] };
+const EMPTY_FILTERS: Filters = { categories: [], weights: [], weightBuckets: [], maxPrice: null, brands: [], origins: [], availability: [] };
 
 export function FilterSortBar({
   availableWeights,
@@ -87,6 +111,7 @@ export function FilterSortBar({
   showCategoryFilter = true,
   categoryOptions,
   weightOptions,
+  weightBucketOptions,
   priceOptions,
   filterLabelText = "Filteri",
   sortLabelText = "Sortiraj po:",
@@ -97,10 +122,12 @@ export function FilterSortBar({
   const [open, setOpen] = useState<OpenDropdown>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const useBuckets = Boolean(weightBucketOptions && weightBucketOptions.length > 0);
   const CATEGORY_OPTIONS = categoryOptions ?? DEFAULT_CATEGORY_OPTIONS;
   const PRICE_OPTIONS = priceOptions ?? DEFAULT_PRICE_OPTIONS;
   const WEIGHT_OPTIONS: Option<number>[] =
     weightOptions ?? availableWeights.map((w) => ({ value: w, label: w >= 1000 ? `${w / 1000}kg` : `${w}g` }));
+  const WEIGHT_BUCKETS: WeightBucket[] = weightBucketOptions ?? [];
 
   function toggle(d: OpenDropdown) {
     setOpen((prev) => (prev === d ? null : d));
@@ -120,6 +147,13 @@ export function FilterSortBar({
     onFiltersChange({ ...filters, weights: next });
   }
 
+  function toggleWeightBucket(id: string) {
+    const next = filters.weightBuckets.includes(id)
+      ? filters.weightBuckets.filter((x) => x !== id)
+      : [...filters.weightBuckets, id];
+    onFiltersChange({ ...filters, weightBuckets: next });
+  }
+
   function toggleBrand(b: string) {
     const next = filters.brands.includes(b)
       ? filters.brands.filter((x) => x !== b)
@@ -134,9 +168,10 @@ export function FilterSortBar({
     onFiltersChange({ ...filters, origins: next });
   }
 
+  const activeWeightCount = useBuckets ? filters.weightBuckets.length : filters.weights.length;
   const activeCount =
     (showCategoryFilter ? filters.categories.length : 0) +
-    filters.weights.length +
+    activeWeightCount +
     (showBrandFilter ? filters.brands.length : 0) +
     (showOriginFilter ? filters.origins.length : 0) +
     filters.availability.length +
@@ -207,7 +242,26 @@ export function FilterSortBar({
               </div>
             </div>
           )}
-          {WEIGHT_OPTIONS.length > 0 && (
+          {useBuckets ? (
+            <div>
+              <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Težina</p>
+              <div className="flex flex-wrap gap-2">
+                {WEIGHT_BUCKETS.map((b) => (
+                  <button
+                    key={b.id}
+                    onClick={() => toggleWeightBucket(b.id)}
+                    className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${
+                      filters.weightBuckets.includes(b.id)
+                        ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]"
+                        : "border-[#E5E7EB] text-[#1B1B1C]"
+                    }`}
+                  >
+                    {b.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : WEIGHT_OPTIONS.length > 0 ? (
             <div>
               <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Težina</p>
               <div className="flex flex-wrap gap-2">
@@ -226,7 +280,7 @@ export function FilterSortBar({
                 ))}
               </div>
             </div>
-          )}
+          ) : null}
           {showBrandFilter && availableBrands.length > 0 && (
             <div>
               <p className="text-xs font-semibold text-[#464747] uppercase tracking-wider mb-2">Proizvođač</p>
@@ -316,18 +370,29 @@ export function FilterSortBar({
 
           {/* Težina */}
           <div className="relative">
-            <FilterBtn label="Težina" active={filters.weights.length > 0} open={open === "weight"} onClick={() => toggle("weight")} />
+            <FilterBtn label="Težina" active={activeWeightCount > 0} open={open === "weight"} onClick={() => toggle("weight")} />
             {open === "weight" && (
               <div className="absolute left-0 top-full mt-1 z-30 bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)] min-w-56">
                 <PanelHeader title="Težina" onClose={() => setOpen(null)} />
-                <div className="flex flex-wrap gap-2">
-                  {WEIGHT_OPTIONS.map(({ value: w, label }) => (
-                    <button key={w} onClick={() => toggleWeight(w)}
-                      className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${filters.weights.includes(w) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-[#E5E7EB] text-[#1B1B1C] hover:border-[#BF8E41]/40"}`}>
-                      {label}
-                    </button>
-                  ))}
-                </div>
+                {useBuckets ? (
+                  <div className="flex flex-col gap-1">
+                    {WEIGHT_BUCKETS.map((b) => (
+                      <button key={b.id} onClick={() => toggleWeightBucket(b.id)}
+                        className={`text-left px-3 py-2 rounded-lg text-sm border transition-colors ${filters.weightBuckets.includes(b.id) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-transparent text-[#1B1B1C] hover:bg-[#F9F9F9]"}`}>
+                        {b.label}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex flex-wrap gap-2">
+                    {WEIGHT_OPTIONS.map(({ value: w, label }) => (
+                      <button key={w} onClick={() => toggleWeight(w)}
+                        className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${filters.weights.includes(w) ? "border-[#BF8E41] bg-[#FAF8F2] text-[#BF8E41]" : "border-[#E5E7EB] text-[#1B1B1C] hover:border-[#BF8E41]/40"}`}>
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -464,9 +529,15 @@ export function FilterSortBar({
           {showCategoryFilter && filters.categories.map((c) => (
             <Chip key={c} label={CATEGORY_OPTIONS.find(o => o.value === c)?.label ?? c} onRemove={() => toggleCategory(c)} />
           ))}
-          {filters.weights.map((w) => (
-            <Chip key={w} label={WEIGHT_OPTIONS.find(o => o.value === w)?.label ?? (w >= 1000 ? `${w / 1000}kg` : `${w}g`)} onRemove={() => toggleWeight(w)} />
-          ))}
+          {useBuckets
+            ? filters.weightBuckets.map((id) => {
+                const bucket = WEIGHT_BUCKETS.find((b) => b.id === id);
+                if (!bucket) return null;
+                return <Chip key={id} label={bucket.label} onRemove={() => toggleWeightBucket(id)} />;
+              })
+            : filters.weights.map((w) => (
+                <Chip key={w} label={WEIGHT_OPTIONS.find(o => o.value === w)?.label ?? (w >= 1000 ? `${w / 1000}kg` : `${w}g`)} onRemove={() => toggleWeight(w)} />
+              ))}
           {showBrandFilter &&
             filters.brands.map((b) => (
               <Chip key={b} label={b} onRemove={() => toggleBrand(b)} />

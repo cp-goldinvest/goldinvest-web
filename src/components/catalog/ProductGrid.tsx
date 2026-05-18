@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ProductCard } from "./ProductCard";
-import { FilterSortBar, type SortOption, type Filters, type Option } from "./FilterSortBar";
+import { FilterSortBar, bucketMatches, type SortOption, type Filters, type Option, type WeightBucket } from "./FilterSortBar";
 import { computePrices, formatWeight } from "@/lib/pricing";
 import { pickPricingRule } from "@/lib/site";
 import type { ProductVariant, PricingTier, PricingRule, GoldPriceSnapshot } from "@/lib/supabase/types";
@@ -136,6 +136,7 @@ type Props = {
   filterConfig?: {
     showCategoryFilter?: boolean;
     weightOptions?: Option<number>[];
+    weightBucketOptions?: WeightBucket[];
     priceOptions?: Option<number>[];
     filterLabelText?: string;
     sortLabelText?: string;
@@ -173,11 +174,14 @@ export function ProductGrid({
   const [filters, setFilters] = useState<Filters>({
     categories: [],
     weights: [],
+    weightBuckets: [],
     maxPrice: null,
     brands: [],
     origins: [],
     availability: [],
   });
+
+  const weightBucketOptions = filterConfig?.weightBucketOptions;
 
   // Derive available filter options from data
   const availableWeights = useMemo(
@@ -210,6 +214,11 @@ export function ProductGrid({
       .filter(({ variant: v, prices }) => {
         if (filters.categories.length > 0 && !filters.categories.includes(v.products.category)) return false;
         if (filters.weights.length > 0 && !filters.weights.includes(Number(v.weight_g))) return false;
+        if (filters.weightBuckets.length > 0 && weightBucketOptions) {
+          const w = Number(v.weight_g);
+          const selected = weightBucketOptions.filter((b) => filters.weightBuckets.includes(b.id));
+          if (!selected.some((b) => bucketMatches(b, w))) return false;
+        }
         if (filters.brands.length > 0  && !filters.brands.includes(v.products.brand)) return false;
         if (filters.origins.length > 0 && !filters.origins.includes(v.products.origin ?? "")) return false;
         if (filters.availability.length > 0 && !filters.availability.includes(v.availability)) return false;
@@ -241,7 +250,7 @@ export function ProductGrid({
           }
         }
       });
-  }, [variants, tiers, snapshot, sort, filters]);
+  }, [variants, tiers, snapshot, sort, filters, weightBucketOptions]);
 
   const limitedProcessed = useMemo(
     () => processed.slice(0, maxItems ?? Number.POSITIVE_INFINITY),
@@ -284,6 +293,7 @@ export function ProductGrid({
           onFiltersChange={setFilters}
           showCategoryFilter={filterConfig?.showCategoryFilter}
           weightOptions={filterConfig?.weightOptions}
+          weightBucketOptions={weightBucketOptions}
           priceOptions={filterConfig?.priceOptions}
           filterLabelText={filterConfig?.filterLabelText}
           sortLabelText={filterConfig?.sortLabelText}
@@ -297,7 +307,7 @@ export function ProductGrid({
         <div className="py-20 text-left md:text-center text-[#8A8A8A]">
           <p className="text-lg">Nema proizvoda koji odgovaraju filterima.</p>
           <button
-            onClick={() => setFilters({ categories: [], weights: [], maxPrice: null, brands: [], origins: [], availability: [] })}
+            onClick={() => setFilters({ categories: [], weights: [], weightBuckets: [], maxPrice: null, brands: [], origins: [], availability: [] })}
             className="mt-4 text-sm text-[#BF8E41] hover:underline"
           >
             Obriši sve filtere

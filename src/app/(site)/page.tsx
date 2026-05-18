@@ -15,6 +15,7 @@ import { HomeBlogBentoSection } from "@/components/home/HomeBlogBentoSection";
 import { BLOG_POSTS, getLatestBlogPosts } from "@/data/blog-posts";
 import { FaqSection } from "@/components/home/FaqSection";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
+import { ALL_PRODUCTS_WEIGHT_BUCKETS } from "@/components/catalog/FilterSortBar";
 
 export const revalidate = 60;
 
@@ -64,6 +65,7 @@ async function ProductsSection() {
           defaultSort="featured_home"
           enablePagination
           pageSize={8}
+          filterConfig={{ weightBucketOptions: ALL_PRODUCTS_WEIGHT_BUCKETS }}
         />
         <div className="mt-10 flex justify-center">
           <Link
