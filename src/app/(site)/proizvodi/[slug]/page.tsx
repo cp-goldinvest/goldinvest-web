@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CheckCircle2, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
+import { AvailabilityStatus } from "@/components/catalog/AvailabilityStatus";
 import { createServiceClient } from "@/lib/supabase/server";
 import { computePrices, formatRsd, formatWeight } from "@/lib/pricing";
 import { GOLDINVEST_SITE_ID, pickPricingRule } from "@/lib/site";
@@ -305,26 +306,14 @@ export default async function ProizvodPage({
                 sa serijskim brojem · Oslobođena PDV-a · Dostava za celu Srbiju.
               </p>
 
-              {/* Availability */}
-              <div className="flex items-center gap-2 mb-6">
-                <CheckCircle2
-                  size={15}
-                  className={inStock ? "text-green-500" : "text-[#BEAD87]"}
+              <div className="mb-6">
+                <AvailabilityStatus
+                  onRequest={prices.onRequest}
+                  inStock={inStock}
+                  isPreorder={isPreorder}
+                  leadTimeWeeks={variant.lead_time_weeks}
+                  variant="detail"
                 />
-                <span
-                  className="font-medium"
-                  style={{
-                    fontFamily: "var(--font-rethink), sans-serif",
-                    fontSize: 13.5,
-                    color: inStock ? "#16a34a" : "#6B6B6B",
-                  }}
-                >
-                  {inStock
-                    ? "Na stanju - dostupno odmah"
-                    : isPreorder
-                    ? `Dostupno za ${variant.lead_time_weeks ?? "?"} nedelje`
-                    : "Dostupno na upit"}
-                </span>
               </div>
 
               {/* Prices */}

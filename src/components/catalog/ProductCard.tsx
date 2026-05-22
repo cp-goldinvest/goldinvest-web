@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
 import { formatRsd, formatWeight } from "@/lib/pricing";
+import { AvailabilityStatus } from "./AvailabilityStatus";
 
 type Props = {
   slug: string;
@@ -73,12 +73,13 @@ export function ProductCard({ slug, name, weightG, images, availability, leadTim
           {name}
         </h2>
 
-        {/* Na stanju - levo, mobile i desktop */}
-        <div className="flex items-center gap-1.5 mb-2 sm:mb-3">
-          <CheckCircle2 size={14} className={inStock ? "text-green-500" : "text-[#BEAD87]"} />
-          <span className="text-xs text-[#464747]">
-            {inStock ? "Na stanju" : isPreorder ? `${leadTimeWeeks ?? "?"} ned.` : "Na upit"}
-          </span>
+        <div className="mb-2 sm:mb-3">
+          <AvailabilityStatus
+            onRequest={onRequest}
+            inStock={inStock}
+            isPreorder={isPreorder}
+            leadTimeWeeks={leadTimeWeeks}
+          />
         </div>
 
         {/* Price rows - jedan red (label levo, cena desno) na mobile i desktop */}
