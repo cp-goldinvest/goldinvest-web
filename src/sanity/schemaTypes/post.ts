@@ -98,6 +98,27 @@ export const postType = defineType({
       type: 'text',
       rows: 2,
     }),
+    defineField({
+      name: 'linkedinPost',
+      title: 'LinkedIn objava',
+      type: 'text',
+      rows: 8,
+      description: 'Interno - za ručno objavljivanje. Ne prikazuje se na sajtu.',
+    }),
+    defineField({
+      name: 'googleBusinessPost',
+      title: 'Google Business objava',
+      type: 'text',
+      rows: 4,
+      description: 'Interno - Google Business Profile. Ne prikazuje se na sajtu.',
+    }),
+    defineField({
+      name: 'facebookPost',
+      title: 'Facebook objava (opciono)',
+      type: 'text',
+      rows: 5,
+      description: 'Interno - Facebook. Ne prikazuje se na sajtu.',
+    }),
   ],
   preview: {
     select: {
