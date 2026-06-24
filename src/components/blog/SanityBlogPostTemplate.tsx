@@ -83,14 +83,18 @@ const components: PortableTextComponents = {
   types: {
     image: ({ value }) => {
       if (!value?.asset) return null;
+      const imageBuilder = urlFor(value).width(900);
+      const { width, height } = value.asset?.metadata?.dimensions ?? {};
+      const ratio = width && height ? height / width : 9 / 16;
       return (
         <figure className="my-8">
-          <div className="relative w-full rounded-xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
+          <div className="relative w-full rounded-xl">
             <Image
-              src={urlFor(value).width(900).url()}
+              src={imageBuilder.url()}
               alt={value.alt ?? ""}
-              fill
-              className="object-cover"
+              width={900}
+              height={Math.round(900 * ratio)}
+              className="w-full h-auto object-contain"
             />
           </div>
           {value.alt && (

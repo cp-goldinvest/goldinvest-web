@@ -79,7 +79,13 @@ export async function getSanityPost(slug: string): Promise<{
   const p = await client.fetch<SanityPostFull | null>(
     `*[_type == "post" && slug.current == $slug][0] {
       ${POST_CARD_FIELDS},
-      body,
+      body[]{
+        ...,
+        _type == "image" => {
+          ...,
+          asset->{ _id, url, metadata { dimensions } }
+        }
+      },
       metaTitle,
       metaDescription
     }`,
