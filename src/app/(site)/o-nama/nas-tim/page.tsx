@@ -35,7 +35,7 @@ const TEAM = [
     name: "Vuk Rosić",
     role: "CEO | Osnivač",
     image: "/images/team/Vuk.webp",
-    linkedin: "https://www.linkedin.com/in/vuk-rosic",
+    linkedin: "https://www.linkedin.com/in/vuk-rosi%C4%87-03ba83419/",
     bio: [
       "Po struci pravnik, a po izboru trgovac investicionim zlatom. Godinama sam radio sa ljudima koji su želeli da zaštite vrednost svoje imovine i iznova nailazio na isti problem - nedostajalo je mesto kome mogu istinski da veruju.",
       "Upravo iz tog razloga nastao je Gold Invest. Ideja je bila jednostavna: omogućiti kupovinu investicionog zlata kroz jasan proces, realne informacije i odnos u kojem je poverenje važnije od same prodaje.",
@@ -45,7 +45,7 @@ const TEAM = [
     name: "Stefan Rosić",
     role: "Sales Consultant",
     image: "/images/team/Stefan.webp",
-    linkedin: "https://www.linkedin.com/in/stefan-rosic",
+    linkedin: "https://www.linkedin.com/in/stefan-rosic-160088336/",
     bio: [
       "Većina ljudi koja nas pozove ne želi samo cenu zlata. Želi da razume šta kupuje, zašto kupuje i da li donosi pravu odluku.",
       "Moj posao je da odgovorim na sva pitanja, bez žurbe i bez pritiska. Bilo da neko kupuje prvu pločicu od 1 grama ili gradi ozbiljan investicioni portfolio, cilj mi je da ceo proces bude jednostavan, jasan i siguran.",
