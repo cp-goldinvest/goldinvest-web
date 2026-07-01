@@ -539,6 +539,59 @@ export default function ONamaPage() {
         </SectionContainer>
       </section>
 
+      {/* ── Podaci o firmi ───────────────────────────────────────────────────── */}
+      <section className="bg-[#F9F9F9] py-16 sm:py-20 border-t border-[#F0EDE6]">
+        <SectionContainer>
+          <div className="max-w-xl">
+            <span
+              className="text-[#BF8E41] text-xs font-semibold tracking-widest uppercase mb-4 block"
+              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+            >
+              Registrovano privredno društvo
+            </span>
+            <h2
+              className="text-[#1B1B1C] mb-8"
+              style={{
+                fontFamily: "var(--font-rethink), sans-serif",
+                fontWeight: 500,
+                fontSize: 28,
+                lineHeight: "1.1",
+                letterSpacing: "-0.5px",
+              }}
+            >
+              Podaci o firmi
+            </h2>
+            <div
+              className="divide-y divide-[#F0EDE6] border border-[#F0EDE6] rounded-2xl overflow-hidden bg-white"
+              style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}
+            >
+              {[
+                { label: "Pun naziv",       value: "GOLD INVEST 9999 d.o.o." },
+                { label: "PIB",             value: "115503423" },
+                { label: "Matični broj",    value: "22167294" },
+                { label: "Datum osnivanja", value: "29. januar 2026." },
+                { label: "Adresa",          value: "Džordža Vašingtona 3, 11000 Beograd" },
+              ].map(({ label, value }) => (
+                <div key={label} className="flex items-center gap-4 px-6 py-4">
+                  <span
+                    className="text-[#9D9072] text-[13px] min-w-[160px] shrink-0"
+                    style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                  >
+                    {label}
+                  </span>
+                  <span
+                    className="text-[#1B1B1C] text-[13.5px] font-medium"
+                    style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                  >
+                    {value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </SectionContainer>
+      </section>
+
       {/* ── FAQ ──────────────────────────────────────────────────────────────── */}
       <CategoryFaq
         title="Česta pitanja o nama"

@@ -68,7 +68,13 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: "Cena zlata", href: "/cena-zlata" },
-  { label: "O nama", href: "/o-nama" },
+  {
+    label: "O nama",
+    children: [
+      { label: "Podaci o firmi", href: "/o-nama",            description: "Informacije o kompaniji" },
+      { label: "Naš tim",        href: "/o-nama/nas-tim",    description: "Vuk i Stefan Rosić" },
+    ],
+  },
   {
     label: "Pokloni",
     children: [
