@@ -72,7 +72,7 @@ const NAV_ITEMS: NavItem[] = [
     label: "O nama",
     children: [
       { label: "Podaci o firmi", href: "/o-nama",            description: "Informacije o kompaniji" },
-      { label: "Naš tim",        href: "/o-nama/nas-tim",    description: "Vuk i Stefan Rosić" },
+      { label: "Naš tim",        href: "/o-nama/nas-tim" },
     ],
   },
   {
