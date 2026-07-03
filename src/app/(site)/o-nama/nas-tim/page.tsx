@@ -77,7 +77,7 @@ export default function NasTimPage() {
 
       {/* ── Uvod ─────────────────────────────────────────────────────────────── */}
       <section
-        className="py-16 sm:py-24"
+        className="pt-14 pb-12 border-b border-[#F0EDE6]"
         style={{
           background:
             "linear-gradient(138.26deg, #BAA77F 1.38%, #E7E5D9 60.02%, #EFE7DA 97.1%)",
