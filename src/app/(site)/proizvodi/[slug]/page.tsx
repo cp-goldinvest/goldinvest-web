@@ -103,8 +103,11 @@ export default async function ProizvodPage({
       tiers = r2.data ?? [];
       snapshotRow = r3.data ?? null;
 
-      // Fetch related products (same category, different slug)
+      // Fetch related products (same category, prioritizing same weight from a
+      // different brand - falls back to closest weight when no exact match exists)
       const category = (r1.data as any).products?.category ?? "poluga";
+      const currentBrand = (r1.data as any).products?.brand;
+      const currentWeight = (r1.data as any).weight_g;
       const r4 = await supabase
         .from("product_variants")
         .select("*, products!inner(name, brand, origin, category), pricing_rules(*)")
@@ -112,10 +115,17 @@ export default async function ProizvodPage({
         .eq("is_active", true)
         .eq("pricing_rules.site_id", GOLDINVEST_SITE_ID)
         .neq("slug", slug)
-        .order("sort_order")
-        .limit(4);
+        .limit(100);
       if (r4.data?.length) {
-        allVariants = r4.data as any;
+        const ranked = [...r4.data].sort((a: any, b: any) => {
+          const aSameBrand = a.products?.brand === currentBrand ? 1 : 0;
+          const bSameBrand = b.products?.brand === currentBrand ? 1 : 0;
+          if (aSameBrand !== bSameBrand) return aSameBrand - bSameBrand;
+          const aDiff = Math.abs(Number(a.weight_g) - Number(currentWeight));
+          const bDiff = Math.abs(Number(b.weight_g) - Number(currentWeight));
+          return aDiff - bDiff;
+        });
+        allVariants = ranked.slice(0, 4) as any;
       }
     }
   } catch {

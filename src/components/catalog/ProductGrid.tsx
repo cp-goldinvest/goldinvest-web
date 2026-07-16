@@ -12,6 +12,12 @@ type VariantWithRelations = ProductVariant & {
   pricing_rules: PricingRule[] | PricingRule | null;
 };
 
+// Groups the rare 2.5g pločice (Valcambi, PAMP) into the 2g filter chip for a
+// tidier filter list - the real weight_g stays untouched for pricing/display.
+function filterWeightOf(w: number): number {
+  return w === 2.5 ? 2 : w;
+}
+
 function getCardName(v: VariantWithRelations): string {
   if (v.name) return v.name;
   if (v.products.name) return v.products.name;
@@ -185,7 +191,7 @@ export function ProductGrid({
 
   // Derive available filter options from data
   const availableWeights = useMemo(
-    () => [...new Set(variants.map((v) => Number(v.weight_g)))].sort((a, b) => a - b),
+    () => [...new Set(variants.map((v) => filterWeightOf(Number(v.weight_g))))].sort((a, b) => a - b),
     [variants]
   );
   const availableBrands = useMemo(
@@ -213,7 +219,7 @@ export function ProductGrid({
       }))
       .filter(({ variant: v, prices }) => {
         if (filters.categories.length > 0 && !filters.categories.includes(v.products.category)) return false;
-        if (filters.weights.length > 0 && !filters.weights.includes(Number(v.weight_g))) return false;
+        if (filters.weights.length > 0 && !filters.weights.includes(filterWeightOf(Number(v.weight_g)))) return false;
         if (filters.weightBuckets.length > 0 && weightBucketOptions) {
           const w = Number(v.weight_g);
           const selected = weightBucketOptions.filter((b) => filters.weightBuckets.includes(b.id));
