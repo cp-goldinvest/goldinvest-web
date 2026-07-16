@@ -1,15 +1,26 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { ChevronDown, ChevronUp, Plus, Trash2, X, Check, TrendingUp, TrendingDown, Package, Info } from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { ChevronDown, ChevronUp, Plus, X, TrendingUp, TrendingDown, Package, Info, ShoppingBag, Search, UserPlus } from "lucide-react";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
+
+type RegisterType = "bela" | "crna";
 
 type LagerItem = {
   id: string;
   purchase_price_rsd: number;
   purchased_at: string;
   note: string | null;
+  register_type: RegisterType;
+  supplier_name: string | null;
+  supplier_customer_id: string | null;
+  sold_at: string | null;
+  reserved_order_id: string | null;
+  serial_number: string | null;
+  invoice_number: string | null;
+  supplier_tax_id: string | null;
+  supplier_address: string | null;
   created_at: string;
   product_variants: {
     id: string;
@@ -21,6 +32,13 @@ type LagerItem = {
     products: { name: string; brand: string; category: string };
   };
 };
+
+type CustomerLite = { id: string; full_name: string; phone: string | null };
+
+type CustomerSelection =
+  | { mode: "none" }
+  | { mode: "existing"; customer: CustomerLite }
+  | { mode: "new"; full_name: string; phone: string; email: string };
 
 type GroupedVariant = {
   variantId: string;
@@ -107,6 +125,169 @@ function findStockMarginPct(weightG: number, category: string, tiers: Tier[], br
   return tier?.margin_stock_pct ?? 3.0;
 }
 
+// ── Customer Picker (pretraga + inline kreiranje) ───────────────────────────────
+
+function CustomerPicker({
+  selection,
+  onChange,
+  allowCreate = true,
+  placeholder = "Pretraži po imenu ili telefonu...",
+}: {
+  selection: CustomerSelection;
+  onChange: (s: CustomerSelection) => void;
+  allowCreate?: boolean;
+  placeholder?: string;
+}) {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<CustomerLite[]>([]);
+  const [showNewForm, setShowNewForm] = useState(false);
+  const [newName, setNewName] = useState("");
+  const [newPhone, setNewPhone] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (!query.trim()) return;
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/admin/customers?q=${encodeURIComponent(query)}`);
+        if (res.ok) setResults(await res.json());
+      } catch {
+        /* ignore */
+      }
+    }, 250);
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [query]);
+
+  const visibleResults = query.trim() ? results : [];
+
+  if (selection.mode === "existing") {
+    return (
+      <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#111112] border border-[#2E2E2F]">
+        <div>
+          <p className="text-sm text-[#E9E6D9]">{selection.customer.full_name}</p>
+          {selection.customer.phone && <p className="text-xs text-[#555]">{selection.customer.phone}</p>}
+        </div>
+        <button
+          onClick={() => onChange({ mode: "none" })}
+          className="text-xs text-[#555] hover:text-[#E9E6D9] transition-colors"
+        >
+          Promeni
+        </button>
+      </div>
+    );
+  }
+
+  if (selection.mode === "new") {
+    return (
+      <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#BF8E41]/5 border border-[#BF8E41]/20">
+        <div>
+          <p className="text-sm text-[#E9E6D9]">{selection.full_name} <span className="text-[10px] text-[#BF8E41]">(novi)</span></p>
+          {selection.phone && <p className="text-xs text-[#555]">{selection.phone}</p>}
+        </div>
+        <button
+          onClick={() => onChange({ mode: "none" })}
+          className="text-xs text-[#555] hover:text-[#E9E6D9] transition-colors"
+        >
+          Promeni
+        </button>
+      </div>
+    );
+  }
+
+  if (showNewForm) {
+    return (
+      <div className="space-y-2 p-3 rounded-lg bg-[#111112] border border-[#2E2E2F]">
+        <input
+          type="text"
+          placeholder="Ime i prezime"
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+          className="w-full bg-[#1B1B1C] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+        />
+        <div className="grid grid-cols-2 gap-2">
+          <input
+            type="text"
+            placeholder="Telefon"
+            value={newPhone}
+            onChange={(e) => setNewPhone(e.target.value)}
+            className="w-full bg-[#1B1B1C] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+          />
+          <input
+            type="text"
+            placeholder="Email (opciono)"
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
+            className="w-full bg-[#1B1B1C] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+          />
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setShowNewForm(false)}
+            className="flex-1 py-1.5 rounded-lg border border-[#2E2E2F] text-xs text-[#8A8A8A] hover:text-[#E9E6D9] transition-colors"
+          >
+            Otkaži
+          </button>
+          <button
+            onClick={() => {
+              if (!newName.trim()) return;
+              onChange({ mode: "new", full_name: newName.trim(), phone: newPhone.trim(), email: newEmail.trim() });
+              setShowNewForm(false);
+            }}
+            className="flex-1 py-1.5 rounded-lg bg-[#BF8E41] text-[#1B1B1C] text-xs font-semibold hover:opacity-90 transition-opacity"
+          >
+            Potvrdi
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-1.5">
+      <div className="relative">
+        <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#444]" />
+        <input
+          type="text"
+          placeholder={placeholder}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg pl-8 pr-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+        />
+      </div>
+      {visibleResults.length > 0 && (
+        <div className="border border-[#2E2E2F] rounded-lg overflow-hidden max-h-36 overflow-y-auto">
+          {visibleResults.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => {
+                onChange({ mode: "existing", customer: c });
+                setQuery("");
+                setResults([]);
+              }}
+              className="w-full text-left px-3 py-2 text-xs text-[#8A8A8A] hover:bg-[#1B1B1C] hover:text-[#E9E6D9] transition-colors border-b border-[#2E2E2F] last:border-b-0"
+            >
+              {c.full_name} {c.phone && <span className="text-[#444]">· {c.phone}</span>}
+            </button>
+          ))}
+        </div>
+      )}
+      {allowCreate && (
+        <button
+          onClick={() => setShowNewForm(true)}
+          className="flex items-center gap-1.5 text-xs text-[#BF8E41]/80 hover:text-[#BF8E41] transition-colors"
+        >
+          <UserPlus size={12} />
+          Novi kupac
+        </button>
+      )}
+    </div>
+  );
+}
+
 // ── Add Item Modal ─────────────────────────────────────────────────────────────
 
 function AddItemModal({
@@ -122,20 +303,34 @@ function AddItemModal({
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [note, setNote] = useState("");
   const [qty, setQty] = useState("1");
+  const [registerType, setRegisterType] = useState<RegisterType>("bela");
+  const [supplierName, setSupplierName] = useState("");
+  const [linkCustomer, setLinkCustomer] = useState(false);
+  const [supplierSelection, setSupplierSelection] = useState<CustomerSelection>({ mode: "none" });
+  const [invoiceNumber, setInvoiceNumber] = useState("");
+  const [supplierTaxId, setSupplierTaxId] = useState("");
+  const [supplierAddress, setSupplierAddress] = useState("");
+  const [serialNumbers, setSerialNumbers] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
+  const qtyNum = parseInt(qty) || 1;
+
   async function handleSave() {
     const priceNum = parseFloat(price.replace(/\./g, "").replace(",", "."));
-    const qtyNum = parseInt(qty) || 1;
     if (!priceNum || priceNum <= 0) {
       setError("Unesi nabavnu cenu");
       return;
     }
     setSaving(true);
     try {
+      const supplierCustomerId = supplierSelection.mode === "existing" ? supplierSelection.customer.id : null;
+      const serials = serialNumbers
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean);
       await Promise.all(
-        Array.from({ length: qtyNum }).map(() =>
+        Array.from({ length: qtyNum }).map((_, i) =>
           fetch("/api/admin/lager", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -144,6 +339,13 @@ function AddItemModal({
               purchase_price_rsd: priceNum,
               purchased_at: date,
               note: note || null,
+              register_type: registerType,
+              supplier_name: supplierName || null,
+              supplier_customer_id: supplierCustomerId,
+              serial_number: serials[i] ?? null,
+              invoice_number: invoiceNumber || null,
+              supplier_tax_id: supplierTaxId || null,
+              supplier_address: supplierAddress || null,
             }),
           })
         )
@@ -214,6 +416,117 @@ function AddItemModal({
           </div>
 
           <div>
+            <label className="text-xs text-[#555] block mb-1.5">Kasa</label>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setRegisterType("bela")}
+                className={`flex-1 py-2 rounded-lg text-xs font-medium border transition-colors ${
+                  registerType === "bela"
+                    ? "bg-[#E9E6D9]/10 border-[#E9E6D9]/40 text-[#E9E6D9]"
+                    : "border-[#2E2E2F] text-[#555] hover:text-[#8A8A8A]"
+                }`}
+              >
+                Bela kasa
+              </button>
+              <button
+                type="button"
+                onClick={() => setRegisterType("crna")}
+                className={`flex-1 py-2 rounded-lg text-xs font-medium border transition-colors ${
+                  registerType === "crna"
+                    ? "bg-[#8A8A8A]/10 border-[#8A8A8A]/40 text-[#8A8A8A]"
+                    : "border-[#2E2E2F] text-[#555] hover:text-[#8A8A8A]"
+                }`}
+              >
+                Crna kasa
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Dobavljač / od koga (opcionalno)</label>
+            <input
+              type="text"
+              placeholder="npr. Argor-Heraeus DOO ili ime fizičkog lica"
+              value={supplierName}
+              onChange={(e) => setSupplierName(e.target.value)}
+              className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+            />
+            {!linkCustomer ? (
+              <button
+                type="button"
+                onClick={() => setLinkCustomer(true)}
+                className="mt-1.5 text-xs text-[#BF8E41]/70 hover:text-[#BF8E41] transition-colors"
+              >
+                + Poveži sa postojećim kupcem u bazi
+              </button>
+            ) : (
+              <div className="mt-2">
+                <CustomerPicker selection={supplierSelection} onChange={setSupplierSelection} allowCreate={false} />
+              </div>
+            )}
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs text-[#555] block mb-1.5">Broj računa (opcionalno)</label>
+              <input
+                type="text"
+                placeholder="npr. if-15/26"
+                value={invoiceNumber}
+                onChange={(e) => setInvoiceNumber(e.target.value)}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-[#555] block mb-1.5">PIB/JMBG dobavljača (opcionalno)</label>
+              <input
+                type="text"
+                value={supplierTaxId}
+                onChange={(e) => setSupplierTaxId(e.target.value)}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Adresa dobavljača (opcionalno)</label>
+            <input
+              type="text"
+              value={supplierAddress}
+              onChange={(e) => setSupplierAddress(e.target.value)}
+              className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+            />
+          </div>
+
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">
+              {qtyNum > 1 ? "Serijski brojevi (opcionalno, jedan po redu)" : "Serijski broj (opcionalno)"}
+            </label>
+            {qtyNum > 1 ? (
+              <textarea
+                placeholder={`npr.\n668339\n668340\n668341`}
+                value={serialNumbers}
+                onChange={(e) => setSerialNumbers(e.target.value)}
+                rows={Math.min(qtyNum, 5)}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60 resize-none font-mono"
+              />
+            ) : (
+              <input
+                type="text"
+                value={serialNumbers}
+                onChange={(e) => setSerialNumbers(e.target.value)}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              />
+            )}
+            {qtyNum > 1 && (
+              <p className="text-[10px] text-[#444] mt-1">
+                {serialNumbers.split("\n").map((s) => s.trim()).filter(Boolean).length} / {qtyNum} uneto
+              </p>
+            )}
+          </div>
+
+          <div>
             <label className="text-xs text-[#555] block mb-1.5">Napomena (opcionalno)</label>
             <input
               type="text"
@@ -247,6 +560,218 @@ function AddItemModal({
   );
 }
 
+// ── Sell Modal ─────────────────────────────────────────────────────────────────
+
+const PAYMENT_METHODS: { value: string; label: string }[] = [
+  { value: "gotovina", label: "Gotovina" },
+  { value: "racun", label: "Račun / prenos" },
+  { value: "kartica", label: "Kartica" },
+  { value: "ostalo", label: "Ostalo" },
+];
+
+function SellModal({
+  item,
+  productLabel,
+  suggestedPrice,
+  onClose,
+  onSaved,
+}: {
+  item: LagerItem;
+  productLabel: string;
+  suggestedPrice: number | null;
+  onClose: () => void;
+  onSaved: () => void;
+}) {
+  const [customerSelection, setCustomerSelection] = useState<CustomerSelection>({ mode: "none" });
+  const [price, setPrice] = useState(suggestedPrice ? String(Math.round(suggestedPrice)) : "");
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [registerType, setRegisterType] = useState<RegisterType>("bela");
+  const [paymentMethod, setPaymentMethod] = useState("gotovina");
+  const [note, setNote] = useState("");
+  const [invoiceNumber, setInvoiceNumber] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSave() {
+    const priceNum = parseFloat(price.replace(/\./g, "").replace(",", "."));
+    if (!priceNum || priceNum <= 0) {
+      setError("Unesi prodajnu cenu");
+      return;
+    }
+    setSaving(true);
+    setError("");
+    try {
+      const body: Record<string, unknown> = {
+        lager_item_id: item.id,
+        unit_price_rsd: priceNum,
+        register_type: registerType,
+        payment_method: paymentMethod,
+        sold_at: date,
+        note: note || null,
+        invoice_number: invoiceNumber || null,
+      };
+      if (customerSelection.mode === "existing") body.customer_id = customerSelection.customer.id;
+      if (customerSelection.mode === "new") {
+        body.new_customer = {
+          full_name: customerSelection.full_name,
+          phone: customerSelection.phone || null,
+          email: customerSelection.email || null,
+        };
+      }
+
+      const res = await fetch("/api/admin/sales", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error ?? "Greška pri čuvanju");
+        setSaving(false);
+        return;
+      }
+      onSaved();
+    } catch {
+      setError("Greška pri čuvanju");
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+      <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-2xl p-6 w-full max-w-md mx-4 shadow-2xl">
+        <div className="flex items-center justify-between mb-5">
+          <div>
+            <p className="text-xs text-[#555] mb-0.5">{productLabel}</p>
+            <h3 className="text-[#E9E6D9] font-semibold">Označi kao prodato</h3>
+          </div>
+          <button onClick={onClose} className="text-[#555] hover:text-[#E9E6D9] transition-colors">
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Kupac</label>
+            <CustomerPicker selection={customerSelection} onChange={setCustomerSelection} />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs text-[#555] block mb-1.5">Prodajna cena (RSD)</label>
+              <input
+                type="number"
+                value={price}
+                onChange={(e) => {
+                  setPrice(e.target.value);
+                  setError("");
+                }}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-[#555] block mb-1.5">Datum prodaje</label>
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Kasa</label>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setRegisterType("bela")}
+                className={`flex-1 py-2 rounded-lg text-xs font-medium border transition-colors ${
+                  registerType === "bela"
+                    ? "bg-[#E9E6D9]/10 border-[#E9E6D9]/40 text-[#E9E6D9]"
+                    : "border-[#2E2E2F] text-[#555] hover:text-[#8A8A8A]"
+                }`}
+              >
+                Bela kasa
+              </button>
+              <button
+                type="button"
+                onClick={() => setRegisterType("crna")}
+                className={`flex-1 py-2 rounded-lg text-xs font-medium border transition-colors ${
+                  registerType === "crna"
+                    ? "bg-[#8A8A8A]/10 border-[#8A8A8A]/40 text-[#8A8A8A]"
+                    : "border-[#2E2E2F] text-[#555] hover:text-[#8A8A8A]"
+                }`}
+              >
+                Crna kasa
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Način plaćanja</label>
+            <div className="grid grid-cols-4 gap-1.5">
+              {PAYMENT_METHODS.map((m) => (
+                <button
+                  key={m.value}
+                  type="button"
+                  onClick={() => setPaymentMethod(m.value)}
+                  className={`py-1.5 rounded-lg text-[11px] font-medium border transition-colors ${
+                    paymentMethod === m.value
+                      ? "bg-[#BF8E41]/15 border-[#BF8E41]/40 text-[#BF8E41]"
+                      : "border-[#2E2E2F] text-[#555] hover:text-[#8A8A8A]"
+                  }`}
+                >
+                  {m.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Broj računa (opcionalno)</label>
+            <input
+              type="text"
+              placeholder="npr. 01/26"
+              value={invoiceNumber}
+              onChange={(e) => setInvoiceNumber(e.target.value)}
+              className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+            />
+          </div>
+
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Napomena (opcionalno)</label>
+            <input
+              type="text"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+            />
+          </div>
+
+          {error && <p className="text-red-400 text-xs">{error}</p>}
+
+          <div className="flex gap-3 pt-1">
+            <button
+              onClick={onClose}
+              className="flex-1 py-2.5 rounded-lg border border-[#2E2E2F] text-sm text-[#8A8A8A] hover:text-[#E9E6D9] transition-colors"
+            >
+              Otkaži
+            </button>
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="flex-1 py-2.5 rounded-lg bg-[#BF8E41] text-[#1B1B1C] text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+            >
+              {saving ? "Čuvam..." : "Potvrdi prodaju"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Variant Card ───────────────────────────────────────────────────────────────
 
 function VariantCard({
@@ -254,17 +779,15 @@ function VariantCard({
   livePrice,
   tiers,
   onAdd,
-  onDelete,
+  onSell,
 }: {
   group: GroupedVariant;
   livePrice: LivePrice | null;
   tiers: Tier[];
   onAdd: (v: GroupedVariant) => void;
-  onDelete: (id: string) => void;
+  onSell: (item: LagerItem, group: GroupedVariant) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const [confirmId, setConfirmId] = useState<string | null>(null);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const count = group.items.length;
   const totalPurchase = group.items.reduce((s, i) => s + i.purchase_price_rsd, 0);
@@ -284,14 +807,6 @@ function VariantCard({
   // P&L relative to what was paid for the stock
   const totalSellingPnL = totalSellingValue - totalPurchase;
   const sellingPnlPct   = totalPurchase > 0 ? (totalSellingPnL / totalPurchase) * 100 : 0;
-
-  async function handleDelete(id: string) {
-    setDeletingId(id);
-    await fetch(`/api/admin/lager/${id}`, { method: "DELETE" });
-    onDelete(id);
-    setDeletingId(null);
-    setConfirmId(null);
-  }
 
   if (count === 0) {
     return (
@@ -397,9 +912,10 @@ function VariantCard({
       {expanded && (
         <div className="border-t border-[#2E2E2F]">
           {/* Table header */}
-          <div className="grid grid-cols-[28px_1fr_1fr_1fr_72px] text-[10px] font-semibold text-[#444] uppercase tracking-wider">
+          <div className="grid grid-cols-[28px_1fr_56px_1fr_1fr_84px] text-[10px] font-semibold text-[#444] uppercase tracking-wider">
             <div className="bg-[#111112] px-3 py-2 border-b border-[#2E2E2F]">#</div>
             <div className="bg-[#111112] px-4 py-2 border-b border-[#2E2E2F]">Nabavna cena</div>
+            <div className="bg-[#111112] px-2 py-2 border-b border-[#2E2E2F]">Kasa</div>
             <div className="bg-[#111112] px-4 py-2 border-b border-[#2E2E2F] flex items-center gap-1.5">
               Profit / Gubitak
               {/* Legend tooltip trigger */}
@@ -418,12 +934,11 @@ function VariantCard({
             // Per-item P&L (requires live price)
             const metalPnL   = livePrice ? metalPricePerUnit   - item.purchase_price_rsd : null;
             const sellingPnL = livePrice ? sellingPricePerUnit - item.purchase_price_rsd : null;
-            const isConfirming = confirmId === item.id;
 
             return (
               <div
                 key={item.id}
-                className="grid grid-cols-[28px_1fr_1fr_1fr_72px] border-t border-[#2E2E2F]"
+                className="grid grid-cols-[28px_1fr_56px_1fr_1fr_84px] border-t border-[#2E2E2F]"
               >
                 {/* # */}
                 <div className="bg-[#1B1B1C] px-3 py-3 flex items-center">
@@ -434,6 +949,19 @@ function VariantCard({
                 <div className="bg-[#1B1B1C] px-4 py-3 flex items-center">
                   <span className="text-sm text-[#E9E6D9] font-medium tabular-nums">
                     {formatRsd(item.purchase_price_rsd)}
+                  </span>
+                </div>
+
+                {/* Kasa */}
+                <div className="bg-[#1B1B1C] px-2 py-3 flex items-center">
+                  <span
+                    className={`text-[9px] font-semibold px-1.5 py-0.5 rounded-full border ${
+                      item.register_type === "crna"
+                        ? "text-[#8A8A8A] bg-[#8A8A8A]/10 border-[#8A8A8A]/30"
+                        : "text-[#E9E6D9] bg-[#E9E6D9]/10 border-[#E9E6D9]/25"
+                    }`}
+                  >
+                    {item.register_type === "crna" ? "CRNA" : "BELA"}
                   </span>
                 </div>
 
@@ -464,39 +992,22 @@ function VariantCard({
                 {/* Date / Note */}
                 <div className="bg-[#1B1B1C] px-4 py-3 flex flex-col justify-center">
                   <span className="text-xs text-[#8A8A8A]">{formatDate(item.purchased_at)}</span>
+                  {item.serial_number && (
+                    <span className="text-[10px] text-[#666] mt-0.5 font-mono">SN {item.serial_number}</span>
+                  )}
                   {item.note && <span className="text-[10px] text-[#555] mt-0.5">{item.note}</span>}
                 </div>
 
                 {/* Sold button */}
                 <div className="bg-[#1B1B1C] px-2 py-3 flex items-center justify-center">
-                  {isConfirming ? (
-                    <div className="flex items-center gap-1">
-                      <button
-                        onClick={() => handleDelete(item.id)}
-                        disabled={deletingId === item.id}
-                        className="p-1.5 rounded-lg text-green-400 hover:bg-green-500/10 transition-colors disabled:opacity-40"
-                        title="Potvrdi prodaju"
-                      >
-                        <Check size={13} />
-                      </button>
-                      <button
-                        onClick={() => setConfirmId(null)}
-                        className="p-1.5 rounded-lg text-[#555] hover:text-[#E9E6D9] transition-colors"
-                        title="Otkaži"
-                      >
-                        <X size={13} />
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => setConfirmId(item.id)}
-                      disabled={deletingId === item.id}
-                      className="p-1.5 rounded-lg text-[#555] hover:text-red-400 hover:bg-red-500/10 transition-colors disabled:opacity-40"
-                      title="Označi kao prodato"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                  )}
+                  <button
+                    onClick={() => onSell(item, group)}
+                    className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-[#555] hover:text-[#BF8E41] hover:bg-[#BF8E41]/10 transition-colors text-[10px] font-medium"
+                    title="Označi kao prodato"
+                  >
+                    <ShoppingBag size={13} />
+                    Prodato
+                  </button>
                 </div>
               </div>
             );
@@ -525,14 +1036,14 @@ function CategorySection({
   livePrice,
   tiers,
   onAdd,
-  onDelete,
+  onSell,
 }: {
   category: string;
   groups: GroupedVariant[];
   livePrice: LivePrice | null;
   tiers: Tier[];
   onAdd: (v: GroupedVariant) => void;
-  onDelete: (id: string) => void;
+  onSell: (item: LagerItem, group: GroupedVariant) => void;
 }) {
   const inStockGroups = groups.filter((g) => g.items.length > 0);
   const totalCount = inStockGroups.reduce((s, g) => s + g.items.length, 0);
@@ -569,7 +1080,7 @@ function CategorySection({
             livePrice={livePrice}
             tiers={tiers}
             onAdd={onAdd}
-            onDelete={onDelete}
+            onSell={onSell}
           />
         ))}
       </div>
@@ -586,6 +1097,7 @@ export default function AdminZalikePage() {
   const [tiers, setTiers] = useState<Tier[]>([]);
   const [loading, setLoading] = useState(true);
   const [addTarget, setAddTarget] = useState<GroupedVariant | null>(null);
+  const [sellTarget, setSellTarget] = useState<{ item: LagerItem; group: GroupedVariant } | null>(null);
   const [filter, setFilter] = useState<"in_stock" | "all">("in_stock");
 
   const loadItems = useCallback(async () => {
@@ -667,12 +1179,13 @@ export default function AdminZalikePage() {
   const totalPnL = totalSellingValue - totalInvested;
   const pnlPct   = totalInvested > 0 ? (totalPnL / totalInvested) * 100 : 0;
 
-  function handleDelete(id: string) {
-    setItems((prev) => prev.filter((i) => i.id !== id));
-  }
-
   async function handleSaved() {
     setAddTarget(null);
+    await loadItems();
+  }
+
+  async function handleSellSaved() {
+    setSellTarget(null);
     await loadItems();
   }
 
@@ -820,7 +1333,7 @@ export default function AdminZalikePage() {
               livePrice={livePrice}
               tiers={tiers}
               onAdd={setAddTarget}
-              onDelete={handleDelete}
+              onSell={(item, group) => setSellTarget({ item, group })}
             />
           ))}
         </div>
@@ -832,6 +1345,23 @@ export default function AdminZalikePage() {
           variant={addTarget}
           onClose={() => setAddTarget(null)}
           onSaved={handleSaved}
+        />
+      )}
+
+      {/* Sell modal */}
+      {sellTarget && (
+        <SellModal
+          item={sellTarget.item}
+          productLabel={`${sellTarget.group.brand} - ${sellTarget.group.name} (${formatWeight(sellTarget.group.weightG)})${sellTarget.item.serial_number ? ` · SN ${sellTarget.item.serial_number}` : ""}`}
+          suggestedPrice={
+            livePrice
+              ? livePrice.rsd_per_gram *
+                sellTarget.group.weightG *
+                (1 + findStockMarginPct(sellTarget.group.weightG, sellTarget.group.category, tiers, sellTarget.group.brand) / 100)
+              : null
+          }
+          onClose={() => setSellTarget(null)}
+          onSaved={handleSellSaved}
         />
       )}
     </div>

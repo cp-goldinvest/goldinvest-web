@@ -12,6 +12,8 @@ import {
   ChevronRight,
   LayoutList,
   ShoppingBag,
+  Wallet,
+  Users,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
@@ -19,6 +21,8 @@ import { createClient } from "@/lib/supabase/client";
 const NAV_DAILY = [
   { href: "/admin/cene",        label: "Cene i marže", icon: TrendingUp, desc: "Kursevi, marže, override" },
   { href: "/admin/zalihe",      label: "Zalihe",        icon: Package,    desc: "Stanje na stanju" },
+  { href: "/admin/finansije",   label: "Finansije",     icon: Wallet,     desc: "Kasa, P&L, export" },
+  { href: "/admin/kupci",       label: "Kupci",         icon: Users,      desc: "CRM" },
   { href: "/admin/upiti",       label: "Upiti",         icon: Inbox,      desc: "Zahtevi klijenata" },
   { href: "/admin/porudzbine",  label: "Porudžbine",    icon: ShoppingBag,desc: "Zlatne Pločice" },
 ];

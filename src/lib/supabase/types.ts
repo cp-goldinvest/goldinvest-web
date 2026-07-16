@@ -218,6 +218,116 @@ export type Database = {
         };
         Update: Partial<Database["public"]["Tables"]["order_items"]["Insert"]>;
       };
+      lager_items: {
+        Row: {
+          id: string;
+          variant_id: string;
+          purchase_price_rsd: number;
+          purchased_at: string;
+          note: string | null;
+          register_type: "bela" | "crna";
+          supplier_name: string | null;
+          supplier_customer_id: string | null;
+          sold_at: string | null;
+          reserved_order_id: string | null;
+          serial_number: string | null;
+          invoice_number: string | null;
+          supplier_tax_id: string | null;
+          supplier_address: string | null;
+          created_at: string;
+        };
+        Insert: Omit<Database["public"]["Tables"]["lager_items"]["Row"], "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["lager_items"]["Insert"]>;
+      };
+      customers: {
+        Row: {
+          id: string;
+          full_name: string;
+          phone: string | null;
+          email: string | null;
+          address: string | null;
+          id_number: string | null;
+          note: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: Omit<Database["public"]["Tables"]["customers"]["Row"], "id" | "created_at" | "updated_at"> & {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["customers"]["Insert"]>;
+      };
+      sales: {
+        Row: {
+          id: string;
+          sale_number: number;
+          site_id: number;
+          register_type: "bela" | "crna";
+          customer_id: string | null;
+          sold_at: string;
+          payment_method: "gotovina" | "racun" | "kartica" | "ostalo";
+          subtotal_rsd: number;
+          total_rsd: number;
+          invoice_number: string | null;
+          note: string | null;
+          created_at: string;
+          created_by: string | null;
+        };
+        Insert: Omit<
+          Database["public"]["Tables"]["sales"]["Row"],
+          "id" | "sale_number" | "site_id" | "created_at"
+        > & {
+          id?: string;
+          sale_number?: number;
+          site_id?: number;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["sales"]["Insert"]>;
+      };
+      sale_items: {
+        Row: {
+          id: string;
+          sale_id: string;
+          lager_item_id: string | null;
+          variant_id: string | null;
+          product_name_snapshot: string;
+          variant_name_snapshot: string | null;
+          weight_g_snapshot: number;
+          category_snapshot: string;
+          quantity: number;
+          unit_price_rsd: number;
+          line_total_rsd: number;
+          purchase_price_snapshot_rsd: number | null;
+          serial_number_snapshot: string | null;
+          created_at: string;
+        };
+        Insert: Omit<Database["public"]["Tables"]["sale_items"]["Row"], "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["sale_items"]["Insert"]>;
+      };
+      expenses: {
+        Row: {
+          id: string;
+          expense_date: string;
+          category: string;
+          register_type: "bela" | "crna";
+          amount_rsd: number;
+          description: string | null;
+          created_at: string;
+          created_by: string | null;
+        };
+        Insert: Omit<Database["public"]["Tables"]["expenses"]["Row"], "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["expenses"]["Insert"]>;
+      };
       admin_users: {
         Row: {
           id: string;
@@ -288,6 +398,11 @@ export type ContactMessage = Database["public"]["Tables"]["contact_messages"]["R
 export type Site = Database["public"]["Tables"]["sites"]["Row"];
 export type Order = Database["public"]["Tables"]["orders"]["Row"];
 export type OrderItem = Database["public"]["Tables"]["order_items"]["Row"];
+export type LagerItem = Database["public"]["Tables"]["lager_items"]["Row"];
+export type Customer = Database["public"]["Tables"]["customers"]["Row"];
+export type Sale = Database["public"]["Tables"]["sales"]["Row"];
+export type SaleItem = Database["public"]["Tables"]["sale_items"]["Row"];
+export type Expense = Database["public"]["Tables"]["expenses"]["Row"];
 
 // Composite type used across product pages.
 // pricing_rules is an array because the (variant_id, site_id) UNIQUE constraint
