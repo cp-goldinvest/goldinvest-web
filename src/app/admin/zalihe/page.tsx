@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { ChevronDown, ChevronUp, Plus, X, TrendingUp, TrendingDown, Package, Info, ShoppingBag, Search, UserPlus } from "lucide-react";
+import { ChevronDown, ChevronUp, Plus, X, TrendingUp, TrendingDown, Package, Info, ShoppingBag, Search, UserPlus, Download } from "lucide-react";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -1192,11 +1192,20 @@ export default function AdminZalikePage() {
   return (
     <div className="p-6 lg:p-8 max-w-4xl">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-xl font-semibold text-[#E9E6D9]">Lager</h1>
-        <p className="text-sm text-[#555] mt-1">
-          Fizičke jedinice zlata na stanju sa nabavnim cenama i tržišnom vrednošću.
-        </p>
+      <div className="mb-6 flex items-start justify-between gap-3 flex-wrap">
+        <div>
+          <h1 className="text-xl font-semibold text-[#E9E6D9]">Lager</h1>
+          <p className="text-sm text-[#555] mt-1">
+            Fizičke jedinice zlata na stanju sa nabavnim cenama i tržišnom vrednošću.
+          </p>
+        </div>
+        <a
+          href="/api/admin/export/lager"
+          className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#2E2E2F] text-xs text-[#8A8A8A] hover:text-[#E9E6D9] transition-colors shrink-0"
+        >
+          <Download size={13} />
+          Export lager
+        </a>
       </div>
 
       {/* Summary cards */}

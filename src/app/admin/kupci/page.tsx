@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import { Search, UserPlus, ChevronDown, ChevronUp, Phone, Mail, MapPin, X, Pencil, Users } from "lucide-react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { Search, UserPlus, ChevronDown, ChevronUp, Phone, Mail, MapPin, X, Pencil, Users, Download, TrendingUp } from "lucide-react";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -14,7 +14,12 @@ type Customer = {
   id_number: string | null;
   note: string | null;
   created_at: string;
+  purchase_count: number;
+  total_spent_rsd: number;
+  last_purchase_at: string | null;
 };
+
+type SortOption = "ime" | "potrosnja" | "poslednja";
 
 type SaleItem = {
   id: string;
@@ -61,6 +66,15 @@ function formatRsd(n: number) {
 
 function formatDate(d: string) {
   return d.slice(0, 10).split("-").reverse().join(".");
+}
+
+function formatRelative(d: string) {
+  const days = Math.floor((Date.now() - new Date(d).getTime()) / (1000 * 60 * 60 * 24));
+  if (days <= 0) return "danas";
+  if (days === 1) return "juče";
+  if (days < 30) return `pre ${days} dana`;
+  if (days < 365) return `pre ${Math.floor(days / 30)} mes.`;
+  return `pre ${Math.floor(days / 365)} god.`;
 }
 
 // ── New / Edit Customer Modal ────────────────────────────────────────────────
@@ -229,7 +243,7 @@ function CustomerRow({ customer, onEdit }: { customer: Customer; onEdit: (c: Cus
     setExpanded((e) => !e);
   }
 
-  const totalSpent = detail?.sales.reduce((s, sale) => s + Number(sale.total_rsd), 0) ?? 0;
+  const hasPurchases = customer.purchase_count > 0;
 
   return (
     <div className="border border-[#2E2E2F] rounded-xl overflow-hidden">
@@ -240,23 +254,43 @@ function CustomerRow({ customer, onEdit }: { customer: Customer; onEdit: (c: Cus
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") toggle();
         }}
-        className="w-full flex items-center justify-between px-4 py-3 bg-[#1B1B1C] hover:bg-[#1B1B1C]/70 transition-colors text-left cursor-pointer"
+        className="w-full flex items-center justify-between gap-4 px-4 py-3 bg-[#1B1B1C] hover:bg-[#1B1B1C]/70 transition-colors text-left cursor-pointer"
       >
         <div className="flex-1 min-w-0">
-          <p className="text-sm text-[#E9E6D9] font-medium">{customer.full_name}</p>
-          <div className="flex items-center gap-3 mt-0.5">
+          <p className="text-sm text-[#E9E6D9] font-medium truncate">{customer.full_name}</p>
+          <div className="flex items-center gap-3 mt-0.5 flex-wrap">
             {customer.phone && (
               <span className="flex items-center gap-1 text-xs text-[#555]">
                 <Phone size={11} /> {customer.phone}
               </span>
             )}
             {customer.email && (
-              <span className="flex items-center gap-1 text-xs text-[#555]">
+              <span className="flex items-center gap-1 text-xs text-[#555] truncate">
                 <Mail size={11} /> {customer.email}
               </span>
             )}
           </div>
         </div>
+
+        <div className="hidden sm:flex items-center gap-6 shrink-0">
+          <div className="text-right w-16">
+            <p className="text-[9px] text-[#444] uppercase tracking-wider">Kupovina</p>
+            <p className="text-xs text-[#8A8A8A] font-medium tabular-nums">{customer.purchase_count}</p>
+          </div>
+          <div className="text-right w-28">
+            <p className="text-[9px] text-[#444] uppercase tracking-wider">Ukupno</p>
+            <p className={`text-sm font-semibold tabular-nums ${hasPurchases ? "text-[#BF8E41]" : "text-[#444]"}`}>
+              {hasPurchases ? formatRsd(customer.total_spent_rsd) : "-"}
+            </p>
+          </div>
+          <div className="text-right w-20">
+            <p className="text-[9px] text-[#444] uppercase tracking-wider">Poslednja</p>
+            <p className="text-xs text-[#8A8A8A] tabular-nums">
+              {customer.last_purchase_at ? formatRelative(customer.last_purchase_at) : "-"}
+            </p>
+          </div>
+        </div>
+
         <div className="flex items-center gap-3 shrink-0">
           <button
             onClick={(e) => {
@@ -271,6 +305,17 @@ function CustomerRow({ customer, onEdit }: { customer: Customer; onEdit: (c: Cus
           {expanded ? <ChevronUp size={14} className="text-[#555]" /> : <ChevronDown size={14} className="text-[#555]" />}
         </div>
       </div>
+
+      {/* Mobile stats row (hidden on sm+, shown inline above instead) */}
+      {hasPurchases && (
+        <div className="sm:hidden flex items-center gap-4 px-4 pb-2.5 -mt-1 bg-[#1B1B1C]">
+          <span className="text-[10px] text-[#555]">{customer.purchase_count} kupovina</span>
+          <span className="text-[10px] text-[#BF8E41] font-medium">{formatRsd(customer.total_spent_rsd)}</span>
+          {customer.last_purchase_at && (
+            <span className="text-[10px] text-[#555]">{formatRelative(customer.last_purchase_at)}</span>
+          )}
+        </div>
+      )}
 
       {expanded && (
         <div className="border-t border-[#2E2E2F] bg-[#111112] px-4 py-4">
@@ -290,16 +335,18 @@ function CustomerRow({ customer, onEdit }: { customer: Customer; onEdit: (c: Cus
                 </div>
               )}
 
-              <div className="flex items-center gap-4">
-                <div>
-                  <p className="text-[10px] text-[#444] uppercase tracking-wider">Ukupno kupio</p>
-                  <p className="text-sm font-semibold text-[#BF8E41] tabular-nums">{formatRsd(totalSpent)}</p>
+              {(detail.sales.length > 0 || detail.purchases_as_supplier.length > 0) && (
+                <div className="flex justify-end">
+                  <a
+                    href={`/api/admin/export/customers?customer_id=${customer.id}`}
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#2E2E2F] text-[10px] text-[#8A8A8A] hover:text-[#BF8E41] hover:border-[#BF8E41]/30 transition-colors"
+                  >
+                    <Download size={11} />
+                    Izvezi istoriju ovog kupca
+                  </a>
                 </div>
-                <div>
-                  <p className="text-[10px] text-[#444] uppercase tracking-wider">Broj kupovina</p>
-                  <p className="text-sm font-semibold text-[#E9E6D9] tabular-nums">{detail.sales.length}</p>
-                </div>
-              </div>
+              )}
 
               {detail.sales.length > 0 && (
                 <div>
@@ -361,10 +408,17 @@ function CustomerRow({ customer, onEdit }: { customer: Customer; onEdit: (c: Cus
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
+const SORT_LABELS: Record<SortOption, string> = {
+  ime: "Ime A-Š",
+  potrosnja: "Najviše potrošeno",
+  poslednja: "Poslednja kupovina",
+};
+
 export default function AdminKupciPage() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<SortOption>("potrosnja");
   const [formTarget, setFormTarget] = useState<Customer | null | "new">(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -391,31 +445,93 @@ export default function AdminKupciPage() {
     await loadCustomers(query);
   }
 
+  const sortedCustomers = useMemo(() => {
+    const arr = [...customers];
+    if (sort === "ime") arr.sort((a, b) => a.full_name.localeCompare(b.full_name, "sr"));
+    if (sort === "potrosnja") arr.sort((a, b) => b.total_spent_rsd - a.total_spent_rsd);
+    if (sort === "poslednja") {
+      arr.sort((a, b) => {
+        if (!a.last_purchase_at && !b.last_purchase_at) return 0;
+        if (!a.last_purchase_at) return 1;
+        if (!b.last_purchase_at) return -1;
+        return b.last_purchase_at.localeCompare(a.last_purchase_at);
+      });
+    }
+    return arr;
+  }, [customers, sort]);
+
+  const totalCustomers = customers.length;
+  const totalRevenue = customers.reduce((s, c) => s + c.total_spent_rsd, 0);
+
   return (
-    <div className="p-6 lg:p-8 max-w-4xl">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-6 lg:p-8 max-w-5xl">
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
         <div>
           <h1 className="text-xl font-semibold text-[#E9E6D9]">Kupci</h1>
           <p className="text-sm text-[#555] mt-1">CRM - istorija kupovina i otkupa po osobi.</p>
         </div>
-        <button
-          onClick={() => setFormTarget("new")}
-          className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#BF8E41]/10 border border-[#BF8E41]/20 text-[#BF8E41] text-xs font-medium hover:bg-[#BF8E41]/20 transition-colors"
-        >
-          <UserPlus size={14} />
-          Novi kupac
-        </button>
+        <div className="flex items-center gap-2">
+          <a
+            href="/api/admin/export/customers"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#2E2E2F] text-xs text-[#8A8A8A] hover:text-[#E9E6D9] transition-colors"
+          >
+            <Download size={14} />
+            Export kupaca
+          </a>
+          <button
+            onClick={() => setFormTarget("new")}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#BF8E41]/10 border border-[#BF8E41]/20 text-[#BF8E41] text-xs font-medium hover:bg-[#BF8E41]/20 transition-colors"
+          >
+            <UserPlus size={14} />
+            Novi kupac
+          </button>
+        </div>
       </div>
 
-      <div className="relative mb-5">
-        <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#444]" />
-        <input
-          type="text"
-          placeholder="Pretraži po imenu ili telefonu..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full bg-[#111112] border border-[#2E2E2F] rounded-xl pl-9 pr-3 py-2.5 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
-        />
+      {/* Summary cards */}
+      {!loading && customers.length > 0 && (
+        <div className="grid grid-cols-2 gap-3 mb-5">
+          <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Users size={13} className="text-[#555]" />
+              <p className="text-[10px] text-[#555] uppercase tracking-wider">Ukupno kupaca</p>
+            </div>
+            <p className="text-xl font-semibold text-[#E9E6D9] tabular-nums">{totalCustomers}</p>
+          </div>
+          <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingUp size={13} className="text-[#555]" />
+              <p className="text-[10px] text-[#555] uppercase tracking-wider">Ukupan promet</p>
+            </div>
+            <p className="text-sm font-semibold text-[#BF8E41] tabular-nums leading-tight">{formatRsd(totalRevenue)}</p>
+          </div>
+        </div>
+      )}
+
+      <div className="flex items-center gap-3 mb-5 flex-wrap">
+        <div className="relative flex-1 min-w-[220px]">
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#444]" />
+          <input
+            type="text"
+            placeholder="Pretraži po imenu ili telefonu..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full bg-[#111112] border border-[#2E2E2F] rounded-xl pl-9 pr-3 py-2.5 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+          />
+        </div>
+        <div className="flex items-center gap-1 p-1 bg-[#111112] border border-[#2E2E2F] rounded-xl">
+          {(Object.keys(SORT_LABELS) as SortOption[]).map((s) => (
+            <button
+              key={s}
+              onClick={() => setSort(s)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
+                sort === s ? "bg-[#1B1B1C] text-[#E9E6D9] border border-[#2E2E2F]" : "text-[#555] hover:text-[#8A8A8A]"
+              }`}
+            >
+              {SORT_LABELS[s]}
+            </button>
+          ))}
+        </div>
       </div>
 
       {loading ? (
@@ -427,7 +543,7 @@ export default function AdminKupciPage() {
         </div>
       ) : (
         <div className="space-y-2">
-          {customers.map((c) => (
+          {sortedCustomers.map((c) => (
             <CustomerRow key={c.id} customer={c} onEdit={setFormTarget} />
           ))}
         </div>

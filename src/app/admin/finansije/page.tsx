@@ -264,6 +264,60 @@ function ExpenseModal({ onClose, onSaved }: { onClose: () => void; onSaved: () =
   );
 }
 
+// ── Export Confirm Modal ─────────────────────────────────────────────────────
+
+type ExportKind = "all" | "bela" | "crna" | "monthly";
+
+const PERIOD_LABELS: Record<Period, string> = {
+  danas: "danas",
+  nedelja: "poslednjih 7 dana",
+  mesec: "ovaj mesec",
+  sve: "ceo period",
+  custom: "prilagođen period",
+};
+
+function ExportConfirmModal({
+  kind,
+  periodLabel,
+  onClose,
+  onConfirm,
+}: {
+  kind: ExportKind;
+  periodLabel: string;
+  onClose: () => void;
+  onConfirm: () => void;
+}) {
+  const text: Record<ExportKind, string> = {
+    all: `Izvozi Prodaju, Nabavku i Troškove za ${periodLabel}.`,
+    bela: `Izvozi samo BELU kasu za ${periodLabel}.`,
+    crna: `Izvozi samo CRNU kasu za ${periodLabel}.`,
+    monthly: "Izvozi pregled po mesecima za celu istoriju (bela i crna posebno).",
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+      <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-2xl p-6 w-full max-w-sm mx-4 shadow-2xl">
+        <h3 className="text-[#E9E6D9] font-semibold mb-2">Export u Excel</h3>
+        <p className="text-sm text-[#8A8A8A] mb-5">{text[kind]}</p>
+        <div className="flex gap-3">
+          <button
+            onClick={onClose}
+            className="flex-1 py-2.5 rounded-lg border border-[#2E2E2F] text-sm text-[#8A8A8A] hover:text-[#E9E6D9] transition-colors"
+          >
+            Otkaži
+          </button>
+          <button
+            onClick={onConfirm}
+            className="flex-1 py-2.5 rounded-lg bg-[#BF8E41] text-[#1B1B1C] text-sm font-semibold hover:opacity-90 transition-opacity"
+          >
+            Izvezi
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Register Card ─────────────────────────────────────────────────────────────
 
 function RegisterCard({ title, bucket, accent }: { title: string; bucket: RegisterBucket; accent: string }) {
@@ -316,6 +370,7 @@ export default function AdminFinansijePage() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
   const [showExpenseModal, setShowExpenseModal] = useState(false);
+  const [exportConfirm, setExportConfirm] = useState<ExportKind | null>(null);
 
   const range = period === "custom" ? { from: customFrom, to: customTo } : rangeForPeriod(period);
 
@@ -338,10 +393,18 @@ export default function AdminFinansijePage() {
     load();
   }, [load]);
 
-  function handleExport() {
-    const params = new URLSearchParams({ from: range.from, to: range.to });
-    if (registerFilter !== "sve") params.set("register_type", registerFilter);
-    window.location.href = `/api/admin/export?${params.toString()}`;
+  function runExport(kind: ExportKind) {
+    if (kind === "monthly") {
+      window.location.href = `/api/admin/export/monthly`;
+    } else if (kind === "all") {
+      const params = new URLSearchParams({ from: range.from, to: range.to });
+      if (registerFilter !== "sve") params.set("register_type", registerFilter);
+      window.location.href = `/api/admin/export?${params.toString()}`;
+    } else {
+      const params = new URLSearchParams({ from: range.from, to: range.to, register_type: kind });
+      window.location.href = `/api/admin/export?${params.toString()}`;
+    }
+    setExportConfirm(null);
   }
 
   const totalBucket = summary?.total;
@@ -362,14 +425,47 @@ export default function AdminFinansijePage() {
             Dodaj trošak
           </button>
           <button
-            onClick={handleExport}
+            onClick={() => setExportConfirm("all")}
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#BF8E41]/10 border border-[#BF8E41]/20 text-[#BF8E41] text-xs font-medium hover:bg-[#BF8E41]/20 transition-colors"
           >
             <Download size={13} />
             Export Excel
           </button>
+          <div className="flex items-center gap-1 p-1 bg-[#111112] border border-[#2E2E2F] rounded-lg">
+            <button
+              onClick={() => setExportConfirm("bela")}
+              title="Export samo bele kase za trenutni period"
+              className="px-2.5 py-1 rounded-md text-[10px] font-medium text-[#8A8A8A] hover:text-[#E9E6D9] transition-colors"
+            >
+              Bela
+            </button>
+            <button
+              onClick={() => setExportConfirm("crna")}
+              title="Export samo crne kase za trenutni period"
+              className="px-2.5 py-1 rounded-md text-[10px] font-medium text-[#8A8A8A] hover:text-[#E9E6D9] transition-colors"
+            >
+              Crna
+            </button>
+          </div>
+          <button
+            onClick={() => setExportConfirm("monthly")}
+            title="Pregled po mesecima, cela istorija, po kasi"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#2E2E2F] text-xs text-[#8A8A8A] hover:text-[#E9E6D9] transition-colors"
+          >
+            <Download size={13} />
+            Mesečni pregled
+          </button>
         </div>
       </div>
+
+      {exportConfirm && (
+        <ExportConfirmModal
+          kind={exportConfirm}
+          periodLabel={PERIOD_LABELS[period]}
+          onClose={() => setExportConfirm(null)}
+          onConfirm={() => runExport(exportConfirm)}
+        />
+      )}
 
       {/* Filters */}
       <div className="flex items-center gap-4 mb-6 flex-wrap">
