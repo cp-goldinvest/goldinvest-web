@@ -49,7 +49,7 @@ type Expense = {
   description: string | null;
 };
 
-type Period = "danas" | "nedelja" | "mesec" | "custom";
+type Period = "danas" | "nedelja" | "mesec" | "sve" | "custom";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -79,6 +79,7 @@ function rangeForPeriod(period: Period): { from: string; to: string } {
     weekAgo.setDate(now.getDate() - 6);
     return { from: toIsoDate(weekAgo), to: today };
   }
+  if (period === "sve") return { from: "2000-01-01", to: today };
   // mesec
   const first = new Date(now.getFullYear(), now.getMonth(), 1);
   const last = new Date(now.getFullYear(), now.getMonth() + 1, 0);
@@ -373,7 +374,7 @@ export default function AdminFinansijePage() {
       {/* Filters */}
       <div className="flex items-center gap-4 mb-6 flex-wrap">
         <div className="flex items-center gap-1 p-1 bg-[#111112] border border-[#2E2E2F] rounded-xl">
-          {(["danas", "nedelja", "mesec", "custom"] as Period[]).map((p) => (
+          {(["danas", "nedelja", "mesec", "sve", "custom"] as Period[]).map((p) => (
             <button
               key={p}
               onClick={() => setPeriod(p)}
@@ -381,7 +382,7 @@ export default function AdminFinansijePage() {
                 period === p ? "bg-[#1B1B1C] text-[#E9E6D9] border border-[#2E2E2F]" : "text-[#555] hover:text-[#8A8A8A]"
               }`}
             >
-              {p === "danas" ? "Danas" : p === "nedelja" ? "7 dana" : p === "mesec" ? "Ovaj mesec" : "Prilagođeno"}
+              {p === "danas" ? "Danas" : p === "nedelja" ? "7 dana" : p === "mesec" ? "Ovaj mesec" : p === "sve" ? "Sve" : "Prilagođeno"}
             </button>
           ))}
         </div>
