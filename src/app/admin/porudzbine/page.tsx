@@ -179,9 +179,15 @@ export default function AdminPorudzbinePage() {
     <div className="p-6 lg:p-8 max-w-6xl">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-xl font-semibold text-[#E9E6D9]">Porudžbine</h1>
+          <div className="flex items-center gap-2 mb-1.5">
+            <h1 className="text-xl font-semibold text-[#E9E6D9]">Porudžbine</h1>
+            <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/30 text-[11px] font-semibold text-green-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+              zlatneplocice.rs
+            </span>
+          </div>
           <p className="text-sm text-[#555] mt-1">
-            Sve porudžbine sa svih sajtova. Trenutno: <span className="text-[#BF8E41]">Zlatne Pločice</span> (GoldInvest koristi Upite).
+            Porudžbine sa sajta zlatneplocice.rs. Ovo nije GoldInvest prodaja/lager.
           </p>
         </div>
         {counts.pending_payment > 0 && (

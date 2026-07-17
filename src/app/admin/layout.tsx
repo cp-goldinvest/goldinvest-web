@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import {
   TrendingUp,
   Package,
-  Inbox,
   LogOut,
   ChevronRight,
   LayoutList,
@@ -23,8 +22,11 @@ const NAV_DAILY = [
   { href: "/admin/zalihe",      label: "Zalihe",        icon: Package,    desc: "Stanje na stanju" },
   { href: "/admin/finansije",   label: "Finansije",     icon: Wallet,     desc: "Kasa, P&L, export" },
   { href: "/admin/kupci",       label: "Kupci",         icon: Users,      desc: "CRM" },
-  { href: "/admin/upiti",       label: "Upiti",         icon: Inbox,      desc: "Zahtevi klijenata" },
-  { href: "/admin/porudzbine",  label: "Porudžbine",    icon: ShoppingBag,desc: "Zlatne Pločice" },
+];
+
+// Porudžbine je poseban sajt (zlatneplocice.rs), izdvojen vizuelno (zelena boja)
+const NAV_ZP = [
+  { href: "/admin/porudzbine",  label: "Porudžbine",    icon: ShoppingBag,desc: "zlatneplocice.rs" },
 ];
 
 // Admin alati - koriste se retko
@@ -66,6 +68,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             ))}
           </div>
 
+          {/* Zlatne Pločice sajt - vizuelno odvojeno (zeleno) */}
+          <div>
+            <div className="flex items-center gap-2 px-1 mb-1">
+              <div className="flex-1 h-px bg-green-900/40" />
+              <span className="text-[9px] font-semibold text-green-700 uppercase tracking-widest">zlatneplocice.rs</span>
+              <div className="flex-1 h-px bg-green-900/40" />
+            </div>
+            <div className="space-y-1">
+              {NAV_ZP.map(({ href, label, icon: Icon, desc }) => (
+                <NavLink key={href} href={href} label={label} icon={Icon} desc={desc} active={pathname.startsWith(href)} variant="green" />
+              ))}
+            </div>
+          </div>
+
           {/* Separator */}
           <div>
             <div className="flex items-center gap-2 px-1 mb-1">
@@ -103,28 +119,36 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   );
 }
 
-function NavLink({ href, label, icon: Icon, desc, active, muted = false }: {
+function NavLink({ href, label, icon: Icon, desc, active, muted = false, variant = "gold" }: {
   href: string; label: string; icon: React.ElementType;
-  desc: string; active: boolean; muted?: boolean;
+  desc: string; active: boolean; muted?: boolean; variant?: "gold" | "green";
 }) {
+  const activeClass = variant === "green"
+    ? "bg-green-500/10 border border-green-500/30 text-green-400"
+    : "bg-[#BF8E41]/10 border border-[#BF8E41]/30 text-[#BF8E41]";
+  const activeTextClass = variant === "green" ? "text-green-400" : "text-[#BF8E41]";
+  const activeChevronClass = variant === "green" ? "text-green-400/60" : "text-[#BF8E41]/60";
+
   return (
     <Link
       href={href}
       className={[
         "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200",
         active
-          ? "bg-[#BF8E41]/10 border border-[#BF8E41]/30 text-[#BF8E41]"
+          ? activeClass
           : muted
           ? "text-[#444] hover:bg-[#2E2E2F] hover:text-[#8A8A8A]"
+          : variant === "green"
+          ? "text-green-700/80 hover:bg-green-500/10 hover:text-green-400"
           : "text-[#8A8A8A] hover:bg-[#2E2E2F] hover:text-[#E9E6D9]",
       ].join(" ")}
     >
       <Icon size={16} className="shrink-0" />
       <div className="flex-1 min-w-0">
-        <p className={`text-sm font-medium ${active ? "text-[#BF8E41]" : ""}`}>{label}</p>
+        <p className={`text-sm font-medium ${active ? activeTextClass : ""}`}>{label}</p>
         <p className="text-[10px] text-[#555] truncate">{desc}</p>
       </div>
-      {active && <ChevronRight size={12} className="text-[#BF8E41]/60" />}
+      {active && <ChevronRight size={12} className={activeChevronClass} />}
     </Link>
   );
 }
