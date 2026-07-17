@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { ChevronDown, ChevronUp, Plus, X, TrendingUp, TrendingDown, Package, Info, ShoppingBag, Search, UserPlus, Download } from "lucide-react";
+import { ChevronDown, ChevronUp, Plus, X, TrendingUp, TrendingDown, Package, Info, ShoppingBag, Search, UserPlus, Download, Pencil } from "lucide-react";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -772,6 +772,133 @@ function SellModal({
   );
 }
 
+// ── Change Price Modal ──────────────────────────────────────────────────────────
+
+function ChangePriceModal({
+  item,
+  productLabel,
+  onClose,
+  onSaved,
+}: {
+  item: LagerItem;
+  productLabel: string;
+  onClose: () => void;
+  onSaved: () => void;
+}) {
+  const [price, setPrice] = useState(String(Math.round(item.purchase_price_rsd)));
+  const [registerType, setRegisterType] = useState<RegisterType>(item.register_type);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSave() {
+    const priceNum = parseFloat(price.replace(/\./g, "").replace(",", "."));
+    if (!priceNum || priceNum <= 0) {
+      setError("Unesi nabavnu cenu");
+      return;
+    }
+    setSaving(true);
+    setError("");
+    try {
+      const res = await fetch(`/api/admin/lager/${item.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ purchase_price_rsd: priceNum, register_type: registerType }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error ?? "Greška pri čuvanju");
+        setSaving(false);
+        return;
+      }
+      onSaved();
+    } catch {
+      setError("Greška pri čuvanju");
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+      <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-2xl p-6 w-full max-w-sm mx-4 shadow-2xl">
+        <div className="flex items-center justify-between mb-5">
+          <div>
+            <p className="text-xs text-[#555] mb-0.5">{productLabel}</p>
+            <h3 className="text-[#E9E6D9] font-semibold">Uredi stavku</h3>
+          </div>
+          <button onClick={onClose} className="text-[#555] hover:text-[#E9E6D9] transition-colors">
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Nova nabavna cena (RSD)</label>
+            <input
+              type="number"
+              autoFocus
+              value={price}
+              onChange={(e) => {
+                setPrice(e.target.value);
+                setError("");
+              }}
+              className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+            />
+            <p className="text-[10px] text-[#444] mt-1.5">
+              Trenutno: {formatRsd(item.purchase_price_rsd)}
+            </p>
+          </div>
+
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Kasa</label>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setRegisterType("bela")}
+                className={`flex-1 py-2 rounded-lg text-xs font-medium border transition-colors ${
+                  registerType === "bela"
+                    ? "bg-[#E9E6D9]/10 border-[#E9E6D9]/40 text-[#E9E6D9]"
+                    : "border-[#2E2E2F] text-[#555] hover:text-[#8A8A8A]"
+                }`}
+              >
+                Bela kasa
+              </button>
+              <button
+                type="button"
+                onClick={() => setRegisterType("crna")}
+                className={`flex-1 py-2 rounded-lg text-xs font-medium border transition-colors ${
+                  registerType === "crna"
+                    ? "bg-[#8A8A8A]/10 border-[#8A8A8A]/40 text-[#8A8A8A]"
+                    : "border-[#2E2E2F] text-[#555] hover:text-[#8A8A8A]"
+                }`}
+              >
+                Crna kasa
+              </button>
+            </div>
+          </div>
+
+          {error && <p className="text-red-400 text-xs">{error}</p>}
+
+          <div className="flex gap-3 pt-1">
+            <button
+              onClick={onClose}
+              className="flex-1 py-2.5 rounded-lg border border-[#2E2E2F] text-sm text-[#8A8A8A] hover:text-[#E9E6D9] transition-colors"
+            >
+              Otkaži
+            </button>
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="flex-1 py-2.5 rounded-lg bg-[#BF8E41] text-[#1B1B1C] text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+            >
+              {saving ? "Čuvam..." : "Sačuvaj izmene"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Variant Card ───────────────────────────────────────────────────────────────
 
 function VariantCard({
@@ -780,12 +907,14 @@ function VariantCard({
   tiers,
   onAdd,
   onSell,
+  onChangePrice,
 }: {
   group: GroupedVariant;
   livePrice: LivePrice | null;
   tiers: Tier[];
   onAdd: (v: GroupedVariant) => void;
   onSell: (item: LagerItem, group: GroupedVariant) => void;
+  onChangePrice: (item: LagerItem, group: GroupedVariant) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -912,7 +1041,7 @@ function VariantCard({
       {expanded && (
         <div className="border-t border-[#2E2E2F]">
           {/* Table header */}
-          <div className="grid grid-cols-[28px_1fr_56px_1fr_1fr_84px] text-[10px] font-semibold text-[#444] uppercase tracking-wider">
+          <div className="grid grid-cols-[28px_1fr_56px_1fr_1fr_104px] text-[10px] font-semibold text-[#444] uppercase tracking-wider">
             <div className="bg-[#111112] px-3 py-2 border-b border-[#2E2E2F]">#</div>
             <div className="bg-[#111112] px-4 py-2 border-b border-[#2E2E2F]">Nabavna cena</div>
             <div className="bg-[#111112] px-2 py-2 border-b border-[#2E2E2F]">Kasa</div>
@@ -938,7 +1067,7 @@ function VariantCard({
             return (
               <div
                 key={item.id}
-                className="grid grid-cols-[28px_1fr_56px_1fr_1fr_84px] border-t border-[#2E2E2F]"
+                className="grid grid-cols-[28px_1fr_56px_1fr_1fr_104px] border-t border-[#2E2E2F]"
               >
                 {/* # */}
                 <div className="bg-[#1B1B1C] px-3 py-3 flex items-center">
@@ -998,15 +1127,23 @@ function VariantCard({
                   {item.note && <span className="text-[10px] text-[#555] mt-0.5">{item.note}</span>}
                 </div>
 
-                {/* Sold button */}
-                <div className="bg-[#1B1B1C] px-2 py-3 flex items-center justify-center">
+                {/* Sold / change price buttons */}
+                <div className="bg-[#1B1B1C] px-2 py-3 flex flex-col items-stretch justify-center gap-1">
                   <button
                     onClick={() => onSell(item, group)}
-                    className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-[#555] hover:text-[#BF8E41] hover:bg-[#BF8E41]/10 transition-colors text-[10px] font-medium"
+                    className="flex items-center justify-center gap-1 px-2 py-1.5 rounded-lg text-[#555] hover:text-[#BF8E41] hover:bg-[#BF8E41]/10 transition-colors text-[10px] font-medium"
                     title="Označi kao prodato"
                   >
                     <ShoppingBag size={13} />
                     Prodato
+                  </button>
+                  <button
+                    onClick={() => onChangePrice(item, group)}
+                    className="flex items-center justify-center gap-1 px-2 py-1.5 rounded-lg text-[#555] hover:text-[#8A8A8A] hover:bg-[#8A8A8A]/10 transition-colors text-[10px] font-medium"
+                    title="Promeni nabavnu cenu ili kasu"
+                  >
+                    <Pencil size={12} />
+                    Uredi
                   </button>
                 </div>
               </div>
@@ -1037,6 +1174,7 @@ function CategorySection({
   tiers,
   onAdd,
   onSell,
+  onChangePrice,
 }: {
   category: string;
   groups: GroupedVariant[];
@@ -1044,6 +1182,7 @@ function CategorySection({
   tiers: Tier[];
   onAdd: (v: GroupedVariant) => void;
   onSell: (item: LagerItem, group: GroupedVariant) => void;
+  onChangePrice: (item: LagerItem, group: GroupedVariant) => void;
 }) {
   const inStockGroups = groups.filter((g) => g.items.length > 0);
   const totalCount = inStockGroups.reduce((s, g) => s + g.items.length, 0);
@@ -1081,6 +1220,7 @@ function CategorySection({
             tiers={tiers}
             onAdd={onAdd}
             onSell={onSell}
+            onChangePrice={onChangePrice}
           />
         ))}
       </div>
@@ -1098,7 +1238,9 @@ export default function AdminZalikePage() {
   const [loading, setLoading] = useState(true);
   const [addTarget, setAddTarget] = useState<GroupedVariant | null>(null);
   const [sellTarget, setSellTarget] = useState<{ item: LagerItem; group: GroupedVariant } | null>(null);
+  const [priceEditTarget, setPriceEditTarget] = useState<{ item: LagerItem; group: GroupedVariant } | null>(null);
   const [filter, setFilter] = useState<"in_stock" | "all">("in_stock");
+  const [kasaFilter, setKasaFilter] = useState<"sve" | RegisterType>("sve");
 
   const loadItems = useCallback(async () => {
     const [lagerRes, varRes] = await Promise.all([
@@ -1135,7 +1277,9 @@ export default function AdminZalikePage() {
       items: [],
     });
   }
-  for (const item of items) {
+  const filteredItems = kasaFilter === "sve" ? items : items.filter((i) => i.register_type === kasaFilter);
+
+  for (const item of filteredItems) {
     const v = item.product_variants;
     if (!seen.has(v.id)) {
       seen.set(v.id, {
@@ -1164,8 +1308,8 @@ export default function AdminZalikePage() {
   const categoryKeys = CATEGORY_ORDER.filter((c) => byCategory[c]);
 
   // ── Summary stats ──
-  const totalItems = items.length;
-  const totalInvested = items.reduce((s, i) => s + i.purchase_price_rsd, 0);
+  const totalItems = filteredItems.length;
+  const totalInvested = filteredItems.reduce((s, i) => s + i.purchase_price_rsd, 0);
 
   // Use actual tier margins for selling value (same as used on site)
   const totalSellingValue = livePrice && tiers.length > 0
@@ -1179,6 +1323,9 @@ export default function AdminZalikePage() {
   const totalPnL = totalSellingValue - totalInvested;
   const pnlPct   = totalInvested > 0 ? (totalPnL / totalInvested) * 100 : 0;
 
+  const belaCount = items.filter((i) => i.register_type === "bela").length;
+  const crnaCount = items.filter((i) => i.register_type === "crna").length;
+
   async function handleSaved() {
     setAddTarget(null);
     await loadItems();
@@ -1189,8 +1336,13 @@ export default function AdminZalikePage() {
     await loadItems();
   }
 
+  async function handlePriceChanged() {
+    setPriceEditTarget(null);
+    await loadItems();
+  }
+
   return (
-    <div className="p-6 lg:p-8 max-w-4xl">
+    <div className="p-6 lg:p-8">
       {/* Header */}
       <div className="mb-6 flex items-start justify-between gap-3 flex-wrap">
         <div>
@@ -1281,37 +1433,82 @@ export default function AdminZalikePage() {
       )}
 
       {/* Filter tabs */}
-      <div className="flex items-center gap-1 mb-5 p-1 bg-[#111112] border border-[#2E2E2F] rounded-xl w-fit">
-        <button
-          onClick={() => setFilter("in_stock")}
-          className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-            filter === "in_stock"
-              ? "bg-[#1B1B1C] text-[#E9E6D9] border border-[#2E2E2F]"
-              : "text-[#555] hover:text-[#8A8A8A]"
-          }`}
-        >
-          Na lageru
-          {!loading && (
-            <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[10px] ${filter === "in_stock" ? "bg-green-500/15 text-green-400" : "bg-[#1B1B1C] text-[#444]"}`}>
-              {allGroups.filter((g) => g.items.length > 0).length}
-            </span>
-          )}
-        </button>
-        <button
-          onClick={() => setFilter("all")}
-          className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-            filter === "all"
-              ? "bg-[#1B1B1C] text-[#E9E6D9] border border-[#2E2E2F]"
-              : "text-[#555] hover:text-[#8A8A8A]"
-          }`}
-        >
-          Sve varijante
-          {!loading && (
-            <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[10px] ${filter === "all" ? "bg-[#2E2E2F] text-[#8A8A8A]" : "bg-[#1B1B1C] text-[#444]"}`}>
-              {allGroups.length}
-            </span>
-          )}
-        </button>
+      <div className="flex items-center gap-3 mb-5 flex-wrap">
+        <div className="flex items-center gap-1 p-1 bg-[#111112] border border-[#2E2E2F] rounded-xl w-fit">
+          <button
+            onClick={() => setFilter("in_stock")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              filter === "in_stock"
+                ? "bg-[#1B1B1C] text-[#E9E6D9] border border-[#2E2E2F]"
+                : "text-[#555] hover:text-[#8A8A8A]"
+            }`}
+          >
+            Na lageru
+            {!loading && (
+              <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[10px] ${filter === "in_stock" ? "bg-green-500/15 text-green-400" : "bg-[#1B1B1C] text-[#444]"}`}>
+                {allGroups.filter((g) => g.items.length > 0).length}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => setFilter("all")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              filter === "all"
+                ? "bg-[#1B1B1C] text-[#E9E6D9] border border-[#2E2E2F]"
+                : "text-[#555] hover:text-[#8A8A8A]"
+            }`}
+          >
+            Sve varijante
+            {!loading && (
+              <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[10px] ${filter === "all" ? "bg-[#2E2E2F] text-[#8A8A8A]" : "bg-[#1B1B1C] text-[#444]"}`}>
+                {allGroups.length}
+              </span>
+            )}
+          </button>
+        </div>
+
+        <div className="flex items-center gap-1 p-1 bg-[#111112] border border-[#2E2E2F] rounded-xl w-fit">
+          <button
+            onClick={() => setKasaFilter("sve")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              kasaFilter === "sve"
+                ? "bg-[#1B1B1C] text-[#E9E6D9] border border-[#2E2E2F]"
+                : "text-[#555] hover:text-[#8A8A8A]"
+            }`}
+          >
+            Sve kase
+          </button>
+          <button
+            onClick={() => setKasaFilter("bela")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              kasaFilter === "bela"
+                ? "bg-[#E9E6D9]/10 text-[#E9E6D9] border border-[#E9E6D9]/30"
+                : "text-[#555] hover:text-[#8A8A8A]"
+            }`}
+          >
+            Bela kasa
+            {!loading && (
+              <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[10px] ${kasaFilter === "bela" ? "bg-[#E9E6D9]/15 text-[#E9E6D9]" : "bg-[#1B1B1C] text-[#444]"}`}>
+                {belaCount}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => setKasaFilter("crna")}
+            className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              kasaFilter === "crna"
+                ? "bg-[#8A8A8A]/10 text-[#8A8A8A] border border-[#8A8A8A]/30"
+                : "text-[#555] hover:text-[#8A8A8A]"
+            }`}
+          >
+            Crna kasa
+            {!loading && (
+              <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[10px] ${kasaFilter === "crna" ? "bg-[#8A8A8A]/15 text-[#8A8A8A]" : "bg-[#1B1B1C] text-[#444]"}`}>
+                {crnaCount}
+              </span>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Content */}
@@ -1343,6 +1540,7 @@ export default function AdminZalikePage() {
               tiers={tiers}
               onAdd={setAddTarget}
               onSell={(item, group) => setSellTarget({ item, group })}
+              onChangePrice={(item, group) => setPriceEditTarget({ item, group })}
             />
           ))}
         </div>
@@ -1371,6 +1569,16 @@ export default function AdminZalikePage() {
           }
           onClose={() => setSellTarget(null)}
           onSaved={handleSellSaved}
+        />
+      )}
+
+      {/* Change price modal */}
+      {priceEditTarget && (
+        <ChangePriceModal
+          item={priceEditTarget.item}
+          productLabel={`${priceEditTarget.group.brand} - ${priceEditTarget.group.name} (${formatWeight(priceEditTarget.group.weightG)})${priceEditTarget.item.serial_number ? ` · SN ${priceEditTarget.item.serial_number}` : ""}`}
+          onClose={() => setPriceEditTarget(null)}
+          onSaved={handlePriceChanged}
         />
       )}
     </div>
