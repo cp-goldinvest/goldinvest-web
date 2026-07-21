@@ -14,7 +14,7 @@ export async function GET(request: Request) {
   const supabase = createServiceClient();
   let query = supabase
     .from("sales")
-    .select("*, customers:customer_id(id, full_name, phone), sale_items(*)")
+    .select("*, customers:customer_id(id, full_name, phone), agents:agent_id(id, full_name), sale_items(*)")
     .order("sold_at", { ascending: false })
     .order("created_at", { ascending: false });
 
@@ -45,6 +45,7 @@ export async function POST(request: Request) {
     sold_at,
     note,
     invoice_number,
+    agent_id,
   } = body;
 
   if (!lager_item_id || !unit_price_rsd || !register_type) {
@@ -107,6 +108,7 @@ export async function POST(request: Request) {
     .insert({
       register_type,
       customer_id: customerId,
+      agent_id: agent_id ?? null,
       sold_at: sold_at ?? new Date().toISOString().slice(0, 10),
       payment_method: payment_method ?? "gotovina",
       subtotal_rsd: priceNum,

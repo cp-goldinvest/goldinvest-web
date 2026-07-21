@@ -35,6 +35,8 @@ type LagerItem = {
 
 type CustomerLite = { id: string; full_name: string; phone: string | null };
 
+type AgentLite = { id: string; full_name: string };
+
 type CustomerSelection =
   | { mode: "none" }
   | { mode: "existing"; customer: CustomerLite }
@@ -589,13 +591,26 @@ function SellModal({
   const [paymentMethod, setPaymentMethod] = useState("gotovina");
   const [note, setNote] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
+  const [agents, setAgents] = useState<AgentLite[]>([]);
+  const [agentId, setAgentId] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetch("/api/admin/agents")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data: AgentLite[]) => setAgents(data))
+      .catch(() => {});
+  }, []);
 
   async function handleSave() {
     const priceNum = parseFloat(price.replace(/\./g, "").replace(",", "."));
     if (!priceNum || priceNum <= 0) {
       setError("Unesi prodajnu cenu");
+      return;
+    }
+    if (!agentId) {
+      setError("Izaberi agenta koji je zatvorio prodaju");
       return;
     }
     setSaving(true);
@@ -609,6 +624,7 @@ function SellModal({
         sold_at: date,
         note: note || null,
         invoice_number: invoiceNumber || null,
+        agent_id: agentId,
       };
       if (customerSelection.mode === "existing") body.customer_id = customerSelection.customer.id;
       if (customerSelection.mode === "new") {
@@ -709,6 +725,23 @@ function SellModal({
           </div>
 
           <div>
+            <label className="text-xs text-[#555] block mb-1.5">Agent (ko je zatvorio prodaju)</label>
+            <select
+              value={agentId}
+              onChange={(e) => {
+                setAgentId(e.target.value);
+                setError("");
+              }}
+              className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+            >
+              <option value="">Izaberi agenta...</option>
+              {agents.map((a) => (
+                <option key={a.id} value={a.id}>{a.full_name}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
             <label className="text-xs text-[#555] block mb-1.5">Način plaćanja</label>
             <div className="grid grid-cols-4 gap-1.5">
               {PAYMENT_METHODS.map((m) => (
@@ -787,6 +820,11 @@ function ChangePriceModal({
 }) {
   const [price, setPrice] = useState(String(Math.round(item.purchase_price_rsd)));
   const [registerType, setRegisterType] = useState<RegisterType>(item.register_type);
+  const [purchasedAt, setPurchasedAt] = useState(item.purchased_at.slice(0, 10));
+  const [serialNumber, setSerialNumber] = useState(item.serial_number ?? "");
+  const [invoiceNumber, setInvoiceNumber] = useState(item.invoice_number ?? "");
+  const [supplierName, setSupplierName] = useState(item.supplier_name ?? "");
+  const [note, setNote] = useState(item.note ?? "");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -802,7 +840,15 @@ function ChangePriceModal({
       const res = await fetch(`/api/admin/lager/${item.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ purchase_price_rsd: priceNum, register_type: registerType }),
+        body: JSON.stringify({
+          purchase_price_rsd: priceNum,
+          register_type: registerType,
+          purchased_at: purchasedAt,
+          serial_number: serialNumber || null,
+          invoice_number: invoiceNumber || null,
+          supplier_name: supplierName || null,
+          note: note || null,
+        }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -874,6 +920,58 @@ function ChangePriceModal({
                 Crna kasa
               </button>
             </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs text-[#555] block mb-1.5">Datum nabavke</label>
+              <input
+                type="date"
+                value={purchasedAt}
+                onChange={(e) => setPurchasedAt(e.target.value)}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-[#555] block mb-1.5">Serijski broj</label>
+              <input
+                type="text"
+                value={serialNumber}
+                onChange={(e) => setSerialNumber(e.target.value)}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs text-[#555] block mb-1.5">Broj računa (nabavka)</label>
+              <input
+                type="text"
+                value={invoiceNumber}
+                onChange={(e) => setInvoiceNumber(e.target.value)}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-[#555] block mb-1.5">Dobavljač</label>
+              <input
+                type="text"
+                value={supplierName}
+                onChange={(e) => setSupplierName(e.target.value)}
+                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-xs text-[#555] block mb-1.5">Napomena</label>
+            <input
+              type="text"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+            />
           </div>
 
           {error && <p className="text-red-400 text-xs">{error}</p>}

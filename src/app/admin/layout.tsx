@@ -9,29 +9,27 @@ import {
   Package,
   LogOut,
   ChevronRight,
-  LayoutList,
   ShoppingBag,
   Wallet,
+  Vault,
   Users,
+  History,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 // Dnevne operacije - koriste se svaki dan
 const NAV_DAILY = [
+  { href: "/admin/kase",        label: "Kase",          icon: Vault,      desc: "Stanje, akcije, transferi" },
   { href: "/admin/cene",        label: "Cene i marže", icon: TrendingUp, desc: "Kursevi, marže, override" },
   { href: "/admin/zalihe",      label: "Zalihe",        icon: Package,    desc: "Stanje na stanju" },
-  { href: "/admin/finansije",   label: "Finansije",     icon: Wallet,     desc: "Kasa, P&L, export" },
+  { href: "/admin/finansije",   label: "Finansije",     icon: Wallet,     desc: "P&L, export" },
   { href: "/admin/kupci",       label: "Kupci",         icon: Users,      desc: "CRM" },
+  { href: "/admin/akcije",      label: "Akcije",        icon: History,    desc: "Hronologija svih promena" },
 ];
 
 // Porudžbine je poseban sajt (zlatneplocice.rs), izdvojen vizuelno (zelena boja)
 const NAV_ZP = [
   { href: "/admin/porudzbine",  label: "Porudžbine",    icon: ShoppingBag,desc: "zlatneplocice.rs" },
-];
-
-// Admin alati - koriste se retko
-const NAV_ADMIN = [
-  { href: "/admin/proizvodi", label: "Katalog proizvoda", icon: LayoutList, desc: "Dodaj / ukloni proizvode" },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -78,20 +76,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="space-y-1">
               {NAV_ZP.map(({ href, label, icon: Icon, desc }) => (
                 <NavLink key={href} href={href} label={label} icon={Icon} desc={desc} active={pathname.startsWith(href)} variant="green" />
-              ))}
-            </div>
-          </div>
-
-          {/* Separator */}
-          <div>
-            <div className="flex items-center gap-2 px-1 mb-1">
-              <div className="flex-1 h-px bg-[#2E2E2F]" />
-              <span className="text-[9px] font-semibold text-[#3A3A3B] uppercase tracking-widest">Admin</span>
-              <div className="flex-1 h-px bg-[#2E2E2F]" />
-            </div>
-            <div className="space-y-1">
-              {NAV_ADMIN.map(({ href, label, icon: Icon, desc }) => (
-                <NavLink key={href} href={href} label={label} icon={Icon} desc={desc} active={pathname.startsWith(href)} muted />
               ))}
             </div>
           </div>

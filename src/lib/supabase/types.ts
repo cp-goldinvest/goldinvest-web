@@ -268,6 +268,7 @@ export type Database = {
           site_id: number;
           register_type: "bela" | "crna";
           customer_id: string | null;
+          agent_id: string | null;
           sold_at: string;
           payment_method: "gotovina" | "racun" | "kartica" | "ostalo";
           subtotal_rsd: number;
@@ -380,6 +381,56 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["contact_messages"]["Insert"]>;
+      };
+      agents: {
+        Row: {
+          id: string;
+          full_name: string;
+          active: boolean;
+          created_at: string;
+        };
+        Insert: Omit<Database["public"]["Tables"]["agents"]["Row"], "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["agents"]["Insert"]>;
+      };
+      cash_registers: {
+        Row: {
+          id: string;
+          code: "bela_kasa" | "crna_kasa" | "beli_lager" | "crni_lager";
+          display_name: string;
+          current_balance_rsd: number;
+          updated_at: string;
+        };
+        Insert: Omit<Database["public"]["Tables"]["cash_registers"]["Row"], "id" | "updated_at"> & {
+          id?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["cash_registers"]["Insert"]>;
+      };
+      register_transactions: {
+        Row: {
+          id: string;
+          register_id: string;
+          occurred_at: string;
+          entry_type: "initial" | "sale" | "purchase" | "expense" | "manual_adjustment" | "transfer";
+          amount_rsd: number;
+          balance_after_rsd: number;
+          reason: string | null;
+          agent_id: string | null;
+          related_sale_id: string | null;
+          related_lager_item_id: string | null;
+          related_expense_id: string | null;
+          transfer_group_id: string | null;
+          created_at: string;
+          created_by: string | null;
+        };
+        Insert: Omit<Database["public"]["Tables"]["register_transactions"]["Row"], "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["register_transactions"]["Insert"]>;
       };
     };
   };
