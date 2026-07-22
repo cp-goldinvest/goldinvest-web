@@ -8,6 +8,17 @@ function formatDate(iso: string | null) {
   return iso.slice(0, 10);
 }
 
+// HTTP header vrednosti moraju biti ASCII - transliteruj srpsku latinicu
+// pre upotrebe u Content-Disposition (inace baca "ByteString" TypeError).
+const LATIN_DIACRITICS: Record<string, string> = {
+  š: "s", Š: "S", đ: "dj", Đ: "Dj", č: "c", Č: "C", ć: "c", Ć: "C", ž: "z", Ž: "Z",
+};
+function sanitizeFilename(input: string) {
+  return input
+    .replace(/[šŠđĐčČćĆžŽ]/g, (ch) => LATIN_DIACRITICS[ch] ?? ch)
+    .replace(/[^\x00-\x7F]/g, "");
+}
+
 // GET - Excel export kupaca (CRM).
 // Bez parametara: lista svih kupaca sa agregatima, sortirano po potrosnji.
 // Sa ?customer_id=: 1 kupac + puna istorija njegovih kupovina.
@@ -80,7 +91,7 @@ export async function GET(request: Request) {
     historySheet.getRow(1).font = { bold: true };
 
     const buffer = await workbook.xlsx.writeBuffer();
-    const filename = `kupac_${customer.full_name.replace(/\s+/g, "_")}.xlsx`;
+    const filename = `kupac_${sanitizeFilename(customer.full_name).replace(/\s+/g, "_")}.xlsx`;
     return new Response(buffer, {
       headers: {
         "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

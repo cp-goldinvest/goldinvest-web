@@ -33,7 +33,13 @@ type LagerItem = {
   };
 };
 
-type CustomerLite = { id: string; full_name: string; phone: string | null };
+type CustomerLite = {
+  id: string;
+  full_name: string;
+  phone: string | null;
+  purchase_count?: number;
+  supply_count?: number;
+};
 
 type AgentLite = { id: string; full_name: string };
 
@@ -129,31 +135,62 @@ function findStockMarginPct(weightG: number, category: string, tiers: Tier[], br
 
 // ── Customer Picker (pretraga + inline kreiranje) ───────────────────────────────
 
+function RoleBadge({ customer }: { customer: CustomerLite }) {
+  const isSupplier = (customer.supply_count ?? 0) > 0;
+  const isBuyer = (customer.purchase_count ?? 0) > 0;
+  if (!isSupplier && !isBuyer) return null;
+  return (
+    <span className="flex gap-1">
+      {isSupplier && (
+        <span className="px-1.5 py-0.5 rounded text-[9px] font-medium bg-[#BF8E41]/15 text-[#BF8E41]">
+          dobavljač
+        </span>
+      )}
+      {isBuyer && (
+        <span className="px-1.5 py-0.5 rounded text-[9px] font-medium bg-[#E9E6D9]/10 text-[#8A8A8A]">
+          kupac
+        </span>
+      )}
+    </span>
+  );
+}
+
 function CustomerPicker({
   selection,
   onChange,
   allowCreate = true,
-  placeholder = "Pretraži po imenu ili telefonu...",
+  context = "customer",
+  placeholder,
 }: {
   selection: CustomerSelection;
   onChange: (s: CustomerSelection) => void;
   allowCreate?: boolean;
+  context?: "customer" | "supplier";
   placeholder?: string;
 }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<CustomerLite[]>([]);
+  const [defaultResults, setDefaultResults] = useState<CustomerLite[]>([]);
   const [showNewForm, setShowNewForm] = useState(false);
   const [newName, setNewName] = useState("");
   const [newPhone, setNewPhone] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Podrazumevana lista (najrelevantniji dobavljaci/kupci) - vidljiva odmah, bez kucanja.
+  useEffect(() => {
+    fetch(`/api/admin/customers?context=${context}`)
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data: CustomerLite[]) => setDefaultResults(data))
+      .catch(() => {});
+  }, [context]);
+
   useEffect(() => {
     if (!query.trim()) return;
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(async () => {
       try {
-        const res = await fetch(`/api/admin/customers?q=${encodeURIComponent(query)}`);
+        const res = await fetch(`/api/admin/customers?q=${encodeURIComponent(query)}&context=${context}`);
         if (res.ok) setResults(await res.json());
       } catch {
         /* ignore */
@@ -162,9 +199,11 @@ function CustomerPicker({
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, [query]);
+  }, [query, context]);
 
-  const visibleResults = query.trim() ? results : [];
+  const visibleResults = query.trim() ? results : defaultResults;
+  const resolvedPlaceholder =
+    placeholder ?? (context === "supplier" ? "Pretraži dobavljače po imenu ili telefonu..." : "Pretraži po imenu ili telefonu...");
 
   if (selection.mode === "existing") {
     return (
@@ -254,14 +293,23 @@ function CustomerPicker({
         <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#444]" />
         <input
           type="text"
-          placeholder={placeholder}
+          placeholder={resolvedPlaceholder}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg pl-8 pr-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
         />
       </div>
+      {!query.trim() && visibleResults.length > 0 && (
+        <p className="text-[10px] text-[#555] px-0.5">
+          {context === "supplier" && visibleResults.some((c) => (c.supply_count ?? 0) > 0)
+            ? "Dobavljači"
+            : context === "customer" && visibleResults.some((c) => (c.purchase_count ?? 0) > 0)
+              ? "Kupci"
+              : "Kontakti iz baze"}
+        </p>
+      )}
       {visibleResults.length > 0 && (
-        <div className="border border-[#2E2E2F] rounded-lg overflow-hidden max-h-36 overflow-y-auto">
+        <div className="border border-[#2E2E2F] rounded-lg overflow-hidden max-h-64 overflow-y-auto">
           {visibleResults.map((c) => (
             <button
               key={c.id}
@@ -270,9 +318,12 @@ function CustomerPicker({
                 setQuery("");
                 setResults([]);
               }}
-              className="w-full text-left px-3 py-2 text-xs text-[#8A8A8A] hover:bg-[#1B1B1C] hover:text-[#E9E6D9] transition-colors border-b border-[#2E2E2F] last:border-b-0"
+              className="w-full flex items-center justify-between gap-2 text-left px-3 py-2 text-xs text-[#8A8A8A] hover:bg-[#1B1B1C] hover:text-[#E9E6D9] transition-colors border-b border-[#2E2E2F] last:border-b-0"
             >
-              {c.full_name} {c.phone && <span className="text-[#444]">· {c.phone}</span>}
+              <span>
+                {c.full_name} {c.phone && <span className="text-[#444]">· {c.phone}</span>}
+              </span>
+              <RoleBadge customer={c} />
             </button>
           ))}
         </div>
@@ -285,6 +336,76 @@ function CustomerPicker({
           <UserPlus size={12} />
           Novi kupac
         </button>
+      )}
+    </div>
+  );
+}
+
+// ── Supplier Name Field (autocomplete iz istorije supplier_name na lageru) ─────
+
+type SupplierSuggestion = {
+  name: string;
+  tax_id: string | null;
+  address: string | null;
+  count: number;
+  last_purchased_at: string;
+};
+
+function SupplierNameField({
+  value,
+  onChange,
+  onSelectSuggestion,
+  placeholder = "npr. Argor-Heraeus DOO ili ime fizičkog lica",
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  onSelectSuggestion?: (s: SupplierSuggestion) => void;
+  placeholder?: string;
+}) {
+  const [suggestions, setSuggestions] = useState<SupplierSuggestion[]>([]);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/admin/lager/suppliers")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data: SupplierSuggestion[]) => setSuggestions(data))
+      .catch(() => {});
+  }, []);
+
+  const filtered = value.trim()
+    ? suggestions.filter((s) => s.name.toLowerCase().includes(value.trim().toLowerCase()))
+    : suggestions;
+
+  return (
+    <div className="relative">
+      <input
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onFocus={() => setOpen(true)}
+        onBlur={() => setTimeout(() => setOpen(false), 150)}
+        className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+      />
+      {open && filtered.length > 0 && (
+        <div className="absolute z-10 mt-1 w-full border border-[#2E2E2F] rounded-lg overflow-hidden max-h-64 overflow-y-auto bg-[#1B1B1C] shadow-xl">
+          {filtered.map((s) => (
+            <button
+              key={s.name}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => {
+                onChange(s.name);
+                onSelectSuggestion?.(s);
+                setOpen(false);
+              }}
+              className="w-full flex items-center justify-between gap-2 text-left px-3 py-2 text-xs text-[#8A8A8A] hover:bg-[#111112] hover:text-[#E9E6D9] transition-colors border-b border-[#2E2E2F] last:border-b-0"
+            >
+              <span>{s.name}</span>
+              <span className="text-[10px] text-[#555] shrink-0">{s.count}x</span>
+            </button>
+          ))}
+        </div>
       )}
     </div>
   );
@@ -361,8 +482,8 @@ function AddItemModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-2xl p-6 w-full max-w-md mx-4 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 backdrop-blur-sm overflow-y-auto p-4">
+      <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-2xl p-6 w-full max-w-md shadow-2xl my-6">
         <div className="flex items-center justify-between mb-5">
           <div>
             <p className="text-xs text-[#555] mb-0.5">{variant.brand}</p>
@@ -447,12 +568,13 @@ function AddItemModal({
 
           <div>
             <label className="text-xs text-[#555] block mb-1.5">Dobavljač / od koga (opcionalno)</label>
-            <input
-              type="text"
-              placeholder="npr. Argor-Heraeus DOO ili ime fizičkog lica"
+            <SupplierNameField
               value={supplierName}
-              onChange={(e) => setSupplierName(e.target.value)}
-              className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
+              onChange={setSupplierName}
+              onSelectSuggestion={(s) => {
+                setSupplierTaxId(s.tax_id ?? "");
+                setSupplierAddress(s.address ?? "");
+              }}
             />
             {!linkCustomer ? (
               <button
@@ -464,7 +586,7 @@ function AddItemModal({
               </button>
             ) : (
               <div className="mt-2">
-                <CustomerPicker selection={supplierSelection} onChange={setSupplierSelection} allowCreate={false} />
+                <CustomerPicker selection={supplierSelection} onChange={setSupplierSelection} allowCreate={false} context="supplier" />
               </div>
             )}
           </div>
@@ -654,8 +776,8 @@ function SellModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-2xl p-6 w-full max-w-md mx-4 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 backdrop-blur-sm overflow-y-auto p-4">
+      <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-2xl p-6 w-full max-w-md shadow-2xl my-6">
         <div className="flex items-center justify-between mb-5">
           <div>
             <p className="text-xs text-[#555] mb-0.5">{productLabel}</p>
@@ -669,7 +791,7 @@ function SellModal({
         <div className="space-y-4">
           <div>
             <label className="text-xs text-[#555] block mb-1.5">Kupac</label>
-            <CustomerPicker selection={customerSelection} onChange={setCustomerSelection} />
+            <CustomerPicker selection={customerSelection} onChange={setCustomerSelection} context="customer" />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -864,8 +986,8 @@ function ChangePriceModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-2xl p-6 w-full max-w-sm mx-4 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 backdrop-blur-sm overflow-y-auto p-4">
+      <div className="bg-[#1B1B1C] border border-[#2E2E2F] rounded-2xl p-6 w-full max-w-sm shadow-2xl my-6">
         <div className="flex items-center justify-between mb-5">
           <div>
             <p className="text-xs text-[#555] mb-0.5">{productLabel}</p>
@@ -955,12 +1077,7 @@ function ChangePriceModal({
             </div>
             <div>
               <label className="text-xs text-[#555] block mb-1.5">Dobavljač</label>
-              <input
-                type="text"
-                value={supplierName}
-                onChange={(e) => setSupplierName(e.target.value)}
-                className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
-              />
+              <SupplierNameField value={supplierName} onChange={setSupplierName} placeholder="" />
             </div>
           </div>
 
