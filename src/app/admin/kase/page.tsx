@@ -124,17 +124,29 @@ function BalanceModal({
   const [agentId, setAgentId] = useState("");
   const [date, setDate] = useState(toIsoDate(new Date()));
   const [isNetProfit, setIsNetProfit] = useState(false);
+  const [netProfitAmount, setNetProfitAmount] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
   const entryType = register.current_balance_rsd === 0 ? "initial" : "manual_adjustment";
   const canFlagNetProfit = register.code === "crna_kasa" && entryType === "manual_adjustment";
+  const netProfitMode = canFlagNetProfit && isNetProfit;
 
   async function handleSave() {
-    const balanceNum = parseFloat(newBalance.replace(/\./g, "").replace(",", "."));
-    if (Number.isNaN(balanceNum)) {
-      setError("Unesi ispravno stanje");
-      return;
+    let balanceNum: number;
+    if (netProfitMode) {
+      const addedNum = parseFloat(netProfitAmount.replace(/\./g, "").replace(",", "."));
+      if (Number.isNaN(addedNum) || addedNum <= 0) {
+        setError("Unesi iznos neto dobiti koji se dodaje (mora biti pozitivan)");
+        return;
+      }
+      balanceNum = register.current_balance_rsd + addedNum;
+    } else {
+      balanceNum = parseFloat(newBalance.replace(/\./g, "").replace(",", "."));
+      if (Number.isNaN(balanceNum)) {
+        setError("Unesi ispravno stanje");
+        return;
+      }
     }
     if (!reason.trim()) {
       setError("Razlog je obavezan");
@@ -153,7 +165,7 @@ function BalanceModal({
           reason: reason.trim(),
           agent_id: agentId || null,
           occurred_at: date,
-          is_net_profit: canFlagNetProfit ? isNetProfit : false,
+          is_net_profit: netProfitMode,
         }),
       });
       if (!res.ok) {
@@ -188,14 +200,46 @@ function BalanceModal({
             <span className="text-[#8A8A8A] tabular-nums">{formatRsd(register.current_balance_rsd)}</span>
           </div>
 
+          {canFlagNetProfit && (
+            <label
+              className={`flex items-start gap-2.5 px-3 py-2.5 rounded-lg border cursor-pointer transition-colors ${
+                isNetProfit ? "bg-green-500/10 border-green-500/30" : "border-[#2E2E2F] hover:border-[#3A3A3B]"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={isNetProfit}
+                onChange={(e) => {
+                  setIsNetProfit(e.target.checked);
+                  setError("");
+                }}
+                className="mt-0.5 accent-green-500"
+              />
+              <span>
+                <span className={`block text-xs font-medium ${isNetProfit ? "text-green-400" : "text-[#8A8A8A]"}`}>
+                  Ovo je neto dobit (prihodovanje)
+                </span>
+                <span className="block text-[10px] text-[#555] mt-0.5">
+                  Označi kad ubacuješ čistu dobit u crnu kasu - uvek povećava stanje, biće posebno obeleženo u istoriji akcija.
+                </span>
+              </span>
+            </label>
+          )}
+
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs text-[#555] block mb-1.5">Novo stanje (RSD)</label>
+              <label className="text-xs text-[#555] block mb-1.5">
+                {netProfitMode ? "Iznos neto dobiti (RSD)" : "Novo stanje (RSD)"}
+              </label>
               <input
                 type="number"
-                value={newBalance}
+                value={netProfitMode ? netProfitAmount : newBalance}
                 onChange={(e) => {
-                  setNewBalance(e.target.value);
+                  if (netProfitMode) {
+                    setNetProfitAmount(e.target.value);
+                  } else {
+                    setNewBalance(e.target.value);
+                  }
                   setError("");
                 }}
                 className="w-full bg-[#111112] border border-[#2E2E2F] rounded-lg px-3 py-2 text-sm text-[#E9E6D9] focus:outline-none focus:border-[#BF8E41]/60"
@@ -212,37 +256,23 @@ function BalanceModal({
             </div>
           </div>
 
-          {canFlagNetProfit && (
-            <label
-              className={`flex items-start gap-2.5 px-3 py-2.5 rounded-lg border cursor-pointer transition-colors ${
-                isNetProfit ? "bg-green-500/10 border-green-500/30" : "border-[#2E2E2F] hover:border-[#3A3A3B]"
-              }`}
-            >
-              <input
-                type="checkbox"
-                checked={isNetProfit}
-                onChange={(e) => setIsNetProfit(e.target.checked)}
-                className="mt-0.5 accent-green-500"
-              />
-              <span>
-                <span className={`block text-xs font-medium ${isNetProfit ? "text-green-400" : "text-[#8A8A8A]"}`}>
-                  Ovo je neto dobit (prihodovanje)
-                </span>
-                <span className="block text-[10px] text-[#555] mt-0.5">
-                  Označi ako se korekcija odnosi na izvlačenje čiste dobiti iz crne kase - biće posebno obeleženo u istoriji akcija.
-                </span>
+          {netProfitMode && netProfitAmount.trim() !== "" && !Number.isNaN(parseFloat(netProfitAmount.replace(/\./g, "").replace(",", "."))) && (
+            <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-green-500/5 border border-green-500/20 text-xs">
+              <span className="text-[#555]">Novo stanje posle uplate</span>
+              <span className="text-green-400 tabular-nums">
+                {formatRsd(register.current_balance_rsd + parseFloat(netProfitAmount.replace(/\./g, "").replace(",", ".")))}
               </span>
-            </label>
+            </div>
           )}
 
           <div>
             <label className="text-xs text-[#555] block mb-1.5">
-              Razlog (obavezno){canFlagNetProfit && isNetProfit ? " - napomena zašto je ovo neto dobit" : ""}
+              Razlog (obavezno){netProfitMode ? " - napomena zašto je ovo neto dobit" : ""}
             </label>
             <input
               type="text"
               placeholder={
-                canFlagNetProfit && isNetProfit
+                netProfitMode
                   ? "npr. isplata dobiti za mart, podela profita..."
                   : "npr. usklađivanje sa stvarnim stanjem, zaduženje od CP menjačnice..."
               }
