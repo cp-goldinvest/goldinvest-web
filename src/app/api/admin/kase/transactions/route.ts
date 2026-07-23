@@ -14,6 +14,7 @@ export async function GET(request: Request) {
   const agentId = searchParams.get("agent_id");
   const from = searchParams.get("from");
   const to = searchParams.get("to");
+  const isNetProfit = searchParams.get("is_net_profit");
 
   const supabase = createServiceClient();
   let query = supabase
@@ -26,6 +27,7 @@ export async function GET(request: Request) {
   if (agentId) query = query.eq("agent_id", agentId);
   if (from) query = query.gte("occurred_at", from);
   if (to) query = query.lte("occurred_at", to);
+  if (isNetProfit === "true") query = query.eq("is_net_profit", true);
 
   if (registerCode) {
     const { data: register, error: regErr } = await supabase

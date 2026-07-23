@@ -21,6 +21,7 @@ type RegisterBucket = {
   cogs_rsd: number;
   gross_profit_rsd: number;
   expenses_rsd: number;
+  net_profit_additions_rsd: number;
   net_profit_rsd: number;
   purchased_rsd: number;
   sales_count: number;
@@ -75,6 +76,15 @@ type Expense = {
   register_type: "bela" | "crna";
   amount_rsd: number;
   description: string | null;
+};
+
+type NetProfitEntry = {
+  id: string;
+  occurred_at: string;
+  amount_rsd: number;
+  reason: string | null;
+  cash_registers: { code: "bela_kasa" | "crna_kasa" | "beli_lager" | "crni_lager"; display_name: string } | null;
+  agents: { full_name: string } | null;
 };
 
 type Period = "danas" | "nedelja" | "mesec" | "sve" | "custom";
@@ -433,6 +443,12 @@ function RegisterCard({ title, bucket, accent }: { title: string; bucket: Regist
           <p className="text-sm font-semibold text-[#8A8A8A] tabular-nums">{formatRsd(bucket.expenses_rsd)}</p>
         </div>
       </div>
+      {bucket.net_profit_additions_rsd > 0 && (
+        <div className="mt-3 flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-green-500/5 text-[10px] text-green-400/90">
+          <span>Neto dobit uneta u kasu</span>
+          <span className="tabular-nums font-medium">+{formatRsd(bucket.net_profit_additions_rsd)}</span>
+        </div>
+      )}
       <div className="mt-3 pt-3 border-t border-[#2E2E2F] flex items-center justify-between">
         <p className="text-[10px] text-[#555] uppercase tracking-wider">Neto profit</p>
         <p className={`text-base font-bold tabular-nums ${bucket.net_profit_rsd >= 0 ? "text-green-400" : "text-red-400"}`}>
@@ -887,6 +903,7 @@ export default function AdminFinansijePage() {
   const [summary, setSummary] = useState<Summary | null>(null);
   const [sales, setSales] = useState<Sale[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [netProfitEntries, setNetProfitEntries] = useState<NetProfitEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [exportConfirm, setExportConfirm] = useState<ExportKind | null>(null);
   const [selectedSaleId, setSelectedSaleId] = useState<string | null>(null);
@@ -898,14 +915,18 @@ export default function AdminFinansijePage() {
     const params = new URLSearchParams({ from: range.from, to: range.to });
     const registerParam = registerFilter !== "sve" ? `&register_type=${registerFilter}` : "";
 
-    const [summaryRes, salesRes, expensesRes] = await Promise.all([
+    const [summaryRes, salesRes, expensesRes, netProfitRes] = await Promise.all([
       fetch(`/api/admin/finance/summary?${params.toString()}`),
       fetch(`/api/admin/sales?${params.toString()}${registerParam}`),
       fetch(`/api/admin/expenses?${params.toString()}${registerParam}`),
+      registerFilter === "bela"
+        ? Promise.resolve(null)
+        : fetch(`/api/admin/kase/transactions?register_code=crna_kasa&entry_type=manual_adjustment&is_net_profit=true&${params.toString()}`),
     ]);
     if (summaryRes.ok) setSummary(await summaryRes.json());
     if (salesRes.ok) setSales(await salesRes.json());
     if (expensesRes.ok) setExpenses(await expensesRes.json());
+    setNetProfitEntries(netProfitRes && netProfitRes.ok ? await netProfitRes.json() : []);
     setLoading(false);
   }, [range.from, range.to, registerFilter]);
 
@@ -928,6 +949,15 @@ export default function AdminFinansijePage() {
   }
 
   const totalBucket = summary?.total;
+
+  type PeriodItem =
+    | { kind: "sale"; date: string; sale: Sale }
+    | { kind: "net_profit"; date: string; entry: NetProfitEntry };
+
+  const periodItems: PeriodItem[] = [
+    ...sales.map((s): PeriodItem => ({ kind: "sale", date: s.sold_at, sale: s })),
+    ...netProfitEntries.map((e): PeriodItem => ({ kind: "net_profit", date: e.occurred_at, entry: e })),
+  ].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 
   return (
     <div className="p-6 lg:p-8 max-w-5xl">
@@ -1070,40 +1100,57 @@ export default function AdminFinansijePage() {
               <ShoppingBag size={13} className="text-[#555]" />
               <h2 className="text-xs font-semibold text-[#555] uppercase tracking-widest">Prodaje u periodu</h2>
               <div className="h-px flex-1 bg-[#2E2E2F]" />
-              <span className="text-xs text-[#444]">{sales.length}</span>
+              <span className="text-xs text-[#444]">{periodItems.length}</span>
             </div>
-            {sales.length === 0 ? (
+            {periodItems.length === 0 ? (
               <p className="text-xs text-[#444]">Nema prodaja u ovom periodu.</p>
             ) : (
               <div className="space-y-1.5">
-                {sales.map((sale) => (
-                  <div
-                    key={sale.id}
-                    onClick={() => setSelectedSaleId(sale.id)}
-                    className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-[#1B1B1C] border border-[#2E2E2F] cursor-pointer hover:border-[#BF8E41]/40 transition-colors"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-xs text-[#555]">#{sale.sale_number}</span>
-                      <span className="text-xs text-[#8A8A8A]">{formatDate(sale.sold_at)}</span>
-                      <span className="text-xs text-[#E9E6D9]">
-                        {sale.sale_items.map((i) => i.product_name_snapshot).join(", ")}
-                      </span>
-                      {sale.customers && <span className="text-xs text-[#555]">· {sale.customers.full_name}</span>}
-                      {sale.agents && <span className="text-[10px] text-[#444]">· agent {sale.agents.full_name}</span>}
-                      <span
-                        className={`text-[9px] font-semibold px-1.5 py-0.5 rounded-full border ${
-                          sale.register_type === "crna"
-                            ? "text-[#8A8A8A] bg-[#8A8A8A]/10 border-[#8A8A8A]/30"
-                            : "text-[#E9E6D9] bg-[#E9E6D9]/10 border-[#E9E6D9]/25"
-                        }`}
-                      >
-                        {sale.register_type === "crna" ? "CRNA" : "BELA"}
-                      </span>
-                      <span className="text-[10px] text-[#444]">{PAYMENT_METHOD_LABELS[sale.payment_method] ?? sale.payment_method}</span>
+                {periodItems.map((item) =>
+                  item.kind === "sale" ? (
+                    <div
+                      key={`sale-${item.sale.id}`}
+                      onClick={() => setSelectedSaleId(item.sale.id)}
+                      className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-[#1B1B1C] border border-[#2E2E2F] cursor-pointer hover:border-[#BF8E41]/40 transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs text-[#555]">#{item.sale.sale_number}</span>
+                        <span className="text-xs text-[#8A8A8A]">{formatDate(item.sale.sold_at)}</span>
+                        <span className="text-xs text-[#E9E6D9]">
+                          {item.sale.sale_items.map((i) => i.product_name_snapshot).join(", ")}
+                        </span>
+                        {item.sale.customers && <span className="text-xs text-[#555]">· {item.sale.customers.full_name}</span>}
+                        {item.sale.agents && <span className="text-[10px] text-[#444]">· agent {item.sale.agents.full_name}</span>}
+                        <span
+                          className={`text-[9px] font-semibold px-1.5 py-0.5 rounded-full border ${
+                            item.sale.register_type === "crna"
+                              ? "text-[#8A8A8A] bg-[#8A8A8A]/10 border-[#8A8A8A]/30"
+                              : "text-[#E9E6D9] bg-[#E9E6D9]/10 border-[#E9E6D9]/25"
+                          }`}
+                        >
+                          {item.sale.register_type === "crna" ? "CRNA" : "BELA"}
+                        </span>
+                        <span className="text-[10px] text-[#444]">{PAYMENT_METHOD_LABELS[item.sale.payment_method] ?? item.sale.payment_method}</span>
+                      </div>
+                      <span className="text-sm text-[#BF8E41] font-medium tabular-nums">{formatRsd(item.sale.total_rsd)}</span>
                     </div>
-                    <span className="text-sm text-[#BF8E41] font-medium tabular-nums">{formatRsd(sale.total_rsd)}</span>
-                  </div>
-                ))}
+                  ) : (
+                    <div
+                      key={`np-${item.entry.id}`}
+                      className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-green-500/5 border border-green-500/20"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs text-[#8A8A8A]">{formatDate(item.entry.occurred_at)}</span>
+                        {item.entry.reason && <span className="text-xs text-[#E9E6D9]">{item.entry.reason}</span>}
+                        {item.entry.agents && <span className="text-[10px] text-[#444]">· agent {item.entry.agents.full_name}</span>}
+                        <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded-full border text-green-400 bg-green-500/10 border-green-500/30">
+                          NETO DOBIT
+                        </span>
+                      </div>
+                      <span className="text-sm text-green-400 font-medium tabular-nums">+{formatRsd(item.entry.amount_rsd)}</span>
+                    </div>
+                  )
+                )}
               </div>
             )}
           </div>

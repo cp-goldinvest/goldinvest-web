@@ -8,6 +8,7 @@ type RegisterBucket = {
   cogs_rsd: number;
   gross_profit_rsd: number;
   expenses_rsd: number;
+  net_profit_additions_rsd: number;
   net_profit_rsd: number;
   purchased_rsd: number;
   sales_count: number;
@@ -19,6 +20,7 @@ function emptyBucket(): RegisterBucket {
     cogs_rsd: 0,
     gross_profit_rsd: 0,
     expenses_rsd: 0,
+    net_profit_additions_rsd: 0,
     net_profit_rsd: 0,
     purchased_rsd: 0,
     sales_count: 0,
@@ -37,7 +39,7 @@ export async function GET(request: Request) {
 
   const supabase = createServiceClient();
 
-  const [salesRes, expensesRes, purchasesRes] = await Promise.all([
+  const [salesRes, expensesRes, purchasesRes, netProfitRes] = await Promise.all([
     supabase
       .from("sales")
       .select("register_type, total_rsd, sale_items(purchase_price_snapshot_rsd)")
@@ -53,11 +55,18 @@ export async function GET(request: Request) {
       .select("register_type, purchase_price_rsd")
       .gte("purchased_at", from)
       .lte("purchased_at", to),
+    supabase
+      .from("register_transactions")
+      .select("amount_rsd, cash_registers:register_id(code)")
+      .eq("is_net_profit", true)
+      .gte("occurred_at", from)
+      .lte("occurred_at", to),
   ]);
 
   if (salesRes.error) return NextResponse.json({ error: salesRes.error.message }, { status: 500 });
   if (expensesRes.error) return NextResponse.json({ error: expensesRes.error.message }, { status: 500 });
   if (purchasesRes.error) return NextResponse.json({ error: purchasesRes.error.message }, { status: 500 });
+  if (netProfitRes.error) return NextResponse.json({ error: netProfitRes.error.message }, { status: 500 });
 
   const buckets: Record<"bela" | "crna", RegisterBucket> = { bela: emptyBucket(), crna: emptyBucket() };
 
@@ -82,10 +91,17 @@ export async function GET(request: Request) {
     bucket.purchased_rsd += Number(purchase.purchase_price_rsd);
   }
 
+  for (const entry of netProfitRes.data ?? []) {
+    const code = (entry.cash_registers as { code: string } | null)?.code;
+    const bucket = code === "crna_kasa" ? buckets.crna : code === "bela_kasa" ? buckets.bela : null;
+    if (!bucket) continue;
+    bucket.net_profit_additions_rsd += Number(entry.amount_rsd);
+  }
+
   for (const key of ["bela", "crna"] as const) {
     const b = buckets[key];
     b.gross_profit_rsd = b.revenue_rsd - b.cogs_rsd;
-    b.net_profit_rsd = b.gross_profit_rsd - b.expenses_rsd;
+    b.net_profit_rsd = b.gross_profit_rsd - b.expenses_rsd + b.net_profit_additions_rsd;
   }
 
   const total: RegisterBucket = emptyBucket();
@@ -95,6 +111,7 @@ export async function GET(request: Request) {
     total.cogs_rsd += b.cogs_rsd;
     total.gross_profit_rsd += b.gross_profit_rsd;
     total.expenses_rsd += b.expenses_rsd;
+    total.net_profit_additions_rsd += b.net_profit_additions_rsd;
     total.net_profit_rsd += b.net_profit_rsd;
     total.purchased_rsd += b.purchased_rsd;
     total.sales_count += b.sales_count;
