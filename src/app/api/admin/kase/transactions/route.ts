@@ -80,7 +80,7 @@ export async function POST(request: Request) {
   }
 
   // Pocetno stanje / rucna korekcija
-  const { register_code, entry_type, new_balance_rsd, reason, agent_id, occurred_at } = body;
+  const { register_code, entry_type, new_balance_rsd, reason, agent_id, occurred_at, is_net_profit } = body;
 
   if (!isRegisterCode(register_code)) {
     return NextResponse.json({ error: "register_code mora biti validna kasa" }, { status: 400 });
@@ -103,6 +103,7 @@ export async function POST(request: Request) {
     p_agent_id: agent_id ?? null,
     p_occurred_at: occurred_at ?? new Date().toISOString().slice(0, 10),
     p_created_by: null,
+    p_is_net_profit: Boolean(is_net_profit),
   });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });

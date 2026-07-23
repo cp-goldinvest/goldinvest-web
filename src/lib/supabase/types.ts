@@ -423,6 +423,7 @@ export type Database = {
           related_lager_item_id: string | null;
           related_expense_id: string | null;
           transfer_group_id: string | null;
+          is_net_profit: boolean;
           created_at: string;
           created_by: string | null;
         };

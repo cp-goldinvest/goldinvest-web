@@ -41,6 +41,7 @@ type Transaction = {
   balance_after_rsd: number;
   reason: string | null;
   agent_id: string | null;
+  is_net_profit: boolean;
   created_at: string;
   cash_registers: { code: RegisterCode; display_name: string } | null;
   agents: { full_name: string } | null;
@@ -122,10 +123,12 @@ function BalanceModal({
   const [reason, setReason] = useState(prefillReason ?? "");
   const [agentId, setAgentId] = useState("");
   const [date, setDate] = useState(toIsoDate(new Date()));
+  const [isNetProfit, setIsNetProfit] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
   const entryType = register.current_balance_rsd === 0 ? "initial" : "manual_adjustment";
+  const canFlagNetProfit = register.code === "crna_kasa" && entryType === "manual_adjustment";
 
   async function handleSave() {
     const balanceNum = parseFloat(newBalance.replace(/\./g, "").replace(",", "."));
@@ -150,6 +153,7 @@ function BalanceModal({
           reason: reason.trim(),
           agent_id: agentId || null,
           occurred_at: date,
+          is_net_profit: canFlagNetProfit ? isNetProfit : false,
         }),
       });
       if (!res.ok) {
@@ -208,11 +212,40 @@ function BalanceModal({
             </div>
           </div>
 
+          {canFlagNetProfit && (
+            <label
+              className={`flex items-start gap-2.5 px-3 py-2.5 rounded-lg border cursor-pointer transition-colors ${
+                isNetProfit ? "bg-green-500/10 border-green-500/30" : "border-[#2E2E2F] hover:border-[#3A3A3B]"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={isNetProfit}
+                onChange={(e) => setIsNetProfit(e.target.checked)}
+                className="mt-0.5 accent-green-500"
+              />
+              <span>
+                <span className={`block text-xs font-medium ${isNetProfit ? "text-green-400" : "text-[#8A8A8A]"}`}>
+                  Ovo je neto dobit (prihodovanje)
+                </span>
+                <span className="block text-[10px] text-[#555] mt-0.5">
+                  Označi ako se korekcija odnosi na izvlačenje čiste dobiti iz crne kase - biće posebno obeleženo u istoriji akcija.
+                </span>
+              </span>
+            </label>
+          )}
+
           <div>
-            <label className="text-xs text-[#555] block mb-1.5">Razlog (obavezno)</label>
+            <label className="text-xs text-[#555] block mb-1.5">
+              Razlog (obavezno){canFlagNetProfit && isNetProfit ? " - napomena zašto je ovo neto dobit" : ""}
+            </label>
             <input
               type="text"
-              placeholder="npr. usklađivanje sa stvarnim stanjem, zaduženje od CP menjačnice..."
+              placeholder={
+                canFlagNetProfit && isNetProfit
+                  ? "npr. isplata dobiti za mart, podela profita..."
+                  : "npr. usklađivanje sa stvarnim stanjem, zaduženje od CP menjačnice..."
+              }
               value={reason}
               onChange={(e) => {
                 setReason(e.target.value);
@@ -830,6 +863,11 @@ export default function AdminKasePage() {
                           {t.cash_registers ? REGISTER_META[t.cash_registers.code].label : "-"}
                         </span>
                         <span className="text-[10px] text-[#444] shrink-0">{ENTRY_TYPE_LABELS[t.entry_type]}</span>
+                        {t.is_net_profit && (
+                          <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded-full border shrink-0 text-green-400 bg-green-500/10 border-green-500/30">
+                            Neto dobit
+                          </span>
+                        )}
                         {t.reason && <span className="text-xs text-[#E9E6D9] truncate">{t.reason}</span>}
                         {t.agents && <span className="text-[10px] text-[#555] shrink-0">· {t.agents.full_name}</span>}
                       </div>
