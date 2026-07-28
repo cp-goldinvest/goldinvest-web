@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export const postType = defineType({
   name: 'post',
@@ -81,6 +81,14 @@ export const postType = defineType({
           ],
         },
       ],
+    }),
+    defineField({
+      name: 'visuals',
+      title: 'Grafikoni',
+      type: 'array',
+      of: [defineArrayMember({ type: 'visualChart' })],
+      description:
+        'Automatski generisani grafikoni (Multi-Agent Content Factory, Visualizer agent). Referencirani iz tela clanka preko {{CHART_PLACEHOLDER: chart-N}} oznaka.',
     }),
     defineField({
       name: 'publishedAt',
