@@ -5,7 +5,7 @@ import { BLOG_POSTS } from "@/data/blog-posts";
 import { SingleBlogPostTemplate } from "@/components/blog/SingleBlogPostTemplate";
 import { SanityBlogPostTemplate } from "@/components/blog/SanityBlogPostTemplate";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildBreadcrumbSchema } from "@/lib/schema";
+import { buildBreadcrumbSchema, buildFaqSchema } from "@/lib/schema";
 import { getSanityPost, getSanityPosts } from "@/sanity/queries";
 
 type Props = {
@@ -124,7 +124,19 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <main className="bg-white">
       <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
-      <SanityBlogPostTemplate post={sanityEntry.post} body={sanityEntry.body} relatedPosts={relatedPosts} />
+      {sanityEntry.faq.length > 0 && (
+        <SchemaScript
+          schema={buildFaqSchema(
+            sanityEntry.faq.map((item) => ({ q: item.question, a: item.answer }))
+          )}
+        />
+      )}
+      <SanityBlogPostTemplate
+        post={sanityEntry.post}
+        body={sanityEntry.body}
+        faq={sanityEntry.faq}
+        relatedPosts={relatedPosts}
+      />
     </main>
   );
 }

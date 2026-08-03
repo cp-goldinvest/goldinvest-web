@@ -21,6 +21,7 @@ type SanityPostFull = SanityPost & {
   body?: unknown[]
   metaTitle?: string
   metaDescription?: string
+  faq?: { question: string; answer: string }[]
 }
 
 const POST_CARD_FIELDS = `
@@ -75,6 +76,7 @@ export async function getSanityPost(slug: string): Promise<{
   body: unknown[]
   metaTitle?: string
   metaDescription?: string
+  faq: { question: string; answer: string }[]
 } | null> {
   const p = await client.fetch<SanityPostFull | null>(
     `*[_type == "post" && slug.current == $slug][0] {
@@ -87,7 +89,8 @@ export async function getSanityPost(slug: string): Promise<{
         }
       },
       metaTitle,
-      metaDescription
+      metaDescription,
+      faq[]{ question, answer }
     }`,
     { slug },
     { next: { revalidate: 60 } }
@@ -99,5 +102,6 @@ export async function getSanityPost(slug: string): Promise<{
     body: (p.body as unknown[]) ?? [],
     metaTitle: p.metaTitle,
     metaDescription: p.metaDescription,
+    faq: p.faq ?? [],
   }
 }

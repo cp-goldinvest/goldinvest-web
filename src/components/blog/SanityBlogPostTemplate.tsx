@@ -9,6 +9,31 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { ReadingProgressBar } from "@/components/blog/ReadingProgressBar";
 import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
+import { TableOfContents, type TocItem } from "@/components/blog/TableOfContents";
+
+const MIN_HEADINGS_FOR_TOC = 2;
+
+type PortableTextSpan = { _type?: string; text?: string };
+type PortableTextHeadingBlock = {
+  _type?: string;
+  _key?: string;
+  style?: string;
+  children?: PortableTextSpan[];
+};
+
+function extractTocItems(body: unknown[]): TocItem[] {
+  return (body as PortableTextHeadingBlock[])
+    .filter((block) => block?._type === "block" && block?.style === "h2" && block?._key)
+    .map((block) => ({
+      id: `heading-${block._key}`,
+      text: (block.children ?? [])
+        .filter((child) => child?._type === "span")
+        .map((child) => child.text ?? "")
+        .join("")
+        .trim(),
+    }))
+    .filter((item) => item.text.length > 0);
+}
 
 const components: PortableTextComponents = {
   block: {
@@ -20,9 +45,10 @@ const components: PortableTextComponents = {
         {children}
       </p>
     ),
-    h2: ({ children }) => (
+    h2: ({ children, value }) => (
       <h2
-        className="text-[#1B1B1C] mt-10 mb-4"
+        id={value?._key ? `heading-${value._key}` : undefined}
+        className="text-[#1B1B1C] mt-10 mb-4 scroll-mt-[176px]"
         style={{
           fontFamily: "var(--font-pp-editorial), Georgia, serif",
           fontSize: "clamp(22px, 3vw, 28px)",
@@ -105,12 +131,70 @@ const components: PortableTextComponents = {
         </figure>
       );
     },
+    tableBlock: ({ value }) => {
+      const columns: string[] = Array.isArray(value?.columns) ? value.columns : [];
+      const rows: { _key?: string; cells?: string[] }[] = Array.isArray(value?.rows)
+        ? value.rows
+        : [];
+      if (columns.length === 0 || rows.length === 0) return null;
+
+      return (
+        <figure className="my-8">
+          {value.caption && (
+            <figcaption
+              className="mb-3 text-[15px] font-semibold text-[#1B1B1C]"
+              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+            >
+              {value.caption}
+            </figcaption>
+          )}
+          <div className="overflow-x-auto rounded-xl border border-[#F0EDE6]">
+            <table
+              className="w-full min-w-[480px] border-collapse text-left text-[15px]"
+              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+            >
+              {value.caption && <caption className="sr-only">{value.caption}</caption>}
+              <thead>
+                <tr className="bg-[#FAFAF8]">
+                  {columns.map((col, i) => (
+                    <th
+                      key={i}
+                      scope="col"
+                      className="border-b border-[#F0EDE6] px-4 py-3 font-semibold text-[#1B1B1C]"
+                    >
+                      {col}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row, ri) => (
+                  <tr key={row._key ?? ri} className="odd:bg-white even:bg-[#FAFAF8]">
+                    {(row.cells ?? []).map((cell, ci) => (
+                      <td
+                        key={ci}
+                        className="border-b border-[#F0EDE6] px-4 py-3 align-top text-[#2C2C2C]"
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </figure>
+      );
+    },
   },
 };
+
+type FaqItem = { question: string; answer: string };
 
 type Props = {
   post: Post;
   body: unknown[];
+  faq?: FaqItem[];
   relatedPosts: Post[];
 };
 
@@ -119,11 +203,14 @@ const BREADCRUMBS_BASE = [
   { label: "Blog", href: "/blog" },
 ];
 
-export function SanityBlogPostTemplate({ post, body, relatedPosts }: Props) {
+export function SanityBlogPostTemplate({ post, body, faq = [], relatedPosts }: Props) {
   const breadcrumbs = [
     ...BREADCRUMBS_BASE,
     { label: post.title, href: `/blog/${post.slug}` },
   ];
+
+  const tocItems = extractTocItems(body);
+  const showToc = tocItems.length >= MIN_HEADINGS_FOR_TOC;
 
   return (
     <>
@@ -187,21 +274,67 @@ export function SanityBlogPostTemplate({ post, body, relatedPosts }: Props) {
 
         {/* Content */}
         <SectionContainer>
-          <div className="max-w-2xl mx-auto mt-10">
-            {post.excerpt && (
-              <p
-                className="text-[#5A4A2A] mb-8 leading-relaxed"
-                style={{
-                  fontFamily: "var(--font-rethink), sans-serif",
-                  fontSize: 18,
-                  borderLeft: "3px solid #BEAD87",
-                  paddingLeft: 20,
-                }}
-              >
-                {post.excerpt}
-              </p>
-            )}
-            <PortableText value={body as Parameters<typeof PortableText>[0]["value"]} components={components} />
+          <div
+            className={
+              showToc
+                ? "mt-10 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:items-start lg:gap-12"
+                : "mx-auto mt-10 max-w-2xl"
+            }
+          >
+            {showToc && <TableOfContents items={tocItems} />}
+            <div className={showToc ? "max-w-3xl" : "max-w-2xl"}>
+              {post.excerpt && (
+                <p
+                  className="text-[#5A4A2A] mb-8 leading-relaxed"
+                  style={{
+                    fontFamily: "var(--font-rethink), sans-serif",
+                    fontSize: 18,
+                    borderLeft: "3px solid #BEAD87",
+                    paddingLeft: 20,
+                  }}
+                >
+                  {post.excerpt}
+                </p>
+              )}
+              <PortableText value={body as Parameters<typeof PortableText>[0]["value"]} components={components} />
+
+              {faq.length > 0 && (
+                <section className="mt-12 border-t border-[#F0EDE6] pt-10" aria-labelledby="faq-heading">
+                  <h2
+                    id="faq-heading"
+                    className="text-[#1B1B1C] mb-6"
+                    style={{
+                      fontFamily: "var(--font-pp-editorial), Georgia, serif",
+                      fontSize: "clamp(22px, 3vw, 28px)",
+                      fontWeight: 400,
+                    }}
+                  >
+                    Najčešća pitanja
+                  </h2>
+                  <div className="space-y-3">
+                    {faq.map((item, i) => (
+                      <details
+                        key={i}
+                        className="group rounded-xl border border-[#F0EDE6] px-5 py-4 open:bg-[#FAFAF8]"
+                      >
+                        <summary
+                          className="cursor-pointer list-none text-[16px] font-semibold text-[#1B1B1C] marker:content-none"
+                          style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                        >
+                          {item.question}
+                        </summary>
+                        <p
+                          className="mt-3 text-[15px] leading-relaxed text-[#4C4C4C]"
+                          style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+                        >
+                          {item.answer}
+                        </p>
+                      </details>
+                    ))}
+                  </div>
+                </section>
+              )}
+            </div>
           </div>
         </SectionContainer>
       </article>

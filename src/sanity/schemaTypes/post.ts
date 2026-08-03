@@ -80,6 +80,7 @@ export const postType = defineType({
             }),
           ],
         },
+        { type: 'tableBlock' },
       ],
     }),
     defineField({
@@ -105,6 +106,36 @@ export const postType = defineType({
       title: 'Meta opis (SEO)',
       type: 'text',
       rows: 2,
+    }),
+    defineField({
+      name: 'faq',
+      title: 'Pitanja i odgovori (FAQ)',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'faqItem',
+          title: 'Pitanje',
+          fields: [
+            defineField({
+              name: 'question',
+              title: 'Pitanje',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'answer',
+              title: 'Odgovor',
+              type: 'text',
+              rows: 3,
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: {
+            select: { title: 'question' },
+          },
+        }),
+      ],
     }),
     defineField({
       name: 'linkedinPost',
