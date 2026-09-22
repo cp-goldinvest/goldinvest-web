@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Rethink_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import MobilePhoneBar from "@/components/layout/MobilePhoneBar";
+
+const GTM_ID = "GTM-KN46NHL8";
 
 const ppEditorial = localFont({
   src: [
@@ -43,7 +46,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sr">
+      <head>
+        <Script id="gtm-script" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
+        </Script>
+      </head>
       <body className={`${rethinkSans.variable} ${ppEditorial.variable} antialiased`}>
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {children}
         <MobilePhoneBar />
       </body>
