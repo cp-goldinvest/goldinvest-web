@@ -284,15 +284,26 @@ export function Header() {
                     </button>
                     {mobileOpen === item.label && (
                       <div className="ml-3 border-l border-[#EBEBEB] pl-3 flex flex-col gap-0.5 mb-1">
+                        {item.mega && item.href && (
+                          <Link
+                            href={item.href}
+                            onClick={() => setMenuOpen(false)}
+                            className="flex items-center justify-between mb-2 px-3 py-2.5 rounded-lg text-sm font-medium text-[#1A1A1A] hover:bg-[#FAF8F2] hover:text-[#BF8E41] transition-colors"
+                          >
+                            Svi proizvodi
+                            <ChevronRight size={14} className="text-[#999]" />
+                          </Link>
+                        )}
                         {item.mega ? (
                           item.mega.map((col) => (
                             <div key={col.title} className="mb-2">
                               <Link
                                 href={col.viewAllHref}
                                 onClick={() => setMenuOpen(false)}
-                                className="block px-3 py-1.5 text-xs font-semibold text-[#BF8E41] uppercase tracking-widest"
+                                className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-[#1A1A1A] hover:bg-[#FAF8F2] hover:text-[#BF8E41] transition-colors"
                               >
                                 {col.title}
+                                <ChevronRight size={14} className="text-[#999]" />
                               </Link>
                               {col.items.map((child) => (
                                 <Link
@@ -388,41 +399,28 @@ function MegaDropdown({
           isOpen ? "opacity-100 scale-y-100 pointer-events-auto translate-y-0" : "opacity-0 scale-y-95 pointer-events-none -translate-y-1",
         ].join(" ")}
       >
-        <div className="py-2 max-h-[70vh] overflow-y-auto">
+        <div className="py-2 max-h-[85vh] overflow-y-auto">
           {columns.map((col, colIdx) => (
             <div key={col.title}>
-              {col.items.length > 0 ? (
-                <>
-                  <div className="flex items-center justify-between px-4 pt-3 pb-1">
-                    <span className="text-[10px] font-bold text-[#BF8E41] uppercase tracking-widest">
-                      {col.title}
-                    </span>
-                    <Link href={col.viewAllHref} onClick={onClose} className="text-[10px] text-[#999] hover:text-[#BF8E41] transition-colors">
-                      sve →
-                    </Link>
-                  </div>
-                  {col.items.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      onClick={onClose}
-                      className="flex items-center px-4 py-1.5 text-sm text-[#444] hover:text-[#BF8E41] hover:bg-[#FAF8F2] transition-all duration-150"
-                    >
-                      <span className="w-1 h-1 rounded-full bg-[#BF8E41]/50 mr-2.5 shrink-0" />
-                      {item.label}
-                    </Link>
-                  ))}
-                </>
-              ) : (
+              <Link
+                href={col.viewAllHref}
+                onClick={onClose}
+                className="flex items-center justify-between px-4 py-2.5 text-sm font-medium text-[#1A1A1A] hover:text-[#BF8E41] hover:bg-[#FAF8F2] transition-all duration-150 group"
+              >
+                {col.title}
+                <ChevronRight size={13} className="text-[#999] group-hover:text-[#BF8E41] transition-colors" />
+              </Link>
+              {col.items.map((item) => (
                 <Link
-                  href={col.viewAllHref}
+                  key={item.label}
+                  href={item.href}
                   onClick={onClose}
-                  className="flex items-center justify-between px-4 py-2.5 text-sm font-medium text-[#1A1A1A] hover:text-[#BF8E41] hover:bg-[#FAF8F2] transition-all duration-150 group"
+                  className="flex items-center px-4 py-1.5 text-sm text-[#444] hover:text-[#BF8E41] hover:bg-[#FAF8F2] transition-all duration-150"
                 >
-                  {col.title}
-                  <ChevronRight size={13} className="text-[#999] group-hover:text-[#BF8E41] transition-colors" />
+                  <span className="w-1 h-1 rounded-full bg-[#BF8E41]/50 mr-2.5 shrink-0" />
+                  {item.label}
                 </Link>
-              )}
+              ))}
 
               {colIdx < columns.length - 1 && (
                 <div className="mx-4 mt-1 mb-0 border-t border-[#EBEBEB]" />
