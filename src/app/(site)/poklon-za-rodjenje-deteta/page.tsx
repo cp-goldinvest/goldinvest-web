@@ -91,13 +91,13 @@ export default async function PoklonaZaRodjenjePage() {
         .eq("is_active", true)
         .eq("pricing_rules.site_id", GOLDINVEST_SITE_ID)
         .in("slug", [
-          "zlatna-plocica-1g",
-          "zlatna-plocica-2g",
-          "zlatna-plocica-5g",
-          "zlatna-plocica-10g",
-          "mali-dukat-franc-jozef",
-          "veliki-dukat-franc-jozef",
-          "filharmonija-1-10-oz",
+          "argor-heraeus-1g-zlatna-plocica",
+          "argor-heraeus-2g-zlatna-plocica",
+          "argor-heraeus-5g-zlatna-plocica",
+          "argor-heraeus-10g-zlatna-plocica",
+          "franc-jozef-dukat-mali",
+          "franc-jozef-dukat-veliki",
+          "wiener-philharmoniker-1-10oz",
         ])
         .order("sort_order"),
       supabase.from("pricing_tiers").select("*").eq("site_id", GOLDINVEST_SITE_ID),
@@ -193,7 +193,7 @@ export default async function PoklonaZaRodjenjePage() {
                 { label: "Pločica 5g", value: 5 },
                 { label: "Pločica 10g", value: 10 },
                 { label: "Mali dukat FJ (3.49g)", value: 3.49 },
-                { label: "Bečka Filharmonija 1/10 oz (3.11g)", value: 3.11 },
+                { label: "Bečka Filharmonija 1/10 oz (3.11g)", value: 3.1103 },
                 { label: "Veliki dukat FJ (13.96g)", value: 13.96 },
               ],
             }}
