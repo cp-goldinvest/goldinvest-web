@@ -46,12 +46,15 @@ const NAV_ITEMS: NavItem[] = [
           { label: "Zlatna poluga 1kg",    href: "/kategorija/zlatne-poluge/zlatna-poluga-1kg" },
         ],
       },
-      // empty items = prikazuje se kao jedan direktan link
       {
         title: "Zlatni dukati",
         viewAllHref: "/kategorija/zlatni-dukati",
-        items: [],
+        items: [
+          { label: "Franc Jozef dukat",        href: "/kategorija/zlatni-dukati/franc-jozef-dukat" },
+          { label: "Bečka filharmonija dukat", href: "/kategorija/zlatni-dukati/becka-filharmonija-dukat" },
+        ],
       },
+      // empty items = prikazuje se kao jedan direktan link
       {
         title: "Multipack setovi",
         viewAllHref: "/kategorija/multipack",
