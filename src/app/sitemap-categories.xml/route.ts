@@ -6,6 +6,7 @@ const CATEGORIES = [
   { url: `${BASE_URL}/kategorija/zlatne-poluge`,      changeFrequency: "daily", priority: "0.9" },
   { url: `${BASE_URL}/kategorija/zlatne-plocice`,     changeFrequency: "daily", priority: "0.9" },
   { url: `${BASE_URL}/kategorija/zlatni-dukati`,      changeFrequency: "daily", priority: "0.9" },
+  { url: `${BASE_URL}/kategorija/multipack`,          changeFrequency: "daily", priority: "0.8" },
 
   { url: `${BASE_URL}/kategorija/zlatne-poluge/zlatna-poluga-1-unca`, changeFrequency: "daily", priority: "0.8" },
   { url: `${BASE_URL}/kategorija/zlatne-poluge/zlatna-poluga-50g`,    changeFrequency: "daily", priority: "0.8" },
