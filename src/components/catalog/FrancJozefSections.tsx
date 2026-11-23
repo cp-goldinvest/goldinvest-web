@@ -8,7 +8,7 @@ const SPEC_ROWS = [
   { label: "Ukupna težina", small: "3,49 g", large: "13,96 g" },
   { label: "Čisto zlato", small: "3,44 g", large: "13,77 g" },
   { label: "Finoća", small: "986/1000 (23,6 karata)", large: "986/1000 (23,6 karata)" },
-  { label: "Prečnik", small: "oko 20 mm", large: "oko 40 mm" },
+  { label: "Prečnik", small: "19,75 mm", large: "39,5 mm" },
   { label: "Godina na kovanici", small: "1915", large: "1915" },
   { label: "Kovnica", small: "Münze Österreich", large: "Münze Österreich" },
   { label: "PDV", small: "Oslobođen", large: "Oslobođen" },
@@ -179,7 +179,7 @@ export function FrancJozefComparisonAndAuthenticity() {
         cards={[
           {
             title: "Težina i veličina",
-            body: "Mali dukat ima 3,49 g i prečnik oko 20 mm, a veliki 13,96 g i prečnik oko 40 mm. Za proveru je potrebna vaga tačnosti 0,01 g. Veće odstupanje je razlog za oprez.",
+            body: "Mali dukat ima 3,49 g i prečnik 19,75 mm, a veliki 13,96 g i prečnik 39,5 mm. Za proveru je potrebna vaga tačnosti 0,01 g. Veće odstupanje je razlog za oprez.",
           },
           {
             title: "Natpis i godina",

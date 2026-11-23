@@ -159,6 +159,14 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
       title: "Česta pitanja o dukatu Franc Jozef",
       items: [
         {
+          q: "Koliko grama ima mali i veliki dukat Franc Jozef?",
+          a: "Mali (jednostruki) dukat ima ukupnu težinu 3,49 grama, od čega je 3,44 grama čisto zlato. Veliki (četvorostruki) dukat ima 13,96 grama, od čega je 13,77 grama čisto zlato. Prečnik malog dukata je 19,75 mm, a velikog 39,5 mm.",
+        },
+        {
+          q: "Koliko karata ima dukat Franc Jozef?",
+          a: "Dukat Franc Jozef je od zlata finoće 986/1000, što odgovara 23,6 karata. Ostatak legure je bakar, koji kovanicu čini otpornijom na habanje i daje joj blago crvenkastu nijansu.",
+        },
+        {
           q: "Zašto na svakom dukatu piše godina 1915?",
           a: "Svi investicioni Franc Jozef dukati koji se danas legalno prodaju nose utisnatu godinu 1915. To ne znači da je dukat star preko sto godina, već da je u pitanju zvanično, moderno 'novo kovanje' (restrike) austrijske državne kovnice. Godina 1915. se koristi kao istorijski simbol, jer je to bila poslednja godina redovnog kovanja pre pauze usled Prvog svetskog rata.",
         },

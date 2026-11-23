@@ -15,9 +15,71 @@ import { WhatIsGoldSection } from "@/components/home/WhatIsGoldSection";
 import { ProductTabs } from "@/components/catalog/ProductTabs";
 import { ProductHeroImage } from "@/components/catalog/ProductHeroImage";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildProductSchema, buildBreadcrumbSchema } from "@/lib/schema";
+import { buildProductSchema, buildBreadcrumbSchema, buildFaqSchema } from "@/lib/schema";
+import { CategoryFaq } from "@/components/catalog/CategoryFaq";
 
 export const revalidate = 60;
+
+// Finoća iz baze (9860 ili 0.986) -> "986" i karati ("23,6"); 999+ se prikazuje kao 24 karata
+function purityInfo(purity: unknown) {
+  const raw = Number(purity);
+  const norm = !raw ? 0.9999 : raw > 1 ? raw / 10000 : raw;
+  const permille = (norm * 1000).toFixed(1).replace(".0", "").replace(".", ",");
+  const karat = norm >= 0.999 ? 24 : Math.floor(norm * 240) / 10;
+  return { permille, karat: String(karat).replace(".", ",") };
+}
+
+// Dodatni podaci i česta pitanja za Franc Jozef dukate (odgovori na upite tipa "koliko grama ima mali dukat")
+const FJ_FAQ_KARAT = {
+  q: "Koliko karata ima dukat Franc Jozef?",
+  a: "Dukat Franc Jozef je od zlata finoće 986/1000, što odgovara 23,6 karata. To znači da je 98,6% dukata čisto zlato, a ostatak je bakar, koji kovanicu čini otpornijom na habanje i daje joj blago crvenkastu nijansu. Investiciono zlato od 24 karata ima finoću 999,9/1000.",
+};
+const FJ_PRODUCT_INFO: Record<string, { specs: { label: string; value: string }[]; faq: { q: string; a: string }[] }> = {
+  "franc-jozef-dukat-mali": {
+    specs: [
+      { label: "Čisto zlato", value: "3,44 g" },
+      { label: "Prečnik", value: "19,75 mm" },
+      { label: "Godina na kovanici", value: "1915 (zvanično novo kovanje)" },
+    ],
+    faq: [
+      {
+        q: "Koliko grama ima mali dukat?",
+        a: "Mali dukat Franc Jozef ima ukupnu težinu 3,49 grama, od čega je 3,44 grama čisto zlato. Prečnik kovanice je 19,75 mm. To je jednostruki dukat, najčešći poklon za rođenje, krštenje i rođendane.",
+      },
+      FJ_FAQ_KARAT,
+      {
+        q: "Koja je razlika između malog i velikog dukata?",
+        a: "Veliki (četvorostruki) dukat ima 13,96 grama, odnosno četiri puta više zlata od malog dukata od 3,49 grama, uz istu finoću 986/1000. Veliki dukat je povoljniji po gramu, a mali je fleksibilniji za poklone i postepenu kupovinu.",
+      },
+      {
+        q: "Da li se na mali dukat plaća PDV?",
+        a: "Ne. Dukat Franc Jozef ima finoću iznad 900/1000 i tretira se kao investiciono zlato, pa je oslobođen PDV-a.",
+      },
+    ],
+  },
+  "franc-jozef-dukat-veliki": {
+    specs: [
+      { label: "Čisto zlato", value: "13,77 g" },
+      { label: "Prečnik", value: "39,5 mm" },
+      { label: "Godina na kovanici", value: "1915 (zvanično novo kovanje)" },
+    ],
+    faq: [
+      {
+        q: "Koliko grama ima veliki dukat?",
+        a: "Veliki dukat Franc Jozef ima ukupnu težinu 13,96 grama, od čega je 13,77 grama čisto zlato. Prečnik kovanice je 39,5 mm. To je četvorostruki dukat, koji sadrži četiri puta više zlata od malog dukata.",
+      },
+      FJ_FAQ_KARAT,
+      {
+        q: "Koja je razlika između velikog i malog dukata?",
+        a: "Mali (jednostruki) dukat ima 3,49 grama, a veliki 13,96 grama, uz istu finoću 986/1000. Veliki dukat je povoljniji po gramu zlata i često se poklanja za venčanja, a mali je fleksibilniji za manje poklone.",
+      },
+      {
+        q: "Da li se na veliki dukat plaća PDV?",
+        a: "Ne. Dukat Franc Jozef ima finoću iznad 900/1000 i tretira se kao investiciono zlato, pa je oslobođen PDV-a.",
+      },
+    ],
+  },
+};
 
 // ── Metadata ────────────────────────────────────────────────────────────────
 
@@ -31,23 +93,30 @@ export async function generateMetadata({
     const supabase = createServiceClient();
     const { data } = await supabase
       .from("product_variants")
-      .select("name, weight_g, images, products!inner(name)")
+      .select("name, weight_g, images, purity, products!inner(name, category)")
       .eq("slug", slug)
       .eq("is_active", true)
       .single();
     const row = (data ?? null) as any;
-    const name = row?.name ?? row?.products?.name ?? "Investicioni zlatni proizvod";
+    const name = String(row?.name ?? row?.products?.name ?? "Investicioni zlatni proizvod").replace(/\s+/g, " ").trim();
     const weight = row ? formatWeight(row.weight_g) : "";
     const image = row?.images?.[0] ?? "/images/product-poluga.webp";
     const normalized = (s: string) => s.toLowerCase().replace(/\s+/g, "");
     const titleName = weight && normalized(name).includes(normalized(weight)) ? name : `${name} ${weight}`.trim();
+    const isCoin = row?.products?.category === "dukat";
+    const pi = purityInfo(row?.purity);
+    const metaDescription = isCoin
+      ? `Kupite ${name}, zlato finoće ${pi.permille}/1000 (${pi.karat} karata). Investiciono zlato oslobođeno PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/426-4129.`
+      : `Kupite ${name} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/426-4129.`;
     return {
       title: `${titleName} | Cena i Prodaja - Gold Invest Beograd`,
-      description: `Kupite ${name} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju. Pozovite: 061/426-4129.`,
+      description: metaDescription,
       alternates: { canonical: `https://goldinvest.rs/proizvodi/${slug}` },
       openGraph: {
         title: `${titleName} | Gold Invest`,
-        description: `${name} - LBMA Good Delivery, čistoća 999,9, bez PDV-a. Brza dostava.`,
+        description: isCoin
+          ? `${name} - zlato finoće ${pi.permille}/1000 (${pi.karat} karata), bez PDV-a. Brza dostava.`
+          : `${name} - LBMA Good Delivery, čistoća 999,9, bez PDV-a. Brza dostava.`,
         url: `https://goldinvest.rs/proizvodi/${slug}`,
         siteName: "Gold Invest",
         locale: "sr_RS",
@@ -228,9 +297,15 @@ export default async function ProizvodPage({
     out_of_stock: "OutOfStock",
   } as const;
 
+  const isCoin = product.category === "dukat";
+  const pi = purityInfo(variant.purity);
+  const fjInfo = FJ_PRODUCT_INFO[slug];
+
   const productSchema = buildProductSchema({
     name: productNameWithWeight,
-    description: `${productNameWithWeight} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju.`,
+    description: isCoin
+      ? `${productNameWithWeight}, zlato finoće ${pi.permille}/1000 (${pi.karat} karata). Investiciono zlato oslobođeno PDV-a. Brza dostava za Beograd i celu Srbiju.`
+      : `${productNameWithWeight} čistoće 999,9. LBMA Good Delivery sertifikat. Oslobođen PDV-a. Brza dostava za Beograd i celu Srbiju.`,
     brand: product.brand,
     slug: `/proizvodi/${slug}`,
     image: heroImages[0],
@@ -244,6 +319,7 @@ export default async function ProizvodPage({
     <main className="bg-white">
       <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
       <SchemaScript schema={productSchema} />
+      {fjInfo && <SchemaScript schema={buildFaqSchema(fjInfo.faq)} />}
 
       {/* ── Breadcrumb ──────────────────────────────────────────────────────── */}
       <section className="bg-white py-4 border-b border-[#F0EDE6]">
@@ -263,7 +339,7 @@ export default async function ProizvodPage({
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 xl:gap-16 items-center">
 
             {/* Left - image(s): images[0] = prednja, images[1] = zadnja */}
-            <ProductHeroImage images={heroImages} productName={product.name} />
+            <ProductHeroImage images={heroImages} productName={product.name} badge={isCoin ? "INVESTICIONO ZLATO" : undefined} />
 
             {/* Right - product info */}
             <div className="flex flex-col">
@@ -312,8 +388,9 @@ export default async function ProizvodPage({
                   maxWidth: 480,
                 }}
               >
-                Čistoća 999,9/1000 · 24 karata · LBMA Good Delivery · Fabrički zapečaćen blister
-                sa serijskim brojem · Oslobođena PDV-a · Dostava za celu Srbiju.
+                {isCoin
+                  ? `Finoća ${pi.permille}/1000 · ${pi.karat} karata · ${product.brand} · Zaštitna akrilna kapsula · Oslobođen PDV-a · Dostava za celu Srbiju.`
+                  : "Čistoća 999,9/1000 · 24 karata · LBMA Good Delivery · Fabrički zapečaćen blister sa serijskim brojem · Oslobođena PDV-a · Dostava za celu Srbiju."}
               </p>
 
               <div className="mb-6">
@@ -478,8 +555,19 @@ export default async function ProizvodPage({
           lengthMm={variant.length_mm ?? null}
           widthMm={variant.width_mm ?? null}
           thicknessMm={variant.thickness_mm ?? null}
+          specs={fjInfo?.specs}
         />
       </section>
+
+      {/* ── FAQ (Franc Jozef) ───────────────────────────────────────────────── */}
+      {fjInfo && (
+        <CategoryFaq
+          title={`Česta pitanja - ${displayName.split("–")[0].trim()}`}
+          items={fjInfo.faq}
+          ctaHref="/kategorija/zlatni-dukati/franc-jozef-dukat"
+          ctaLabel="Sve o dukatu Franc Jozef"
+        />
+      )}
 
       {/* ── Related products ────────────────────────────────────────────────── */}
       {relatedVariants.length > 0 && (
@@ -487,8 +575,12 @@ export default async function ProizvodPage({
           <SectionContainer>
             <SectionHeading
               title="Povezani proizvodi"
-              description="Investicione zlatne poluge LBMA rafinerija - različite gramže, ista garancija čistoće 999,9."
-              eyebrow="Zlatne poluge"
+              description={
+                isCoin
+                  ? "Investicione zlatne kovanice svetskih kovnica, oslobođene PDV-a."
+                  : "Investicione zlatne poluge LBMA rafinerija - različite gramže, ista garancija čistoće 999,9."
+              }
+              eyebrow={cat.label}
             />
             <ProductGrid
               variants={relatedVariants as any}
@@ -500,7 +592,7 @@ export default async function ProizvodPage({
             />
             <div className="mt-10 flex justify-center">
               <Link
-                href="/kategorija/zlatne-poluge"
+                href={cat.href}
                 className="inline-flex items-center justify-center rounded-full transition-opacity hover:opacity-90"
                 style={{
                   backgroundColor: "#1B1B1C",
@@ -512,7 +604,7 @@ export default async function ProizvodPage({
                   padding: "0 32px",
                 }}
               >
-                Sve zlatne poluge
+                {({ poluga: "Sve zlatne poluge", plocica: "Sve zlatne pločice", dukat: "Svi zlatni dukati", multipack: "Svi multipack setovi" } as Record<string, string>)[product.category] ?? "Sve zlatne poluge"}
               </Link>
             </div>
           </SectionContainer>

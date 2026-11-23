@@ -10,9 +10,11 @@ const LABELS = ["Prednja", "Zadnja"] as const;
 type Props = {
   images: string[] | null | undefined;
   productName: string;
+  /** Tekst bedža na slici; podrazumevano LBMA GOOD DELIVERY (poluge i pločice) */
+  badge?: string;
 };
 
-export function ProductHeroImage({ images, productName }: Props) {
+export function ProductHeroImage({ images, productName, badge = "LBMA GOOD DELIVERY" }: Props) {
   const list = useMemo(() => {
     const raw = (images ?? []).filter((u) => typeof u === "string" && u.length > 0);
     const unique = [...new Set(raw)];
@@ -95,7 +97,7 @@ export function ProductHeroImage({ images, productName }: Props) {
           className="text-[#BF8E41] font-semibold"
           style={{ fontSize: 10.5, letterSpacing: "0.05em" }}
         >
-          LBMA GOOD DELIVERY
+          {badge}
         </span>
       </div>
     </div>

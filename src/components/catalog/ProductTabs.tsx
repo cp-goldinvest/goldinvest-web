@@ -37,13 +37,17 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "poreski",     label: "Poreski i drugi relevantni tretmani" },
 ];
 
-export function ProductTabs({ weightG, purity, brand, origin, category, sku, variantName, description, lengthMm, widthMm, thicknessMm }: Props) {
+export function ProductTabs({ weightG, purity, brand, origin, category, sku, variantName, description, specs, lengthMm, widthMm, thicknessMm }: Props) {
   const [active, setActive] = useState<TabId>("opis");
 
   // Baza čuva purity kao integer (9999) ili decimal (0.9999) - normalizujemo
   const purityNorm = purity > 1 ? purity / 10000 : purity;
   const purityDisplay = (purityNorm * 1000).toFixed(1).replace(".0", "");
   const weightDisplay = weightG >= 1000 ? `${weightG / 1000} kg` : `${weightG} g`;
+  const isCoin = category === "dukat";
+  // Karati = finoća x 24; 999+ prikazujemo kao 24, ostalo zaokruženo naniže na jednu decimalu (986 -> 23,6)
+  const karatValue = purityNorm >= 0.999 ? 24 : Math.floor(purityNorm * 240) / 10;
+  const karatDisplay = String(karatValue).replace(".", ",");
 
   const formatLabel =
     category === "plocica" ? "Pločica (investicioni bar)" :
@@ -131,14 +135,23 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
             <div className="rounded-2xl border border-[#F0EDE6] overflow-hidden">
               {[
                 { label: "Težina",           value: weightDisplay },
-                { label: "Čistoća",          value: `${purityDisplay}/1000 (24 karata, 999,9 finog zlata)` },
+                { label: "Čistoća",          value: isCoin ? `${purityDisplay}/1000 (${karatDisplay} karata)` : `${purityDisplay}/1000 (24 karata, 999,9 finog zlata)` },
+                ...(specs ?? []),
                 { label: "Format",           value: formatLabel },
                 { label: "Proizvođač",       value: brand },
                 { label: "Zemlja porekla",   value: origin },
                 ...(dimensionsDisplay ? [{ label: "Dimenzije", value: dimensionsDisplay }] : []),
-                { label: "Pakovanje",        value: "Fabrički zapečaćen sigurnosni blister (optifit)" },
-                { label: "Sertifikacija",    value: "LBMA Good Delivery" },
-                { label: "Serijski broj",    value: "Da - laserski graviran na proizvodu i blisteru" },
+                ...(isCoin
+                  ? [
+                      { label: "Pakovanje",     value: "Zaštitna akrilna kapsula" },
+                      { label: "Autentičnost",  value: "Proverava se težina, prečnik i oznake kovanice" },
+                      { label: "Serijski broj", value: "Ne - kovanice nemaju serijski broj" },
+                    ]
+                  : [
+                      { label: "Pakovanje",     value: "Fabrički zapečaćen sigurnosni blister (optifit)" },
+                      { label: "Sertifikacija", value: "LBMA Good Delivery" },
+                      { label: "Serijski broj", value: "Da - laserski graviran na proizvodu i blisteru" },
+                    ]),
                 { label: "PDV",              value: "Oslobođeno PDV-a (investiciono zlato)" },
                 ...(sku ? [{ label: "Šifra proizvoda", value: sku }] : []),
               ].map(({ label, value }, i) => (
@@ -177,6 +190,10 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
                   {
                     title: "Plaćanje gotovinom",
                     body: "Plaćanje gotovinom prihvatamo do zakonskog limita od 1.160.000 RSD (10.000 EUR). Za iznose iznad ovog limita obavezno je plaćanje bankovnim transferom.",
+                  },
+                  {
+                    title: "Platna kartica",
+                    body: "Prihvatamo Visa, Mastercard i Dina kartice, bez dodatne naknade za kupca. Transakcija mora biti vidljiva na vašem izvodu, što je zakonski uslov.",
                   },
                   {
                     title: "Bankovni transfer",
@@ -235,12 +252,12 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
                 { label: "Naziv proizvoda",      value: variantName ?? `${brand} zlatni proizvod ${weightDisplay}` },
                 { label: "Zemlja porekla",        value: origin },
                 { label: "Proizvođač",            value: brand },
-                { label: "Sastav",                value: `Zlato (Au) ${purityDisplay}/1000 - čistoće 99,99%` },
+                { label: "Sastav",                value: isCoin ? `Zlato (Au) ${purityDisplay}/1000 (${karatDisplay} karata)` : `Zlato (Au) ${purityDisplay}/1000 - čistoće 99,99%` },
                 { label: "Nominalna masa",         value: weightDisplay },
                 ...(dimensionsDisplay ? [{ label: "Dimenzije", value: dimensionsDisplay }] : []),
-                { label: "Pakovanje",             value: "Originalni sigurnosni blister (optifit) - fabrički zapečaćen" },
+                { label: "Pakovanje",             value: isCoin ? "Zaštitna akrilna kapsula" : "Originalni sigurnosni blister (optifit) - fabrički zapečaćen" },
                 { label: "Uvoznik / Distributer", value: "Gold Invest d.o.o., Beograd, Srbija" },
-                { label: "Garancija porekla",     value: "LBMA Good Delivery sertifikat" },
+                { label: "Garancija porekla",     value: isCoin ? `Kovnica ${brand}` : "LBMA Good Delivery sertifikat" },
                 { label: "Uslovi čuvanja",        value: "Na sobnoj temperaturi, zaštićeno od vlage i direktnog sunca" },
               ].map(({ label, value }, i) => (
                 <div
@@ -268,7 +285,7 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
               className="text-[#8A8A8A] text-xs leading-relaxed"
             >
               Svi podaci na ovoj stranici su informativnog karaktera. Stvarni podaci o proizvodu
-              nalaze se na originalnom blisteru i sertifikatu koji dolaze uz polugu.
+              nalaze se na originalnom pakovanju i dokumentaciji koji dolaze uz proizvod.
             </p>
           </div>
         )}
@@ -285,12 +302,12 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
                     Oslobođenje od PDV-a
                   </p>
                   <p className="text-[#1B1B1C] font-semibold text-[15px] mb-2">
-                    Zlatne poluge su u potpunosti oslobođene PDV-a
+                    {isCoin ? "Investicione zlatne kovanice su oslobođene PDV-a" : "Zlatne poluge su u potpunosti oslobođene PDV-a"}
                   </p>
                   <p className="text-[#6B6B6B] text-[14px] leading-relaxed mb-0">
                     U skladu sa Zakonom o porezu na dodatu vrednost Republike Srbije (čl. 25, st. 1, tač. 4), promet investicionog
-                    zlata - uključujući zlatne poluge čistoće iznad 995/1000 - u potpunosti je oslobođen PDV-a od 20%. Svaki dinar koji
-                    date ide direktno u vrednost čistog zlata, bez dodatnog poreza.
+                    zlata - uključujući zlatne poluge čistoće iznad 995/1000 i investicione zlatne kovanice čistoće najmanje 900/1000 -
+                    u potpunosti je oslobođen PDV-a od 20%. Svaki dinar koji date ide direktno u vrednost zlata, bez dodatnog poreza.
                   </p>
                 </div>
 
@@ -321,8 +338,8 @@ export function ProductTabs({ weightG, purity, brand, origin, category, sku, var
                     Nasledstvo i prenos imovine
                   </p>
                   <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-0">
-                    Fizičko zlato u vidu poluga prenosi se kao i svaka druga imovina. Zlatne poluge u originalnom LBMA blisteru sa
-                    serijskim brojem lako je moguće dokumentovati za potrebe zaostavštine ili poklona. Za konkretne pravne i poreske
+                    Fizičko investiciono zlato prenosi se kao i svaka druga imovina. Proizvode u originalnom pakovanju, uz račun,
+                    lako je dokumentovati za potrebe zaostavštine ili poklona. Za konkretne pravne i poreske
                     aspekte prenosa imovine, konsultujte se sa notarom ili poreskim savetnikom.
                   </p>
                 </div>
