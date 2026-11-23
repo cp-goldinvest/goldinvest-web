@@ -40,7 +40,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Mogu li da plaćam platnom karticom?",
-    a: "Ne, plaćanje platnim karticama trenutno nije moguće. Razlog za to su visoke provizije banaka (često i do 2-3%) koje bi neizbežno morale da se ugrade u krajnju cenu zlata. Naš cilj je da vam obezbedimo najpovoljniju moguću cenu na tržištu bez skrivenih troškova, zbog čega prihvatamo isključivo plaćanje gotovinom, bankovnim transferom ili pouzećem.",
+    a: "Da, prihvatamo platne kartice Visa, Mastercard i Dina, bez dodatne naknade za kupca. Transakcija mora biti vidljiva na vašem izvodu, što je zakonski uslov. Za veće iznose možete platiti i bankovnim transferom, a gotovinom do zakonskog limita.",
   },
   {
     q: "Koliko traje isporuka?",

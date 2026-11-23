@@ -438,7 +438,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           },
           {
             q: "Mogu li da plaćam platnom karticom?",
-            a: "Ne, plaćanje platnim karticama trenutno nije moguće. Razlog za to su visoke provizije banaka (često i do 2–3%) koje bi neizbežno morale da se ugrade u krajnju cenu zlata. Naš cilj je da vam obezbedimo najpovoljniju moguću cenu na tržištu bez skrivenih troškova, zbog čega prihvatamo isključivo plaćanje gotovinom, bankovnim transferom ili pouzećem.",
+            a: "Da, prihvatamo platne kartice Visa, Mastercard i Dina, bez dodatne naknade za kupca. Transakcija mora biti vidljiva na vašem izvodu, što je zakonski uslov. Za veće iznose možete platiti i bankovnim transferom, a gotovinom do zakonskog limita.",
           },
           {
             q: "Koliko traje isporuka?",
@@ -534,7 +534,7 @@ const WEIGHT_CONFIGS: Record<string, WeightConfig> = {
           },
           {
             q: "Mogu li da platim platnom karticom?",
-            a: "Ne, plaćanje karticama trenutno nije moguće. Visoke bankarske provizije (2–3%) bi se neizbežno ugradile u cenu zlata - a naš cilj je da vam obezbedimo najpovoljniju cenu na tržištu. Prihvatamo gotovinu, bankovni transfer i pouzećem.",
+            a: "Da, prihvatamo platne kartice Visa, Mastercard i Dina, bez dodatne naknade za kupca. Transakcija mora biti vidljiva na vašem izvodu, što je zakonski uslov. Za veće iznose možete platiti i bankovnim transferom, a gotovinom do zakonskog limita.",
           },
           {
             q: "Koliko traje isporuka?",

@@ -91,7 +91,7 @@ const FAQ_PDV: FaqItem = {
 
 const FAQ_KARTICA: FaqItem = {
   q: "Mogu li da platim platnom karticom?",
-  a: "Ne, plaćanje platnim karticama trenutno nije moguće. Visoke provizije banaka (2–3%) bi se neizbežno ugradile u cenu zlata. Naš cilj je najpovoljnija cena na tržištu - prihvatamo gotovinu, bankovni transfer i pouzećem.",
+  a: "Da, prihvatamo platne kartice Visa, Mastercard i Dina, bez dodatne naknade za kupca. Transakcija mora biti vidljiva na vašem izvodu, što je zakonski uslov. Za veće iznose možete platiti i bankovnim transferom, a gotovinom do zakonskog limita.",
 };
 
 const FAQ_DOSTAVA: FaqItem = {

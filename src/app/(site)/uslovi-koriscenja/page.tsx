@@ -40,7 +40,7 @@ Cene prikazane na Sajtu su orijentacione i ažuriraju se prema kretanju cene zla
     title: "3. Kupovina i plaćanje",
     content: `Kupovina zlatnih proizvoda vrši se putem direktnog kontakta sa Gold Invest timom - telefonom, e-mailom ili posredstvom kontakt forme na Sajtu. Sajt ne vrši automatsku obradu porudžbina niti naplaćivanje putem interneta.
 
-Prihvatamo sledeće načine plaćanja: gotovina, bankarski transfer i pouzećem. Plaćanje platnim karticama trenutno nije dostupno. Za transakcije iznad zakonskog limita za gotovinsko plaćanje (10.000 EUR), kupovina se realizuje isključivo bankovnim transferom u skladu sa Zakonom o sprečavanju pranja novca.`,
+Prihvatamo sledeće načine plaćanja: gotovina, platne kartice (Visa, Mastercard, Dina), bankarski transfer i pouzećem. Za transakcije iznad zakonskog limita za gotovinsko plaćanje (10.000 EUR), kupovina se realizuje isključivo bankovnim transferom u skladu sa Zakonom o sprečavanju pranja novca.`,
   },
   {
     title: "4. Tačnost informacija",

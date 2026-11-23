@@ -77,7 +77,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Da li mogu platiti platnom karticom?",
-    a: "Ne, plaćanje platnim karticama trenutno nije moguće. Prihvatamo gotovinu, bankovni transfer i pouzećem.",
+    a: "Da, prihvatamo platne kartice Visa, Mastercard i Dina, bez dodatne naknade za kupca. Transakcija mora biti vidljiva na vašem izvodu, što je zakonski uslov. Za veće iznose možete platiti i bankovnim transferom, a gotovinom do zakonskog limita.",
   },
   {
     q: "Koliko traje isporuka?",
