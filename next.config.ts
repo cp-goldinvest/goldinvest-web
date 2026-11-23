@@ -29,6 +29,7 @@ const nextConfig: NextConfig = {
       { source: "/pokloni/poklon-za-krstenje", destination: "/poklon-za-krstenje", permanent: true },
       { source: "/pokloni/poklon-za-rodjenje-deteta", destination: "/poklon-za-rodjenje-deteta", permanent: true },
       { source: "/proizvodi/zlatna-poluga-100g-argor", destination: "/proizvodi/argor-heraeus-100g-zlatna-poluga", permanent: true },
+      { source: "/blog/franc-jozef-dukat-vodic", destination: "/kategorija/zlatni-dukati/franc-jozef-dukat", permanent: true },
     ];
   },
   typescript: { ignoreBuildErrors: true },

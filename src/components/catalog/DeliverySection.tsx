@@ -8,9 +8,19 @@ type Props = {
   description: string;
   /** Body text for the first card ("Lično preuzimanje") - only part that varies per category */
   pickupCardBody: string;
+  /** Card heading override for categories that are not bars */
+  cardHeading?: string;
+  /** Hides the card's copy of `description`, which is already shown under the section heading */
+  hideCardDescription?: boolean;
 };
 
-export function DeliverySection({ heading, description, pickupCardBody }: Props) {
+export function DeliverySection({
+  heading,
+  description,
+  pickupCardBody,
+  cardHeading = "Kako preuzimate svoju zlatnu polugu?",
+  hideCardDescription = false,
+}: Props) {
   return (
     <section className="bg-[#F9F9F9] py-16 sm:py-20 border-t border-[#F0EDE6]">
       <SectionContainer>
@@ -30,14 +40,16 @@ export function DeliverySection({ heading, description, pickupCardBody }: Props)
                 fontWeight: 400,
               }}
             >
-              Kako preuzimate svoju zlatnu polugu?
+              {cardHeading}
             </h3>
-            <p
-              className="text-[#4C4C4C] text-sm leading-relaxed mb-6"
-              style={{ fontFamily: "var(--font-rethink), sans-serif" }}
-            >
-              {description}
-            </p>
+            {!hideCardDescription && (
+              <p
+                className="text-[#4C4C4C] text-sm leading-relaxed mb-6"
+                style={{ fontFamily: "var(--font-rethink), sans-serif" }}
+              >
+                {description}
+              </p>
+            )}
             <p className="text-[#6B6B6B] text-[13.5px] leading-relaxed mb-7">
               Bilo da dolazite lično u Beograd ili želite diskretnu dostavu na kućnu adresu, svaka
               pošiljka je osigurana i pripremljena tako da samo vi znate šta se nalazi u paketu.

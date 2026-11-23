@@ -13,7 +13,14 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InfoCard } from "@/components/ui/InfoCard";
 import { SchemaScript } from "@/components/ui/SchemaScript";
-import { buildBreadcrumbSchema, buildFaqSchema } from "@/lib/schema";
+import { buildBreadcrumbSchema, buildFaqSchema, buildProductSchema } from "@/lib/schema";
+import { computePrices } from "@/lib/pricing";
+import { pickPricingRule } from "@/lib/site";
+import {
+  FrancJozefSpecs,
+  FrancJozefPriceAndBuyback,
+  FrancJozefComparisonAndAuthenticity,
+} from "@/components/catalog/FrancJozefSections";
 
 export const revalidate = 60;
 
@@ -59,6 +66,8 @@ type SlugConfig = {
     heading: string;
     description: string;
     pickupCardBody: string;
+    cardHeading?: string;
+    hideCardDescription?: boolean;
   };
   historySection: {
     heading: string;
@@ -117,6 +126,8 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
         "Prodaja dukata Franc Jozef je moguća na nekoliko načina - uvek diskretno i maksimalno osigurano.",
       pickupCardBody:
         "Posetite nas lično u Beogradu. Potpuno diskretno okruženje, stručna provera autentičnosti i preuzimanje na licu mesta bez čekanja.",
+      cardHeading: "Kako preuzimate svoj dukat?",
+      hideCardDescription: true,
     },
     historySection: {
       heading: "Dukat Franc Jozef - Istorija najpoznatije zlatne kovanice Balkana",
@@ -162,6 +173,10 @@ const SLUG_CONFIGS: Record<string, SlugConfig> = {
         {
           q: "Kako ga čuvati?",
           a: "Zlatno pravilo: Nikada ne dodirujte površinu dukata golim prstima i nikada ga ne brište niti polirajte krpama! Zlato je mekan metal i svako trenje ostavlja mikro-ogrebotine, dok kiseline sa prstiju mogu ostaviti trajne mrlje. Svako fizičko oštećenje, bušenje (radi pravljenja ogrlice) ili grebanje trajno uništava njegov investicioni status. Uvek ga čuvajte u originalnoj zaštitnoj kapsuli.",
+        },
+        {
+          q: "Da li je dukat Franc Jozef dobar poklon za krštenje ili venčanje?",
+          a: "Da, to je jedna od najdužih tradicija u Srbiji i regionu. Mali dukat se najčešće poklanja za rođenje, krštenje i rođendane, a veliki dukat za venčanja i veće prilike. Dukat spaja simboliku i stvarnu vrednost zlata, a da bi zadržao punu vrednost, treba ga čuvati u zaštitnoj kapsuli, bez bušenja i oštećenja.",
         },
         {
           q: "Da li otkupljujete dukate kupljene u inostranstvu ili drugim zlatarama?",
@@ -379,11 +394,49 @@ export default async function DukatSlugPage({
     { label: config.breadcrumbLabel, href: `/kategorija/zlatni-dukati/${slug}` },
   ];
 
+  const isFrancJozef = slug === "franc-jozef-dukat";
+
+  const availabilityMap = {
+    in_stock: "InStock",
+    preorder: "PreOrder",
+    out_of_stock: "OutOfStock",
+  } as const;
+
+  const productSchemas =
+    isFrancJozef && snapshotRow
+      ? variants.map((v: any) => {
+          const prices = computePrices(
+            v.weight_g,
+            v.products.category,
+            snapshotRow,
+            pickPricingRule(v.pricing_rules),
+            tiers,
+            v.products.brand,
+            v.name,
+          );
+          const name = String(v.name ?? v.products.name).trim();
+          return buildProductSchema({
+            name,
+            description: `${name}, zlato čistoće 986/1000. Investiciono zlato oslobođeno PDV-a.`,
+            brand: v.products.brand,
+            slug: `/proizvodi/${v.slug}`,
+            purity: "986/1000",
+            weightGrams: Number(v.weight_g),
+            price: prices.onRequest ? undefined : Math.round(prices.stock),
+            availability:
+              availabilityMap[v.availability as keyof typeof availabilityMap] ?? "InStock",
+          });
+        })
+      : [];
+
   return (
     <main className="bg-white">
       {/* Schema.org */}
       <SchemaScript schema={buildBreadcrumbSchema(breadcrumbs)} />
       <SchemaScript schema={buildFaqSchema(config.faq.items)} />
+      {productSchemas.map((schema: any) => (
+        <SchemaScript key={schema.url} schema={schema} />
+      ))}
 
       {/* ── Breadcrumb ─────────────────────────────────────────────────────── */}
       <section className="bg-white py-4 border-b border-[#F0EDE6]">
@@ -528,6 +581,8 @@ export default async function DukatSlugPage({
         </SectionContainer>
       </section>
 
+      {isFrancJozef && <FrancJozefSpecs />}
+
       {/* ── H2: Cena ─────────────────────────────────────────────────────── */}
       <PriceStructureSection
         title={config.priceStructure.title}
@@ -537,12 +592,18 @@ export default async function DukatSlugPage({
         card3Body={config.priceStructure.card3Body}
       />
 
+      {isFrancJozef && <FrancJozefPriceAndBuyback />}
+
       {/* ── H2: Gde kupiti / Dostava ──────────────────────────────────────── */}
       <DeliverySection
         heading={config.delivery.heading}
         description={config.delivery.description}
         pickupCardBody={config.delivery.pickupCardBody}
+        cardHeading={config.delivery.cardHeading}
+        hideCardDescription={config.delivery.hideCardDescription}
       />
+
+      {isFrancJozef && <FrancJozefComparisonAndAuthenticity />}
 
       {/* ── H2: Istorija Franc Jozefa ─────────────────────────────────────── */}
       <section className="bg-white py-16 sm:py-20 border-t border-[#F0EDE6]">
