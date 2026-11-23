@@ -46,6 +46,16 @@ type ApiPoint = { date: string; xau_eur: number };
 type HistoryResponse = { points: ApiPoint[]; eur_rsd: number };
 
 function formatLabel(isoDate: string, period: Period): string {
+  // Date-only "YYYY-MM-DD" parse-uj kao lokalni kalendarski dan (ne UTC midnight),
+  // inače u nekim TZ label ode jedan dan unazad (npr. 01.04 → 31.03).
+  const dateOnly = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate);
+  if (dateOnly && period !== "1D") {
+    const [, y, m, d] = dateOnly;
+    if (period === "1W" || period === "1M") return `${d}.${m}`;
+    if (period === "1Y") return `${d}.${m}.${y.slice(2)}`;
+    return `${m}.${y.slice(2)}`;
+  }
+
   const d = new Date(isoDate);
   if (period === "1D") {
     const hh = String(d.getHours()).padStart(2, "0");

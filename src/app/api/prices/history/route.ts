@@ -9,7 +9,7 @@ import historicalData from "@/data/gold-historical.json";
  * Granulacija se bira po periodu (vidi PERIOD_CFG).
  *
  * Za duge periode (1Y/5Y/MAX) spaja staticki istorijski JSON
- * (sve do 8.4.2026) sa snapshot-ovima iz baze (od 9.4.2026 nadalje).
+ * (sve do 8.4.2026) sa snapshot-ovima iz baze (od 8.4.2026 nadalje).
  *
  * Vraca i trenutni eur_rsd za RSD konverziju na klijentu.
  */
@@ -21,8 +21,10 @@ type Point = { date: string; xau_eur: number };
 
 const STATIC: StaticPoint[] = historicalData as StaticPoint[];
 
-// Datum od kog cron pouzdano puni bazu (~575 snapshot-ova/dan).
-// Za duge periode statika pokriva sve do ovog datuma, baza preuzima posle.
+// Datum od kog cron pouzdano puni bazu (~288 snapshot-ova/dan).
+// Za duge periode statika pokriva sve do ovog datuma, baza preuzima odavde.
+// Rani DB redovi pre ovog datuma (test/seed) ne smeju da uđu u merge — prave
+// hronološki skok unazad na spoju sa statikom.
 const DB_CUTOFF = "2026-04-08";
 
 const HOUR_MS = 60 * 60 * 1000;
@@ -40,6 +42,11 @@ const PERIOD_CFG: Record<
   "MAX": { days: 365 * 20, bucketMs: 30 * DAY_MS,      cache: 3600, useStatic: true  },
 };
 
+function pointTime(p: Point): number {
+  // Date-only ("YYYY-MM-DD") → UTC midnight; ISO timestamps → absolute ms.
+  return new Date(p.date).getTime();
+}
+
 export async function GET(req: NextRequest) {
   const period = (req.nextUrl.searchParams.get("period") ?? "1Y") as Period;
   const cfg = PERIOD_CFG[period];
@@ -52,15 +59,23 @@ export async function GET(req: NextRequest) {
   cutoff.setDate(cutoff.getDate() - cfg.days);
   const cutoffIso = cutoff.toISOString();
 
-  // Supabase/PostgREST ima db-max-rows = 1000 - moramo paginirati za period > ~1.7 dana.
+  // Za duge periode baza sme da krene tek od DB_CUTOFF (statika pokriva ranije).
+  // Inače rani/seed snapshot-ovi (npr. 2026-03-05) idu POSLE statike → grafikon ide unazad.
+  const dbFromIso = cfg.useStatic
+    ? (cutoffIso.slice(0, 10) > DB_CUTOFF ? cutoffIso : `${DB_CUTOFF}T00:00:00.000Z`)
+    : cutoffIso;
+
+  // Supabase/PostgREST ima db-max-rows = 1000 - moramo paginirati.
+  // ~288 snapshot-ova/dan × ~230 dana ≈ 66k; 120 stranica = 120k pokriva >1 godinu.
   type Row = { fetched_at: string; xau_eur: number };
   const PAGE = 1000;
+  const MAX_PAGES = 120;
   const rows: Row[] = [];
   for (let from = 0; ; from += PAGE) {
     const { data, error } = await supabase
       .from("gold_price_snapshots")
       .select("fetched_at, xau_eur")
-      .gte("fetched_at", cutoffIso)
+      .gte("fetched_at", dbFromIso)
       .not("xau_eur", "is", null)
       .order("fetched_at", { ascending: true })
       .range(from, from + PAGE - 1);
@@ -72,29 +87,30 @@ export async function GET(req: NextRequest) {
     if (!data || data.length === 0) break;
     rows.push(...(data as Row[]));
     if (data.length < PAGE) break;
-    // safety stop - 30 stranica = 30k snapshot-ova (~52 dana, dovoljno za 1M)
-    if (from >= 30 * PAGE) break;
+    if (from >= (MAX_PAGES - 1) * PAGE) break;
   }
 
   // Bucket DB rows: poslednja vrednost u bucket-u pobedjuje (data je ASC).
   let dbPoints: Point[] = [];
-  if (rows && rows.length > 0) {
+  if (rows.length > 0) {
     if (cfg.bucketMs === 0) {
       dbPoints = rows.map((r) => ({
-        date: r.fetched_at as string,
+        date: r.fetched_at,
         xau_eur: Number(r.xau_eur),
       }));
     } else {
       const buckets = new Map<number, Point>();
       for (const r of rows) {
-        const t = new Date(r.fetched_at as string).getTime();
+        const t = new Date(r.fetched_at).getTime();
         const key = Math.floor(t / cfg.bucketMs);
         buckets.set(key, {
-          date: r.fetched_at as string,
+          date: r.fetched_at,
           xau_eur: Number(r.xau_eur),
         });
       }
-      dbPoints = [...buckets.values()];
+      dbPoints = [...buckets.entries()]
+        .sort((a, b) => a[0] - b[0])
+        .map(([, p]) => p);
     }
   }
 
@@ -105,7 +121,9 @@ export async function GET(req: NextRequest) {
     const staticInRange = STATIC.filter(
       (d) => d.date >= cutoffStr && d.date < DB_CUTOFF
     ).map((d) => ({ date: d.date, xau_eur: d.xau_eur }));
-    points = [...staticInRange, ...dbPoints];
+    points = [...staticInRange, ...dbPoints].sort(
+      (a, b) => pointTime(a) - pointTime(b)
+    );
   } else {
     points = dbPoints;
   }
